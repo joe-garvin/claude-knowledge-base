@@ -101,7 +101,7 @@ No opening stat. The two candidate stats (Salesforce and Bredin) do not have exp
 ## CTA
 
 "Get Started with Microsoft Foundry"
-URL: https://foundry.microsoft.com
+URL: https://azure.microsoft.com/en-us/products/ai-foundry/
 *(Confirm exact URL with Christina before final asset)*
 
 Full CTA line: "Ready to explore what AI could do for your business? Get started with Microsoft Foundry."
@@ -162,14 +162,14 @@ If a clause can be removed without losing meaning, remove it.
 
 ---
 
-## Approved outline content (v1, incorporating Christina's feedback)
+## Approved outline content (v2, incorporating Christina's feedback)
 
 ### Page 1
 
 **Opening section**
 - Headline: How growing businesses are putting AI to work
 - Intro line A: Businesses of every size are saving time, serving customers better, and making smarter decisions with AI — in ways that are more practical and accessible than most expect.
-- Intro line B: Here are three of the ways businesses are applying AI right now.
+- Intro line B: Here are three common ways businesses are applying AI right now.
 
 **Use case 1: Chat with your data**
 
@@ -177,7 +177,7 @@ Business problem:
 Every growing business runs on knowledge — past proposals, product details, customer history, internal processes. But that knowledge is usually scattered: buried in email threads, saved across shared drives, or stored in someone's head. When your team needs an answer, they spend time hunting for it instead of acting on it. And when someone leaves, they often take critical knowledge with them.
 
 What changed:
-AI can connect to the documents and systems a business already has — files, emails, records — and let anyone on the team ask questions in plain language and get accurate, sourced answers in seconds. No more hunting through folders or waiting for the one person who knows. Microsoft Azure handles the security, so your business data stays private and accessible only to your team.
+AI can connect to the documents and systems a business already has — files, emails, records — and let anyone on the team ask questions in plain language and get accurate, sourced answers in seconds. No more hunting through folders or waiting for the one person who knows. Most importantly, Microsoft Azure ensures that all of your knowledge stays secure, so your business data stays private and accessible only to your team.
 
 Business outcome:
 For one staffing platform, the results were measurable. Gojob — which helps match temporary workers with employers — used AI to let recruiters query a database of two million candidate profiles in plain language, surfacing the right match in minutes rather than days. Their placement rate rose from 60% to 95%, and recruiters went from contacting 50 to 80 candidates per vacancy down to fewer than two.
@@ -215,7 +215,7 @@ Business outcome:
 For one legal software platform, the impact was significant. Assembly Software's NeosAI — built to automate document workflows for law firms — saved firms up to 25 hours per case on manual data entry and document review and cut document drafting time from 40 hours to minutes.
 
 Closing line:
-For any business managing a constant stream of documents — and most do — this is time waiting to be recovered. Nothing about the existing process needs to change. AI works with documents exactly as they come in, so nothing about the way work gets done has to change.
+For any business managing a constant stream of documents, this is time waiting to be recovered. AI works with documents exactly as they come in, so nothing about the way work gets done has to change.
 
 ---
 
@@ -238,11 +238,11 @@ Fraud doesn't announce itself, and no business is too large or too established t
 **CTA close**
 
 Closing message:
-AI doesn't have to mean a big investment or a long runway to results. The businesses seeing the most impact started small — with one process, one problem, one place to start.
+AI doesn't have to mean a big investment or a long runway to results. The businesses seeing the most impact started small — with one process, one problem, one tool.
 
 CTA:
 Ready to explore what AI could do for your business? Get started with Microsoft Foundry.
-URL: https://foundry.microsoft.com
+URL: https://azure.microsoft.com/en-us/products/ai-foundry/
 
 ---
 
