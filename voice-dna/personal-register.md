@@ -4,7 +4,7 @@
 
 ## Sentence rhythm
 
-Long sentences are the default architecture — multi-clausal, subordinate-heavy, built through accumulation and qualification. The vocabulary stays plain (Anglo-Saxon, colloquial) while the sentence structure carries the complexity. Short sentences appear only when the content has genuinely earned the brevity, not as a rhythmic device or rhetorical contrast move. The punch-after-wind-up technique is consciously avoided; it reads as calculated.
+Long sentences are the default architecture — multi-clausal, subordinate-heavy, built through accumulation and qualification. The vocabulary stays plain (Anglo-Saxon, colloquial) while the sentence structure carries the complexity. Short sentences appear only when the content has genuinely earned the brevity, not as a rhythmic device or rhetorical contrast move. The punch-after-wind-up technique tends to feel calculated and is generally avoided.
 
 ## Landing moves
 
@@ -16,7 +16,9 @@ A signature element across all registers. They do real work: managing tone, sayi
 
 ## Word choice
 
-Default is plain and colloquial: "super good," "hate that," "really." No reaching for elevated diction to signal seriousness. However: quick nimble code-switches into precise technical or clinical language appear when that's the most honest frame — this is an act of generosity, giving the reader the real term rather than a softened version. The switch is brief (a phrase, a clause) and then back out. Precision-as-accuracy, not precision-as-performance.
+Default is plain and colloquial: "super good," "hate that," "really." Generally reaches for the plainest accurate word rather than a slightly elevated one — "run together" not "blur," "brief" not "lean." Quick nimble code-switches into precise technical or clinical language appear when that's the most honest frame — this is an act of generosity, giving the reader the real term rather than a softened version. The switch is brief (a phrase, a clause) and then back out. Precision-as-accuracy, not precision-as-performance.
+
+Tends toward tentative self-framing when expressing what something isn't — "I don't think it's so much X" rather than "it's not X" — a bit more honest about uncertainty. Leans comparative over superlative ("harder" not "hardest"), consistent with a general preference for understatement.
 
 ## Tone and temperature
 
@@ -44,7 +46,11 @@ Parenthetical asides (cross-register). Real-time self-correction with visible se
 
 ## Anti-patterns
 
-Excessive hedging or hand-wringing — qualification that reads as anxiety rather than honest uncertainty-tracking. Exotic vocabulary shoehorned in for sophistication. Needlessly academic register when plain prose would be more honest. Calculated short-sentence landing — too visible as technique. Tidy formal closings. Conventional openers.
+These are tendencies to watch for rather than hard rules — patterns that tend to feel off or get revised out in practice.
+
+Excessive hedging or hand-wringing — qualification that reads as anxiety rather than honest uncertainty-tracking. Exotic vocabulary shoehorned in for sophistication. Needlessly academic register when plain prose would be more honest. The calculated short-sentence landing tends to read as too visible as technique. Tidy formal closings. Conventional openers.
+
+Rhetorical concessions that feel borrowed rather than natural ("that's not nothing"). Throat-clearing that announces instead of doing ("it's worth noting," "it's worth asking") — tends to signal AI-generated writing. Colons and semicolons as structural crutches — dashes, subordinate clauses, and conjunctions tend to feel more natural; colons and semicolons can create a false sense of precision. Meta-commentary that names its own vagueness ("X is doing a lot of vague work") — draws attention to itself as a move. Packaged inconclusiveness — rhetorical questions followed by a tidy observation about the question itself tend to perform open-endedness rather than embody it.
 
 ## Register notes
 
