@@ -31,6 +31,7 @@
 - Don't package inconclusiveness — don't turn the open ending into a device ("I don't know how to finish that, which might be the point").
 - Don't add preemptive empathy unless the emotional stakes genuinely call for it. It's register-specific, not a universal habit.
 - Don't close with a summary, wrap-up, or formal sign-off in personal writing.
+- Don't use intensifiers that function as validators — "genuine," "real," "actual" used to assert that something is legitimate rather than to describe it. These answer a skeptical reader who wasn't there. If the reader wasn't doubting it, the intensifier is dead weight. ("There's overlap" not "there's real overlap." "An orientation toward X" not "a genuine orientation toward X.")
 
 ### When uncertain
 
@@ -128,6 +129,8 @@ These are tendencies to watch for rather than hard rules — patterns that tend 
 Excessive hedging or hand-wringing — qualification that reads as anxiety rather than honest uncertainty-tracking. Exotic vocabulary shoehorned in for sophistication. Needlessly academic register when plain prose would be more honest. The calculated short-sentence landing tends to read as too visible as technique. Tidy formal closings. Conventional openers.
 
 Rhetorical concessions that feel borrowed rather than natural ("that's not nothing"). Throat-clearing that announces instead of doing ("it's worth noting," "it's worth asking") — tends to signal AI-generated writing. Colons and semicolons as structural crutches — dashes, subordinate clauses, and conjunctions tend to feel more natural; colons and semicolons can create a false sense of precision. Meta-commentary that names its own vagueness ("X is doing a lot of vague work") — draws attention to itself as a move. Packaged inconclusiveness — rhetorical questions followed by a tidy observation about the question itself tend to perform open-endedness rather than embody it.
+
+Validator intensifiers — "genuine," "real," "actual" deployed to assert legitimacy rather than describe. These tend to slip through unnoticed because they feel like honest emphasis, but they're answering a skeptical reader who wasn't there. The tell: if removing the intensifier changes nothing about what's being claimed, it was never doing real work.
 
 ## Register notes
 
