@@ -65,12 +65,12 @@ Read `title-conventions.md` and use **Prompt D** from `prompt-library.md`.
 
 ## Reference examples
 
-Three complete episode packages live in `examples/`. Each contains an intake form, outline, and full script.
+Three complete episode packages live in `/mnt/project/`. Each contains an intake form, outline, full script, social copy, and public description.
 
 | File | Format | Best for studying |
 |---|---|---|
-| `examples/cloud-accelerate-factory.md` | Service overview, single guest, no series context | Cleanest standalone example; four-step process format; slide-heavy visual aids |
-| `examples/azure-cost-estimation-pricing-calculator.md` | Tool demo, series episode 1 | OVERLAY/LOWER THIRD callouts; 3UP staging; demo walkthrough structure |
-| `examples/azure-cost-estimation-strategic-guide.md` | Framework episode, series episode 2 | Callbacks to prior episode; electricity bill analogy; multi-tool CTA section |
+| `Cloud_Accelerate_Factory.pdf` | Service overview, single guest, no series context | Cleanest standalone example; four-step process format; slide-heavy visual aids |
+| `Azure_Cost_Estimation_Plan_Confidently_with_the_Azure_Pricing_Calculator.pdf` | Tool demo, series episode 1 | OVERLAY/LOWER THIRD callouts; 3UP staging; demo walkthrough structure |
+| `Azure_Cost_Estimation_Your_Strategic_Guide_to_Cloud_Pricing.pdf` | Framework episode, series episode 2 | Callbacks to prior episode; electricity bill analogy; multi-tool CTA section |
 
 Study these for: exact outline and script formatting, dialogue rhythm, visual aid integration, how analogies work, and series continuity.
