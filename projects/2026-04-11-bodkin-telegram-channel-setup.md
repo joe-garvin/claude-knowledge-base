@@ -3,10 +3,11 @@
 **Date:** 2026-04-11
 **Source:** Claude conversation
 **Folder:** projects
+**Status:** Complete ✓
 
 ## Summary
 
-Attempted to set up Telegram as a mobile interface for Bodkin, the Claude Code agent running on the Beelink (Ubuntu Server 24.04). Got everything configured correctly but hit an org-level policy wall — Channels is disabled by default on Anthropic Team plans and requires an admin to enable it. Emailed Brian to request that change. Picking this back up once he enables the setting.
+Successfully set up Telegram as a mobile interface for Bodkin, the Claude Code agent running on the Beelink (Ubuntu Server 24.04). Bodkin is now reachable from iPhone via Telegram — messages sent to the bot are received by Bodkin and responses come back through the app.
 
 ## Background
 
@@ -34,36 +35,27 @@ Bodkin lives at `~/agent/` on the Beelink and is launched with `cd ~/agent && cl
   - Used a wrapper script `~/agent/start-bodkin.sh` with `Type=forking` to handle tmux detachment correctly
 - Service is enabled and starts Bodkin in a persistent tmux session named `bodkin`
 
-### Why messages weren't coming through
+### Why messages weren't coming through initially
 - The Telegram plugin was installed and connected, bot was receiving messages (Telegram showed "Typing..." indicator), but messages never appeared in Claude Code
 - Root cause: Claude Code must be launched with `--channels plugin:telegram@claude-plugins-official` flag to activate inbound channel delivery
 - When that flag was used, got: `--channels blocked by org policy`
 
-### The actual blocker
-Channels is disabled by default on Anthropic Team and Enterprise plans. The `channelsEnabled` setting must be toggled on by an org admin. Emailed Brian on 2026-04-11 asking him to enable it.
+### The org policy blocker
+- Channels is disabled by default on Anthropic Team and Enterprise plans
+- The `channelsEnabled` setting must be toggled on by an org admin
+- Emailed Brian on 2026-04-11 asking him to enable it via: claude.ai → Admin Settings → Claude Code → Channels
+- After Brian enabled the setting, relaunching Claude Code with the `--channels` flag worked immediately
 
-## Current state of the Beelink
+## Working launch command
 
-- Bodkin running in persistent tmux session via systemd service (`bodkin.service`)
-- Telegram plugin installed and configured, bot paired to Joe's Telegram account
-- Everything is ready — just waiting on the org policy change
-
-## Next steps (when Brian enables the setting)
-
-1. SSH into Beelink: `ssh beelink`
-2. Attach to Bodkin's session: `tmux attach -t bodkin`
-3. Verify Claude Code is running, then exit with `/exit`
-4. Relaunch with the channels flag: `cd ~/agent && claude --channels plugin:telegram@claude-plugins-official`
-5. Send a test message from Telegram to the Bodkin bot
-6. Once confirmed working, update the systemd service to launch with the `--channels` flag permanently:
-
-```ini
-ExecStart=/home/joe/agent/start-bodkin.sh --channels plugin:telegram@claude-plugins-official
+```bash
+cd ~/agent && claude --channels plugin:telegram@claude-plugins-official
 ```
 
-Or update `start-bodkin.sh` directly to pass the flag to claude.
+## Remaining to-do
 
-7. Ask Bodkin to update his `CLAUDE.md` to note that Telegram is his mobile interface.
+- Update the systemd service and `start-bodkin.sh` to include the `--channels` flag so Bodkin launches correctly after a reboot (can be done by asking Bodkin directly via Telegram)
+- Ask Bodkin to update his `CLAUDE.md` to note that Telegram is his mobile interface
 
 ## Key file locations on the Beelink
 
