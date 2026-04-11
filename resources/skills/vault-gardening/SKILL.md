@@ -26,24 +26,8 @@ This skill does two things:
 
 Joe reviews each proposal and confirms, edits, skips, or stops the session.
 
-## Constraints
-
-- **Never invent new tags.** Only use tags that already exist in the vault, discovered by
-  `obsidian:list_all_tags` at the start of each session.
-- **Tag vocabulary filter.** The vault has a long tail of one-off tags (count = 1) that are
-  noise. Prefer tags with count ≥ 2 unless a one-off tag is an exceptionally precise fit.
-  Core vocabulary as of initial skill creation:
-  `personal`, `dharma`, `family-crisis`, `work`, `ai-tools`, `reference`, `meta`,
-  `claude-context`, `digest`, `music-discovery`, `agents`, `ai`, `claude`, `mental-health`,
-  `mesh`, `voice`. This list will be refreshed live from the vault each session.
-- **Related notes format.** Always use `## Related notes` as the section heading, with each
-  link on its own line as `- [[note-title]]`. If a note already has this section, append to it
-  rather than replacing it.
-- **Never touch system/config notes.** Skip `.obsidian/`, `Attachments/`, `Clippings/`, and
-  any non-markdown files. Skip `Tasks.md` and `Daily view.md` as these are operational notes
-  that don't benefit from gardening.
-- **Ask before writing.** Every proposed change is shown to Joe first. Write only after explicit
-  confirmation.
+Before starting, read `references/constraints.md` — all rules and the tag vocabulary filter
+apply for the full session.
 
 ## Step-by-step workflow
 
@@ -81,28 +65,14 @@ For each candidate note:
 
 1. Read the full note content with `obsidian:read_note`
 2. Analyze content and existing frontmatter
-3. Propose changes in this format:
-
----
-**Note:** `Projects/Red Door/AI roundtable prep.md`
-
-**Proposed tags:** `work`, `ai-tools`
-*(Current tags: none)*
-
-**Proposed related notes:**
-- [[Claude build queue]]
-- [[Tasks]]
-
-Type **y** to apply, **e** to edit before applying, **s** to skip, or **q** to quit the session.
-
----
-
+3. Propose changes using the format in `templates/proposal-format.md`
 4. Wait for Joe's response before proceeding
-5. On **y**: write the changes using `obsidian:manage_tags` for tags and `obsidian:patch_note`
-   or `obsidian:write_note` for the related notes section, then move to next note
+5. On **y**: apply changes per `references/write-mechanics.md`, then move to next note
 6. On **e**: show the proposal again and let Joe dictate the corrected version, then apply
 7. On **s**: skip and move to next note
 8. On **q**: stop, give a session summary, and offer to resume next time
+
+See `references/friction-points.md` for edge cases.
 
 ### Step 4: Session summary
 
@@ -114,33 +84,3 @@ When all candidates are processed (or Joe quits), report:
 
 Offer to save a brief "last gardened" note or update an existing vault log if Joe wants a
 record.
-
-## Edge cases
-
-- **Ambiguous tag fit** — if two tags both apply, propose both. Joe will decide.
-- **Long notes with many potential links** — limit proposed related notes to 3–5 per note to
-  avoid overwhelming the section. The most thematically proximate notes first.
-- **Notes in Inbox** — treat these the same as any other note. Many inbox notes have no
-  frontmatter at all.
-- **Notes that are just stubs or very short** — use judgment. A 2-line stub may not need tags.
-  Flag it and ask Joe if he wants to tag it or leave it.
-- **`obsidian:patch_note` failure** — if the patch fails (likely due to curly quotes or em
-  dashes in the anchor string), fall back to `obsidian:write_note` with the full note content.
-  Always read the current note content fresh before attempting a full write.
-- **Notes that already have a `## Related notes` section** — read the existing links before
-  proposing additions. Don't suggest links that are already there.
-
-## Tag application mechanics
-
-Use `obsidian:manage_tags` with `operation: "add"` to add tags. This tool handles frontmatter
-correctly without requiring a full note rewrite.
-
-## Related notes section mechanics
-
-To add or append a `## Related notes` section:
-1. Read the current note content
-2. If no section exists: append the section to the end of the note using `obsidian:patch_note`
-   with a unique anchor string near the end, or `obsidian:write_note` with full content
-3. If section exists but is empty or sparse: append new links below the existing ones
-
-Always confirm the note content after writing to verify the change landed correctly.
