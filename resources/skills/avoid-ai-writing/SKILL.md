@@ -1,7 +1,7 @@
 ---
 name: avoid-ai-writing
-description: Audit and rewrite content to remove AI writing patterns ("AI-isms"). Use this skill when asked to "remove AI-isms," "clean up AI writing," "edit writing for AI patterns," "audit writing for AI tells," or "make this sound less like AI."
-version: 3.1.0
+description: Audit and rewrite content to remove AI writing patterns ("AI-isms"). Use this skill when asked to "remove AI-isms," "clean up AI writing," "edit writing for AI patterns," "audit writing for AI tells," or "make this sound less like AI." Supports a detection-only mode that flags patterns without rewriting.
+version: 3.3.1
 license: MIT
 compatibility: Any AI coding assistant that supports agentskills.io SKILL.md format (Claude Code, Cursor, VS Code Copilot, Hermes Agent, OpenHands, etc.) or OpenClaw. No external tools or APIs required.
 metadata:
@@ -16,11 +16,32 @@ metadata:
 
 You are editing content to remove AI writing patterns ("AI-isms") that make text sound machine-generated.
 
-The user will provide a piece of writing. Your job is to:
+## Modes
+
+This skill operates in one of two modes:
+
+**`rewrite`** (default) — Flag AI-isms and rewrite the text to fix them.
+
+**`detect`** — Flag AI-isms only. No rewriting. Use this mode when:
+- The writer wants to see what's flagged and decide what to fix themselves
+- The flagged patterns might be intentional (AI patterns aren't always bad — they can be effective in small doses)
+- You're auditing text you don't want altered (published content, someone else's writing, reference material)
+- You want a quick scan without waiting for a full rewrite
+
+Trigger detect mode when the user says "detect," "flag only," "audit only," "just flag," "scan," "what AI patterns are in this," or similar. Default to rewrite mode if not specified.
+
+---
+
+In **rewrite** mode, your job is to:
 
 1. **Audit it**: identify every AI-ism present, citing the specific text
 2. **Rewrite it**: return a clean version with all AI-isms removed
 3. **Show a diff summary**: briefly list what you changed and why
+
+In **detect** mode, your job is to:
+
+1. **Audit it**: identify every AI-ism present, citing the specific text
+2. **Assess it**: note which flags are clear problems vs. patterns that may be intentional or effective in context
 
 ---
 
@@ -35,6 +56,7 @@ The user will provide a piece of writing. Your job is to:
 ### Sentence structure
 - **"It's not X — it's Y" / "This isn't about X, it's about Y"**: Rewrite as a direct positive statement. Max one per piece, and only if it serves the argument.
 - **Hollow intensifiers**: Cut `genuine`, `real` (as in "a real improvement"), `truly`, `quite frankly`, `to be honest`, `let's be clear`, `it's worth noting that`. Just state the fact.
+- **Vague endorsement ("worth [verb]ing")**: Cut or replace `worth reading`, `worth paying attention to`, `worth a look`, `worth exploring`, `worth checking out`, `worth your time`. These substitute a generic thumbs-up for a specific reason. Say *why* something matters instead.
 - **Hedging**: Cut `perhaps`, `could potentially`, `it's important to note that`, `to be clear`. Make the point directly.
 - **Missing bridge sentences**: Each paragraph should connect to the last. If paragraphs could be rearranged without the reader noticing, add connective tissue.
 - **Compulsive rule of three**: Vary groupings. Use two items, four items, or a full sentence instead of triads. Max one "adjective, adjective, and adjective" pattern per piece.
@@ -68,6 +90,7 @@ Words are organized into three tiers based on how reliably they signal AI-genera
 | meticulous / meticulously | careful, detailed, precise |
 | seamless / seamlessly | smooth, easy, without friction |
 | game-changer / game-changing | describe what specifically changed and why it matters |
+| hit differently / hits different | (say what specifically changed, or cut) |
 | utilize | use |
 | watershed moment | turning point, shift (or describe what changed) |
 | marking a pivotal moment | (state what happened) |
@@ -185,6 +208,7 @@ These slot-fill constructions signal that a sentence was generated, not written.
 - "Moreover" / "Furthermore" / "Additionally" → restructure so the connection is obvious, or use "and," "also," "on top of that"
 - "In today's [X]" / "In an era where" → cut or state specific context
 - "It's worth noting that" / "Notably" → just state the fact
+- "Here's what's interesting" / "Here's what caught my eye" / "Here's what stood out" → reader-steering frames. Let the content signal its own importance. If you need a lead-in, make it specific: "The revenue number matters because..." not "Here's the interesting part."
 - "In conclusion" / "In summary" / "To summarize" → your conclusion should be obvious
 - "When it comes to" → just talk about the thing directly
 - "At the end of the day" → cut
@@ -262,6 +286,7 @@ These slot-fill constructions signal that a sentence was generated, not written.
 - Two problems. First, it's tell-don't-show: if the thing is genuinely surprising, the reader should feel that from the content, not from the writer announcing it. Second, these phrases are massively overused as list introductions and transitions. They're filler wearing an emotion costume.
 - This pattern isn't always AI. It's also a sign of lazy human writing on autopilot. Flag it either way.
 - The fix isn't "never say surprised." It's: if you claim an emotion, the writing around it should earn it. Otherwise cut the claim and present the thing directly.
+- Related pattern: "hit differently" / "hits different." AI uses trendy colloquialisms as a shortcut to sound relatable without earning the emotional beat. If something genuinely affected you, describe how. Otherwise cut.
 
 ### False concession structure
 - "While X is impressive, Y remains a challenge" or "Although X has made strides, Y is still an open question." AI uses this to sound balanced without actually weighing anything. Both halves are vague. Either make the concession specific (name what's impressive, name the actual challenge) or pick a side and argue it.
@@ -289,6 +314,7 @@ These slot-fill constructions signal that a sentence was generated, not written.
 
 ### Confidence calibration phrases
 - "It's worth noting that," "Interestingly," "Surprisingly," "Importantly," "Significantly," "Notably," "Certainly," "Undoubtedly," "Without a doubt" — AI uses these to signal how the reader should feel about a fact instead of letting the fact speak for itself.
+- "Here's what's interesting," "Here's the interesting part," "Here are the parts I found interesting" — reader-steering cue that pre-interprets importance. Works when followed by genuinely surprising data; fails when it introduces a restatement of something obvious (which is the AI default).
 - One "notably" in a 2,000-word piece is fine. Three in 500 words is AI-style emphasis stacking. Flag by density.
 
 ### Excessive structure
@@ -410,6 +436,8 @@ If auto-detection feels wrong, say which profile you're using and why. The user 
 
 ## Output format
 
+### Rewrite mode (default)
+
 Return your response in four sections:
 
 **1. Issues found**
@@ -423,6 +451,16 @@ A brief summary of the major edits made. Not every word, just the meaningful cha
 
 **4. Second-pass audit**
 Re-read the rewritten version from section 2. Identify any remaining AI tells that survived the first pass — recycled transitions, lingering inflation, copula avoidance, filler phrases, or anything else from the categories above. Fix them, return the corrected text inline, and note what changed in this pass. If the rewrite is clean, say so.
+
+### Detect mode
+
+Return your response in two sections:
+
+**1. Issues found**
+A bulleted list of every AI-ism identified, with the offending text quoted. Group by severity (P0, P1, P2).
+
+**2. Assessment**
+For each flag, note whether it's a clear problem or a judgment call. Some AI-associated patterns are effective writing techniques — uniform paragraph length is a problem, but a well-placed "however" isn't. Call out which flags the writer should definitely fix vs. which ones are worth a second look but might be fine in context. If the text is clean, say so.
 
 ---
 
