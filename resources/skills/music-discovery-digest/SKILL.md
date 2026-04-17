@@ -7,6 +7,8 @@ description: "Run Joe's weekly music discovery digest. Use this skill whenever J
 
 Generates Joe's weekly music discovery digest — a **single unified Obsidian note** pulling from all sources, filtered against his taste profile and known collection, with YouTube preview links for each pick.
 
+**Skill base path:** All reference files, templates, and examples in this skill live under `/mnt/skills/user/music-discovery-digest/`. Read them using the `view` tool — not Obsidian tools. Obsidian tools are only for reading/writing vault notes.
+
 **Timing:** Run on Fridays after the Boomkat weekly newsletter arrives (typically Friday morning UK time, mid-morning PST). If triggered earlier in the week, check whether the current week's Boomkat email has landed in Gmail before proceeding. If it hasn't arrived yet, note it in the digest and flag that picks may be incomplete pending that source.
 
 **Output:** One note per week, organized by pick type (not by source). Never create separate per-source digest notes.
