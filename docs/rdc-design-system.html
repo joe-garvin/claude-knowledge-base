@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Red Door Collaborative — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --coral: #FF4F58;
+  --squid: #0D1724;
+  --wine: #7F0046;
+  --mist: #ABDCE0;
+  --white: #FFFFFF;
+  --gray-100: #F3F3F3;
+  --gray-200: #E8E8E8;
+  --gray-300: #D0D0D0;
+  --gray-500: #888888;
+  --gray-700: #444444;
+  --gray-900: #1A1A1A;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 18px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 3px rgba(13,23,36,0.08), 0 1px 2px rgba(13,23,36,0.04);
+  --shadow-md: 0 4px 16px rgba(13,23,36,0.10), 0 2px 6px rgba(13,23,36,0.06);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: #F7F6F4;
+  color: var(--gray-900);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.page-wrap {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 220px;
+  height: 100vh;
+  background: var(--squid);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2.5rem;
+  text-decoration: none;
+}
+
+.logo-mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--wine);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--coral);
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+.logo-text span {
+  display: block;
+  font-weight: 300;
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+.nav-section-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin: 1.5rem 0 0.5rem;
+  padding-left: 2px;
+}
+
+.nav-link {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  padding: 5px 8px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1px;
+  transition: color 0.15s, background 0.15s;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: rgba(255,255,255,0.95);
+  background: rgba(255,255,255,0.06);
+}
+
+.nav-link.active {
+  color: var(--coral);
+  background: rgba(255,79,88,0.12);
+  font-weight: 500;
+}
+
+.sidebar-version {
+  margin-top: auto;
+  padding-top: 2rem;
+  font-size: 10px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.05em;
+}
+
+.main {
+  margin-left: 220px;
+  padding: 3rem 3.5rem 6rem;
+  max-width: 920px;
+}
+
+.section {
+  margin-bottom: 5rem;
+  scroll-margin-top: 2rem;
+}
+
+.section-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--squid);
+  margin-bottom: 0.6rem;
+  line-height: 1.1;
+}
+
+.section-desc {
+  font-size: 15px;
+  color: var(--gray-500);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 2.5rem;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--gray-200);
+  margin: 3rem 0;
+}
+
+.subsection { margin-bottom: 2.5rem; }
+
+.subsection-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: 1rem;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+}
+
+.swatch {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+}
+.swatch-block { height: 80px; width: 100%; }
+.swatch-info { padding: 10px 12px; }
+.swatch-name { font-size: 11px; font-weight: 700; letter-spacing: 0.04em; color: var(--gray-900); margin-bottom: 2px; }
+.swatch-hex { font-family: var(--font-mono); font-size: 11px; color: var(--gray-500); }
+.swatch-sub { font-family: var(--font-mono); font-size: 10px; color: var(--gray-300); margin-top: 1px; }
+
+.pairing-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+.pairing-row:last-child { border-bottom: none; }
+.pairing-bar { display: flex; flex: 1; height: 32px; border-radius: 6px; overflow: hidden; }
+.pairing-label { font-size: 12px; color: var(--gray-500); min-width: 160px; }
+
+.type-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+.type-row:last-child { border-bottom: none; }
+.type-meta { font-family: var(--font-mono); font-size: 11px; color: var(--gray-300); min-width: 130px; flex-shrink: 0; }
+
+.logo-preview {
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.logo-lockup { display: flex; align-items: center; gap: 11px; }
+.logo-wordmark { font-size: 13px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.25; }
+.logo-preview-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); text-align: center; margin-top: 0.5rem; }
+
+.btn-showcase { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 1rem; }
+.btn-group-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-300); margin: 1.25rem 0 0.6rem; }
+
+.btn {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 22px;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: transform 0.12s, box-shadow 0.12s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.btn:active { transform: translateY(0); box-shadow: none; }
+
+.btn-primary { background: var(--coral); color: #fff; }
+.btn-dark { background: var(--squid); color: #fff; }
+.btn-wine { background: var(--wine); color: #fff; }
+.btn-outline-coral { background: transparent; color: var(--coral); border: 1.5px solid var(--coral); }
+.btn-outline-dark { background: transparent; color: var(--squid); border: 1.5px solid var(--squid); }
+.btn-ghost { background: transparent; color: var(--gray-500); border: 1px solid var(--gray-300); }
+.btn-sm { font-size: 11px; padding: 6px 14px; }
+.btn-lg { font-size: 15px; padding: 12px 30px; }
+
+.badge { display: inline-flex; align-items: center; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: var(--radius-pill); letter-spacing: 0.03em; }
+.badge-coral { background: rgba(255,79,88,0.12); color: #C13040; }
+.badge-squid { background: rgba(13,23,36,0.08); color: var(--squid); }
+.badge-wine { background: rgba(127,0,70,0.12); color: var(--wine); }
+.badge-mist { background: rgba(171,220,224,0.35); color: #3a7a84; }
+.badge-success { background: #dcfce7; color: #15803d; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.content-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden; }
+.content-card-bar { height: 4px; }
+.content-card-body { padding: 1.25rem 1.5rem; }
+.content-card-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--coral); margin-bottom: 5px; }
+.content-card-title { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; color: var(--squid); margin-bottom: 7px; line-height: 1.3; }
+.content-card-copy { font-size: 13px; color: var(--gray-500); line-height: 1.6; margin-bottom: 1rem; }
+
+.metric-card { background: var(--gray-100); border-radius: var(--radius-md); padding: 1rem 1.25rem; }
+.metric-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 6px; }
+.metric-value { font-size: 30px; font-weight: 700; letter-spacing: -0.03em; color: var(--squid); line-height: 1; }
+.metric-delta { font-size: 11px; font-weight: 600; color: #15803d; margin-top: 5px; }
+
+.form-label { font-size: 12px; font-weight: 600; color: var(--gray-500); margin-bottom: 5px; display: block; letter-spacing: 0.02em; }
+.input-rdc {
+  font-family: var(--font-sans); font-size: 14px; width: 100%;
+  padding: 9px 14px; border: 1px solid var(--gray-300); border-radius: var(--radius-md);
+  background: var(--white); color: var(--gray-900); outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s; margin-bottom: 8px;
+}
+.input-rdc:focus { border-color: var(--coral); box-shadow: 0 0 0 3px rgba(255,79,88,0.12); }
+.select-rdc {
+  font-family: var(--font-sans); font-size: 14px; width: 100%;
+  padding: 9px 14px; border: 1px solid var(--gray-300); border-radius: var(--radius-md);
+  background: var(--white); color: var(--gray-900); outline: none; appearance: none; cursor: pointer;
+}
+
+.alert { display: flex; gap: 10px; padding: 12px 16px; border-radius: var(--radius-md); margin-bottom: 8px; align-items: flex-start; }
+.alert-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+.alert-body { font-size: 13px; line-height: 1.5; }
+.alert-title { font-weight: 600; margin-bottom: 1px; }
+.alert-coral { background: rgba(255,79,88,0.08); color: #C13040; }
+.alert-coral .alert-dot { background: var(--coral); }
+.alert-info { background: #eff6ff; color: #1d4ed8; }
+.alert-info .alert-dot { background: #3b82f6; }
+.alert-success { background: #f0fdf4; color: #15803d; }
+.alert-success .alert-dot { background: #22c55e; }
+
+.spacing-row { display: flex; align-items: center; gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--gray-200); }
+.spacing-row:last-child { border-bottom: none; }
+.spacing-block { background: var(--coral); opacity: 0.3; height: 12px; border-radius: 2px; flex-shrink: 0; }
+.spacing-token { font-family: var(--font-mono); font-size: 12px; color: var(--gray-900); min-width: 80px; }
+.spacing-value { font-family: var(--font-mono); font-size: 12px; color: var(--coral); min-width: 40px; }
+.spacing-use { font-size: 12px; color: var(--gray-500); }
+
+.radius-row { display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-end; }
+.radius-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.radius-block { width: 56px; height: 56px; background: var(--coral); opacity: 0.7; }
+.radius-label { font-family: var(--font-mono); font-size: 11px; color: var(--gray-500); }
+.radius-name { font-size: 10px; color: var(--gray-300); }
+
+.ds-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ds-table th { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-500); padding: 8px 12px 8px 0; border-bottom: 1px solid var(--gray-200); text-align: left; }
+.ds-table td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--gray-200); vertical-align: middle; color: var(--gray-900); }
+.ds-table tr:last-child td { border-bottom: none; }
+.mono { font-family: var(--font-mono); font-size: 11px; color: var(--gray-500); }
+.color-dot { width: 14px; height: 14px; border-radius: 3px; display: inline-block; border: 1px solid var(--gray-200); vertical-align: middle; margin-right: 8px; }
+
+.do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1rem; }
+.do-box, .dont-box { border-radius: var(--radius-md); padding: 1rem 1.25rem; }
+.do-box { border: 1px solid rgba(34,197,94,0.25); background: rgba(34,197,94,0.04); }
+.dont-box { border: 1px solid rgba(239,68,68,0.25); background: rgba(239,68,68,0.04); }
+.do-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #16a34a; margin-bottom: 8px; }
+.dont-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #dc2626; margin-bottom: 8px; }
+.do-box p, .dont-box p { font-size: 13px; color: var(--gray-700); line-height: 1.55; }
+
+.asset-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--gray-200); }
+.asset-row:last-child { border-bottom: none; }
+.asset-name { font-size: 13px; font-weight: 500; color: var(--gray-900); margin-bottom: 2px; }
+.asset-format { font-size: 11px; color: var(--gray-500); }
+.asset-path { font-family: var(--font-mono); font-size: 11px; color: var(--gray-300); }
+
+.page-header {
+  background: var(--squid);
+  border-radius: var(--radius-xl);
+  padding: 3rem;
+  margin-bottom: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: 'rd';
+  position: absolute;
+  right: -20px; bottom: -40px;
+  font-size: 200px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.03);
+  letter-spacing: -0.05em;
+  line-height: 1;
+  pointer-events: none;
+  font-family: var(--font-sans);
+}
+
+.page-header-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--coral); margin-bottom: 0.75rem; }
+.page-header-title { font-size: 36px; font-weight: 700; letter-spacing: -0.03em; color: #fff; line-height: 1.05; margin-bottom: 1rem; }
+.page-header-desc { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 440px; }
+
+.header-meta { display: flex; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
+.header-meta-item { display: flex; flex-direction: column; gap: 2px; }
+.header-meta-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+.header-meta-value { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7); }
+
+@media (max-width: 768px) {
+  .page-wrap { grid-template-columns: 1fr; }
+  .sidebar { position: static; width: 100%; height: auto; flex-direction: row; flex-wrap: wrap; padding: 1rem 1.5rem; }
+  .main { margin-left: 0; padding: 1.5rem; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+  .do-dont { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+<aside class="sidebar">
+  <a class="sidebar-logo" href="#">
+    <div class="logo-mark">rd</div>
+    <div class="logo-text">Red Door<br>Collaborative<span>Design System</span></div>
+  </a>
+
+  <div class="nav-section-label">Foundation</div>
+  <a class="nav-link active" href="#colors" onclick="setActive(this)">Colors</a>
+  <a class="nav-link" href="#typography" onclick="setActive(this)">Typography</a>
+  <a class="nav-link" href="#logos" onclick="setActive(this)">Logos &amp; marks</a>
+  <a class="nav-link" href="#spacing" onclick="setActive(this)">Spacing &amp; layout</a>
+
+  <div class="nav-section-label">Components</div>
+  <a class="nav-link" href="#buttons" onclick="setActive(this)">Buttons</a>
+  <a class="nav-link" href="#badges" onclick="setActive(this)">Badges &amp; tags</a>
+  <a class="nav-link" href="#cards" onclick="setActive(this)">Cards</a>
+  <a class="nav-link" href="#forms" onclick="setActive(this)">Forms</a>
+  <a class="nav-link" href="#alerts" onclick="setActive(this)">Alerts</a>
+
+  <div class="nav-section-label">Guidelines</div>
+  <a class="nav-link" href="#usage" onclick="setActive(this)">Usage rules</a>
+  <a class="nav-link" href="#assets" onclick="setActive(this)">Asset library</a>
+
+  <div class="sidebar-version">v1.0 · 2025</div>
+</aside>
+
+<main class="main">
+
+  <div class="page-header">
+    <div class="page-header-eyebrow">Red Door Collaborative</div>
+    <div class="page-header-title">Design System</div>
+    <div class="page-header-desc">The visual foundation for all RDC communications — brand colors, typography, logo usage, component patterns, and asset references.</div>
+    <div class="header-meta">
+      <div class="header-meta-item"><span class="header-meta-label">Version</span><span class="header-meta-value">1.0</span></div>
+      <div class="header-meta-item"><span class="header-meta-label">Updated</span><span class="header-meta-value">2025</span></div>
+      <div class="header-meta-item"><span class="header-meta-label">Primary typeface</span><span class="header-meta-value">Suisse Int'l</span></div>
+      <div class="header-meta-item"><span class="header-meta-label">Primary color</span><span class="header-meta-value" style="color:#FF4F58;">#FF4F58 Coral</span></div>
+    </div>
+  </div>
+
+  <!-- COLORS -->
+  <section class="section" id="colors">
+    <div class="section-eyebrow">Foundation</div>
+    <h2 class="section-title">Color palette</h2>
+    <p class="section-desc">Six core colors define the RDC brand. Coral leads all primary actions and accents. Squid grounds dark surfaces and high-authority type. Wine and Mist provide tonal range.</p>
+
+    <div class="subsection">
+      <div class="subsection-label">Primary colors</div>
+      <div class="grid-3">
+        <div class="swatch">
+          <div class="swatch-block" style="background:#FF4F58;"></div>
+          <div class="swatch-info"><div class="swatch-name">RDC Coral</div><div class="swatch-hex">#FF4F58</div><div class="swatch-sub">RGB 255·79·88 | CMYK 0·84·58·0</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#0D1724;"></div>
+          <div class="swatch-info"><div class="swatch-name">Squid</div><div class="swatch-hex">#0D1724</div><div class="swatch-sub">RGB 13·23·36 | CMYK 87·75·56·71</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#7F0046;"></div>
+          <div class="swatch-info"><div class="swatch-name">Wine</div><div class="swatch-hex">#7F0046</div><div class="swatch-sub">RGB 127·0·70 | CMYK 35·100·48·25</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Secondary colors</div>
+      <div class="grid-4">
+        <div class="swatch">
+          <div class="swatch-block" style="background:#ABDCE0;"></div>
+          <div class="swatch-info"><div class="swatch-name">Mist</div><div class="swatch-hex">#ABDCE0</div><div class="swatch-sub">CMYK 36·0·13·0</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#FFFFFF;border-bottom:1px solid #eee;"></div>
+          <div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-hex">#FFFFFF</div><div class="swatch-sub">CMYK 0·0·0·0</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#F3F3F3;"></div>
+          <div class="swatch-info"><div class="swatch-name">Gray</div><div class="swatch-hex">#F3F3F3</div><div class="swatch-sub">CMYK 3·2·2·0</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:linear-gradient(180deg,#7F0046 0%,#FF4F58 100%);"></div>
+          <div class="swatch-info"><div class="swatch-name">Gradient</div><div class="swatch-hex">Wine → Coral</div><div class="swatch-sub">180° · decorative only</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Color pairing</div>
+      <div class="card">
+        <div class="pairing-row"><div class="pairing-bar"><div style="flex:3;background:#0D1724;"></div><div style="flex:1;background:#7F0046;"></div><div style="flex:1;background:#FF4F58;"></div></div><div class="pairing-label">Dark anchored</div></div>
+        <div class="pairing-row"><div class="pairing-bar"><div style="flex:1;background:#FF4F58;"></div><div style="flex:3;background:#0D1724;"></div></div><div class="pairing-label">Coral on Squid</div></div>
+        <div class="pairing-row"><div class="pairing-bar"><div style="flex:3;background:#F3F3F3;"></div><div style="flex:1;background:#7F0046;"></div><div style="flex:0.5;background:#FF4F58;"></div></div><div class="pairing-label">Light with accent</div></div>
+        <div class="pairing-row"><div class="pairing-bar"><div style="flex:1;background:#7F0046;"></div><div style="flex:1;background:#ABDCE0;"></div></div><div class="pairing-label">Wine + Mist contrast</div></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Print references</div>
+      <div class="card">
+        <table class="ds-table">
+          <thead><tr><th>Color</th><th>Hex</th><th>CMYK</th><th>Pantone (approx)</th></tr></thead>
+          <tbody>
+            <tr><td><span class="color-dot" style="background:#FF4F58;"></span>RDC Coral</td><td class="mono">#FF4F58</td><td class="mono">0·84·58·0</td><td>186 C</td></tr>
+            <tr><td><span class="color-dot" style="background:#0D1724;"></span>Squid</td><td class="mono">#0D1724</td><td class="mono">87·75·56·71</td><td>Black 6 C</td></tr>
+            <tr><td><span class="color-dot" style="background:#7F0046;"></span>Wine</td><td class="mono">#7F0046</td><td class="mono">35·100·48·25</td><td>228 C — Spot: PANTONE 343 C</td></tr>
+            <tr><td><span class="color-dot" style="background:#ABDCE0;"></span>Mist</td><td class="mono">#ABDCE0</td><td class="mono">36·0·13·0</td><td>290 C</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <hr class="divider">
+
+  <!-- TYPOGRAPHY -->
+  <section class="section" id="typography">
+    <div class="section-eyebrow">Foundation</div>
+    <h2 class="section-title">Typography</h2>
+    <p class="section-desc">Suisse Int'l (Swiss Typefaces) is the primary typeface across all platforms. Proxima Nova is an approved secondary digital typeface via Adobe Fonts.</p>
+
+    <div class="subsection">
+      <div class="subsection-label">Brand typeface — Suisse Int'l</div>
+      <div class="card">
+        <div class="type-row"><div class="type-meta">Light / 300</div><div style="font-size:24px;font-weight:300;letter-spacing:-0.01em;color:#0D1724;">Red Door Collaborative</div></div>
+        <div class="type-row"><div class="type-meta">Regular / 400</div><div style="font-size:24px;font-weight:400;color:#0D1724;">Red Door Collaborative</div></div>
+        <div class="type-row"><div class="type-meta">Medium / 500</div><div style="font-size:24px;font-weight:500;color:#0D1724;">Red Door Collaborative</div></div>
+        <div class="type-row"><div class="type-meta">Semibold / 600</div><div style="font-size:24px;font-weight:600;color:#0D1724;">Red Door Collaborative</div></div>
+        <div class="type-row"><div class="type-meta">Bold / 700</div><div style="font-size:24px;font-weight:700;color:#0D1724;">Red Door Collaborative</div></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Type scale</div>
+      <div class="card">
+        <div class="type-row"><div class="type-meta">Display · 48/700</div><div style="font-size:34px;font-weight:700;letter-spacing:-0.03em;line-height:1.05;color:#0D1724;">Creativity meets strategy</div></div>
+        <div class="type-row"><div class="type-meta">H1 · 36/600</div><div style="font-size:26px;font-weight:600;letter-spacing:-0.02em;color:#0D1724;">Where creativity &amp; strategy unite</div></div>
+        <div class="type-row"><div class="type-meta">H2 · 24/600</div><div style="font-size:20px;font-weight:600;letter-spacing:-0.01em;color:#0D1724;">Section heading</div></div>
+        <div class="type-row"><div class="type-meta">H3 · 18/600</div><div style="font-size:16px;font-weight:600;color:#0D1724;">Component heading</div></div>
+        <div class="type-row"><div class="type-meta">Body · 16/400</div><div style="font-size:15px;font-weight:400;line-height:1.7;color:#1A1A1A;">We value the people who walk through our door and take pride in the ones we help open for others.</div></div>
+        <div class="type-row"><div class="type-meta">Small · 14/400</div><div style="font-size:13px;font-weight:400;color:#888;line-height:1.6;">Supporting copy, captions, and secondary information.</div></div>
+        <div class="type-row"><div class="type-meta">Label · 11/600</div><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#888;">Category · Tag · Eyebrow</div></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Rules</div>
+      <div class="card">
+        <ul style="font-size:14px;color:#444;line-height:2;padding-left:1.2em;">
+          <li>Always sentence case for headings — never title case or all caps (labels excepted)</li>
+          <li>Maximum 3 weights on any single page or spread</li>
+          <li>Do not italicize headings as an emphasis style</li>
+          <li>Do not set body copy in condensed or decorative variants</li>
+          <li>Proxima Nova (Adobe Fonts) is the approved digital fallback when Suisse Int'l is unavailable</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <hr class="divider">
+
+  <!-- LOGOS -->
+  <section class="section" id="logos">
+    <div class="section-eyebrow">Brand identity</div>
+    <h2 class="section-title">Logos &amp; marks</h2>
+    <p class="section-desc">The primary logo — circular Wine/Coral mark + "red door collaborative" lowercase wordmark — leads in all marketing contexts. Always use approved files from Box.</p>
+
+    <div class="subsection">
+      <div class="subsection-label">Primary lockup variants</div>
+      <div class="grid-3">
+        <div>
+          <div class="logo-preview" style="background:#F3F3F3;">
+            <div class="logo-lockup">
+              <div class="logo-mark">rd</div>
+              <div class="logo-wordmark" style="color:#0D1724;">red door<br>collaborative</div>
+            </div>
+          </div>
+          <div class="logo-preview-label">Full color · light bg</div>
+        </div>
+        <div>
+          <div class="logo-preview" style="background:#0D1724;">
+            <div class="logo-lockup">
+              <div class="logo-mark">rd</div>
+              <div class="logo-wordmark" style="color:#ffffff;">red door<br>collaborative</div>
+            </div>
+          </div>
+          <div class="logo-preview-label">Full color · dark bg</div>
+        </div>
+        <div>
+          <div class="logo-preview" style="background:#FF4F58;">
+            <div class="logo-lockup">
+              <div class="logo-mark" style="background:#fff;color:#FF4F58;">rd</div>
+              <div class="logo-wordmark" style="color:#fff;">red door<br>collaborative</div>
+            </div>
+          </div>
+          <div class="logo-preview-label">Reversed · coral bg</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Mark only</div>
+      <div class="card" style="display:flex;gap:24px;align-items:flex-end;flex-wrap:wrap;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;"><div class="logo-mark" style="width:56px;height:56px;font-size:20px;">rd</div><div style="font-size:10px;color:#888;letter-spacing:0.08em;text-transform:uppercase;">Primary</div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;"><div class="logo-mark" style="width:56px;height:56px;font-size:20px;background:#0D1724;color:#FF4F58;">rd</div><div style="font-size:10px;color:#888;letter-spacing:0.08em;text-transform:uppercase;">Squid</div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;"><div class="logo-mark" style="width:56px;height:56px;font-size:20px;background:#FF4F58;color:#fff;">rd</div><div style="font-size:10px;color:#888;letter-spacing:0.08em;text-transform:uppercase;">Coral</div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;background:#0D1724;padding:16px;border-radius:10px;"><div class="logo-mark" style="width:56px;height:56px;font-size:20px;background:transparent;border:1.5px solid #FF4F58;color:#FF4F58;">rd</div><div style="font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;">Outline</div></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Minimum sizes &amp; clear space</div>
+      <div class="card">
+        <table class="ds-table">
+          <thead><tr><th>Format</th><th>Minimum</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Mark only (digital)</td><td>24px</td><td>App icons, favicons, avatars</td></tr>
+            <tr><td>Full lockup (digital)</td><td>120px wide</td><td>—</td></tr>
+            <tr><td>Mark only (print)</td><td>0.35 in</td><td>—</td></tr>
+            <tr><td>Full lockup (print)</td><td>1.5 in wide</td><td>—</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:13px;color:#888;margin-top:1rem;line-height:1.6;">Clear space equal to the height of the "r" letterform must be maintained on all four sides. No type, graphics, or other brand elements may enter this zone.</p>
+      </div>
+    </div>
+  </section>
+  <hr class="divider">
+
+  <!-- SPACING -->
+  <section class="section" id="spacing">
+    <div class="section-eyebrow">Foundation</div>
+    <h2 class="section-title">Spacing &amp; layout</h2>
+    <p class="section-desc">RDC uses an 8pt base grid. All padding, margin, and gap values fall on 4px increments.</p>
+
+    <div class="subsection">
+      <div class="subsection-label">Spacing scale</div>
+      <div class="card">
+        <div class="spacing-row"><div class="spacing-block" style="width:4px;"></div><div class="spacing-token">space-1</div><div class="spacing-value">4px</div><div class="spacing-use">Icon gaps, tight inline elements</div></div>
+        <div class="spacing-row"><div class="spacing-block" style="width:8px;"></div><div class="spacing-token">space-2</div><div class="spacing-value">8px</div><div class="spacing-use">Label-to-input gap, badge spacing</div></div>
+        <div class="spacing-row"><div class="spacing-block" style="width:12px;"></div><div class="spacing-token">space-3</div><div class="spacing-value">12px</div><div class="spacing-use">Between sibling elements</div></div>
+        <div class="spacing-row"><div class="spacing-block" style="width:16px;"></div><div class="spacing-token">space-4</div><div class="spacing-value">16px</div><div class="spacing-use">Card padding, base section gap</div></div>
+        <div class="spacing-row"><div class="spacing-block" style="width:24px;"></div><div class="spacing-token">space-6</div><div class="spacing-value">24px</div><div class="spacing-use">Section dividers, grid gaps</div></div>
+        <div class="spacing-row"><div class="spacing-block" style="width:32px;"></div><div class="spacing-token">space-8</div><div class="spacing-value">32px</div><div class="spacing-use">Major section padding</div></div>
+        <div class="spacing-row"><div class="spacing-block" style="width:48px;"></div><div class="spacing-token">space-12</div><div class="spacing-value">48px</div><div class="spacing-use">Page section breathing room</div></div>
+        <div class="spacing-row"><div class="spacing-block" style="width:64px;"></div><div class="spacing-token">space-16</div><div class="spacing-value">64px</div><div class="spacing-use">Hero and section-level spacing</div></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Border radius tokens</div>
+      <div class="card">
+        <div class="radius-row">
+          <div class="radius-item"><div class="radius-block" style="border-radius:2px;"></div><div class="radius-label">2px</div><div class="radius-name">sm · subtle</div></div>
+          <div class="radius-item"><div class="radius-block" style="border-radius:6px;"></div><div class="radius-label">6px</div><div class="radius-name">md · inputs</div></div>
+          <div class="radius-item"><div class="radius-block" style="border-radius:10px;"></div><div class="radius-label">10px</div><div class="radius-name">lg · cards</div></div>
+          <div class="radius-item"><div class="radius-block" style="border-radius:16px;"></div><div class="radius-label">16px</div><div class="radius-name">xl · modals</div></div>
+          <div class="radius-item"><div class="radius-block" style="border-radius:999px;"></div><div class="radius-label">999px</div><div class="radius-name">pill · CTAs</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Layout grid</div>
+      <div class="card">
+        <table class="ds-table">
+          <thead><tr><th>Breakpoint</th><th>Width</th><th>Columns</th><th>Gutter</th><th>Margin</th></tr></thead>
+          <tbody>
+            <tr><td>Mobile</td><td class="mono">&lt;768px</td><td>4</td><td class="mono">16px</td><td class="mono">16px</td></tr>
+            <tr><td>Tablet</td><td class="mono">768–1024px</td><td>8</td><td class="mono">24px</td><td class="mono">32px</td></tr>
+            <tr><td>Desktop</td><td class="mono">1024–1440px</td><td>12</td><td class="mono">32px</td><td class="mono">64px</td></tr>
+            <tr><td>Wide</td><td class="mono">&gt;1440px</td><td>12</td><td class="mono">32px</td><td class="mono">auto</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:12px;color:#888;margin-top:12px;">Max content width: 1280px. Page sections use 80–100px top/bottom padding on desktop.</p>
+      </div>
+    </div>
+  </section>
+  <hr class="divider">
+
+  <!-- BUTTONS -->
+  <section class="section" id="buttons">
+    <div class="section-eyebrow">Components</div>
+    <h2 class="section-title">Buttons</h2>
+    <p class="section-desc">All buttons use a pill shape (border-radius: 999px). Coral is the primary CTA color. Three sizes: small, default, large.</p>
+    <div class="card">
+      <div class="btn-group-label">Filled</div>
+      <div class="btn-showcase">
+        <button class="btn btn-primary">Hire us</button>
+        <button class="btn btn-dark">Learn more</button>
+        <button class="btn btn-wine">Get started</button>
+      </div>
+      <div class="btn-group-label">Outlined</div>
+      <div class="btn-showcase">
+        <button class="btn btn-outline-coral">View services</button>
+        <button class="btn btn-outline-dark">See our work</button>
+        <button class="btn btn-ghost">Cancel</button>
+      </div>
+      <div class="btn-group-label">Sizes</div>
+      <div class="btn-showcase">
+        <button class="btn btn-primary btn-sm">Small</button>
+        <button class="btn btn-primary">Default</button>
+        <button class="btn btn-primary btn-lg">Large</button>
+      </div>
+    </div>
+  </section>
+  <hr class="divider">
+
+  <!-- BADGES -->
+  <section class="section" id="badges">
+    <div class="section-eyebrow">Components</div>
+    <h2 class="section-title">Badges &amp; tags</h2>
+    <p class="section-desc">Inline labels for categories, clients, and statuses. Always pill-shaped. Always use tinted backgrounds — never solid fills.</p>
+    <div class="card">
+      <div class="tag-row">
+        <span class="badge badge-coral">Brand strategy</span>
+        <span class="badge badge-squid">Microsoft</span>
+        <span class="badge badge-wine">In progress</span>
+        <span class="badge badge-mist">Content marketing</span>
+        <span class="badge badge-success">Delivered</span>
+      </div>
+    </div>
+  </section>
+  <hr class="divider">
+
+  <!-- CARDS -->
+  <section class="section" id="cards">
+    <div class="section-eyebrow">Components</div>
+    <h2 class="section-title">Cards</h2>
+    <p class="section-desc">Two card types: content cards for editorial use, metric cards for dashboard and summary contexts.</p>
+
+    <div class="subsection">
+      <div class="subsection-label">Content cards</div>
+      <div class="grid-2">
+        <div class="content-card">
+          <div class="content-card-bar" style="background:#FF4F58;"></div>
+          <div class="content-card-body">
+            <div class="content-card-eyebrow">Microsoft</div>
+            <div class="content-card-title">Azure Essentials Show</div>
+            <div class="content-card-copy">Brand strategy, digital marketing, content marketing, social media, video production.</div>
+            <button class="btn btn-primary btn-sm">Case study</button>
+          </div>
+        </div>
+        <div class="content-card">
+          <div class="content-card-bar" style="background:#7F0046;"></div>
+          <div class="content-card-body">
+            <div class="content-card-eyebrow">Databricks</div>
+            <div class="content-card-title">Lakehouse data warehousing guide</div>
+            <div class="content-card-copy">Content marketing, graphic design, long-form e-book production.</div>
+            <button class="btn btn-dark btn-sm">Read more</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Metric cards</div>
+      <div class="grid-3">
+        <div class="metric-card"><div class="metric-label">Client projects</div><div class="metric-value">48</div><div class="metric-delta">+12 this quarter</div></div>
+        <div class="metric-card"><div class="metric-label">Services offered</div><div class="metric-value">14</div><div style="font-size:11px;color:#888;margin-top:5px;">Across 3 pillars</div></div>
+        <div class="metric-card"><div class="metric-label">Team members</div><div class="metric-value">12</div><div style="font-size:11px;color:#888;margin-top:5px;">Bellevue, WA</div></div>
+      </div>
+    </div>
+  </section>
+  <hr class="divider">
+
+  <!-- FORMS -->
+  <section class="section" id="forms">
+    <div class="section-eyebrow">Components</div>
+    <h2 class="section-title">Forms</h2>
+    <p class="section-desc">Inputs use Coral as the focus color. Labels sit above inputs in 12px/600 with slight tracking.</p>
+    <div class="card">
+      <div class="grid-2" style="margin-bottom:12px;">
+        <div><label class="form-label">Full name</label><input class="input-rdc" type="text" placeholder="Chris Telfer"></div>
+        <div><label class="form-label">Email address</label><input class="input-rdc" type="email" placeholder="hello@reddoorcollaborative.com"></div>
+      </div>
+      <div style="margin-bottom:12px;"><label class="form-label">Service interest</label><select class="select-rdc"><option>Brand strategy</option><option>Content marketing</option><option>Digital marketing</option><option>Graphic design services</option><option>Video marketing and production</option></select></div>
+      <div><label class="form-label">Message</label><textarea class="input-rdc" rows="3" placeholder="Tell us about your project..." style="resize:vertical;"></textarea></div>
+    </div>
+  </section>
+  <hr class="divider">
+
+  <!-- ALERTS -->
+  <section class="section" id="alerts">
+    <div class="section-eyebrow">Components</div>
+    <h2 class="section-title">Alerts</h2>
+    <p class="section-desc">Three semantic levels using tinted backgrounds, a colored dot, bold title, and body copy.</p>
+    <div class="card" style="display:flex;flex-direction:column;gap:0;">
+      <div class="alert alert-coral"><div class="alert-dot"></div><div class="alert-body"><div class="alert-title">Brand consistency required</div>Always use approved logo files from the Box asset library — not recreations or screenshots.</div></div>
+      <div class="alert alert-info"><div class="alert-dot"></div><div class="alert-body"><div class="alert-title">2025 brand guide is live</div>This version supersedes all previous brand documents. Update any saved copies.</div></div>
+      <div class="alert alert-success"><div class="alert-dot"></div><div class="alert-body"><div class="alert-title">Asset approved</div>This file meets brand standards and is cleared for use in client-facing materials.</div></div>
+    </div>
+  </section>
+  <hr class="divider">
+
+  <!-- USAGE -->
+  <section class="section" id="usage">
+    <div class="section-eyebrow">Guidelines</div>
+    <h2 class="section-title">Usage rules</h2>
+    <p class="section-desc">These rules maintain brand integrity across every touchpoint — decks, social, partner materials, and beyond.</p>
+
+    <div class="subsection">
+      <div class="subsection-label">Logo</div>
+      <div class="do-dont">
+        <div class="do-box"><div class="do-label">Do</div><p>Use approved Box files. Maintain clear space equal to the "r" height on all sides. Match logo variant to background color.</p></div>
+        <div class="dont-box"><div class="dont-label">Don't</div><p>Recreate the logo or alter its proportions. Add drop shadows or effects. Place the full-color logo on complex photographic backgrounds without a protective field.</p></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Color</div>
+      <div class="do-dont">
+        <div class="do-box"><div class="do-label">Do</div><p>Lead with Coral for CTAs and primary actions. Use Squid to anchor dark surfaces. Use the Wine-to-Coral gradient for decorative accents only.</p></div>
+        <div class="dont-box"><div class="dont-label">Don't</div><p>Use Mist as a primary page background — it's an accent color. Set Coral text on Wine (insufficient contrast). Introduce off-brand colors without approval from the design lead.</p></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Typography</div>
+      <div class="do-dont">
+        <div class="do-box"><div class="do-label">Do</div><p>Use Suisse Int'l for all branded communications. Use sentence case for headings. Create hierarchy through weight variation.</p></div>
+        <div class="dont-box"><div class="dont-label">Don't</div><p>Use more than 3 weights on a single page. Use condensed or decorative variants for body copy. Italicize headings as an emphasis style.</p></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Photography &amp; illustration</div>
+      <div class="card"><p style="font-size:14px;color:#444;line-height:1.7;">RDC uses a combination of custom illustrations and editorial photography. Photography should feel candid, human, and professional — not stock-photo staged. Illustrations use the brand palette and a geometric line style. Custom illustration files are on file in Box under <strong>Custom RDC illustrations/</strong>.</p></div>
+    </div>
+  </section>
+  <hr class="divider">
+
+  <!-- ASSETS -->
+  <section class="section" id="assets">
+    <div class="section-eyebrow">Guidelines</div>
+    <h2 class="section-title">Asset library</h2>
+    <p class="section-desc">All assets live in Box under: <strong>Red Door File Database → Red Door Guidelines and Assets → RDC 2025 Branding</strong></p>
+    <div class="card">
+      <div class="asset-row"><div><div class="asset-name">Primary logo (all variants)</div><div class="asset-format">SVG · PNG · AI · JPG</div></div><div class="asset-path">Logos/1-Primary Logo (RDC)/</div></div>
+      <div class="asset-row"><div><div class="asset-name">Horizontal lockup</div><div class="asset-format">SVG · PNG · AI</div></div><div class="asset-path">Logos/2-Primary Horizontal (RDC)/</div></div>
+      <div class="asset-row"><div><div class="asset-name">Tertiary logo</div><div class="asset-format">SVG · PNG · AI</div></div><div class="asset-path">Logos/3-Tertiary Logo (RDC)/</div></div>
+      <div class="asset-row"><div><div class="asset-name">Primary icon</div><div class="asset-format">SVG · PNG · AI</div></div><div class="asset-path">Logos/4-Primary Icon/</div></div>
+      <div class="asset-row"><div><div class="asset-name">Secondary icon</div><div class="asset-format">SVG · PNG · AI</div></div><div class="asset-path">Logos/5-Secondary Icon/</div></div>
+      <div class="asset-row"><div><div class="asset-name">Social mark</div><div class="asset-format">SVG · PNG</div></div><div class="asset-path">Logos/7-Social/</div></div>
+      <div class="asset-row"><div><div class="asset-name">Hex color swatches</div><div class="asset-format">.ase</div></div><div class="asset-path">RDC hex colors.ase</div></div>
+      <div class="asset-row"><div><div class="asset-name">Brand guide PDF</div><div class="asset-format">PDF</div></div><div class="asset-path">RDC_Brand-GUIDE-V1.0.pdf</div></div>
+      <div class="asset-row"><div><div class="asset-name">PowerPoint template</div><div class="asset-format">.potx</div></div><div class="asset-path">2025 RedDoor_Template.potx</div></div>
+      <div class="asset-row"><div><div class="asset-name">Suisse Int'l font files</div><div class="asset-format">OTF (zipped)</div></div><div class="asset-path">swisstypefaces-[...].zip</div></div>
+      <div class="asset-row"><div><div class="asset-name">Custom illustrations</div><div class="asset-format">—</div></div><div class="asset-path">Custom RDC illustrations/</div></div>
+      <div class="asset-row"><div><div class="asset-name">Icons</div><div class="asset-format">—</div></div><div class="asset-path">Icons/</div></div>
+      <div class="asset-row"><div><div class="asset-name">Social media assets</div><div class="asset-format">—</div></div><div class="asset-path">RDC social media/</div></div>
+      <div class="asset-row"><div><div class="asset-name">Website graphics</div><div class="asset-format">—</div></div><div class="asset-path">Website Graphics/</div></div>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<script>
+function setActive(el) {
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  el.classList.add('active');
+}
+
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('.nav-link');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      navLinks.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
