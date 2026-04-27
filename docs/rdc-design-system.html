@@ -24,13 +24,13 @@
   --gray-900: #1A1A1A;
   --font-sans: 'DM Sans', system-ui, sans-serif;
   --font-mono: 'DM Mono', monospace;
+  --sidebar-w: 220px;
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-xl: 18px;
   --radius-pill: 999px;
-  --shadow-sm: 0 1px 3px rgba(13,23,36,0.08), 0 1px 2px rgba(13,23,36,0.04);
-  --shadow-md: 0 4px 16px rgba(13,23,36,0.10), 0 2px 6px rgba(13,23,36,0.06);
+  --shadow-sm: 0 1px 3px rgba(13,23,36,0.08);
 }
 
 html { scroll-behavior: smooth; }
@@ -43,22 +43,16 @@ body {
   min-height: 100vh;
 }
 
-.page-wrap {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  min-height: 100vh;
-}
-
+/* ── Sidebar (fixed, out of flow) ── */
 .sidebar {
   position: fixed;
   top: 0; left: 0;
-  width: 220px;
+  width: var(--sidebar-w);
   height: 100vh;
   background: var(--squid);
   padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0;
   overflow-y: auto;
   z-index: 100;
 }
@@ -91,7 +85,6 @@ body {
   font-weight: 600;
   color: rgba(255,255,255,0.9);
   line-height: 1.3;
-  letter-spacing: 0.01em;
 }
 
 .logo-text span {
@@ -124,19 +117,10 @@ body {
   border-radius: var(--radius-sm);
   margin-bottom: 1px;
   transition: color 0.15s, background 0.15s;
-  cursor: pointer;
 }
 
-.nav-link:hover {
-  color: rgba(255,255,255,0.95);
-  background: rgba(255,255,255,0.06);
-}
-
-.nav-link.active {
-  color: var(--coral);
-  background: rgba(255,79,88,0.12);
-  font-weight: 500;
-}
+.nav-link:hover { color: rgba(255,255,255,0.95); background: rgba(255,255,255,0.06); }
+.nav-link.active { color: var(--coral); background: rgba(255,79,88,0.12); font-weight: 500; }
 
 .sidebar-version {
   margin-top: auto;
@@ -146,66 +130,52 @@ body {
   letter-spacing: 0.05em;
 }
 
+/* ── Main: offset by sidebar width, full remaining width ── */
 .main {
-  margin-left: 220px;
-  padding: 3rem 3.5rem 6rem;
-  max-width: 920px;
+  margin-left: var(--sidebar-w);
+  width: calc(100% - var(--sidebar-w));
+  min-width: 0;
+  padding: 3rem 4rem 6rem;
 }
 
-.section {
-  margin-bottom: 5rem;
-  scroll-margin-top: 2rem;
-}
+/* Inner content cap so lines don't go too wide on large screens */
+.inner { max-width: 860px; }
+
+/* ── Sections ── */
+.section { margin-bottom: 5rem; scroll-margin-top: 2rem; }
 
 .section-eyebrow {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--coral);
-  margin-bottom: 0.5rem;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--coral); margin-bottom: 0.5rem;
 }
 
 .section-title {
-  font-size: 30px;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  color: var(--squid);
-  margin-bottom: 0.6rem;
-  line-height: 1.1;
+  font-size: 30px; font-weight: 700; letter-spacing: -0.025em;
+  color: var(--squid); margin-bottom: 0.6rem; line-height: 1.1;
 }
 
 .section-desc {
-  font-size: 15px;
-  color: var(--gray-500);
-  line-height: 1.7;
-  max-width: 560px;
-  margin-bottom: 2.5rem;
+  font-size: 15px; color: var(--gray-500); line-height: 1.7;
+  max-width: 560px; margin-bottom: 2.5rem;
 }
 
-.divider {
-  border: none;
-  border-top: 1px solid var(--gray-200);
-  margin: 3rem 0;
-}
+.divider { border: none; border-top: 1px solid var(--gray-200); margin: 3rem 0; }
 
 .subsection { margin-bottom: 2.5rem; }
 
 .subsection-label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gray-500);
-  margin-bottom: 1rem;
-  padding-bottom: 8px;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gray-500);
+  margin-bottom: 1rem; padding-bottom: 8px;
   border-bottom: 1px solid var(--gray-200);
 }
 
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+/* ── Grids — use minmax so they never overflow ── */
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; }
 
+/* ── Card ── */
 .card {
   background: var(--white);
   border: 1px solid var(--gray-200);
@@ -213,71 +183,45 @@ body {
   padding: 1.25rem 1.5rem;
 }
 
-.swatch {
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  border: 1px solid var(--gray-200);
-  background: var(--white);
-}
+/* ── Swatches ── */
+.swatch { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--gray-200); background: var(--white); }
 .swatch-block { height: 80px; width: 100%; }
 .swatch-info { padding: 10px 12px; }
 .swatch-name { font-size: 11px; font-weight: 700; letter-spacing: 0.04em; color: var(--gray-900); margin-bottom: 2px; }
 .swatch-hex { font-family: var(--font-mono); font-size: 11px; color: var(--gray-500); }
 .swatch-sub { font-family: var(--font-mono); font-size: 10px; color: var(--gray-300); margin-top: 1px; }
 
-.pairing-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--gray-200);
-}
+/* ── Pairing ── */
+.pairing-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--gray-200); }
 .pairing-row:last-child { border-bottom: none; }
-.pairing-bar { display: flex; flex: 1; height: 32px; border-radius: 6px; overflow: hidden; }
+.pairing-bar { display: flex; flex: 1; height: 32px; border-radius: 6px; overflow: hidden; min-width: 0; }
 .pairing-label { font-size: 12px; color: var(--gray-500); min-width: 160px; }
 
-.type-row {
-  display: flex;
-  align-items: baseline;
-  gap: 1.5rem;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--gray-200);
-}
+/* ── Type rows ── */
+.type-row { display: flex; align-items: baseline; gap: 1.5rem; padding: 14px 0; border-bottom: 1px solid var(--gray-200); min-width: 0; }
 .type-row:last-child { border-bottom: none; }
 .type-meta { font-family: var(--font-mono); font-size: 11px; color: var(--gray-300); min-width: 130px; flex-shrink: 0; }
+.type-specimen { min-width: 0; overflow: hidden; }
 
-.logo-preview {
-  border-radius: var(--radius-lg);
-  padding: 2rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
+/* ── Logos ── */
+.logo-preview { border-radius: var(--radius-lg); padding: 2rem 1.5rem; display: flex; flex-direction: column; align-items: center; }
 .logo-lockup { display: flex; align-items: center; gap: 11px; }
 .logo-wordmark { font-size: 13px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.25; }
-.logo-preview-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); text-align: center; margin-top: 0.5rem; }
+.logo-preview-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); text-align: center; margin-top: 0.75rem; }
 
+/* ── Buttons ── */
 .btn-showcase { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 1rem; }
 .btn-group-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-300); margin: 1.25rem 0 0.6rem; }
 
 .btn {
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 600;
-  padding: 9px 22px;
-  border-radius: var(--radius-pill);
-  border: none;
-  cursor: pointer;
-  letter-spacing: 0.01em;
+  font-family: var(--font-sans); font-size: 13px; font-weight: 600;
+  padding: 9px 22px; border-radius: var(--radius-pill); border: none;
+  cursor: pointer; letter-spacing: 0.01em;
   transition: transform 0.12s, box-shadow 0.12s;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
+  display: inline-flex; align-items: center; text-decoration: none;
 }
 .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); }
 .btn:active { transform: translateY(0); box-shadow: none; }
-
 .btn-primary { background: var(--coral); color: #fff; }
 .btn-dark { background: var(--squid); color: #fff; }
 .btn-wine { background: var(--wine); color: #fff; }
@@ -287,6 +231,7 @@ body {
 .btn-sm { font-size: 11px; padding: 6px 14px; }
 .btn-lg { font-size: 15px; padding: 12px 30px; }
 
+/* ── Badges ── */
 .badge { display: inline-flex; align-items: center; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: var(--radius-pill); letter-spacing: 0.03em; }
 .badge-coral { background: rgba(255,79,88,0.12); color: #C13040; }
 .badge-squid { background: rgba(13,23,36,0.08); color: var(--squid); }
@@ -295,6 +240,7 @@ body {
 .badge-success { background: #dcfce7; color: #15803d; }
 .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
 
+/* ── Content card ── */
 .content-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden; }
 .content-card-bar { height: 4px; }
 .content-card-body { padding: 1.25rem 1.5rem; }
@@ -302,11 +248,13 @@ body {
 .content-card-title { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; color: var(--squid); margin-bottom: 7px; line-height: 1.3; }
 .content-card-copy { font-size: 13px; color: var(--gray-500); line-height: 1.6; margin-bottom: 1rem; }
 
+/* ── Metric card ── */
 .metric-card { background: var(--gray-100); border-radius: var(--radius-md); padding: 1rem 1.25rem; }
 .metric-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 6px; }
 .metric-value { font-size: 30px; font-weight: 700; letter-spacing: -0.03em; color: var(--squid); line-height: 1; }
 .metric-delta { font-size: 11px; font-weight: 600; color: #15803d; margin-top: 5px; }
 
+/* ── Forms ── */
 .form-label { font-size: 12px; font-weight: 600; color: var(--gray-500); margin-bottom: 5px; display: block; letter-spacing: 0.02em; }
 .input-rdc {
   font-family: var(--font-sans); font-size: 14px; width: 100%;
@@ -321,6 +269,7 @@ body {
   background: var(--white); color: var(--gray-900); outline: none; appearance: none; cursor: pointer;
 }
 
+/* ── Alerts ── */
 .alert { display: flex; gap: 10px; padding: 12px 16px; border-radius: var(--radius-md); margin-bottom: 8px; align-items: flex-start; }
 .alert-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
 .alert-body { font-size: 13px; line-height: 1.5; }
@@ -332,6 +281,7 @@ body {
 .alert-success { background: #f0fdf4; color: #15803d; }
 .alert-success .alert-dot { background: #22c55e; }
 
+/* ── Spacing tokens ── */
 .spacing-row { display: flex; align-items: center; gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--gray-200); }
 .spacing-row:last-child { border-bottom: none; }
 .spacing-block { background: var(--coral); opacity: 0.3; height: 12px; border-radius: 2px; flex-shrink: 0; }
@@ -339,12 +289,14 @@ body {
 .spacing-value { font-family: var(--font-mono); font-size: 12px; color: var(--coral); min-width: 40px; }
 .spacing-use { font-size: 12px; color: var(--gray-500); }
 
+/* ── Radius tokens ── */
 .radius-row { display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-end; }
 .radius-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
 .radius-block { width: 56px; height: 56px; background: var(--coral); opacity: 0.7; }
 .radius-label { font-family: var(--font-mono); font-size: 11px; color: var(--gray-500); }
 .radius-name { font-size: 10px; color: var(--gray-300); }
 
+/* ── Tables ── */
 .ds-table { width: 100%; border-collapse: collapse; font-size: 13px; }
 .ds-table th { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-500); padding: 8px 12px 8px 0; border-bottom: 1px solid var(--gray-200); text-align: left; }
 .ds-table td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--gray-200); vertical-align: middle; color: var(--gray-900); }
@@ -352,7 +304,8 @@ body {
 .mono { font-family: var(--font-mono); font-size: 11px; color: var(--gray-500); }
 .color-dot { width: 14px; height: 14px; border-radius: 3px; display: inline-block; border: 1px solid var(--gray-200); vertical-align: middle; margin-right: 8px; }
 
-.do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1rem; }
+/* ── Do / Don't ── */
+.do-dont { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; margin-bottom: 1rem; }
 .do-box, .dont-box { border-radius: var(--radius-md); padding: 1rem 1.25rem; }
 .do-box { border: 1px solid rgba(34,197,94,0.25); background: rgba(34,197,94,0.04); }
 .dont-box { border: 1px solid rgba(239,68,68,0.25); background: rgba(239,68,68,0.04); }
@@ -360,12 +313,14 @@ body {
 .dont-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #dc2626; margin-bottom: 8px; }
 .do-box p, .dont-box p { font-size: 13px; color: var(--gray-700); line-height: 1.55; }
 
-.asset-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--gray-200); }
+/* ── Asset list ── */
+.asset-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--gray-200); gap: 1rem; }
 .asset-row:last-child { border-bottom: none; }
 .asset-name { font-size: 13px; font-weight: 500; color: var(--gray-900); margin-bottom: 2px; }
 .asset-format { font-size: 11px; color: var(--gray-500); }
-.asset-path { font-family: var(--font-mono); font-size: 11px; color: var(--gray-300); }
+.asset-path { font-family: var(--font-mono); font-size: 11px; color: var(--gray-300); text-align: right; }
 
+/* ── Page header ── */
 .page-header {
   background: var(--squid);
   border-radius: var(--radius-xl);
@@ -374,41 +329,40 @@ body {
   position: relative;
   overflow: hidden;
 }
-
 .page-header::before {
   content: 'rd';
   position: absolute;
   right: -20px; bottom: -40px;
-  font-size: 200px;
-  font-weight: 700;
+  font-size: 200px; font-weight: 700;
   color: rgba(255,255,255,0.03);
-  letter-spacing: -0.05em;
-  line-height: 1;
-  pointer-events: none;
-  font-family: var(--font-sans);
+  letter-spacing: -0.05em; line-height: 1;
+  pointer-events: none; font-family: var(--font-sans);
 }
-
 .page-header-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--coral); margin-bottom: 0.75rem; }
 .page-header-title { font-size: 36px; font-weight: 700; letter-spacing: -0.03em; color: #fff; line-height: 1.05; margin-bottom: 1rem; }
 .page-header-desc { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 440px; }
-
 .header-meta { display: flex; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
 .header-meta-item { display: flex; flex-direction: column; gap: 2px; }
 .header-meta-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
 .header-meta-value { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7); }
 
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .grid-4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+
 @media (max-width: 768px) {
-  .page-wrap { grid-template-columns: 1fr; }
-  .sidebar { position: static; width: 100%; height: auto; flex-direction: row; flex-wrap: wrap; padding: 1rem 1.5rem; }
-  .main { margin-left: 0; padding: 1.5rem; }
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
-  .do-dont { grid-template-columns: 1fr; }
+  .sidebar { position: static; width: 100%; height: auto; padding: 1rem 1.5rem; flex-direction: row; flex-wrap: wrap; }
+  .sidebar-version { display: none; }
+  .main { margin-left: 0; width: 100%; padding: 1.5rem; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .do-dont { grid-template-columns: minmax(0,1fr); }
+  .pairing-label { min-width: 100px; }
+  .type-meta { min-width: 90px; }
 }
 </style>
 </head>
 <body>
-
-<div class="page-wrap">
 
 <aside class="sidebar">
   <a class="sidebar-logo" href="#">
@@ -437,6 +391,7 @@ body {
 </aside>
 
 <main class="main">
+<div class="inner">
 
   <div class="page-header">
     <div class="page-header-eyebrow">Red Door Collaborative</div>
@@ -459,40 +414,19 @@ body {
     <div class="subsection">
       <div class="subsection-label">Primary colors</div>
       <div class="grid-3">
-        <div class="swatch">
-          <div class="swatch-block" style="background:#FF4F58;"></div>
-          <div class="swatch-info"><div class="swatch-name">RDC Coral</div><div class="swatch-hex">#FF4F58</div><div class="swatch-sub">RGB 255·79·88 | CMYK 0·84·58·0</div></div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-block" style="background:#0D1724;"></div>
-          <div class="swatch-info"><div class="swatch-name">Squid</div><div class="swatch-hex">#0D1724</div><div class="swatch-sub">RGB 13·23·36 | CMYK 87·75·56·71</div></div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-block" style="background:#7F0046;"></div>
-          <div class="swatch-info"><div class="swatch-name">Wine</div><div class="swatch-hex">#7F0046</div><div class="swatch-sub">RGB 127·0·70 | CMYK 35·100·48·25</div></div>
-        </div>
+        <div class="swatch"><div class="swatch-block" style="background:#FF4F58;"></div><div class="swatch-info"><div class="swatch-name">RDC Coral</div><div class="swatch-hex">#FF4F58</div><div class="swatch-sub">RGB 255·79·88 | CMYK 0·84·58·0</div></div></div>
+        <div class="swatch"><div class="swatch-block" style="background:#0D1724;"></div><div class="swatch-info"><div class="swatch-name">Squid</div><div class="swatch-hex">#0D1724</div><div class="swatch-sub">RGB 13·23·36 | CMYK 87·75·56·71</div></div></div>
+        <div class="swatch"><div class="swatch-block" style="background:#7F0046;"></div><div class="swatch-info"><div class="swatch-name">Wine</div><div class="swatch-hex">#7F0046</div><div class="swatch-sub">RGB 127·0·70 | CMYK 35·100·48·25</div></div></div>
       </div>
     </div>
 
     <div class="subsection">
       <div class="subsection-label">Secondary colors</div>
       <div class="grid-4">
-        <div class="swatch">
-          <div class="swatch-block" style="background:#ABDCE0;"></div>
-          <div class="swatch-info"><div class="swatch-name">Mist</div><div class="swatch-hex">#ABDCE0</div><div class="swatch-sub">CMYK 36·0·13·0</div></div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-block" style="background:#FFFFFF;border-bottom:1px solid #eee;"></div>
-          <div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-hex">#FFFFFF</div><div class="swatch-sub">CMYK 0·0·0·0</div></div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-block" style="background:#F3F3F3;"></div>
-          <div class="swatch-info"><div class="swatch-name">Gray</div><div class="swatch-hex">#F3F3F3</div><div class="swatch-sub">CMYK 3·2·2·0</div></div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-block" style="background:linear-gradient(180deg,#7F0046 0%,#FF4F58 100%);"></div>
-          <div class="swatch-info"><div class="swatch-name">Gradient</div><div class="swatch-hex">Wine → Coral</div><div class="swatch-sub">180° · decorative only</div></div>
-        </div>
+        <div class="swatch"><div class="swatch-block" style="background:#ABDCE0;"></div><div class="swatch-info"><div class="swatch-name">Mist</div><div class="swatch-hex">#ABDCE0</div><div class="swatch-sub">CMYK 36·0·13·0</div></div></div>
+        <div class="swatch"><div class="swatch-block" style="background:#FFFFFF;border-bottom:1px solid #eee;"></div><div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-hex">#FFFFFF</div><div class="swatch-sub">CMYK 0·0·0·0</div></div></div>
+        <div class="swatch"><div class="swatch-block" style="background:#F3F3F3;"></div><div class="swatch-info"><div class="swatch-name">Gray</div><div class="swatch-hex">#F3F3F3</div><div class="swatch-sub">CMYK 3·2·2·0</div></div></div>
+        <div class="swatch"><div class="swatch-block" style="background:linear-gradient(180deg,#7F0046 0%,#FF4F58 100%);"></div><div class="swatch-info"><div class="swatch-name">Gradient</div><div class="swatch-hex">Wine → Coral</div><div class="swatch-sub">180° · decorative only</div></div></div>
       </div>
     </div>
 
@@ -532,24 +466,24 @@ body {
     <div class="subsection">
       <div class="subsection-label">Brand typeface — Suisse Int'l</div>
       <div class="card">
-        <div class="type-row"><div class="type-meta">Light / 300</div><div style="font-size:24px;font-weight:300;letter-spacing:-0.01em;color:#0D1724;">Red Door Collaborative</div></div>
-        <div class="type-row"><div class="type-meta">Regular / 400</div><div style="font-size:24px;font-weight:400;color:#0D1724;">Red Door Collaborative</div></div>
-        <div class="type-row"><div class="type-meta">Medium / 500</div><div style="font-size:24px;font-weight:500;color:#0D1724;">Red Door Collaborative</div></div>
-        <div class="type-row"><div class="type-meta">Semibold / 600</div><div style="font-size:24px;font-weight:600;color:#0D1724;">Red Door Collaborative</div></div>
-        <div class="type-row"><div class="type-meta">Bold / 700</div><div style="font-size:24px;font-weight:700;color:#0D1724;">Red Door Collaborative</div></div>
+        <div class="type-row"><div class="type-meta">Light / 300</div><div class="type-specimen" style="font-size:24px;font-weight:300;letter-spacing:-0.01em;color:#0D1724;">Red Door Collaborative</div></div>
+        <div class="type-row"><div class="type-meta">Regular / 400</div><div class="type-specimen" style="font-size:24px;font-weight:400;color:#0D1724;">Red Door Collaborative</div></div>
+        <div class="type-row"><div class="type-meta">Medium / 500</div><div class="type-specimen" style="font-size:24px;font-weight:500;color:#0D1724;">Red Door Collaborative</div></div>
+        <div class="type-row"><div class="type-meta">Semibold / 600</div><div class="type-specimen" style="font-size:24px;font-weight:600;color:#0D1724;">Red Door Collaborative</div></div>
+        <div class="type-row"><div class="type-meta">Bold / 700</div><div class="type-specimen" style="font-size:24px;font-weight:700;color:#0D1724;">Red Door Collaborative</div></div>
       </div>
     </div>
 
     <div class="subsection">
       <div class="subsection-label">Type scale</div>
       <div class="card">
-        <div class="type-row"><div class="type-meta">Display · 48/700</div><div style="font-size:34px;font-weight:700;letter-spacing:-0.03em;line-height:1.05;color:#0D1724;">Creativity meets strategy</div></div>
-        <div class="type-row"><div class="type-meta">H1 · 36/600</div><div style="font-size:26px;font-weight:600;letter-spacing:-0.02em;color:#0D1724;">Where creativity &amp; strategy unite</div></div>
-        <div class="type-row"><div class="type-meta">H2 · 24/600</div><div style="font-size:20px;font-weight:600;letter-spacing:-0.01em;color:#0D1724;">Section heading</div></div>
-        <div class="type-row"><div class="type-meta">H3 · 18/600</div><div style="font-size:16px;font-weight:600;color:#0D1724;">Component heading</div></div>
-        <div class="type-row"><div class="type-meta">Body · 16/400</div><div style="font-size:15px;font-weight:400;line-height:1.7;color:#1A1A1A;">We value the people who walk through our door and take pride in the ones we help open for others.</div></div>
-        <div class="type-row"><div class="type-meta">Small · 14/400</div><div style="font-size:13px;font-weight:400;color:#888;line-height:1.6;">Supporting copy, captions, and secondary information.</div></div>
-        <div class="type-row"><div class="type-meta">Label · 11/600</div><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#888;">Category · Tag · Eyebrow</div></div>
+        <div class="type-row"><div class="type-meta">Display · 48/700</div><div class="type-specimen" style="font-size:34px;font-weight:700;letter-spacing:-0.03em;line-height:1.05;color:#0D1724;">Creativity meets strategy</div></div>
+        <div class="type-row"><div class="type-meta">H1 · 36/600</div><div class="type-specimen" style="font-size:26px;font-weight:600;letter-spacing:-0.02em;color:#0D1724;">Where creativity &amp; strategy unite</div></div>
+        <div class="type-row"><div class="type-meta">H2 · 24/600</div><div class="type-specimen" style="font-size:20px;font-weight:600;letter-spacing:-0.01em;color:#0D1724;">Section heading</div></div>
+        <div class="type-row"><div class="type-meta">H3 · 18/600</div><div class="type-specimen" style="font-size:16px;font-weight:600;color:#0D1724;">Component heading</div></div>
+        <div class="type-row"><div class="type-meta">Body · 16/400</div><div class="type-specimen" style="font-size:15px;font-weight:400;line-height:1.7;color:#1A1A1A;">We value the people who walk through our door and take pride in the ones we help open for others.</div></div>
+        <div class="type-row"><div class="type-meta">Small · 14/400</div><div class="type-specimen" style="font-size:13px;font-weight:400;color:#888;line-height:1.6;">Supporting copy, captions, and secondary information.</div></div>
+        <div class="type-row"><div class="type-meta">Label · 11/600</div><div class="type-specimen" style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#888;">Category · Tag · Eyebrow</div></div>
       </div>
     </div>
 
@@ -577,33 +511,9 @@ body {
     <div class="subsection">
       <div class="subsection-label">Primary lockup variants</div>
       <div class="grid-3">
-        <div>
-          <div class="logo-preview" style="background:#F3F3F3;">
-            <div class="logo-lockup">
-              <div class="logo-mark">rd</div>
-              <div class="logo-wordmark" style="color:#0D1724;">red door<br>collaborative</div>
-            </div>
-          </div>
-          <div class="logo-preview-label">Full color · light bg</div>
-        </div>
-        <div>
-          <div class="logo-preview" style="background:#0D1724;">
-            <div class="logo-lockup">
-              <div class="logo-mark">rd</div>
-              <div class="logo-wordmark" style="color:#ffffff;">red door<br>collaborative</div>
-            </div>
-          </div>
-          <div class="logo-preview-label">Full color · dark bg</div>
-        </div>
-        <div>
-          <div class="logo-preview" style="background:#FF4F58;">
-            <div class="logo-lockup">
-              <div class="logo-mark" style="background:#fff;color:#FF4F58;">rd</div>
-              <div class="logo-wordmark" style="color:#fff;">red door<br>collaborative</div>
-            </div>
-          </div>
-          <div class="logo-preview-label">Reversed · coral bg</div>
-        </div>
+        <div><div class="logo-preview" style="background:#F3F3F3;"><div class="logo-lockup"><div class="logo-mark">rd</div><div class="logo-wordmark" style="color:#0D1724;">red door<br>collaborative</div></div></div><div class="logo-preview-label">Full color · light bg</div></div>
+        <div><div class="logo-preview" style="background:#0D1724;"><div class="logo-lockup"><div class="logo-mark">rd</div><div class="logo-wordmark" style="color:#fff;">red door<br>collaborative</div></div></div><div class="logo-preview-label">Full color · dark bg</div></div>
+        <div><div class="logo-preview" style="background:#FF4F58;"><div class="logo-lockup"><div class="logo-mark" style="background:#fff;color:#FF4F58;">rd</div><div class="logo-wordmark" style="color:#fff;">red door<br>collaborative</div></div></div><div class="logo-preview-label">Reversed · coral bg</div></div>
       </div>
     </div>
 
@@ -693,23 +603,11 @@ body {
     <p class="section-desc">All buttons use a pill shape (border-radius: 999px). Coral is the primary CTA color. Three sizes: small, default, large.</p>
     <div class="card">
       <div class="btn-group-label">Filled</div>
-      <div class="btn-showcase">
-        <button class="btn btn-primary">Hire us</button>
-        <button class="btn btn-dark">Learn more</button>
-        <button class="btn btn-wine">Get started</button>
-      </div>
+      <div class="btn-showcase"><button class="btn btn-primary">Hire us</button><button class="btn btn-dark">Learn more</button><button class="btn btn-wine">Get started</button></div>
       <div class="btn-group-label">Outlined</div>
-      <div class="btn-showcase">
-        <button class="btn btn-outline-coral">View services</button>
-        <button class="btn btn-outline-dark">See our work</button>
-        <button class="btn btn-ghost">Cancel</button>
-      </div>
+      <div class="btn-showcase"><button class="btn btn-outline-coral">View services</button><button class="btn btn-outline-dark">See our work</button><button class="btn btn-ghost">Cancel</button></div>
       <div class="btn-group-label">Sizes</div>
-      <div class="btn-showcase">
-        <button class="btn btn-primary btn-sm">Small</button>
-        <button class="btn btn-primary">Default</button>
-        <button class="btn btn-primary btn-lg">Large</button>
-      </div>
+      <div class="btn-showcase"><button class="btn btn-primary btn-sm">Small</button><button class="btn btn-primary">Default</button><button class="btn btn-primary btn-lg">Large</button></div>
     </div>
   </section>
   <hr class="divider">
@@ -719,15 +617,7 @@ body {
     <div class="section-eyebrow">Components</div>
     <h2 class="section-title">Badges &amp; tags</h2>
     <p class="section-desc">Inline labels for categories, clients, and statuses. Always pill-shaped. Always use tinted backgrounds — never solid fills.</p>
-    <div class="card">
-      <div class="tag-row">
-        <span class="badge badge-coral">Brand strategy</span>
-        <span class="badge badge-squid">Microsoft</span>
-        <span class="badge badge-wine">In progress</span>
-        <span class="badge badge-mist">Content marketing</span>
-        <span class="badge badge-success">Delivered</span>
-      </div>
-    </div>
+    <div class="card"><div class="tag-row"><span class="badge badge-coral">Brand strategy</span><span class="badge badge-squid">Microsoft</span><span class="badge badge-wine">In progress</span><span class="badge badge-mist">Content marketing</span><span class="badge badge-success">Delivered</span></div></div>
   </section>
   <hr class="divider">
 
@@ -740,24 +630,8 @@ body {
     <div class="subsection">
       <div class="subsection-label">Content cards</div>
       <div class="grid-2">
-        <div class="content-card">
-          <div class="content-card-bar" style="background:#FF4F58;"></div>
-          <div class="content-card-body">
-            <div class="content-card-eyebrow">Microsoft</div>
-            <div class="content-card-title">Azure Essentials Show</div>
-            <div class="content-card-copy">Brand strategy, digital marketing, content marketing, social media, video production.</div>
-            <button class="btn btn-primary btn-sm">Case study</button>
-          </div>
-        </div>
-        <div class="content-card">
-          <div class="content-card-bar" style="background:#7F0046;"></div>
-          <div class="content-card-body">
-            <div class="content-card-eyebrow">Databricks</div>
-            <div class="content-card-title">Lakehouse data warehousing guide</div>
-            <div class="content-card-copy">Content marketing, graphic design, long-form e-book production.</div>
-            <button class="btn btn-dark btn-sm">Read more</button>
-          </div>
-        </div>
+        <div class="content-card"><div class="content-card-bar" style="background:#FF4F58;"></div><div class="content-card-body"><div class="content-card-eyebrow">Microsoft</div><div class="content-card-title">Azure Essentials Show</div><div class="content-card-copy">Brand strategy, digital marketing, content marketing, social media, video production.</div><button class="btn btn-primary btn-sm">Case study</button></div></div>
+        <div class="content-card"><div class="content-card-bar" style="background:#7F0046;"></div><div class="content-card-body"><div class="content-card-eyebrow">Databricks</div><div class="content-card-title">Lakehouse data warehousing guide</div><div class="content-card-copy">Content marketing, graphic design, long-form e-book production.</div><button class="btn btn-dark btn-sm">Read more</button></div></div>
       </div>
     </div>
 
@@ -861,8 +735,8 @@ body {
     </div>
   </section>
 
-</main>
 </div>
+</main>
 
 <script>
 function setActive(el) {
