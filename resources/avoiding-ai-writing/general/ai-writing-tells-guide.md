@@ -98,10 +98,6 @@ These are the most flagged location for AI phrases — introductions far outpace
 
 **Reasoning chain artifacts.** AI's chain-of-thought process leaking into prose: "Let me think step by step," "Breaking this down," "Step 1:," "Working through this logically." The reader doesn't need the scaffolding. State the conclusion, then the evidence.
 
-**Chatbot artifacts.** "I hope this helps!", "Certainly!", "Absolutely!", "Great question!", "Feel free to reach out." Remove entirely. Also: "In this article, we will explore…" and "Let's dive in!" — AI-generated meta-narration.
-
-**Sycophantic tone.** "Great question!", "Excellent point!", "You're absolutely right!", "That's a really insightful observation." These are conversational rewards from chat interfaces, not writing.
-
 **Acknowledgment loops.** "You're asking about," "The question of whether," "To answer your question" — AI restating the prompt before answering. Just answer.
 
 ---
