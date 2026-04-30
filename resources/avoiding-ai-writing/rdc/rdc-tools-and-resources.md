@@ -1,12 +1,6 @@
 # AI writing tools and resources for RDC writers
 
-A practical catalog of tools, prompts, and references for writers using Claude, ChatGPT, or Gemini to assist with client content. Organized from most to least immediately usable, with plain-language explanations for anything technical.
-
----
-
-## What this covers
-
-This document is for writers who use AI chatbots as part of their workflow — not engineers or developers. Everything here is accessible through a browser. Where more advanced tools are mentioned, they're flagged clearly.
+A practical catalog of tools, prompts, and references for writers using Claude, ChatGPT, or Gemini to assist with client content. Organized from most to least immediately usable, with plain-language explanations for anything technical. This document is for writers who use AI chatbots as part of their workflow — not engineers or developers. Everything here is accessible through a browser. Where more advanced tools are mentioned, they're flagged clearly.
 
 ---
 
