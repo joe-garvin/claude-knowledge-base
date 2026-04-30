@@ -8,7 +8,7 @@ A research reference on what makes writing sound AI-generated, how detection wor
 
 A reader encounters a paragraph and something tells them — "AI wrote this" — before they can articulate why. That instinct is responding to a cluster of overlapping signals: vocabulary, rhythm, structure, and a certain epistemic cowardice that passes as thoroughness.
 
-The core problem is statistical. Language models are trained on the patterns of human writing and optimized to produce what is most expected next. That optimization produces text that is grammatically flawless, structurally tidy, and stylistically dead — the average of a billion documents rather than any individual's voice. It reads like the platonic corporate memo: complete, correct, and forgettable.
+Language models are trained on the patterns of human writing and optimized to produce what is most expected next. That optimization produces text that is grammatically flawless, structurally tidy, and stylistically dead — the average of a billion documents rather than any individual's voice. It reads like the platonic corporate memo: complete, correct, and forgettable.
 
 Tom Orbach (Director of Growth Marketing at Google, Forbes 30 Under 30) frames the problem precisely: "The problem is that AI writes in very specific patterns that are invisible to the writer but obvious to everyone reading." Most people trying to fix this ask AI to "add a personal touch." That misses the point. The problem is more related to pattern than tone.
 
