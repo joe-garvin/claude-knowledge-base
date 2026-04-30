@@ -1,4 +1,4 @@
-Avoiding AI writing
+## Avoiding AI writing - resources for RDC writers
 
 [View the conceptual guide](ai-writing-tells-guide.md) — the full taxonomy: what AI writing is, why it sounds the way it does, the detection science (perplexity, burstiness, fingerprint persistence), and the complete manual editorial workflow. This is the "understand it" document.
 
