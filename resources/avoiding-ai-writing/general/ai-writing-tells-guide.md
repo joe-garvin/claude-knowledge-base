@@ -6,7 +6,7 @@ A research reference on what makes writing sound AI-generated, how detection wor
 
 ## What we mean by "sounds like AI"
 
-Recognition is typically immediate. A reader encounters a paragraph and something tells them — "AI wrote this" — before they can articulate why. That instinct is responding to a cluster of overlapping signals: vocabulary, rhythm, structure, and a certain epistemic cowardice that passes as thoroughness.
+A reader encounters a paragraph and something tells them — "AI wrote this" — before they can articulate why. That instinct is responding to a cluster of overlapping signals: vocabulary, rhythm, structure, and a certain epistemic cowardice that passes as thoroughness.
 
 The core problem is statistical. Language models are trained on the patterns of human writing and optimized to produce what is most expected next. That optimization produces text that is grammatically flawless, structurally tidy, and stylistically dead — the average of a billion documents rather than any individual's voice. It reads like the platonic corporate memo: complete, correct, and forgettable.
 
