@@ -1,4 +1,4 @@
-# Claude Knowledge Base
+# Claude knowledge base
 
 A personal archive of Claude conversation outputs, project context, and reference material — structured for portability and long-term reuse.
 
@@ -13,7 +13,7 @@ Files in this repository are primarily generated or curated during Claude sessio
 - **archive/** — Completed projects and historical context
 - **meta/** — System notes, conventions, changelog, and repository guidelines
 
-## Usage Notes
+## Usage notes
 
 - Files are named descriptively in lowercase with hyphens (e.g., `azure-smb-messaging-framework.md`)
 - Each file should include a brief header comment indicating when it was created and which project or session it came from
