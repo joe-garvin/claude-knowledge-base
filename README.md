@@ -1,21 +1,29 @@
-# Claude knowledge base
+# Claude Knowledge Base
 
-A personal archive of Claude conversation outputs, project context, reference material, and working documents — structured for portability and long-term reuse.
+A personal archive of Claude conversation outputs, project context, and reference material — structured for portability and long-term reuse.
 
 ## Structure
 
-- **projects/** — Active client and work projects (Azure, Databricks, RDC workflows, etc.)
-- **areas/** — Ongoing responsibilities and recurring contexts (dharma, team processes, personal)
-- **resources/** — Reference material, frameworks, prompt libraries, research
-- **archive/** — Completed projects and older context
-- **meta/** — System notes, conventions, changelog, and instructions for using this repo
+- **projects/** — Active client and work projects
+- **areas/** — Ongoing responsibilities and recurring contexts
+- **resources/** — Reference material, frameworks, prompt libraries, and research
+- **docs/** — Documentation, guides, and instructional materials
+- **archive/** — Completed projects and historical context
+- **meta/** — System notes, conventions, changelog, and repository guidelines
 
-## How this works
+## How This Works
 
-Files in this repo are primarily generated or curated during Claude sessions and pushed via the GitHub MCP integration. The folder structure mirrors a PARA-inspired organization system, consistent with the Obsidian vault setup.
+Files in this repository are primarily generated or curated during Claude sessions and pushed via the GitHub MCP integration. The folder structure uses a PARA-inspired organization system for easy navigation and long-term maintainability.
 
-## Usage notes
+## Usage Notes
 
-- Files are named descriptively in lowercase with hyphens (e.g. `azure-smb-messaging-framework.md`)
-- Each file should include a brief header comment indicating when it was created and what project or session it came from
-- The `meta/` folder contains conventions and a running changelog
+- Files are named descriptively in lowercase with hyphens (e.g., `azure-smb-messaging-framework.md`)
+- Each file should include a brief header comment indicating when it was created and which project or session it came from
+- The `meta/` folder contains conventions, guidelines, and a running changelog
+- All content is organized for easy export and reuse across different projects and contexts
+
+## About
+
+Created: 2026  
+License: —  
+Type: Personal knowledge base
