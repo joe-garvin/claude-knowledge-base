@@ -11,6 +11,7 @@ This folder contains files published via GitHub Pages at:
 | File | URL | Description |
 |---|---|---|
 | `rdc-design-system.html` | [/rdc-design-system.html](https://joe-garvin.github.io/claude-knowledge-base/rdc-design-system.html) | Red Door Collaborative design system — colors, typography, logos, components, and brand usage guidelines |
+| `red-cedar-homepage-concepts.html` | [/red-cedar-homepage-concepts.html](https://joe-garvin.github.io/claude-knowledge-base/red-cedar-homepage-concepts.html) | Red Cedar Zen Community homepage concepts — three high-fidelity mockups (Serene/Minimal, Warm/Editorial, Bold/Structured) on an interactive pannable/zoomable design canvas. Fully self-contained with all assets bundled inline. Intended as a design reference artifact for evaluating visual direction before committing to a site redesign. |
 
 ### Listening notes
 
