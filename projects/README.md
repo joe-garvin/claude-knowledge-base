@@ -1,4 +1,4 @@
-# Project Notes and Context
+# Project notes and context
 
 Notes and context documentation for work and personal initiatives in progress.
 
