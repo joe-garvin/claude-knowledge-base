@@ -1,4 +1,4 @@
-# Sites
+# Docs
 
 This folder contains files published via GitHub Pages at:
 
