@@ -2,6 +2,8 @@
 
 A personal archive of Claude conversation outputs, project context, and reference material — structured for portability and long-term reuse.
 
+Files in this repository are primarily generated or curated during Claude sessions and pushed via the GitHub MCP integration. The folder structure uses a PARA-inspired organization system for easy navigation and long-term maintainability.
+
 ## Structure
 
 - **projects/** — Active client and work projects
@@ -10,10 +12,6 @@ A personal archive of Claude conversation outputs, project context, and referenc
 - **docs/** — Documentation, guides, and instructional materials
 - **archive/** — Completed projects and historical context
 - **meta/** — System notes, conventions, changelog, and repository guidelines
-
-## How This Works
-
-Files in this repository are primarily generated or curated during Claude sessions and pushed via the GitHub MCP integration. The folder structure uses a PARA-inspired organization system for easy navigation and long-term maintainability.
 
 ## Usage Notes
 
