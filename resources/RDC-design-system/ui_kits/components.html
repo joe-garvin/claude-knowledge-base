@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<!--
+  RDC Design System — UI Kit
+  ui_kits/components.html
+
+  A single-file component reference for all reusable RDC UI patterns.
+  Import colors_and_type.css before using any of these components.
+
+  Usage:
+    <link rel="stylesheet" href="../colors_and_type.css">
+    <link rel="stylesheet" href="../fonts/fonts.css">
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RDC UI Kit — Component Reference</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  /* Kit-specific layout only — all design values come from tokens */
+  body { padding: 3rem; max-width: 900px; margin: 0 auto; }
+  .kit-section { margin-bottom: 4rem; }
+  .kit-label {
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-label);
+    letter-spacing: var(--letter-spacing-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-brand-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border-default);
+  }
+  .kit-row { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-bottom: var(--space-md); align-items: flex-start; }
+  .kit-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--space-md); }
+  .kit-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: var(--space-md); }
+  .kit-note {
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    font-family: var(--font-mono);
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── BUTTONS ───────────────────────────────────────── -->
+<div class="kit-section">
+  <div class="kit-label">Buttons</div>
+
+  <p class="kit-note">Filled variants</p>
+  <div class="kit-row">
+    <button style="
+      font-family: var(--btn-font);
+      font-size: var(--btn-font-size);
+      font-weight: var(--btn-font-weight);
+      letter-spacing: var(--btn-letter-spacing);
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      border-radius: var(--btn-radius);
+      border: none;
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      cursor: pointer;
+    ">Hire us</button>
+
+    <button style="
+      font-family: var(--btn-font);
+      font-size: var(--btn-font-size);
+      font-weight: var(--btn-font-weight);
+      letter-spacing: var(--btn-letter-spacing);
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      border-radius: var(--btn-radius);
+      border: none;
+      background: var(--btn-dark-bg);
+      color: var(--btn-dark-text);
+      cursor: pointer;
+    ">Learn more</button>
+
+    <button style="
+      font-family: var(--btn-font);
+      font-size: var(--btn-font-size);
+      font-weight: var(--btn-font-weight);
+      letter-spacing: var(--btn-letter-spacing);
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      border-radius: var(--btn-radius);
+      border: none;
+      background: var(--btn-wine-bg);
+      color: var(--btn-wine-text);
+      cursor: pointer;
+    ">Get started</button>
+  </div>
+
+  <p class="kit-note">Outlined variants</p>
+  <div class="kit-row">
+    <button style="
+      font-family: var(--btn-font);
+      font-size: var(--btn-font-size);
+      font-weight: var(--btn-font-weight);
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      border-radius: var(--btn-radius);
+      border: 1.5px solid var(--color-brand-primary);
+      background: transparent;
+      color: var(--color-brand-primary);
+      cursor: pointer;
+    ">View services</button>
+
+    <button style="
+      font-family: var(--btn-font);
+      font-size: var(--btn-font-size);
+      font-weight: var(--btn-font-weight);
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      border-radius: var(--btn-radius);
+      border: 1.5px solid var(--color-brand-dark);
+      background: transparent;
+      color: var(--color-brand-dark);
+      cursor: pointer;
+    ">See our work</button>
+
+    <button style="
+      font-family: var(--btn-font);
+      font-size: var(--btn-font-size);
+      font-weight: var(--btn-font-weight);
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      border-radius: var(--btn-radius);
+      border: 1px solid var(--color-border-strong);
+      background: transparent;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+    ">Cancel</button>
+  </div>
+
+  <p class="kit-note">Sizes</p>
+  <div class="kit-row" style="align-items: center;">
+    <button style="
+      font-family: var(--btn-font);
+      font-size: 11px;
+      font-weight: var(--btn-font-weight);
+      padding: var(--btn-padding-y-sm) var(--btn-padding-x-sm);
+      border-radius: var(--btn-radius);
+      border: none;
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      cursor: pointer;
+    ">Small</button>
+
+    <button style="
+      font-family: var(--btn-font);
+      font-size: var(--btn-font-size);
+      font-weight: var(--btn-font-weight);
+      padding: var(--btn-padding-y) var(--btn-padding-x);
+      border-radius: var(--btn-radius);
+      border: none;
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      cursor: pointer;
+    ">Default</button>
+
+    <button style="
+      font-family: var(--btn-font);
+      font-size: 15px;
+      font-weight: var(--btn-font-weight);
+      padding: var(--btn-padding-y-lg) var(--btn-padding-x-lg);
+      border-radius: var(--btn-radius);
+      border: none;
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+      cursor: pointer;
+    ">Large</button>
+  </div>
+</div>
+
+<!-- ─── BADGES ───────────────────────────────────────── -->
+<div class="kit-section">
+  <div class="kit-label">Badges and tags</div>
+  <div class="kit-row">
+    <span style="display:inline-flex;align-items:center;font-size:var(--badge-font-size);font-weight:var(--badge-font-weight);padding:var(--badge-padding-y) var(--badge-padding-x);border-radius:var(--badge-radius);letter-spacing:var(--badge-letter-spacing);background:rgba(255,79,88,0.12);color:#C13040;">Brand strategy</span>
+    <span style="display:inline-flex;align-items:center;font-size:var(--badge-font-size);font-weight:var(--badge-font-weight);padding:var(--badge-padding-y) var(--badge-padding-x);border-radius:var(--badge-radius);letter-spacing:var(--badge-letter-spacing);background:rgba(13,23,36,0.08);color:var(--color-brand-dark);">Microsoft</span>
+    <span style="display:inline-flex;align-items:center;font-size:var(--badge-font-size);font-weight:var(--badge-font-weight);padding:var(--badge-padding-y) var(--badge-padding-x);border-radius:var(--badge-radius);letter-spacing:var(--badge-letter-spacing);background:rgba(127,0,70,0.12);color:var(--color-brand-secondary);">In progress</span>
+    <span style="display:inline-flex;align-items:center;font-size:var(--badge-font-size);font-weight:var(--badge-font-weight);padding:var(--badge-padding-y) var(--badge-padding-x);border-radius:var(--badge-radius);letter-spacing:var(--badge-letter-spacing);background:rgba(171,220,224,0.30);color:#3a7a84;">Content marketing</span>
+    <span style="display:inline-flex;align-items:center;font-size:var(--badge-font-size);font-weight:var(--badge-font-weight);padding:var(--badge-padding-y) var(--badge-padding-x);border-radius:var(--badge-radius);letter-spacing:var(--badge-letter-spacing);background:var(--color-success-bg);color:var(--color-success);">Delivered</span>
+  </div>
+</div>
+
+<!-- ─── CARDS ───────────────────────────────────────── -->
+<div class="kit-section">
+  <div class="kit-label">Content cards</div>
+  <div class="kit-grid-2">
+    <!-- Coral-accented card -->
+    <div style="background:var(--card-bg);border:var(--card-border);border-radius:var(--card-radius);overflow:hidden;">
+      <div style="height:var(--card-accent-height);background:var(--color-brand-primary);"></div>
+      <div style="padding:var(--card-padding-y) var(--card-padding-x);">
+        <div style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-brand-primary);margin-bottom:5px;">Microsoft</div>
+        <div style="font-size:16px;font-weight:var(--rdc-weight-semibold);letter-spacing:-0.01em;color:var(--color-brand-dark);margin-bottom:7px;line-height:1.3;">Azure Essentials Show</div>
+        <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.6;margin-bottom:var(--space-md);">Brand strategy, content marketing, social media, video production.</div>
+        <button style="font-family:var(--btn-font);font-size:11px;font-weight:var(--btn-font-weight);padding:var(--btn-padding-y-sm) var(--btn-padding-x-sm);border-radius:var(--btn-radius);border:none;background:var(--btn-primary-bg);color:var(--btn-primary-text);cursor:pointer;">Case study</button>
+      </div>
+    </div>
+
+    <!-- Wine-accented card -->
+    <div style="background:var(--card-bg);border:var(--card-border);border-radius:var(--card-radius);overflow:hidden;">
+      <div style="height:var(--card-accent-height);background:var(--color-brand-secondary);"></div>
+      <div style="padding:var(--card-padding-y) var(--card-padding-x);">
+        <div style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-brand-primary);margin-bottom:5px;">Databricks</div>
+        <div style="font-size:16px;font-weight:var(--rdc-weight-semibold);letter-spacing:-0.01em;color:var(--color-brand-dark);margin-bottom:7px;line-height:1.3;">Lakehouse data warehousing guide</div>
+        <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.6;margin-bottom:var(--space-md);">Content marketing, graphic design, long-form e-book production.</div>
+        <button style="font-family:var(--btn-font);font-size:11px;font-weight:var(--btn-font-weight);padding:var(--btn-padding-y-sm) var(--btn-padding-x-sm);border-radius:var(--btn-radius);border:none;background:var(--btn-dark-bg);color:var(--btn-dark-text);cursor:pointer;">Read more</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="kit-label" style="margin-top:2rem;">Metric cards</div>
+  <div class="kit-grid-3">
+    <div style="background:var(--color-surface-subtle);border-radius:var(--rdc-radius-md);padding:var(--space-md) var(--rdc-space-5);">
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:6px;">Client projects</div>
+      <div style="font-size:30px;font-weight:var(--rdc-weight-bold);letter-spacing:-0.03em;color:var(--color-brand-dark);line-height:1;">48</div>
+      <div style="font-size:11px;font-weight:600;color:var(--color-success);margin-top:5px;">+12 this quarter</div>
+    </div>
+    <div style="background:var(--color-surface-subtle);border-radius:var(--rdc-radius-md);padding:var(--space-md) var(--rdc-space-5);">
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:6px;">Services offered</div>
+      <div style="font-size:30px;font-weight:var(--rdc-weight-bold);letter-spacing:-0.03em;color:var(--color-brand-dark);line-height:1;">14</div>
+      <div style="font-size:11px;color:var(--color-text-tertiary);margin-top:5px;">Across 3 pillars</div>
+    </div>
+    <div style="background:var(--color-surface-subtle);border-radius:var(--rdc-radius-md);padding:var(--space-md) var(--rdc-space-5);">
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:6px;">Team members</div>
+      <div style="font-size:30px;font-weight:var(--rdc-weight-bold);letter-spacing:-0.03em;color:var(--color-brand-dark);line-height:1;">12</div>
+      <div style="font-size:11px;color:var(--color-text-tertiary);margin-top:5px;">Bellevue, WA</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FORMS ───────────────────────────────────────── -->
+<div class="kit-section">
+  <div class="kit-label">Form elements</div>
+  <div style="background:var(--card-bg);border:var(--card-border);border-radius:var(--card-radius);padding:var(--card-padding-y) var(--card-padding-x);">
+    <div class="kit-grid-2" style="margin-bottom:12px;">
+      <div>
+        <label style="font-size:12px;font-weight:var(--rdc-weight-semibold);color:var(--color-text-secondary);margin-bottom:5px;display:block;letter-spacing:0.02em;">Full name</label>
+        <input type="text" placeholder="Chris Telfer" style="font-family:var(--font-primary);font-size:var(--input-font-size);width:100%;padding:var(--input-padding-y) var(--input-padding-x);border:var(--input-border);border-radius:var(--input-radius);background:var(--color-surface-default);color:var(--color-text-primary);outline:none;">
+      </div>
+      <div>
+        <label style="font-size:12px;font-weight:var(--rdc-weight-semibold);color:var(--color-text-secondary);margin-bottom:5px;display:block;letter-spacing:0.02em;">Email address</label>
+        <input type="email" placeholder="hello@reddoorcollaborative.com" style="font-family:var(--font-primary);font-size:var(--input-font-size);width:100%;padding:var(--input-padding-y) var(--input-padding-x);border:var(--input-border);border-radius:var(--input-radius);background:var(--color-surface-default);color:var(--color-text-primary);outline:none;">
+      </div>
+    </div>
+    <div>
+      <label style="font-size:12px;font-weight:var(--rdc-weight-semibold);color:var(--color-text-secondary);margin-bottom:5px;display:block;letter-spacing:0.02em;">Service interest</label>
+      <select style="font-family:var(--font-primary);font-size:var(--input-font-size);width:100%;padding:var(--input-padding-y) var(--input-padding-x);border:var(--input-border);border-radius:var(--input-radius);background:var(--color-surface-default);color:var(--color-text-primary);outline:none;appearance:none;">
+        <option>Brand strategy</option>
+        <option>Content marketing</option>
+        <option>Digital marketing</option>
+        <option>Graphic design services</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- ─── TYPOGRAPHY ────────────────────────────────────── -->
+<div class="kit-section">
+  <div class="kit-label">Type scale</div>
+  <div style="background:var(--card-bg);border:var(--card-border);border-radius:var(--card-radius);padding:var(--card-padding-y) var(--card-padding-x);">
+    <div style="display:flex;align-items:baseline;gap:1.5rem;padding:14px 0;border-bottom:1px solid var(--color-border-default);">
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-tertiary);min-width:130px;flex-shrink:0;">Display · 48/700</div>
+      <div style="font-size:34px;font-weight:var(--rdc-weight-bold);letter-spacing:var(--letter-spacing-display);line-height:var(--line-height-display);">Creativity meets strategy</div>
+    </div>
+    <div style="display:flex;align-items:baseline;gap:1.5rem;padding:14px 0;border-bottom:1px solid var(--color-border-default);">
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-tertiary);min-width:130px;flex-shrink:0;">H1 · 36/600</div>
+      <div style="font-size:26px;font-weight:var(--rdc-weight-semibold);letter-spacing:var(--letter-spacing-h1);">Where creativity &amp; strategy unite</div>
+    </div>
+    <div style="display:flex;align-items:baseline;gap:1.5rem;padding:14px 0;border-bottom:1px solid var(--color-border-default);">
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-tertiary);min-width:130px;flex-shrink:0;">H2 · 24/600</div>
+      <div style="font-size:20px;font-weight:var(--rdc-weight-semibold);letter-spacing:var(--letter-spacing-h2);">Section heading</div>
+    </div>
+    <div style="display:flex;align-items:baseline;gap:1.5rem;padding:14px 0;border-bottom:1px solid var(--color-border-default);">
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-tertiary);min-width:130px;flex-shrink:0;">Body · 16/400</div>
+      <div style="font-size:15px;font-weight:var(--rdc-weight-regular);line-height:var(--line-height-body);color:var(--color-text-primary);">We value the people who walk through our door and take pride in the ones we help open for others.</div>
+    </div>
+    <div style="display:flex;align-items:baseline;gap:1.5rem;padding:14px 0;">
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-tertiary);min-width:130px;flex-shrink:0;">Eyebrow · 11/600</div>
+      <div style="font-size:11px;font-weight:var(--rdc-weight-semibold);letter-spacing:var(--letter-spacing-eyebrow);text-transform:uppercase;color:var(--color-brand-primary);">Red Door Collaborative</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── ALERTS ───────────────────────────────────────── -->
+<div class="kit-section">
+  <div class="kit-label">Alerts</div>
+  <div style="display:flex;flex-direction:column;gap:8px;">
+    <div style="display:flex;gap:10px;padding:12px 16px;border-radius:var(--rdc-radius-md);background:rgba(255,79,88,0.08);color:#C13040;align-items:flex-start;">
+      <div style="width:6px;height:6px;border-radius:50%;background:var(--color-brand-primary);margin-top:5px;flex-shrink:0;"></div>
+      <div style="font-size:13px;line-height:1.5;"><strong>Brand consistency required.</strong> Always use approved logo files from Box — not recreations.</div>
+    </div>
+    <div style="display:flex;gap:10px;padding:12px 16px;border-radius:var(--rdc-radius-md);background:var(--color-info-bg);color:var(--color-info);align-items:flex-start;">
+      <div style="width:6px;height:6px;border-radius:50%;background:var(--color-info);margin-top:5px;flex-shrink:0;"></div>
+      <div style="font-size:13px;line-height:1.5;"><strong>2025 brand guide is live.</strong> This version supersedes all previous documents.</div>
+    </div>
+    <div style="display:flex;gap:10px;padding:12px 16px;border-radius:var(--rdc-radius-md);background:var(--color-success-bg);color:var(--color-success);align-items:flex-start;">
+      <div style="width:6px;height:6px;border-radius:50%;background:var(--color-success);margin-top:5px;flex-shrink:0;"></div>
+      <div style="font-size:13px;line-height:1.5;"><strong>Asset approved.</strong> Cleared for use in client-facing materials.</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
