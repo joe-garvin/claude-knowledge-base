@@ -1,6 +1,6 @@
 # Project Notes and Context
 
-This folder contains project notes and context documentation for work and personal initiatives in progress.
+Notes and context documentation for work and personal initiatives in progress.
 
 ## Subfolders
 
