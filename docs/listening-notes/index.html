@@ -6,78 +6,50 @@
 <title>Still Point — Listening Notes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+:root { --stone-50: #f9f8f6; --stone-100: #f0eeea; --stone-200: #e4e1db; --accent: #2D6A4F; --cobalt: #003B8E; --text-primary: #111010; --text-secondary: #2e2a27; --text-tertiary: #6a6259; --rule: rgba(15,13,12,0.10); --rule-strong: rgba(15,13,12,0.24); --font-sans: "IBM Plex Sans", system-ui, sans-serif; --font-mono: "IBM Plex Mono", monospace; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 16px; }
-body { font-family: 'IBM Plex Sans', system-ui, sans-serif; background: #f9f8f6; color: #111010; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+body { font-family: var(--font-sans); background: var(--stone-50); color: var(--text-primary); -webkit-font-smoothing: antialiased; line-height: 1.6; min-height: 100vh; }
 a { color: inherit; text-decoration: none; }
-.header { border-bottom: 1px solid rgba(15,13,12,0.24); padding: 18px 0; background: #f9f8f6; position: sticky; top: 0; z-index: 10; }
-.header .inner { max-width: 860px; margin: 0 auto; padding: 0 48px; display: flex; justify-content: space-between; align-items: baseline; }
-.header-left { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #6a6259; }
-.page { max-width: 860px; margin: 0 auto; padding: 0 48px; }
-.hero { padding: 80px 0 56px; border-bottom: 1px solid rgba(15,13,12,0.10); }
-.hero-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6a6259; margin-bottom: 24px; }
-.hero-title { font-size: clamp(40px, 6vw, 80px); font-weight: 300; letter-spacing: -0.035em; line-height: 0.92; color: #111010; margin-bottom: 28px; }
-.hero-desc { font-size: 15px; line-height: 1.7; color: #2e2a27; max-width: 52ch; }
-.list { padding: 48px 0; }
-.list-head { margin: 0 -48px 32px; border-top: 2px solid #111010; background: #f0eeea; padding: 11px 48px; display: flex; align-items: baseline; gap: 16px; }
-.list-head-label { font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: #111010; }
-.digest-row { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 20px 0; border-bottom: 1px solid rgba(15,13,12,0.10); }
-.digest-row:last-child { border-bottom: none; }
-.digest-row:hover .digest-week { color: #003B8E; }
-.digest-week { font-size: 22px; font-weight: 300; letter-spacing: -0.02em; color: #111010; transition: color 0.15s; flex-shrink: 0; }
-.digest-info { flex: 1; }
-.digest-date { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #6a6259; letter-spacing: 0.05em; margin-bottom: 4px; }
-.digest-picks { font-size: 13px; color: #6a6259; line-height: 1.5; }
-.digest-link { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.09em; text-transform: uppercase; color: #003B8E; border-bottom: 1px solid rgba(0,59,142,0.28); padding-bottom: 1px; flex-shrink: 0; white-space: nowrap; }
-.footer { padding: 40px 0 56px; border-top: 1px solid rgba(15,13,12,0.10); }
-.footer-inner { max-width: 860px; margin: 0 auto; padding: 0 48px; display: flex; justify-content: space-between; align-items: center; }
-.footer-note { font-size: 12px; color: #6a6259; font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.06em; }
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--stone-50); border-bottom: 1px solid var(--rule-strong); padding: 18px 0; }
+.site-header .inner { max-width: 900px; margin: 0 auto; padding: 0 48px; display: flex; align-items: baseline; justify-content: space-between; }
+.header-title { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); }
+.page { max-width: 900px; margin: 0 auto; padding: 0 48px; }
+.hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule-strong); }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 24px; }
+.hero-title { font-size: clamp(48px, 6vw, 80px); font-weight: 300; letter-spacing: -0.035em; line-height: 0.92; color: var(--text-primary); margin-bottom: 24px; }
+.hero-title em { font-style: normal; color: var(--accent); }
+.hero-desc { font-size: 15px; color: var(--text-secondary); max-width: 52ch; line-height: 1.7; }
+.digest-list { padding: 48px 0; }
+.digest-item { display: flex; align-items: baseline; gap: 32px; padding: 22px 0; border-bottom: 1px solid var(--rule); }
+.digest-item:last-child { border-bottom: none; }
+.digest-week { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-tertiary); flex-shrink: 0; width: 48px; }
+.digest-link { font-size: 18px; font-weight: 400; color: var(--text-primary); letter-spacing: -0.01em; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+.digest-link:hover { border-color: var(--cobalt); color: var(--cobalt); }
+.digest-meta { font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); margin-left: auto; white-space: nowrap; }
+.site-footer { padding: 40px 0 56px; }
+.footer-stamp { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); }
 </style>
 </head>
 <body>
-<header class="header"><div class="inner"><span class="header-left">Still Point — Listening Notes</span><span class="header-left">2026</span></div></header>
+<header class="site-header"><div class="inner"><span class="header-title">Still Point — Listening Notes</span></div></header>
 <div class="page">
   <div class="hero">
-    <p class="hero-eyebrow">Archive · All editions</p>
-    <h1 class="hero-title">Listening<br>Notes</h1>
-    <p class="hero-desc">Weekly music discovery digest. Sources: Boomkat, Resident Advisor, Bandcamp. Filtered against library and Spotify playlists. One note per week, organized by pick type.</p>
+    <p class="hero-eyebrow">joe-garvin / claude-knowledge-base</p>
+    <h1 class="hero-title">Listening<br>Notes <em>Archive</em></h1>
+    <p class="hero-desc">Weekly music discovery digests — filtered from Boomkat, Resident Advisor, Bandcamp, and related sources against a personal taste profile. New discoveries, known-artist releases, and the occasional wildcard.</p>
   </div>
-  <div class="list">
-    <div class="list-head"><span class="list-head-label">2026 — All Editions</span></div>
-    <a href="2026-W18-listening-notes.html" class="digest-row" style="display:flex">
-      <div class="digest-week">W18</div>
-      <div class="digest-info"><div class="digest-date">01 May 2026 · Boomkat Weekly, Download Now, Bandcamp Essential Releases</div><div class="digest-picks">Seefeel, Intertoto, Sentomea, Spivak &amp; Prins Emanuel · Shinichi Atobe, Yu Su · Rabit (wildcard)</div></div>
-      <span class="digest-link">Read ↗</span>
-    </a>
-    <a href="2026-W17-listening-notes.html" class="digest-row" style="display:flex">
-      <div class="digest-week">W17</div>
-      <div class="digest-info"><div class="digest-date">24 April 2026 · Boomkat Weekly Digest</div><div class="digest-picks">Inrain, Borderland, Meitei · Oren Ambarchi, Buttechno, Irmin Schmidt · Carla Dal Forno (wildcard)</div></div>
-      <span class="digest-link">Read ↗</span>
-    </a>
-    <a href="2026-W16-listening-notes.html" class="digest-row" style="display:flex">
-      <div class="digest-week">W16</div>
-      <div class="digest-info"><div class="digest-date">17 April 2026 · Boomkat Weekly Digest</div><div class="digest-picks">R. Boy, G Version III, Paperclip Minimiser, Holodec · Soichi Terada · Christina Kubisch (wildcard)</div></div>
-      <span class="digest-link">Read ↗</span>
-    </a>
-    <a href="2026-W15-listening-notes.html" class="digest-row" style="display:flex">
-      <div class="digest-week">W15</div>
-      <div class="digest-info"><div class="digest-date">10 April 2026 · Boomkat Weekly Digest, Download Now</div><div class="digest-picks">MM/KM, Beppu, Grady Steele, Hoavi · Squarepusher · Alex Zhang Hungtai (wildcard)</div></div>
-      <span class="digest-link">Read ↗</span>
-    </a>
-    <a href="2026-W14-listening-notes.html" class="digest-row" style="display:flex">
-      <div class="digest-week">W14</div>
-      <div class="digest-info"><div class="digest-date">03 April 2026 · Boomkat Download Now, RA homepage, web research</div><div class="digest-picks">Micå, Millia · Villalobos/Sun Ra comp, Actress &amp; Ciani, Kali Malone · Pop Ambient 2026, Rave At Your Fiction (wildcards)</div></div>
-      <span class="digest-link">Read ↗</span>
-    </a>
-    <a href="2026-W13-listening-notes.html" class="digest-row" style="display:flex">
-      <div class="digest-week">W13</div>
-      <div class="digest-info"><div class="digest-date">27 March 2026 · Boomkat Weekly Digest</div><div class="digest-picks">Fabiano · Passarani, Loidis, Low Jack · Genioh Yamashirogumi (wildcard)</div></div>
-      <span class="digest-link">Read ↗</span>
-    </a>
+  <div class="digest-list">
+    <div class="digest-item"><span class="digest-week">W18</span><a href="2026-W18-listening-notes.html" class="digest-link">Listening Notes №18 — Seefeel, Shinichi Atobe, Intertoto, Yu Su, Sentomea, Spivak & Prins Emanuel, Rabit</a><span class="digest-meta">01 May 2026</span></div>
+    <div class="digest-item"><span class="digest-week">W17</span><a href="2026-W17-listening-notes.html" class="digest-link">Listening Notes №17 — Inrain, Borderland, Meitei, Oren Ambarchi, Buttechno, Irmin Schmidt, Carla Dal Forno</a><span class="digest-meta">24 Apr 2026</span></div>
+    <div class="digest-item"><span class="digest-week">W16</span><a href="2026-W16-listening-notes.html" class="digest-link">Listening Notes №16 — R. Boy, G Version III, Paperclip Minimiser, Holodec, Soichi Terada, Christina Kubisch</a><span class="digest-meta">17 Apr 2026</span></div>
+    <div class="digest-item"><span class="digest-week">W15</span><a href="2026-W15-listening-notes.html" class="digest-link">Listening Notes №15 — MM/KM, Beppu, Grady Steele, Hoavi, Squarepusher, Alex Zhang Hungtai</a><span class="digest-meta">10 Apr 2026</span></div>
+    <div class="digest-item"><span class="digest-week">W14</span><a href="2026-W14-listening-notes.html" class="digest-link">Listening Notes №14 — Millia, Rave At Your Fiction, Micå, Villalobos Sun Ra comp, Actress & Ciani, Kali Malone</a><span class="digest-meta">03 Apr 2026</span></div>
+    <div class="digest-item"><span class="digest-week">W13</span><a href="2026-W13-listening-notes.html" class="digest-link">Listening Notes №13 — Fabiano, Passarani, Loidis, Genioh Yamashirogumi</a><span class="digest-meta">27 Mar 2026</span></div>
   </div>
+  <div class="site-footer"><span class="footer-stamp">Still Point · joe-garvin/claude-knowledge-base</span></div>
 </div>
-<footer class="footer"><div class="footer-inner"><span class="footer-note">Still Point · joe-garvin/claude-knowledge-base</span><span class="footer-note">Updated May 2026</span></div></footer>
 </body>
 </html>

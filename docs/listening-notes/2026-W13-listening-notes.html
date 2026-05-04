@@ -3,101 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Listening Notes — W13 · March 27, 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>/* Swiss Design System */
-:root{--stone-50:#f9f8f6;--stone-100:#f0eeea;--stone-200:#e4e1db;--stone-300:#ccc8c0;--stone-800:#292524;--stone-900:#1c1917;--stone-950:#0c0a09;--accent:#2D6A4F;--cobalt:#003B8E;--golden:#b8860b;--text-primary:#111010;--text-secondary:#2e2a27;--text-tertiary:#6a6259;--rule:rgba(15,13,12,0.10);--rule-strong:rgba(15,13,12,0.24);--font-sans:'IBM Plex Sans','Hanken Grotesk',system-ui,sans-serif;--font-mono:'IBM Plex Mono',monospace;--art-size:200px;--col-gap:48px}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{font-size:16px}body{font-family:var(--font-sans);background:var(--stone-50);color:var(--text-primary);-webkit-font-smoothing:antialiased;line-height:1.6;min-height:100vh}a{color:inherit;text-decoration:none}
-.site-header{position:sticky;top:0;z-index:100;background:var(--stone-50);border-bottom:1px solid var(--rule-strong);padding:18px 0}.site-header .inner{max-width:1160px;margin:0 auto;padding:0 48px;display:flex;align-items:baseline;justify-content:space-between}.header-title,.header-week{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary)}
-.page{max-width:1160px;margin:0 auto;padding:0 48px}.hero{padding:80px 0 60px;border-bottom:1px solid var(--rule-strong)}.hero-eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:24px}.hero-lockup{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap}.hero-title{font-size:clamp(52px,7vw,96px);font-weight:300;letter-spacing:-.035em;line-height:.92;color:var(--text-primary)}.hero-title em{font-style:normal;color:var(--text-primary)}.hero-stats{display:flex;flex-direction:column;gap:8px;align-items:flex-end;flex-shrink:0;padding-bottom:6px}.hero-stat{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--text-tertiary);text-align:right}.hero-stat strong{color:var(--text-secondary);font-weight:500}.hero-rule{margin-top:40px;border:none;border-top:1px solid var(--rule)}
-.section{padding:0 0 64px;border-bottom:1px solid var(--rule)}.section-head{margin:0 -48px 52px;border-top:2px solid var(--text-primary);background:var(--stone-100);padding:11px 48px;display:flex;align-items:baseline;gap:20px}.section-index{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-tertiary);flex-shrink:0}.section-label{font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--text-primary)}.section-label span{font-family:var(--font-mono);font-size:10px;font-weight:400;color:var(--text-tertiary);margin-left:12px;letter-spacing:.06em}
-.entry{display:grid;grid-template-columns:var(--art-size) 1fr;gap:0 var(--col-gap);padding-bottom:52px;margin-bottom:52px;border-bottom:1px solid var(--rule)}.entry:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0}.art-wrap{position:relative;width:var(--art-size);flex-shrink:0}.art-wrap a{display:block}.art-wrap img{display:block;width:var(--art-size);height:var(--art-size);object-fit:cover;background:var(--stone-200)}.art-wrap a:hover img{opacity:.88;transition:opacity .2s}.art-placeholder{display:flex;align-items:center;justify-content:center;width:var(--art-size);height:var(--art-size);background:var(--stone-100);border:1px solid var(--rule-strong)}.art-placeholder span{font-family:var(--font-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-tertiary);text-align:center;padding:8px}.art-tag{position:absolute;top:0;left:0;font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 7px;line-height:1}.art-tag.new{background:var(--stone-900);color:var(--stone-50)}.art-tag.known{background:var(--cobalt);color:white}.art-tag.wild{background:var(--golden);color:var(--stone-900)}
-.entry-body{border-left:1px solid var(--rule-strong);padding-left:var(--col-gap);display:flex;flex-direction:column;justify-content:center}.entry-artist{font-size:24px;font-weight:500;letter-spacing:-.025em;line-height:1.1;color:var(--text-primary);margin-bottom:2px}.entry-album{font-size:24px;font-weight:300;letter-spacing:-.025em;line-height:1.1;color:var(--text-secondary);margin-bottom:14px}.entry-meta{display:flex;flex-wrap:wrap;gap:0 20px;font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary);letter-spacing:.05em;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.entry-copy{font-size:15px;line-height:1.75;color:var(--text-secondary);max-width:60ch;margin-bottom:22px}.entry-links{display:flex;gap:20px;flex-wrap:wrap;align-items:center}.link{font-family:var(--font-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--cobalt);border-bottom:1px solid rgba(0,59,142,.28);padding-bottom:1px;transition:color .15s,border-color .15s;white-space:nowrap}.link:hover{opacity:.7}.link.primary{font-weight:500}
-.also-grid{display:grid;grid-template-columns:var(--art-size) 1fr;gap:0 var(--col-gap)}.also-items{border-left:1px solid var(--rule-strong);padding-left:var(--col-gap)}.also-item{display:flex;gap:18px;padding:18px 0;border-bottom:1px solid var(--rule);align-items:baseline}.also-item:first-child{padding-top:0}.also-item:last-child{border-bottom:none}.also-n{font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);flex-shrink:0;width:18px;padding-top:2px}.also-text{font-size:14px;color:var(--text-secondary);line-height:1.65}.also-text strong{font-weight:500;color:var(--text-primary)}
-.site-footer{padding:40px 0 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}.footer-note{font-size:13px;font-style:italic;color:var(--text-tertiary);max-width:70ch;line-height:1.6}.footer-stamp{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);white-space:nowrap}
+<title>Listening Notes — W13 · March 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root { --stone-50: #f9f8f6; --stone-100: #f0eeea; --stone-200: #e4e1db; --accent: #2D6A4F; --cobalt: #003B8E; --text-primary: #111010; --text-secondary: #2e2a27; --text-tertiary: #6a6259; --rule: rgba(15,13,12,0.10); --rule-strong: rgba(15,13,12,0.24); --font-sans: "IBM Plex Sans", system-ui, sans-serif; --font-mono: "IBM Plex Mono", monospace; --art-size: 200px; --col-gap: 48px; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body { font-family: var(--font-sans); background: var(--stone-50); color: var(--text-primary); -webkit-font-smoothing: antialiased; line-height: 1.6; min-height: 100vh; }
+a { color: inherit; text-decoration: none; }
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--stone-50); border-bottom: 1px solid var(--rule-strong); padding: 18px 0; }
+.site-header .inner { max-width: 1160px; margin: 0 auto; padding: 0 48px; display: flex; align-items: baseline; justify-content: space-between; }
+.header-title, .header-week { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); }
+.page { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+.hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule-strong); }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 24px; }
+.hero-lockup { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.hero-title { font-size: clamp(52px, 7vw, 96px); font-weight: 300; letter-spacing: -0.035em; line-height: 0.92; color: var(--text-primary); }
+.hero-title em { font-style: normal; color: var(--accent); }
+.hero-stats { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; flex-shrink: 0; padding-bottom: 6px; }
+.hero-stat { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-tertiary); text-align: right; }
+.hero-stat strong { color: var(--text-secondary); font-weight: 500; }
+.hero-rule { margin-top: 40px; border: none; border-top: 1px solid var(--rule); }
+.section { padding: 0 0 64px; border-bottom: 1px solid var(--rule); }
+.section-head { margin: 0 -48px 52px; border-top: 2px solid var(--text-primary); background: var(--stone-100); padding: 11px 48px; display: flex; align-items: baseline; gap: 20px; }
+.section-index { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-tertiary); flex-shrink: 0; }
+.section-label { font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-primary); }
+.section-label span { font-family: var(--font-mono); font-size: 10px; font-weight: 400; color: var(--text-tertiary); margin-left: 12px; letter-spacing: 0.06em; }
+.entry { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); padding-bottom: 52px; margin-bottom: 52px; border-bottom: 1px solid var(--rule); }
+.entry:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+.art-wrap { position: relative; width: var(--art-size); flex-shrink: 0; }
+.art-placeholder { width: var(--art-size); height: var(--art-size); background: var(--stone-100); display: flex; align-items: center; justify-content: center; border: 1px solid var(--stone-200); }
+.art-tag { position: absolute; top: 0; left: 0; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.10em; text-transform: uppercase; padding: 4px 7px; line-height: 1; }
+.art-tag.new { background: var(--text-primary); color: var(--stone-50); }
+.art-tag.known { background: var(--cobalt); color: white; }
+.art-tag.wild { background: #a07010; color: white; }
+.entry-body { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); display: flex; flex-direction: column; justify-content: center; }
+.entry-artist { font-size: 24px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-primary); margin-bottom: 2px; }
+.entry-album { font-size: 24px; font-weight: 300; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-secondary); margin-bottom: 14px; }
+.entry-meta { display: flex; flex-wrap: wrap; gap: 0 20px; font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.05em; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+.entry-copy { font-size: 15px; line-height: 1.75; color: var(--text-secondary); max-width: 60ch; margin-bottom: 22px; }
+.entry-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.link { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--cobalt); border-bottom: 1px solid rgba(0,59,142,0.28); padding-bottom: 1px; white-space: nowrap; }
+.link.primary { font-weight: 500; }
+.also-grid { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); }
+.also-items { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); }
+.also-item { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.also-item:first-child { padding-top: 0; }
+.also-item:last-child { border-bottom: none; }
+.also-n { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); flex-shrink: 0; width: 18px; }
+.also-text { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+.also-text strong { font-weight: 500; color: var(--text-primary); }
+.site-footer { padding: 40px 0 56px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-note { font-size: 13px; font-style: italic; color: var(--text-tertiary); max-width: 70ch; line-height: 1.6; }
+.footer-stamp { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); }
 </style>
 </head>
 <body>
-<header class="site-header"><div class="inner"><span class="header-title">Still Point — Listening Notes</span><span class="header-week">W13 · March 27, 2026</span></div></header>
+<header class="site-header"><div class="inner"><span class="header-title">Still Point — Listening Notes</span><span class="header-week">W13 · 27 March 2026</span></div></header>
 <div class="page">
   <div class="hero">
     <p class="hero-eyebrow">Weekly digest · March 27, 2026</p>
     <div class="hero-lockup">
-      <h1 class="hero-title">Listening<br>Notes <em>W13</em></h1>
-      <div class="hero-stats">
-        <div class="hero-stat"><strong>Sources</strong> — Boomkat Weekly Digest</div>
-        <div class="hero-stat"><strong>Picks</strong> — 1 new discovery · 3 known artists · 1 wildcard</div>
-        <div class="hero-stat"><strong>RA</strong> — not sourced this week</div>
-      </div>
+      <h1 class="hero-title">Listening<br>Notes <em>№13</em></h1>
+      <div class="hero-stats"><div class="hero-stat"><strong>Source</strong> — Boomkat Weekly Digest</div><div class="hero-stat"><strong>Picks</strong> — 1 new discovery · 2 known artists · 1 wildcard</div></div>
     </div>
     <hr class="hero-rule">
   </div>
   <section class="section">
     <div class="section-head"><span class="section-index">01</span><span class="section-label">New Discoveries <span>×1</span></span></div>
     <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/landmarks-d6a06a7a-3bb2-424d-8f36-d0ead3ade84e" target="_blank" style="display:block"><div class="art-placeholder"><span>Fabiano</span></div></a><div class="art-tag new">New</div></div>
-      <div class="entry-body">
-        <div class="entry-artist">Fabiano</div><div class="entry-album">Landmarks</div>
-        <div class="entry-meta"><span>E35 / Basic Channel</span><span>Ambient Dub · Concrète</span><span>May 2025</span></div>
-        <p class="entry-copy">A pre-Mammo ambient suite from the Amsterdam producer behind the Short Span LP Boomkat has been pushing. This is the earlier, longer-form record on Basic Channel's E35 sublabel — dub-concrète, flotation tank material, over an hour of shapeshifting tones. Basic Channel is a direct ancestor of things you already love: Shinichi Atobe, Vainqueur, dub techno generally. Clean discovery.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/landmarks-d6a06a7a-3bb2-424d-8f36-d0ead3ade84e" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Fabiano+Landmarks+E35+Basic+Channel" class="link" target="_blank">Preview on YouTube ↗</a></div>
-      </div>
+      <div class="art-wrap"><div class="art-placeholder"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#f0eeea"/><rect x="0" y="0" width="100" height="100" fill="#e4e1db"/><rect x="100" y="100" width="100" height="100" fill="#e4e1db"/><text x="100" y="108" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#6a6259" letter-spacing="2">E35</text></svg></div><div class="art-tag new">New</div></div>
+      <div class="entry-body"><div class="entry-artist">Fabiano</div><div class="entry-album">Landmarks</div><div class="entry-meta"><span>E35 / Basic Channel</span><span>Ambient Dub · Concrète</span><span>March 2026</span></div><p class="entry-copy">A pre-Mammo ambient suite from the Amsterdam producer behind the Short Span LP Boomkat has been pushing. Earlier, longer-form work on Basic Channel’s E35 sublabel — dub-concrète, flotation tank material, over an hour of shapeshifting tones. Basic Channel is a direct ancestor of things you already love: Shinichi Atobe, Vainqueur, dub techno generally. Fabiano doesn’t appear in your library or playlists — clean discovery.</p><div class="entry-links"><a href="https://boomkat.com/products/landmarks-d6a06a7a-3bb2-424d-8f36-d0ead3ade84e" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Fabiano+Landmarks+E35+Basic+Channel" class="link" target="_blank">Preview on YouTube</a></div></div>
     </div>
   </section>
   <section class="section">
-    <div class="section-head"><span class="section-index">02</span><span class="section-label">New Releases from Artists You Know <span>×3</span></span></div>
+    <div class="section-head"><span class="section-index">02</span><span class="section-label">New Releases from Artists You Know <span>×2</span></span></div>
     <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/analog-fingerprints-vol-0" target="_blank" style="display:block"><div class="art-placeholder"><span>Passarani</span></div></a><div class="art-tag known">In Playlists</div></div>
-      <div class="entry-body">
-        <div class="entry-artist">Passarani</div><div class="entry-album">Analog Fingerprints Vol. 0</div>
-        <div class="entry-meta"><span>Numbers</span><span>Acid · Electro · Detroit Techno</span><span>March 27, 2026</span></div>
-        <p class="entry-copy">Archival comp of his early 2000s Roman productions on Plasmek and Pigna — the records that originally hooked the Numbers founders as teenagers at Rubadub. Detroit techno rooted, Chicago house inflected, with Autechre-adjacent IDM experimentation. Numbers is a core label in your playlists and Passarani appears there twice.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/analog-fingerprints-vol-0" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Passarani+Analog+Fingerprints+Vol+0+Numbers" class="link" target="_blank">Preview on YouTube ↗</a></div>
-      </div>
+      <div class="art-wrap"><div class="art-placeholder"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#f0eeea"/><circle cx="100" cy="100" r="70" fill="none" stroke="#ccc8c0" stroke-width="1"/><circle cx="100" cy="100" r="40" fill="none" stroke="#ccc8c0" stroke-width="1"/><circle cx="100" cy="100" r="8" fill="#6a6259"/><text x="100" y="178" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#6a6259" letter-spacing="2">NUMBERS</text></svg></div><div class="art-tag known">In Playlists</div></div>
+      <div class="entry-body"><div class="entry-artist">Passarani</div><div class="entry-album">Analog Fingerprints Vol. 0</div><div class="entry-meta"><span>Numbers</span><span>Acid · Electro · Detroit Techno</span><span>March 27, 2026</span></div><p class="entry-copy">Archival comp of his early 2000s Roman productions on Plasmek and Pigna — the records that hooked the Numbers founders as teenagers at Rubadub. Detroit techno rooted, Chicago house inflected, with Autechre-adjacent IDM experimentation. Numbers is a core label in your playlists and Passarani appears there twice.</p><div class="entry-links"><a href="https://boomkat.com/products/analog-fingerprints-vol-0" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Passarani+Analog+Fingerprints+Vol+0+Numbers" class="link" target="_blank">Preview on YouTube</a></div></div>
     </div>
     <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/one-day-50e8918f-7db8-4c16-a0bf-eac13728ca1d" target="_blank" style="display:block"><div class="art-placeholder"><span>Loidis (Huerco S.)</span></div></a><div class="art-tag known">In Library</div></div>
-      <div class="entry-body">
-        <div class="entry-artist">Loidis (Huerco S.)</div><div class="entry-album">One Day</div>
-        <div class="entry-meta"><span>Incienso</span><span>Deep House · Dub Techno</span><span>Recent</span></div>
-        <p class="entry-copy">Brian Leeds in his deepest house and techno mode — hour-long, micro-dosed, dub-wise. Boomkat names Shinichi Atobe, DJ Sprinkles, and Vainqueur as reference points. Loidis appears in your Liked Songs (2 tracks). If you haven't heard the full album, worth the time.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/one-day-50e8918f-7db8-4c16-a0bf-eac13728ca1d" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Loidis+One+Day+Incienso+Huerco+S" class="link" target="_blank">Preview on YouTube ↗</a></div>
-      </div>
-    </div>
-    <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/market-3073fd71-113c-4223-a110-030539b67e6f" target="_blank" style="display:block"><div class="art-placeholder"><span>Low Jack</span></div></a><div class="art-tag known">In Library</div></div>
-      <div class="entry-body">
-        <div class="entry-artist">Low Jack</div><div class="entry-album">Market</div>
-        <div class="entry-meta"><span>Bambe</span><span>Mutant House · Electro</span><span>March 27, 2026</span></div>
-        <p class="entry-copy">Low Jack is in your Liked Songs. Single 7" on Bambounou's Bambe label — heavy mutant house with Bambounou electro remix. Short form but a useful temperature check on where he's at.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/market-3073fd71-113c-4223-a110-030539b67e6f" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Low+Jack+Market+Bambe+Bambounou" class="link" target="_blank">Preview on YouTube ↗</a></div>
-      </div>
+      <div class="art-wrap"><div class="art-placeholder"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#f0eeea"/><rect x="20" y="20" width="160" height="160" fill="none" stroke="#ccc8c0" stroke-width="1"/><rect x="50" y="50" width="100" height="100" fill="#e4e1db"/><text x="100" y="108" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#6a6259" letter-spacing="2">INC</text></svg></div><div class="art-tag known">In Playlists</div></div>
+      <div class="entry-body"><div class="entry-artist">Loidis</div><div class="entry-album">One Day</div><div class="entry-meta"><span>Incienso</span><span>Deep House · Dub Techno</span><span>Recent release</span></div><p class="entry-copy">Brian Leeds (Huerco S.) in his deepest house and techno mode — hour-long, micro-dosed, dub-wise. Boomkat names Shinichi Atobe, DJ Sprinkles, and Vainqueur as reference points. Loidis appears in your Liked Songs (2 tracks). If you haven’t heard the full album, worth the time.</p><div class="entry-links"><a href="https://boomkat.com/products/one-day-50e8918f-7db8-4c16-a0bf-eac13728ca1d" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Loidis+One+Day+Incienso+Huerco+S" class="link" target="_blank">Preview on YouTube</a></div></div>
     </div>
   </section>
   <section class="section">
     <div class="section-head"><span class="section-index">03</span><span class="section-label">Wildcard <span>×1</span></span></div>
     <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/ecophony-rinne" target="_blank" style="display:block"><div class="art-placeholder"><span>Genioh Yamashirogumi</span></div></a><div class="art-tag wild">Wildcard</div></div>
-      <div class="entry-body">
-        <div class="entry-artist">Genioh Yamashirogumi</div><div class="entry-album">Ecophony Rinne</div>
-        <div class="entry-meta"><span>Time Capsule</span><span>Orchestral · Global · Electronic</span><span>1986 / First Vinyl Reissue</span></div>
-        <p class="entry-copy">Pre-Akira work from the Symphonic Suite Akira collective. 200+ musicians, Tibetan horns, Bulgarian chorales, gamelan, central African field recordings. Not electronic, not house — but the scope and the crate-digger curiosity are completely aligned with what feeds your Madlib obsession. A serious artifact getting its first vinyl reissue in 40 years.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/ecophony-rinne" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Genioh+Yamashirogumi+Ecophony+Rinne" class="link" target="_blank">Preview on YouTube ↗</a></div>
-      </div>
+      <div class="art-wrap"><div class="art-placeholder"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#f0eeea"/><line x1="0" y1="0" x2="200" y2="200" stroke="#ccc8c0" stroke-width="0.5"/><line x1="200" y1="0" x2="0" y2="200" stroke="#ccc8c0" stroke-width="0.5"/><rect x="60" y="60" width="80" height="80" fill="#e4e1db"/><text x="100" y="178" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#6a6259" letter-spacing="1">TIME CAPSULE</text></svg></div><div class="art-tag wild">Wildcard</div></div>
+      <div class="entry-body"><div class="entry-artist">Genioh Yamashirogumi</div><div class="entry-album">Ecophony Rinne</div><div class="entry-meta"><span>Time Capsule</span><span>Orchestral · Global · Electronic</span><span>1986 · First wax reissue 2026</span></div><p class="entry-copy">Pre-Akira work from the Symphonic Suite Akira collective. 200+ musicians, Tibetan horns, Bulgarian chorales, gamelan, central African field recordings. Not electronic, not house — but the scope and the crate-digger curiosity are completely aligned with what feeds your Madlib obsession. A serious artifact getting its first vinyl reissue in 40 years.</p><div class="entry-links"><a href="https://boomkat.com/products/ecophony-rinne" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Genioh+Yamashirogumi+Ecophony+Rinne" class="link" target="_blank">Preview on YouTube</a></div></div>
     </div>
   </section>
   <section class="section">
     <div class="section-head"><span class="section-index">04</span><span class="section-label">Also Noted <span>×3</span></span></div>
-    <div class="also-grid"><div class="also-spacer"></div><div class="also-items">
-      <div class="also-item"><span class="also-n">01</span><span class="also-text"><strong>Kjell Bjørgeengen &amp; Lasse Marhaug — Flood Coil</strong> (Smalltown Supersound) — harsh noise × outsider techno, Pan Sonic lineage.</span></div>
-      <div class="also-item"><span class="also-n">02</span><span class="also-text"><strong>Mika Vainio — Metri</strong> (Sähkö, back in stock) — debut '94 minimal techno masterpiece. Pan Sonic / snd lineage. If not already in your collection, a genuine gap.</span></div>
-      <div class="also-item"><span class="also-n">03</span><span class="also-text"><strong>Paul St. Hilaire — Tikiman Vol. 1</strong> (Kynant) — Rhythm &amp; Sound vocalist retrospective. The Berlin dub connection is real.</span></div>
+    <div class="also-grid"><div></div><div class="also-items">
+      <div class="also-item"><span class="also-n">01</span><span class="also-text"><strong>Kjell Bjørgeengen & Lasse Marhaug — Flood Coil</strong> (Smalltown Supersound) — harsh noise × outsider techno, Pan Sonic lineage.</span></div>
+      <div class="also-item"><span class="also-n">02</span><span class="also-text"><strong>Mika Vainio — Metri</strong> (Sähkö, back in stock) — debut ’94 minimal techno masterpiece. If this isn’t already in your collection it’s a genuine gap.</span></div>
+      <div class="also-item"><span class="also-n">03</span><span class="also-text"><strong>Paul St. Hilaire — Tikiman Vol. 1</strong> (Kynant) — Rhythm & Sound vocalist retrospective. The Berlin dub connection is real.</span></div>
     </div></div>
   </section>
-  <div class="site-footer">
-    <p class="footer-note">First digest of the run. Filtering is working as intended — several known-artist catalog items removed from earlier draft.</p>
-    <span class="footer-stamp">Still Point · 2026-W13</span>
-  </div>
+  <div class="site-footer"><p class="footer-note">Low Jack also appeared this week (Bambe, single 7") — in your Liked Songs, worth a check.</p><span class="footer-stamp">Still Point · 2026-W13</span></div>
 </div>
 </body>
 </html>

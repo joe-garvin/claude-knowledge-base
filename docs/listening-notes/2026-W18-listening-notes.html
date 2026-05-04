@@ -3,114 +3,199 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Listening Notes — W18 · May 1, 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>/* Swiss Design System */
-:root{--stone-50:#f9f8f6;--stone-100:#f0eeea;--stone-200:#e4e1db;--stone-300:#ccc8c0;--stone-800:#292524;--stone-900:#1c1917;--stone-950:#0c0a09;--accent:#2D6A4F;--cobalt:#003B8E;--golden:#b8860b;--text-primary:#111010;--text-secondary:#2e2a27;--text-tertiary:#6a6259;--rule:rgba(15,13,12,0.10);--rule-strong:rgba(15,13,12,0.24);--font-sans:'IBM Plex Sans','Hanken Grotesk',system-ui,sans-serif;--font-mono:'IBM Plex Mono',monospace;--art-size:200px;--col-gap:48px}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{font-size:16px}body{font-family:var(--font-sans);background:var(--stone-50);color:var(--text-primary);-webkit-font-smoothing:antialiased;line-height:1.6;min-height:100vh}a{color:inherit;text-decoration:none}
-.site-header{position:sticky;top:0;z-index:100;background:var(--stone-50);border-bottom:1px solid var(--rule-strong);padding:18px 0}.site-header .inner{max-width:1160px;margin:0 auto;padding:0 48px;display:flex;align-items:baseline;justify-content:space-between}.header-title,.header-week{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary)}
-.page{max-width:1160px;margin:0 auto;padding:0 48px}.hero{padding:80px 0 60px;border-bottom:1px solid var(--rule-strong)}.hero-eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:24px}.hero-lockup{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap}.hero-title{font-size:clamp(52px,7vw,96px);font-weight:300;letter-spacing:-.035em;line-height:.92;color:var(--text-primary)}.hero-title em{font-style:normal;color:var(--text-primary)}.hero-stats{display:flex;flex-direction:column;gap:8px;align-items:flex-end;flex-shrink:0;padding-bottom:6px}.hero-stat{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--text-tertiary);text-align:right}.hero-stat strong{color:var(--text-secondary);font-weight:500}.hero-rule{margin-top:40px;border:none;border-top:1px solid var(--rule)}
-.section{padding:0 0 64px;border-bottom:1px solid var(--rule)}.section-head{margin:0 -48px 52px;border-top:2px solid var(--text-primary);background:var(--stone-100);padding:11px 48px;display:flex;align-items:baseline;gap:20px}.section-index{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-tertiary);flex-shrink:0}.section-label{font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--text-primary)}.section-label span{font-family:var(--font-mono);font-size:10px;font-weight:400;color:var(--text-tertiary);margin-left:12px;letter-spacing:.06em}
-.entry{display:grid;grid-template-columns:var(--art-size) 1fr;gap:0 var(--col-gap);padding-bottom:52px;margin-bottom:52px;border-bottom:1px solid var(--rule)}.entry:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0}.art-wrap{position:relative;width:var(--art-size);flex-shrink:0}.art-wrap a{display:block}.art-wrap img{display:block;width:var(--art-size);height:var(--art-size);object-fit:cover;background:var(--stone-200)}.art-wrap a:hover img{opacity:.88;transition:opacity .2s}.art-placeholder{display:flex;align-items:center;justify-content:center;width:var(--art-size);height:var(--art-size);background:var(--stone-100);border:1px solid var(--rule-strong)}.art-placeholder span{font-family:var(--font-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-tertiary);text-align:center;padding:8px}.art-tag{position:absolute;top:0;left:0;font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 7px;line-height:1}.art-tag.new{background:var(--stone-900);color:var(--stone-50)}.art-tag.known{background:var(--cobalt);color:white}.art-tag.wild{background:var(--golden);color:var(--stone-900)}
-.entry-body{border-left:1px solid var(--rule-strong);padding-left:var(--col-gap);display:flex;flex-direction:column;justify-content:center}.entry-artist{font-size:24px;font-weight:500;letter-spacing:-.025em;line-height:1.1;color:var(--text-primary);margin-bottom:2px}.entry-album{font-size:24px;font-weight:300;letter-spacing:-.025em;line-height:1.1;color:var(--text-secondary);margin-bottom:14px}.entry-meta{display:flex;flex-wrap:wrap;gap:0 20px;font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary);letter-spacing:.05em;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.entry-copy{font-size:15px;line-height:1.75;color:var(--text-secondary);max-width:60ch;margin-bottom:22px}.entry-links{display:flex;gap:20px;flex-wrap:wrap;align-items:center}.link{font-family:var(--font-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--cobalt);border-bottom:1px solid rgba(0,59,142,.28);padding-bottom:1px;transition:color .15s,border-color .15s;white-space:nowrap}.link:hover{opacity:.7}.link.primary{font-weight:500}
-.also-grid{display:grid;grid-template-columns:var(--art-size) 1fr;gap:0 var(--col-gap)}.also-items{border-left:1px solid var(--rule-strong);padding-left:var(--col-gap)}.also-item{display:flex;gap:18px;padding:18px 0;border-bottom:1px solid var(--rule);align-items:baseline}.also-item:first-child{padding-top:0}.also-item:last-child{border-bottom:none}.also-n{font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);flex-shrink:0;width:18px;padding-top:2px}.also-text{font-size:14px;color:var(--text-secondary);line-height:1.65}.also-text strong{font-weight:500;color:var(--text-primary)}
-.site-footer{padding:40px 0 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}.footer-note{font-size:13px;font-style:italic;color:var(--text-tertiary);max-width:70ch;line-height:1.6}.footer-stamp{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);white-space:nowrap}
+<title>Listening Notes — W18 · May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --stone-50:  #f9f8f6; --stone-100: #f0eeea; --stone-200: #e4e1db; --stone-300: #ccc8c0;
+  --stone-800: #292524; --stone-900: #1c1917; --stone-950: #0c0a09;
+  --accent:  #2D6A4F; --cobalt:  #003B8E; --golden:  #b8860b;
+  --text-primary:   #111010; --text-secondary: #2e2a27; --text-tertiary:  #6a6259;
+  --rule:        rgba(15,13,12,0.10); --rule-strong: rgba(15,13,12,0.24);
+  --font-sans: 'IBM Plex Sans', 'Hanken Grotesk', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --art-size: 200px; --col-gap:  48px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body { font-family: var(--font-sans); background: var(--stone-50); color: var(--text-primary); -webkit-font-smoothing: antialiased; line-height: 1.6; min-height: 100vh; }
+a { color: inherit; text-decoration: none; }
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--stone-50); border-bottom: 1px solid var(--rule-strong); padding: 18px 0; }
+.site-header .inner { max-width: 1160px; margin: 0 auto; padding: 0 48px; display: flex; align-items: baseline; justify-content: space-between; }
+.header-title { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); }
+.header-week { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); }
+.page { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+.hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule-strong); }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 24px; }
+.hero-lockup { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.hero-title { font-size: clamp(52px, 7vw, 96px); font-weight: 300; letter-spacing: -0.035em; line-height: 0.92; color: var(--text-primary); }
+.hero-title em { font-style: normal; color: var(--accent); }
+.hero-stats { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; flex-shrink: 0; padding-bottom: 6px; }
+.hero-stat { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-tertiary); text-align: right; }
+.hero-stat strong { color: var(--text-secondary); font-weight: 500; }
+.hero-rule { margin-top: 40px; border: none; border-top: 1px solid var(--rule); }
+.section { padding: 0 0 64px; border-bottom: 1px solid var(--rule); }
+.section-head { margin: 0 -48px 52px; border-top: 2px solid var(--text-primary); background: var(--stone-100); padding: 11px 48px; display: flex; align-items: baseline; gap: 20px; }
+.section-index { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-tertiary); flex-shrink: 0; }
+.section-label { font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-primary); }
+.section-label span { font-family: var(--font-mono); font-size: 10px; font-weight: 400; color: var(--text-tertiary); margin-left: 12px; letter-spacing: 0.06em; }
+.entry { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); padding-bottom: 52px; margin-bottom: 52px; border-bottom: 1px solid var(--rule); }
+.entry:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+.art-wrap { position: relative; width: var(--art-size); flex-shrink: 0; }
+.art-wrap a { display: block; }
+.art-wrap img { display: block; width: var(--art-size); height: var(--art-size); object-fit: cover; background: var(--stone-200); }
+.art-wrap a:hover img { opacity: 0.88; transition: opacity 0.2s; }
+.art-tag { position: absolute; top: 0; left: 0; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 7px; line-height: 1; }
+.art-tag.new { background: var(--stone-900); color: var(--stone-50); }
+.art-tag.known { background: var(--cobalt); color: white; }
+.art-tag.wild { background: var(--golden); color: var(--stone-900); }
+.entry-body { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); display: flex; flex-direction: column; justify-content: center; }
+.entry-artist { font-size: 24px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-primary); margin-bottom: 2px; }
+.entry-album { font-size: 24px; font-weight: 300; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-secondary); margin-bottom: 14px; }
+.entry-meta { display: flex; flex-wrap: wrap; gap: 0 20px; font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.05em; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+.entry-copy { font-size: 15px; line-height: 1.75; color: var(--text-secondary); max-width: 60ch; margin-bottom: 22px; }
+.entry-links { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+.link { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--cobalt); border-bottom: 1px solid rgba(0,59,142,0.28); padding-bottom: 1px; transition: opacity 0.15s; white-space: nowrap; }
+.link:hover { opacity: 0.7; }
+.link.primary { font-weight: 500; }
+.also-grid { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); }
+.also-items { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); }
+.also-item { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.also-item:first-child { padding-top: 0; }
+.also-item:last-child { border-bottom: none; }
+.also-n { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); flex-shrink: 0; width: 18px; }
+.also-text { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+.also-text strong { font-weight: 500; color: var(--text-primary); }
+.site-footer { padding: 40px 0 56px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-note { font-size: 13px; font-style: italic; color: var(--text-tertiary); max-width: 70ch; line-height: 1.6; }
+.footer-stamp { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); white-space: nowrap; }
 </style>
 </head>
 <body>
-<header class="site-header"><div class="inner"><span class="header-title">Still Point — Listening Notes</span><span class="header-week">W18 · May 1, 2026</span></div></header>
+<header class="site-header">
+  <div class="inner">
+    <span class="header-title">Still Point — Listening Notes</span>
+    <span class="header-week">W18 · 01 May 2026</span>
+  </div>
+</header>
 <div class="page">
-<div class="hero">
+  <div class="hero">
     <p class="hero-eyebrow">Weekly digest · May 1, 2026</p>
     <div class="hero-lockup">
-      <h1 class="hero-title">Listening<br>Notes <em>W18</em></h1>
-      <div class="hero-stats"><div class="hero-stat"><strong>Sources</strong> — Boomkat Weekly Digest, Boomkat Download Now, Bandcamp Essential Releases (May 1)</div><div class="hero-stat"><strong>Picks</strong> — 4 new discoveries · 2 known artists · 1 wildcard</div><div class="hero-stat"><strong>RA</strong> — Reviews page did not render — fallback searches returned nothing in-profile</div></div>
+      <h1 class="hero-title">Listening<br>Notes <em>№18</em></h1>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>Sources</strong> — Boomkat Weekly, Download Now, Bandcamp Essential Releases</div>
+        <div class="hero-stat"><strong>Picks</strong> — 4 new discoveries · 2 known artists · 1 wildcard</div>
+        <div class="hero-stat"><strong>RA</strong> — page unavailable this week</div>
+      </div>
     </div>
     <hr class="hero-rule">
   </div>
+
   <section class="section">
-  <div class="section-head"><span class="section-index">01</span><span class="section-label">New Discoveries <span>×4</span></span></div>
+    <div class="section-head">
+      <span class="section-index">01</span>
+      <span class="section-label">New Discoveries <span>×4</span></span>
+    </div>
     <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/sol-hz" target="_blank" style="display:block"><div class="art-placeholder"><span>Seefeel</span></div></a><div class="art-tag new">New</div></div>
+      <div class="art-wrap"><a href="https://boomkat.com/products/sol-hz" target="_blank"><img src="https://f4.bcbits.com/img/a3610369449_0.jpg" alt="Seefeel — Sol.Hz" loading="lazy"></a><div class="art-tag new">New</div></div>
       <div class="entry-body">
         <div class="entry-artist">Seefeel</div><div class="entry-album">Sol.Hz</div>
-        <div class="entry-meta"><span>Warp</span><span>Dub · Ambient · Post-Rock</span><span>May 2026</span></div>
-        <p class="entry-copy">Described by Boomkat as Seefeel's "dub album," Sol.Hz is bass-heavy and spare, building on the percussive mood they opened up on Everything Squared. Warp, dub, longform atmospherics — this should be squarely in range. The comparison to their track "(Ch-Vox)" is a good pointer: this is for headphone listening, not the floor.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/sol-hz" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Seefeel+Sol.Hz+Warp" class="link" target="_blank">Preview on YouTube ↗</a></div>
+        <div class="entry-meta"><span>Warp Records</span><span>Dub · Ambient · Post-rock</span><span>May 2026</span></div>
+        <p class="entry-copy">Described by Boomkat as Seefeel’s “dub album,” Sol.Hz is bass-heavy and spare, building on the percussive mood they opened up on Everything Squared. Warp, dub, longform atmospherics — this should be squarely in range. The comparison to their track “(Ch-Vox)” is a good pointer: this is for headphone listening, not the floor.</p>
+        <div class="entry-links"><a href="https://boomkat.com/products/sol-hz" class="link primary" target="_blank">Boomkat ↗</a><a href="https://seefeel.bandcamp.com/album/sol-hz" class="link" target="_blank">Bandcamp ↗</a><a href="https://www.youtube.com/results?search_query=Seefeel+Sol.Hz+Warp" class="link" target="_blank">Preview on YouTube</a></div>
       </div>
     </div>
     <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/siccar-point" target="_blank" style="display:block"><div class="art-placeholder"><span>Intertoto</span></div></a><div class="art-tag new">New</div></div>
+      <div class="art-wrap"><a href="https://boomkat.com/products/siccar-point" target="_blank"><img src="https://f4.bcbits.com/img/a2999867557_0.jpg" alt="Intertoto — Siccar Point" loading="lazy"></a><div class="art-tag new">New</div></div>
       <div class="entry-body">
         <div class="entry-artist">Intertoto</div><div class="entry-album">Siccar Point</div>
         <div class="entry-meta"><span>What About Never</span><span>Dub Techno · Ambient</span><span>May 2026</span></div>
-        <p class="entry-copy">Boomkat flags this as a must for dub techno listeners — Intertoto's debut for Secondo and Capracara's label, described as organic and geologic, referencing early Vladislav Delay and Short Span. The conceit (allegorical study of the Scottish North Sea coast, impressionistic scapes) matches the kind of conceptual weight the collection favors. Debut artist; no prior catalog hits.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/siccar-point" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Intertoto+Siccar+Point+What+About+Never" class="link" target="_blank">Preview on YouTube ↗</a></div>
+        <p class="entry-copy">Boomkat flags this as a must for dub techno listeners — Intertoto’s debut for Secondo and Capracara’s label, described as organic and geologic, referencing early Vladislav Delay and Short Span. The conceit (allegorical study of the Scottish North Sea coast, impressionistic scapes) matches the kind of conceptual weight the collection favors. Debut artist; no prior catalog hits.</p>
+        <div class="entry-links"><a href="https://boomkat.com/products/siccar-point" class="link primary" target="_blank">Boomkat ↗</a><a href="https://intertoto.bandcamp.com/album/siccar-point" class="link" target="_blank">Bandcamp ↗</a><a href="https://www.youtube.com/results?search_query=Intertoto+Siccar+Point+What+About+Never" class="link" target="_blank">Preview on YouTube</a></div>
       </div>
     </div>
     <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/wonderment-ep" target="_blank" style="display:block"><div class="art-placeholder"><span>Sentomea</span></div></a><div class="art-tag new">New</div></div>
+      <div class="art-wrap"><a href="https://boomkat.com/products/wonderment-ep" target="_blank"><img src="https://f4.bcbits.com/img/a3060078171_0.jpg" alt="Sentomea — Wonderment EP" loading="lazy"></a><div class="art-tag new">New</div></div>
       <div class="entry-body">
         <div class="entry-artist">Sentomea</div><div class="entry-album">Wonderment EP</div>
-        <div class="entry-meta"><span>MOS Recordings (Aroy Dee's label)</span><span>Deep House · Detroit Techno</span><span>May 2026</span></div>
-        <p class="entry-copy">Sander Schuurman's follow-up to a 2017 debut on Delsin, described as channeling classic Dutch techno and deep house with "wow &amp; flutter wooziness" and slow-burn romanticism. MOS is Aroy Dee's imprint — Delsin-adjacent territory. Boomkat name-checks NWAQ and Terrace. This sounds like exactly the kind of hardware-based, emotionally specific deep house the collection wants more of.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/wonderment-ep" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Sentomea+Wonderment+EP+MOS+Recordings" class="link" target="_blank">Preview on YouTube ↗</a></div>
+        <div class="entry-meta"><span>MOS Recordings</span><span>Deep House · Detroit Techno</span><span>May 2026</span></div>
+        <p class="entry-copy">Sander Schuurman’s follow-up to a 2017 debut on Delsin, described as channeling classic Dutch techno and deep house with “wow & flutter wooziness” and slow-burn romanticism. MOS is Aroy Dee’s imprint — Delsin-adjacent territory. Boomkat name-checks NWAQ and Terrace. This sounds like exactly the kind of hardware-based, emotionally specific deep house the collection wants more of.</p>
+        <div class="entry-links"><a href="https://boomkat.com/products/wonderment-ep" class="link primary" target="_blank">Boomkat ↗</a><a href="https://sentomea.bandcamp.com/album/wonderment-ep" class="link" target="_blank">Bandcamp ↗</a><a href="https://www.youtube.com/results?search_query=Sentomea+Wonderment+EP+MOS+Recordings" class="link" target="_blank">Preview on YouTube</a></div>
       </div>
     </div>
     <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/imogen-s-lament" target="_blank" style="display:block"><div class="art-placeholder"><span>Spivak &amp; Prins Emanuel</span></div></a><div class="art-tag new">New</div></div>
+      <div class="art-wrap"><a href="https://boomkat.com/products/imogen-s-lament" target="_blank"><img src="https://f4.bcbits.com/img/a1029242306_0.jpg" alt="Spivak & Prins Emanuel — Imogen's Lament" loading="lazy"></a><div class="art-tag new">New</div></div>
       <div class="entry-body">
-        <div class="entry-artist">Spivak &amp; Prins Emanuel</div><div class="entry-album">Imogen's Lament</div>
-        <div class="entry-meta"><span>Fasaan</span><span>Dub · Dreampop · Trip-Pop</span><span>May 2026</span></div>
-        <p class="entry-copy">Debut duo from Spivak (Ecstatic label, low-key dreampop) and Prins Emanuel (Music From Memory / Séance Centre). Boomkat describes it as shimmering dub-wise trip-pop — HTRK and CS + Kreme in the reference orbit. That Séance Centre / Music From Memory lineage plus the dub aesthetic is a strong match.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/imogen-s-lament" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Spivak+Prins+Emanuel+Imogen+Lament+Fasaan" class="link" target="_blank">Preview on YouTube ↗</a></div>
+        <div class="entry-artist">Spivak & Prins Emanuel</div><div class="entry-album">Imogen’s Lament</div>
+        <div class="entry-meta"><span>Fasaan</span><span>Dub · Dreampop · Trip-pop</span><span>May 2026</span></div>
+        <p class="entry-copy">Debut duo from Spivak (Ecstatic label, low-key dreampop) and Prins Emanuel (Music From Memory / Séance Centre). Boomkat describes it as shimmering dub-wise trip-pop — HTRK and CS + Kreme in the reference orbit. That Séance Centre / Music From Memory lineage plus the dub aesthetic is a strong match. Worth hearing before the vinyl is gone.</p>
+        <div class="entry-links"><a href="https://boomkat.com/products/imogen-s-lament" class="link primary" target="_blank">Boomkat ↗</a><a href="https://fasaan-recordings.bandcamp.com/album/imogens-lament" class="link" target="_blank">Bandcamp ↗</a><a href="https://www.youtube.com/results?search_query=Spivak+Prins+Emanuel+Imogen+Lament+Fasaan" class="link" target="_blank">Preview on YouTube</a></div>
       </div>
     </div>
   </section>
+
   <section class="section">
-  <div class="section-head"><span class="section-index">02</span><span class="section-label">New Releases from Artists You Know <span>×2</span></span></div>
+    <div class="section-head">
+      <span class="section-index">02</span>
+      <span class="section-label">New Releases from Artists You Know <span>×2</span></span>
+    </div>
     <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/silent-way" target="_blank" style="display:block"><div class="art-placeholder"><span>Shinichi Atobe</span></div></a><div class="art-tag known">In Library</div></div>
+      <div class="art-wrap"><a href="https://boomkat.com/products/silent-way" target="_blank"><img src="https://f4.bcbits.com/img/a0577832691_0.jpg" alt="Shinichi Atobe — Silent Way" loading="lazy"></a><div class="art-tag known">In Library</div></div>
       <div class="entry-body">
         <div class="entry-artist">Shinichi Atobe</div><div class="entry-album">Silent Way</div>
-        <div class="entry-meta"><span>Plastic &amp; Sounds (Atobe's own label)</span><span>Deep House · Dub Techno</span><span>May 2026</span></div>
-        <p class="entry-copy">Atobe is in the local library — Love of Plastic and Discipline both owned. Silent Way is his 8th album, self-released on Plastic &amp; Sounds after a long run on Chain Reaction and DDS. Boomkat leads the digest with it: lush, hypnotic deep house and beatdown dub techno in long-form. A significant new statement from one of the few artists in the collection who operates at this level of sustained introspection.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/silent-way" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Shinichi+Atobe+Silent+Way+Plastic+Sounds" class="link" target="_blank">Preview on YouTube ↗</a></div>
+        <div class="entry-meta"><span>Plastic & Sounds</span><span>Deep House · Dub Techno</span><span>May 2026</span></div>
+        <p class="entry-copy">Atobe is in the local library — Love of Plastic and Discipline both owned. Silent Way is his 8th album, self-released on Plastic & Sounds after a long run on Chain Reaction and DDS. Boomkat leads the digest with it: lush, hypnotic deep house and beatdown dub techno in long-form. By any measure a significant new statement from one of the few artists in the collection who operates at this level of sustained introspection.</p>
+        <div class="entry-links"><a href="https://boomkat.com/products/silent-way" class="link primary" target="_blank">Boomkat ↗</a><a href="https://plasticandsounds.bandcamp.com/album/silent-way" class="link" target="_blank">Bandcamp ↗</a><a href="https://www.youtube.com/results?search_query=Shinichi+Atobe+Silent+Way+Plastic+Sounds" class="link" target="_blank">Preview on YouTube</a></div>
       </div>
     </div>
     <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/foundry-4a6ed49d-15d8-4478-a79d-f0cebeff66fc" target="_blank" style="display:block"><div class="art-placeholder"><span>Yu Su</span></div></a><div class="art-tag known">In Playlists</div></div>
+      <div class="art-wrap"><a href="https://boomkat.com/products/foundry-4a6ed49d-15d8-4478-a79d-f0cebeff66fc" target="_blank"><img src="https://f4.bcbits.com/img/a1686785173_0.jpg" alt="Yu Su — Foundry" loading="lazy"></a><div class="art-tag known">In Playlists</div></div>
       <div class="entry-body">
         <div class="entry-artist">Yu Su</div><div class="entry-album">Foundry</div>
         <div class="entry-meta"><span>Short Span</span><span>Ambient · Kosmische · Dub</span><span>May 2026</span></div>
-        <p class="entry-copy">Yu Su is in the Spotify playlists (extended, 3–5 tracks). Foundry is her second LP — spacious kosmische synths with dubby basslines, her own breathy vocals, and one concrete nod toward the dancefloor on the title track. Covered by both Boomkat and Bandcamp's May 1 Essential Releases, which adds confidence. The Short Span label is consistent with the collection's quieter edges.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/foundry-4a6ed49d-15d8-4478-a79d-f0cebeff66fc" class="link primary" target="_blank">Boomkat ↗</a><a href="https://daily.bandcamp.com/essential-releases/essential-releases-may-1-2026" class="link" target="_blank">Bandcamp Essential Releases ↗</a><a href="https://www.youtube.com/results?search_query=Yu+Su+Foundry+Short+Span" class="link" target="_blank">Preview on YouTube ↗</a></div>
+        <p class="entry-copy">Yu Su is in the Spotify playlists (extended, 3–5 tracks). Foundry is her second LP — spacious kosmische synths with dubby basslines, her own breathy vocals, and one concrete nod toward the dancefloor on the title track. Covered by both Boomkat and Bandcamp’s May 1 Essential Releases. The Short Span label is in the orbit of CS + Kreme and PPU — consistent with the collection’s quieter edges.</p>
+        <div class="entry-links"><a href="https://boomkat.com/products/foundry-4a6ed49d-15d8-4478-a79d-f0cebeff66fc" class="link primary" target="_blank">Boomkat ↗</a><a href="https://yusu.bandcamp.com/album/foundry" class="link" target="_blank">Bandcamp ↗</a><a href="https://daily.bandcamp.com/essential-releases/essential-releases-may-1-2026" class="link" target="_blank">Bandcamp Essential ↗</a><a href="https://www.youtube.com/results?search_query=Yu+Su+Foundry+Short+Span" class="link" target="_blank">Preview on YouTube</a></div>
       </div>
     </div>
   </section>
+
   <section class="section">
-  <div class="section-head"><span class="section-index">03</span><span class="section-label">Wildcard <span>×1</span></span></div>
+    <div class="section-head">
+      <span class="section-index">03</span>
+      <span class="section-label">Wildcard <span>×1</span></span>
+    </div>
     <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/stranger-in-a-strange-land-25a5062f-388f-45ea-b106-95b2ba08548e" target="_blank" style="display:block"><div class="art-placeholder"><span>Rabit</span></div></a><div class="art-tag wild">Wildcard</div></div>
+      <div class="art-wrap"><a href="https://boomkat.com/products/stranger-in-a-strange-land-25a5062f-388f-45ea-b106-95b2ba08548e" target="_blank"><img src="https://f4.bcbits.com/img/a4124814837_0.jpg" alt="Rabit — Stranger in a Strange Land" loading="lazy"></a><div class="art-tag wild">Wildcard</div></div>
       <div class="entry-body">
         <div class="entry-artist">Rabit</div><div class="entry-album">Stranger in a Strange Land</div>
-        <div class="entry-meta"><span>Halcyon Veil</span><span>Trip-Hop · Experimental · DJ Screw-influenced</span><span>May 2026</span></div>
-        <p class="entry-copy">Sits well outside the usual footprint — trip-hop isn't a genre in the collection, and Halcyon Veil isn't a label on the radar. But Boomkat leads the whole digest with it and the references are interesting: DJ Screw worship applied to Lynch and Badalamenti samples, with Andy Stott, Basinski, and Boards of Canada's Old Tapes era all invoked. Guest spot from Lolina. The emotional texture (codeine-soaked, liminal, slow) is aesthetically adjacent even if the genre isn't.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/stranger-in-a-strange-land-25a5062f-388f-45ea-b106-95b2ba08548e" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Rabit+Stranger+Strange+Land+Halcyon+Veil" class="link" target="_blank">Preview on YouTube ↗</a></div>
+        <div class="entry-meta"><span>Halcyon Veil</span><span>Trip-hop · Experimental · DJ Screw-influenced</span><span>May 2026</span></div>
+        <p class="entry-copy">Sits well outside the usual footprint — trip-hop isn’t a genre in the collection, and Halcyon Veil isn’t a label on the radar. But Boomkat leads the whole digest with it and the references are interesting: DJ Screw worship applied to Lynch and Badalamenti samples, with Andy Stott, Basinski, and Boards of Canada’s Old Tapes era all invoked. Guest spot from Lolina. The emotional texture (codeine-soaked, liminal, slow) is aesthetically adjacent even if the genre isn’t. Worth at least one listen to see if it lands.</p>
+        <div class="entry-links"><a href="https://boomkat.com/products/stranger-in-a-strange-land-25a5062f-388f-45ea-b106-95b2ba08548e" class="link primary" target="_blank">Boomkat ↗</a><a href="https://gangstalkers.bandcamp.com/album/stranger-in-a-strange-land" class="link" target="_blank">Bandcamp ↗</a><a href="https://www.youtube.com/results?search_query=Rabit+Stranger+Strange+Land+Halcyon+Veil" class="link" target="_blank">Preview on YouTube</a></div>
       </div>
     </div>
   </section>
+
   <section class="section">
-    <div class="section-head"><span class="section-index">04</span><span class="section-label">Also Noted <span>×4</span></span></div>
-    <div class="also-grid"><div class="also-spacer"></div><div class="also-items">
-      <div class="also-item"><span class="also-n">01</span><span class="also-text"><strong>Masayoshi Fujita &amp; Jan Jelinek — <em>Faitiche Edition No.3</em></strong> (Faitiche) — live recording from Kyoto 2025, abstract jazz-exotica vibraphone and electronics. Tape-only.</span></div>
-      <div class="also-item"><span class="also-n">02</span><span class="also-text"><strong>Unglee Izi — <em>Le Temps Des Figures Du Soleil Noir</em></strong> (Nashazphone) — 4-hour concrète sprawl from Cairo; choral fever-dreams through Autechre-adjacent noise.</span></div>
-      <div class="also-item"><span class="also-n">03</span><span class="also-text"><strong>Lolina — <em>Monopoly of Mistakes</em></strong> (Relaxin Records) — trippy acid, her 10th solo album. Also guests on the Rabit album.</span></div>
-      <div class="also-item"><span class="also-n">04</span><span class="also-text"><strong>Theo Parrish — <em>Lovely Edits Vol.1</em></strong> (Lovely Edits) — official licensed version of the Ugly Edits bootleg series. Significant for the Chicago/Detroit deep house lineage.</span></div>
-    </div></div>
+    <div class="section-head">
+      <span class="section-index">04</span>
+      <span class="section-label">Also Noted <span>×4</span></span>
+    </div>
+    <div class="also-grid">
+      <div></div>
+      <div class="also-items">
+        <div class="also-item"><span class="also-n">01</span><span class="also-text"><strong>Masayoshi Fujita & Jan Jelinek — Faitiche Edition No.3</strong> (Faitiche) — Live recording from Kyoto 2025, abstract jazz-exotica vibraphone and electronics. Tape-only. Didn’t quite score high enough on the profile match to make the main picks.</span></div>
+        <div class="also-item"><span class="also-n">02</span><span class="also-text"><strong>Unglee Izi — Le Temps Des Figures Du Soleil Noir</strong> (Nashazphone) — 4-hour concrète sprawl from Cairo’s Nashazphone label. Far outside the collection but the editorial language (Kevin Drumm, Coil, Iancu Dumitrescu) suggests serious listening for a specific mood.</span></div>
+        <div class="also-item"><span class="also-n">03</span><span class="also-text"><strong>Lolina — Monopoly of Mistakes</strong> (Relaxin Records) — Trippy acid release, her 10th solo album. In the Download Now email. Not squarely in profile but Lolina guested on the Rabit album too, so she’s a recurring presence this week.</span></div>
+        <div class="also-item"><span class="also-n">04</span><span class="also-text"><strong>Theo Parrish — Lovely Edits Vol.1</strong> (Lovely Edits) — Official licensed version of the Ugly Edits bootleg series. Not new work, but a significant release for the Chicago/Detroit deep house lineage that’s central to the collection.</span></div>
+      </div>
+    </div>
   </section>
+
   <div class="site-footer">
-    <p class="footer-note">Thin week from RA — their reviews page didn't render. Boomkat was rich enough to carry it. The Atobe album alone would make it a strong week.</p>
+    <p class="footer-note">Thin week from RA — page unavailable, fallback searches came up empty. Boomkat was rich enough to carry the digest. The Atobe album alone would make it.</p>
     <span class="footer-stamp">Still Point · 2026-W18</span>
   </div>
 </div>

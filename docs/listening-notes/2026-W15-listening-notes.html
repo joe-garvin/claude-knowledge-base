@@ -3,109 +3,255 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Listening Notes — W15 · April 10, 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>:root{--stone-50:#f9f8f6;--stone-100:#f0eeea;--stone-200:#e4e1db;--stone-300:#ccc8c0;--stone-800:#292524;--stone-900:#1c1917;--stone-950:#0c0a09;--accent:#2D6A4F;--cobalt:#003B8E;--golden:#b8860b;--text-primary:#111010;--text-secondary:#2e2a27;--text-tertiary:#6a6259;--rule:rgba(15,13,12,0.10);--rule-strong:rgba(15,13,12,0.24);--font-sans:'IBM Plex Sans','Hanken Grotesk',system-ui,sans-serif;--font-mono:'IBM Plex Mono',monospace;--art-size:200px;--col-gap:48px}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{font-size:16px}body{font-family:var(--font-sans);background:var(--stone-50);color:var(--text-primary);-webkit-font-smoothing:antialiased;line-height:1.6;min-height:100vh}a{color:inherit;text-decoration:none}
-.site-header{position:sticky;top:0;z-index:100;background:var(--stone-50);border-bottom:1px solid var(--rule-strong);padding:18px 0}.site-header .inner{max-width:1160px;margin:0 auto;padding:0 48px;display:flex;align-items:baseline;justify-content:space-between}.header-title,.header-week{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary)}
-.page{max-width:1160px;margin:0 auto;padding:0 48px}.hero{padding:80px 0 60px;border-bottom:1px solid var(--rule-strong)}.hero-eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:24px}.hero-lockup{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap}.hero-title{font-size:clamp(52px,7vw,96px);font-weight:300;letter-spacing:-.035em;line-height:.92;color:var(--text-primary)}.hero-title em{font-style:normal;color:var(--text-primary)}.hero-stats{display:flex;flex-direction:column;gap:8px;align-items:flex-end;flex-shrink:0;padding-bottom:6px}.hero-stat{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--text-tertiary);text-align:right}.hero-stat strong{color:var(--text-secondary);font-weight:500}.hero-rule{margin-top:40px;border:none;border-top:1px solid var(--rule)}
-.section{padding:0 0 64px;border-bottom:1px solid var(--rule)}.section-head{margin:0 -48px 52px;border-top:2px solid var(--text-primary);background:var(--stone-100);padding:11px 48px;display:flex;align-items:baseline;gap:20px}.section-index{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-tertiary);flex-shrink:0}.section-label{font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--text-primary)}.section-label span{font-family:var(--font-mono);font-size:10px;font-weight:400;color:var(--text-tertiary);margin-left:12px;letter-spacing:.06em}
-.entry{display:grid;grid-template-columns:var(--art-size) 1fr;gap:0 var(--col-gap);padding-bottom:52px;margin-bottom:52px;border-bottom:1px solid var(--rule)}.entry:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0}.art-wrap{position:relative;width:var(--art-size);flex-shrink:0}.art-wrap a{display:block}.art-wrap img{display:block;width:var(--art-size);height:var(--art-size);object-fit:cover;background:var(--stone-200)}.art-wrap a:hover img{opacity:.88;transition:opacity .2s}.art-placeholder{display:flex;align-items:center;justify-content:center;width:var(--art-size);height:var(--art-size);background:var(--stone-100);border:1px solid var(--rule-strong)}.art-placeholder span{font-family:var(--font-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-tertiary);text-align:center;padding:8px}.art-tag{position:absolute;top:0;left:0;font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 7px;line-height:1}.art-tag.new{background:var(--stone-900);color:var(--stone-50)}.art-tag.known{background:var(--cobalt);color:white}.art-tag.wild{background:var(--golden);color:var(--stone-900)}
-.entry-body{border-left:1px solid var(--rule-strong);padding-left:var(--col-gap);display:flex;flex-direction:column;justify-content:center}.entry-artist{font-size:24px;font-weight:500;letter-spacing:-.025em;line-height:1.1;color:var(--text-primary);margin-bottom:2px}.entry-album{font-size:24px;font-weight:300;letter-spacing:-.025em;line-height:1.1;color:var(--text-secondary);margin-bottom:14px}.entry-meta{display:flex;flex-wrap:wrap;gap:0 20px;font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary);letter-spacing:.05em;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.entry-copy{font-size:15px;line-height:1.75;color:var(--text-secondary);max-width:60ch;margin-bottom:22px}.entry-links{display:flex;gap:20px;flex-wrap:wrap;align-items:center}.link{font-family:var(--font-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--cobalt);border-bottom:1px solid rgba(0,59,142,.28);padding-bottom:1px;white-space:nowrap}.link:hover{opacity:.7}.link.primary{font-weight:500}
-.also-grid{display:grid;grid-template-columns:var(--art-size) 1fr;gap:0 var(--col-gap)}.also-items{border-left:1px solid var(--rule-strong);padding-left:var(--col-gap)}.also-item{display:flex;gap:18px;padding:18px 0;border-bottom:1px solid var(--rule);align-items:baseline}.also-item:first-child{padding-top:0}.also-item:last-child{border-bottom:none}.also-n{font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);flex-shrink:0;width:18px;padding-top:2px}.also-text{font-size:14px;color:var(--text-secondary);line-height:1.65}.also-text strong{font-weight:500;color:var(--text-primary)}
-.site-footer{padding:40px 0 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}.footer-note{font-size:13px;font-style:italic;color:var(--text-tertiary);max-width:70ch;line-height:1.6}.footer-stamp{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);white-space:nowrap}
+<title>Listening Notes — W15 · April 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --stone-50: #f9f8f6; --stone-100: #f0eeea; --stone-200: #e4e1db;
+  --accent: #2D6A4F; --cobalt: #003B8E;
+  --text-primary: #111010; --text-secondary: #2e2a27; --text-tertiary: #6a6259;
+  --rule: rgba(15,13,12,0.10); --rule-strong: rgba(15,13,12,0.24);
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --art-size: 200px; --col-gap: 48px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body { font-family: var(--font-sans); background: var(--stone-50); color: var(--text-primary); -webkit-font-smoothing: antialiased; line-height: 1.6; min-height: 100vh; }
+a { color: inherit; text-decoration: none; }
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--stone-50); border-bottom: 1px solid var(--rule-strong); padding: 18px 0; }
+.site-header .inner { max-width: 1160px; margin: 0 auto; padding: 0 48px; display: flex; align-items: baseline; justify-content: space-between; }
+.header-title, .header-week { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); }
+.page { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+.hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule-strong); }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 24px; }
+.hero-lockup { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.hero-title { font-size: clamp(52px, 7vw, 96px); font-weight: 300; letter-spacing: -0.035em; line-height: 0.92; color: var(--text-primary); }
+.hero-title em { font-style: normal; color: var(--accent); }
+.hero-stats { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; flex-shrink: 0; padding-bottom: 6px; }
+.hero-stat { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-tertiary); text-align: right; }
+.hero-stat strong { color: var(--text-secondary); font-weight: 500; }
+.hero-rule { margin-top: 40px; border: none; border-top: 1px solid var(--rule); }
+.section { padding: 0 0 64px; border-bottom: 1px solid var(--rule); }
+.section-head { margin: 0 -48px 52px; border-top: 2px solid var(--text-primary); background: var(--stone-100); padding: 11px 48px; display: flex; align-items: baseline; gap: 20px; }
+.section-index { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-tertiary); flex-shrink: 0; }
+.section-label { font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-primary); }
+.section-label span { font-family: var(--font-mono); font-size: 10px; font-weight: 400; color: var(--text-tertiary); margin-left: 12px; letter-spacing: 0.06em; }
+.entry { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); padding-bottom: 52px; margin-bottom: 52px; border-bottom: 1px solid var(--rule); }
+.entry:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+.art-wrap { position: relative; width: var(--art-size); flex-shrink: 0; }
+.art-wrap a { display: block; }
+.art-wrap img { display: block; width: var(--art-size); height: var(--art-size); object-fit: cover; background: var(--stone-200); }
+.art-tag { position: absolute; top: 0; left: 0; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.10em; text-transform: uppercase; padding: 4px 7px; line-height: 1; }
+.art-tag.new { background: var(--text-primary); color: var(--stone-50); }
+.art-tag.known { background: var(--cobalt); color: white; }
+.art-tag.wild { background: #a07010; color: white; }
+.entry-body { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); display: flex; flex-direction: column; justify-content: center; }
+.entry-artist { font-size: 24px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-primary); margin-bottom: 2px; }
+.entry-album { font-size: 24px; font-weight: 300; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-secondary); margin-bottom: 14px; }
+.entry-meta { display: flex; flex-wrap: wrap; gap: 0 20px; font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.05em; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+.entry-copy { font-size: 15px; line-height: 1.75; color: var(--text-secondary); max-width: 60ch; margin-bottom: 22px; }
+.entry-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.link { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--cobalt); border-bottom: 1px solid rgba(0,59,142,0.28); padding-bottom: 1px; white-space: nowrap; }
+.link.primary { font-weight: 500; }
+.also-grid { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); }
+.also-items { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); }
+.also-item { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.also-item:first-child { padding-top: 0; }
+.also-item:last-child { border-bottom: none; }
+.also-n { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); flex-shrink: 0; width: 18px; }
+.also-text { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+.also-text strong { font-weight: 500; color: var(--text-primary); }
+.site-footer { padding: 40px 0 56px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-note { font-size: 13px; font-style: italic; color: var(--text-tertiary); max-width: 70ch; line-height: 1.6; }
+.footer-stamp { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); }
 </style>
 </head>
 <body>
-<header class="site-header"><div class="inner"><span class="header-title">Still Point — Listening Notes</span><span class="header-week">W15 · April 10, 2026</span></div></header>
+<header class="site-header">
+  <div class="inner">
+    <span class="header-title">Still Point — Listening Notes</span>
+    <span class="header-week">W15 · 10 April 2026</span>
+  </div>
+</header>
 <div class="page">
   <div class="hero">
     <p class="hero-eyebrow">Weekly digest · April 10, 2026</p>
     <div class="hero-lockup">
-      <h1 class="hero-title">Listening<br>Notes <em>W15</em></h1>
+      <h1 class="hero-title">Listening<br>Notes <em>№15</em></h1>
       <div class="hero-stats">
-        <div class="hero-stat"><strong>Sources</strong> — Boomkat Weekly Digest, Boomkat Download Now</div>
+        <div class="hero-stat"><strong>Sources</strong> — Boomkat Weekly Digest, Boomkat Download Now (Apr 10)</div>
         <div class="hero-stat"><strong>Picks</strong> — 4 new discoveries · 1 known artist · 1 wildcard</div>
-        <div class="hero-stat"><strong>RA</strong> — not sourced this week</div>
       </div>
     </div>
     <hr class="hero-rule">
   </div>
+
   <section class="section">
-    <div class="section-head"><span class="section-index">01</span><span class="section-label">New Discoveries <span>×4</span></span></div>
+    <div class="section-head">
+      <span class="section-index">01</span>
+      <span class="section-label">New Discoveries <span>×4</span></span>
+    </div>
+
     <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/velours" target="_blank" style="display:block"><div class="art-placeholder"><span>MM/KM</span></div></a><div class="art-tag new">New</div></div>
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/velours" target="_blank">
+          <img src="https://f4.bcbits.com/img/a1033169896_0.jpg" alt="MM/KM — Velours" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
       <div class="entry-body">
-        <div class="entry-artist">MM/KM (Mix Mup &amp; Kassem Mosse)</div><div class="entry-album">Velours</div>
+        <div class="entry-artist">MM/KM</div>
+        <div class="entry-album">Velours</div>
         <div class="entry-meta"><span>Kimochi Sound</span><span>Deep House</span><span>April 2026</span></div>
-        <p class="entry-copy">Nearly 15 years since their landmark TTT debut, the duo resurfaces for Chicago's Kimochi Sound label. Boomkat describes it as a heads-down, shadowy deep house record in the mode of Theo, Moufang, Actress — with strange integers filling the gaps. Neither artist appears in your library or playlists under this alias.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/velours" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=MM+KM+Mix+Mup+Kassem+Mosse+Velours+Kimochi" class="link" target="_blank">Preview on YouTube ↗</a></div>
+        <p class="entry-copy">Nearly 15 years since their landmark TTT debut, Mix Mup and Kassem Mosse resurface for Chicago’s Kimochi Sound label. Boomkat describes it as a heads-down, shadowy deep house record in the mode of Theo, Moufang, Actress — with strange integers filling the gaps. Neither artist appears in your library or playlists under this alias. The TTT record was a touchstone for anyone working in this orbit; the follow-up is worth the same attention.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/velours" class="link primary" target="_blank">Boomkat ↗</a>
+          <a href="https://kimochi.bandcamp.com/album/velours" class="link" target="_blank">Bandcamp ↗</a>
+          <a href="https://www.youtube.com/results?search_query=MM+KM+Mix+Mup+Kassem+Mosse+Velours+Kimochi" class="link" target="_blank">Preview on YouTube</a>
+        </div>
       </div>
     </div>
+
     <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/objects-0f5203e9-11f3-4f49-aacc-99f0be88aa03" target="_blank" style="display:block"><div class="art-placeholder"><span>Beppu</span></div></a><div class="art-tag new">New</div></div>
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/objects-0f5203e9-11f3-4f49-aacc-99f0be88aa03" target="_blank">
+          <img src="https://f4.bcbits.com/img/a2539592304_0.jpg" alt="Beppu — Objects" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
       <div class="entry-body">
-        <div class="entry-artist">Beppu</div><div class="entry-album">Objects</div>
+        <div class="entry-artist">Beppu</div>
+        <div class="entry-album">Objects</div>
         <div class="entry-meta"><span>Lempuyang / Basic Channel</span><span>Dub Techno · Abstract Dub</span><span>April 2026</span></div>
         <p class="entry-copy">Andrew Hargreaves returns to a long-dormant alias for this 2LP of abstract dubs on a Basic Channel sublabel, described as nodding toward Pole, Deadbeat, and Pendle Coven. The Lancs dub lineage, the label pedigree, and the Demdike Stare remix connection make this directly on-profile. Not in your library or playlists.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/objects-0f5203e9-11f3-4f49-aacc-99f0be88aa03" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Beppu+Objects+Basic+Channel+Lempuyang" class="link" target="_blank">Preview on YouTube ↗</a></div>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/objects-0f5203e9-11f3-4f49-aacc-99f0be88aa03" class="link primary" target="_blank">Boomkat ↗</a>
+          <a href="https://lempuyang.bandcamp.com/album/objects-deluxe-edition" class="link" target="_blank">Bandcamp ↗</a>
+          <a href="https://www.youtube.com/results?search_query=Beppu+Objects+Basic+Channel+Lempuyang+Andrew+Hargreaves" class="link" target="_blank">Preview on YouTube</a>
+        </div>
       </div>
     </div>
+
     <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/nausea-b0cda57d-b199-4db4-97ae-46ca589b977e" target="_blank"><img src="https://f4.bcbits.com/img/a3453830668_0.jpg" alt="Grady Steele — Nausea" loading="lazy"></a><div class="art-tag new">New</div></div>
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/nausea-b0cda57d-b199-4db4-97ae-46ca589b977e" target="_blank">
+          <img src="https://f4.bcbits.com/img/a3453830668_0.jpg" alt="Grady Steele — Nausea" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
       <div class="entry-body">
-        <div class="entry-artist">Grady Steele</div><div class="entry-album">Nausea</div>
+        <div class="entry-artist">Grady Steele</div>
+        <div class="entry-album">Nausea</div>
         <div class="entry-meta"><span>FELT</span><span>Ambient · Concrète</span><span>April 2026</span></div>
-        <p class="entry-copy">On Fergus Jones' FELT label alongside Perko and Civilistjävel!, Steele's follow-up to his 2024 debut is described as concrète sound design calling to mind Perko's lushest work and Terre Thaemlitz's beatless records. Both reference points are deep in your collection. Steele himself is new.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/nausea-b0cda57d-b199-4db4-97ae-46ca589b977e" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Grady+Steele+Nausea+FELT+ambient" class="link" target="_blank">Preview on YouTube ↗</a></div>
+        <p class="entry-copy">On Fergus Jones’ FELT label alongside Perko and Civilistjävel!, Steele’s follow-up to his 2024 debut is described as concrète sound design calling to mind Perko’s lushest work and Terre Thaemlitz’s beatless records. Both reference points are deep in your collection. Steele himself is new.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/nausea-b0cda57d-b199-4db4-97ae-46ca589b977e" class="link primary" target="_blank">Boomkat ↗</a>
+          <a href="https://gradysteele.bandcamp.com/album/nausea" class="link" target="_blank">Bandcamp ↗</a>
+          <a href="https://www.youtube.com/results?search_query=Grady+Steele+Nausea+FELT+ambient" class="link" target="_blank">Preview on YouTube</a>
+        </div>
       </div>
     </div>
+
     <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/architectonics" target="_blank"><img src="https://f4.bcbits.com/img/a3025771794_0.jpg" alt="Hoavi — Architectonics" loading="lazy"></a><div class="art-tag new">New</div></div>
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/architectonics" target="_blank">
+          <img src="https://f4.bcbits.com/img/a3025771794_0.jpg" alt="Hoavi — Architectonics" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
       <div class="entry-body">
-        <div class="entry-artist">Hoavi</div><div class="entry-album">Architectonics</div>
+        <div class="entry-artist">Hoavi</div>
+        <div class="entry-album">Architectonics</div>
         <div class="entry-meta"><span>Peak Oil</span><span>Gamelan · Dub Rhythmelodies</span><span>April 2026</span></div>
-        <p class="entry-copy">Indonesian gamelan processed into dub-weighted rhythmelodic structures — Boomkat's Download Now lead this week. Peak Oil is a left-field electronic label with genuine curation standards. Not in your library or playlists. Speculative but earned.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/architectonics" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Hoavi+Architectonics+Peak+Oil+gamelan" class="link" target="_blank">Preview on YouTube ↗</a></div>
+        <p class="entry-copy">Indonesian gamelan processed into dub-weighted rhythmelodic structures — Boomkat’s Download Now lead this week. Peak Oil is a left-field electronic label with genuine curation standards. Not in your library or playlists. Speculative but earned.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/architectonics" class="link primary" target="_blank">Boomkat ↗</a>
+          <a href="https://peakoil.bandcamp.com/album/architectonics" class="link" target="_blank">Bandcamp ↗</a>
+          <a href="https://www.youtube.com/results?search_query=Hoavi+Architectonics+Peak+Oil+gamelan" class="link" target="_blank">Preview on YouTube</a>
+        </div>
       </div>
     </div>
+
   </section>
+
   <section class="section">
-    <div class="section-head"><span class="section-index">02</span><span class="section-label">New Releases from Artists You Know <span>×1</span></span></div>
+    <div class="section-head">
+      <span class="section-index">02</span>
+      <span class="section-label">New Releases from Artists You Know <span>×1</span></span>
+    </div>
+
     <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/kammerkonzert" target="_blank"><img src="https://f4.bcbits.com/img/a0279664615_0.jpg" alt="Squarepusher — Kammerkonzert" loading="lazy"></a><div class="art-tag known">In Library</div></div>
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/kammerkonzert" target="_blank">
+          <img src="https://f4.bcbits.com/img/a0279664615_0.jpg" alt="Squarepusher — Kammerkonzert" loading="lazy">
+        </a>
+        <div class="art-tag known">In Library</div>
+      </div>
       <div class="entry-body">
-        <div class="entry-artist">Squarepusher</div><div class="entry-album">Kammerkonzert</div>
+        <div class="entry-artist">Squarepusher</div>
+        <div class="entry-album">Kammerkonzert</div>
         <div class="entry-meta"><span>Warp Records</span><span>Orchestral · IDM · Jungle</span><span>April 2026</span></div>
-        <p class="entry-copy">Squarepusher is in your local library (NTS mix). This is a full orchestral LP — drum programming secondary to angular strings and dense chord-change structures, described as 30 years of jazz-fused jungle arriving at a composer form. The Warp description ("onyx-hard, hyperfast riffs") makes it sound like more than a prestige pivot.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/kammerkonzert" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Squarepusher+Kammerkonzert+Warp+orchestral" class="link" target="_blank">Preview on YouTube ↗</a></div>
+        <p class="entry-copy">Squarepusher is in your local library (NTS mix). This is a full orchestral LP — drum programming secondary to angular strings and dense chord-change structures, described as 30 years of jazz-fused jungle arriving at a composer form. The Warp description (“onyx-hard, hyperfast riffs”) makes it sound like more than a prestige pivot.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/kammerkonzert" class="link primary" target="_blank">Boomkat ↗</a>
+          <a href="https://squarepusher.bandcamp.com/album/kammerkonzert" class="link" target="_blank">Bandcamp ↗</a>
+          <a href="https://www.youtube.com/results?search_query=Squarepusher+Kammerkonzert+Warp+orchestral" class="link" target="_blank">Preview on YouTube</a>
+        </div>
       </div>
     </div>
+
   </section>
+
   <section class="section">
-    <div class="section-head"><span class="section-index">03</span><span class="section-label">Wildcard <span>×1</span></span></div>
+    <div class="section-head">
+      <span class="section-index">03</span>
+      <span class="section-label">Wildcard <span>×1</span></span>
+    </div>
+
     <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/dras" target="_blank" style="display:block"><div class="art-placeholder"><span>Alex Zhang Hungtai</span></div></a><div class="art-tag wild">Wildcard</div></div>
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/dras" target="_blank">
+          <img src="https://f4.bcbits.com/img/a2422404072_0.jpg" alt="Alex Zhang Hungtai — Dras" loading="lazy">
+        </a>
+        <div class="art-tag wild">Wildcard</div>
+      </div>
       <div class="entry-body">
-        <div class="entry-artist">Alex Zhang Hungtai</div><div class="entry-album">Dras</div>
+        <div class="entry-artist">Alex Zhang Hungtai</div>
+        <div class="entry-album">Dras</div>
         <div class="entry-meta"><span>Shelter Press</span><span>Saxophone · Ambient · Extended Technique</span><span>April 2026</span></div>
-        <p class="entry-copy">Hungtai's saxophone is processed so thoroughly the instrument becomes unrecognizable — Shelter Press is serious about releasing genuinely strange work. Not in your collection. Sits adjacent to the Jon Hassell / electroacoustic edge of what you track, but further out. Worth 20 minutes to find out.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/dras" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Alex+Zhang+Hungtai+Dras+Shelter+Press" class="link" target="_blank">Preview on YouTube ↗</a></div>
+        <p class="entry-copy">Boomkat Download Now pick. Hungtai’s saxophone is processed so thoroughly the instrument becomes unrecognizable — Shelter Press is serious about releasing genuinely strange work. Not in your collection. Sits adjacent to the Jon Hassell / electroacoustic edge of what you track, but further out. Worth 20 minutes to find out.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/dras" class="link primary" target="_blank">Boomkat ↗</a>
+          <a href="https://alexzhanghungtai.bandcamp.com/album/dras" class="link" target="_blank">Bandcamp ↗</a>
+          <a href="https://www.youtube.com/results?search_query=Alex+Zhang+Hungtai+Dras+Shelter+Press" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <span class="section-index">04</span>
+      <span class="section-label">Also Noted <span>×5</span></span>
+    </div>
+    <div class="also-grid">
+      <div></div>
+      <div class="also-items">
+        <div class="also-item"><span class="also-n">01</span><span class="also-text"><strong>Upsammy & Valentina Magaletti — Seismo</strong> (PAN) — featured across both Boomkat emails this week. Early Squarepusher/Matmos reference cluster. Upsammy not in collection. High-priority if you want something more rhythmically active.</span></div>
+        <div class="also-item"><span class="also-n">02</span><span class="also-text"><strong>Variant — The Setting Sun</strong> (Field Records / Basic Channel) — Stephen Hitchell’s 2008 echospace[detroit] debut gets first vinyl press, remastered by Stefan Betke (Pole). Dub techno from the deep end. You don’t have it; probably should.</span></div>
+        <div class="also-item"><span class="also-n">03</span><span class="also-text"><strong>Roméo Poirier — Off Off The Record</strong> (Faitiche) — Addendum to his cult Faitiche LP. Jan Jelinek’s label rarely misses. Plunderphonics territory.</span></div>
+        <div class="also-item"><span class="also-n">04</span><span class="also-text"><strong>Untold — HEK036</strong> (Hemlock Recordings) — first solo EP in 7 years. Post-dubstep, whirring and sinuous. Hemlock sits adjacent to Hessle Audio.</span></div>
+        <div class="also-item"><span class="also-n">05</span><span class="also-text"><strong>Alva Noto — Xerrox series remaster</strong> (Noton) — Vols. 1–3 back in remastered form. You have Ryuichi Sakamoto in your playlists; the Alva Noto collaboration records may be a gap worth noting.</span></div>
       </div>
     </div>
   </section>
-  <section class="section">
-    <div class="section-head"><span class="section-index">04</span><span class="section-label">Also Noted <span>×5</span></span></div>
-    <div class="also-grid"><div class="also-spacer"></div><div class="also-items">
-      <div class="also-item"><span class="also-n">01</span><span class="also-text"><strong>Upsammy &amp; Valentina Magaletti — Seismo</strong> (PAN) — featured across both Boomkat emails this week. Early Squarepusher/Matmos reference cluster. High-priority if you want something more rhythmically active.</span></div>
-      <div class="also-item"><span class="also-n">02</span><span class="also-text"><strong>Variant — The Setting Sun</strong> (Field Records / Basic Channel) — Stephen Hitchell's 2008 echospace[detroit] debut gets first vinyl press, remastered by Stefan Betke (Pole). Dub techno from the deep end.</span></div>
-      <div class="also-item"><span class="also-n">03</span><span class="also-text"><strong>Roméo Poirier — Off Off The Record</strong> (Faitiche) — Addendum to his cult Faitiche LP. Jan Jelinek's label rarely misses. Plunderphonics territory.</span></div>
-      <div class="also-item"><span class="also-n">04</span><span class="also-text"><strong>Untold — HEK036</strong> (Hemlock Recordings) — first solo EP in 7 years. Post-dubstep, whirring and sinuous. Hemlock sits adjacent to Hessle Audio.</span></div>
-      <div class="also-item"><span class="also-n">05</span><span class="also-text"><strong>Alva Noto — Xerrox series remaster</strong> (Noton) — Vols. 1–3 back in remastered form. You have Ryuichi Sakamoto in playlists; the Alva Noto collaboration records may be a gap worth noting.</span></div>
-    </div></div>
-  </section>
+
   <div class="site-footer">
-    <p class="footer-note">Strong week for Boomkat — the Beppu / Basic Channel release alone would make it.</p>
+    <p class="footer-note">Strong week — MM/KM is the headline pick, Beppu is the deep-profile find. Upsammy & Magaletti narrowly missed the main list and belongs on your radar.</p>
     <span class="footer-stamp">Still Point · 2026-W15</span>
   </div>
 </div>

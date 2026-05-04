@@ -3,116 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Listening Notes — W17 · April 24, 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>/* Swiss Design System */
-:root{--stone-50:#f9f8f6;--stone-100:#f0eeea;--stone-200:#e4e1db;--stone-300:#ccc8c0;--stone-800:#292524;--stone-900:#1c1917;--stone-950:#0c0a09;--accent:#2D6A4F;--cobalt:#003B8E;--golden:#b8860b;--text-primary:#111010;--text-secondary:#2e2a27;--text-tertiary:#6a6259;--rule:rgba(15,13,12,0.10);--rule-strong:rgba(15,13,12,0.24);--font-sans:'IBM Plex Sans','Hanken Grotesk',system-ui,sans-serif;--font-mono:'IBM Plex Mono',monospace;--art-size:200px;--col-gap:48px}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{font-size:16px}body{font-family:var(--font-sans);background:var(--stone-50);color:var(--text-primary);-webkit-font-smoothing:antialiased;line-height:1.6;min-height:100vh}a{color:inherit;text-decoration:none}
-.site-header{position:sticky;top:0;z-index:100;background:var(--stone-50);border-bottom:1px solid var(--rule-strong);padding:18px 0}.site-header .inner{max-width:1160px;margin:0 auto;padding:0 48px;display:flex;align-items:baseline;justify-content:space-between}.header-title,.header-week{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary)}
-.page{max-width:1160px;margin:0 auto;padding:0 48px}.hero{padding:80px 0 60px;border-bottom:1px solid var(--rule-strong)}.hero-eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:24px}.hero-lockup{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap}.hero-title{font-size:clamp(52px,7vw,96px);font-weight:300;letter-spacing:-.035em;line-height:.92;color:var(--text-primary)}.hero-title em{font-style:normal;color:var(--text-primary)}.hero-stats{display:flex;flex-direction:column;gap:8px;align-items:flex-end;flex-shrink:0;padding-bottom:6px}.hero-stat{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--text-tertiary);text-align:right}.hero-stat strong{color:var(--text-secondary);font-weight:500}.hero-rule{margin-top:40px;border:none;border-top:1px solid var(--rule)}
-.section{padding:0 0 64px;border-bottom:1px solid var(--rule)}.section-head{margin:0 -48px 52px;border-top:2px solid var(--text-primary);background:var(--stone-100);padding:11px 48px;display:flex;align-items:baseline;gap:20px}.section-index{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-tertiary);flex-shrink:0}.section-label{font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--text-primary)}.section-label span{font-family:var(--font-mono);font-size:10px;font-weight:400;color:var(--text-tertiary);margin-left:12px;letter-spacing:.06em}
-.entry{display:grid;grid-template-columns:var(--art-size) 1fr;gap:0 var(--col-gap);padding-bottom:52px;margin-bottom:52px;border-bottom:1px solid var(--rule)}.entry:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0}.art-wrap{position:relative;width:var(--art-size);flex-shrink:0}.art-wrap a{display:block}.art-wrap img{display:block;width:var(--art-size);height:var(--art-size);object-fit:cover;background:var(--stone-200)}.art-wrap a:hover img{opacity:.88;transition:opacity .2s}.art-placeholder{display:flex;align-items:center;justify-content:center;width:var(--art-size);height:var(--art-size);background:var(--stone-100);border:1px solid var(--rule-strong)}.art-placeholder span{font-family:var(--font-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-tertiary);text-align:center;padding:8px}.art-tag{position:absolute;top:0;left:0;font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 7px;line-height:1}.art-tag.new{background:var(--stone-900);color:var(--stone-50)}.art-tag.known{background:var(--cobalt);color:white}.art-tag.wild{background:var(--golden);color:var(--stone-900)}
-.entry-body{border-left:1px solid var(--rule-strong);padding-left:var(--col-gap);display:flex;flex-direction:column;justify-content:center}.entry-artist{font-size:24px;font-weight:500;letter-spacing:-.025em;line-height:1.1;color:var(--text-primary);margin-bottom:2px}.entry-album{font-size:24px;font-weight:300;letter-spacing:-.025em;line-height:1.1;color:var(--text-secondary);margin-bottom:14px}.entry-meta{display:flex;flex-wrap:wrap;gap:0 20px;font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary);letter-spacing:.05em;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.entry-copy{font-size:15px;line-height:1.75;color:var(--text-secondary);max-width:60ch;margin-bottom:22px}.entry-links{display:flex;gap:20px;flex-wrap:wrap;align-items:center}.link{font-family:var(--font-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--cobalt);border-bottom:1px solid rgba(0,59,142,.28);padding-bottom:1px;transition:color .15s,border-color .15s;white-space:nowrap}.link:hover{opacity:.7}.link.primary{font-weight:500}
-.also-grid{display:grid;grid-template-columns:var(--art-size) 1fr;gap:0 var(--col-gap)}.also-items{border-left:1px solid var(--rule-strong);padding-left:var(--col-gap)}.also-item{display:flex;gap:18px;padding:18px 0;border-bottom:1px solid var(--rule);align-items:baseline}.also-item:first-child{padding-top:0}.also-item:last-child{border-bottom:none}.also-n{font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);flex-shrink:0;width:18px;padding-top:2px}.also-text{font-size:14px;color:var(--text-secondary);line-height:1.65}.also-text strong{font-weight:500;color:var(--text-primary)}
-.site-footer{padding:40px 0 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}.footer-note{font-size:13px;font-style:italic;color:var(--text-tertiary);max-width:70ch;line-height:1.6}.footer-stamp{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);white-space:nowrap}
+<title>Listening Notes — W17 · April 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root { --stone-50: #f9f8f6; --stone-100: #f0eeea; --stone-200: #e4e1db; --accent: #2D6A4F; --cobalt: #003B8E; --text-primary: #111010; --text-secondary: #2e2a27; --text-tertiary: #6a6259; --rule: rgba(15,13,12,0.10); --rule-strong: rgba(15,13,12,0.24); --font-sans: "IBM Plex Sans", system-ui, sans-serif; --font-mono: "IBM Plex Mono", monospace; --art-size: 200px; --col-gap: 48px; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body { font-family: var(--font-sans); background: var(--stone-50); color: var(--text-primary); -webkit-font-smoothing: antialiased; line-height: 1.6; min-height: 100vh; }
+a { color: inherit; text-decoration: none; }
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--stone-50); border-bottom: 1px solid var(--rule-strong); padding: 18px 0; }
+.site-header .inner { max-width: 1160px; margin: 0 auto; padding: 0 48px; display: flex; align-items: baseline; justify-content: space-between; }
+.header-title, .header-week { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); }
+.page { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+.hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule-strong); }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 24px; }
+.hero-lockup { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.hero-title { font-size: clamp(52px, 7vw, 96px); font-weight: 300; letter-spacing: -0.035em; line-height: 0.92; color: var(--text-primary); }
+.hero-title em { font-style: normal; color: var(--accent); }
+.hero-stats { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; flex-shrink: 0; padding-bottom: 6px; }
+.hero-stat { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-tertiary); text-align: right; }
+.hero-stat strong { color: var(--text-secondary); font-weight: 500; }
+.hero-rule { margin-top: 40px; border: none; border-top: 1px solid var(--rule); }
+.section { padding: 0 0 64px; border-bottom: 1px solid var(--rule); }
+.section-head { margin: 0 -48px 52px; border-top: 2px solid var(--text-primary); background: var(--stone-100); padding: 11px 48px; display: flex; align-items: baseline; gap: 20px; }
+.section-index { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-tertiary); flex-shrink: 0; }
+.section-label { font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-primary); }
+.section-label span { font-family: var(--font-mono); font-size: 10px; font-weight: 400; color: var(--text-tertiary); margin-left: 12px; letter-spacing: 0.06em; }
+.entry { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); padding-bottom: 52px; margin-bottom: 52px; border-bottom: 1px solid var(--rule); }
+.entry:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+.art-wrap { position: relative; width: var(--art-size); flex-shrink: 0; }
+.art-placeholder { width: var(--art-size); height: var(--art-size); background: var(--stone-100); display: flex; align-items: center; justify-content: center; border: 1px solid var(--stone-200); }
+.art-tag { position: absolute; top: 0; left: 0; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.10em; text-transform: uppercase; padding: 4px 7px; line-height: 1; }
+.art-tag.new { background: var(--text-primary); color: var(--stone-50); }
+.art-tag.known { background: var(--cobalt); color: white; }
+.art-tag.wild { background: #a07010; color: white; }
+.entry-body { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); display: flex; flex-direction: column; justify-content: center; }
+.entry-artist { font-size: 24px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-primary); margin-bottom: 2px; }
+.entry-album { font-size: 24px; font-weight: 300; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-secondary); margin-bottom: 14px; }
+.entry-meta { display: flex; flex-wrap: wrap; gap: 0 20px; font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.05em; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+.entry-copy { font-size: 15px; line-height: 1.75; color: var(--text-secondary); max-width: 60ch; margin-bottom: 22px; }
+.entry-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.link { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--cobalt); border-bottom: 1px solid rgba(0,59,142,0.28); padding-bottom: 1px; white-space: nowrap; }
+.link.primary { font-weight: 500; }
+.also-grid { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); }
+.also-items { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); }
+.also-item { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.also-item:first-child { padding-top: 0; }
+.also-item:last-child { border-bottom: none; }
+.also-n { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); flex-shrink: 0; width: 18px; }
+.also-text { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+.also-text strong { font-weight: 500; color: var(--text-primary); }
+.site-footer { padding: 40px 0 56px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-note { font-size: 13px; font-style: italic; color: var(--text-tertiary); max-width: 70ch; line-height: 1.6; }
+.footer-stamp { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); }
 </style>
 </head>
 <body>
-<header class="site-header"><div class="inner"><span class="header-title">Still Point — Listening Notes</span><span class="header-week">W17 · April 24, 2026</span></div></header>
+<header class="site-header"><div class="inner"><span class="header-title">Still Point — Listening Notes</span><span class="header-week">W17 · 24 April 2026</span></div></header>
 <div class="page">
-<div class="hero">
-    <p class="hero-eyebrow">Weekly digest · April 24, 2026</p>
+  <div class="hero">
+    <p class="hero-eyebrow">Weekly digest · April 24, 2026 · Written retroactively May 1</p>
     <div class="hero-lockup">
-      <h1 class="hero-title">Listening<br>Notes <em>W17</em></h1>
-      <div class="hero-stats"><div class="hero-stat"><strong>Sources</strong> — Boomkat Weekly Digest (Apr 24)</div><div class="hero-stat"><strong>Picks</strong> — 3 new discoveries · 3 known artists · 1 wildcard</div><div class="hero-stat"><strong>Note</strong> — Written retroactively May 1 — Boomkat only, RA not pulled</div></div>
+      <h1 class="hero-title">Listening<br>Notes <em>№17</em></h1>
+      <div class="hero-stats"><div class="hero-stat"><strong>Source</strong> — Boomkat Weekly Digest (week was missed; Boomkat only)</div><div class="hero-stat"><strong>Picks</strong> — 3 new discoveries · 3 known artists · 1 wildcard</div></div>
     </div>
     <hr class="hero-rule">
   </div>
   <section class="section">
-  <div class="section-head"><span class="section-index">01</span><span class="section-label">New Discoveries <span>×3</span></span></div>
-    <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/rise-da0db81c-0207-4239-81a6-fb561835538e" target="_blank" style="display:block"><div class="art-placeholder"><span>Inrain</span></div></a><div class="art-tag new">New</div></div>
-      <div class="entry-body">
-        <div class="entry-artist">Inrain</div><div class="entry-album">Rise</div>
-        <div class="entry-meta"><span>Music From Memory</span><span>Shoegaze · Dub · Electro · Trip-Hop</span><span>2026 reissue of 1991 recordings</span></div>
-        <p class="entry-copy">1991 recordings by A.R. Kane's Rudy Tambala and Cranes vocalist Alison Shaw, finally reissued by Music From Memory with previously unreleased material. Boomkat calls it "the most essential Music From Memory release in a hot minute" — shoegaze, dub, electro, and trip-hop in that early-'90s pre-Seefeel zone. The A.R. Kane lineage alone makes this essential listening.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/rise-da0db81c-0207-4239-81a6-fb561835538e" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Inrain+Rise+Music+From+Memory+AR+Kane" class="link" target="_blank">Preview on YouTube ↗</a></div>
-      </div>
+    <div class="section-head"><span class="section-index">01</span><span class="section-label">New Discoveries <span>×3</span></span></div>
+    <div class="entry"><div class="art-wrap"><div class="art-placeholder"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#f0eeea"/><rect x="0" y="0" width="200" height="3" fill="#111010"/><rect x="0" y="197" width="200" height="3" fill="#111010"/><rect x="0" y="0" width="3" height="200" fill="#111010"/><rect x="197" y="0" width="3" height="200" fill="#111010"/><text x="100" y="105" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6a6259" letter-spacing="1">MUSIC FROM</text><text x="100" y="120" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6a6259" letter-spacing="1">MEMORY</text></svg></div><div class="art-tag new">New</div></div>
+      <div class="entry-body"><div class="entry-artist">Inrain</div><div class="entry-album">Rise</div><div class="entry-meta"><span>Music From Memory</span><span>Shoegaze · Dub · Electro · Trip-hop</span><span>2026 reissue of 1991 recordings</span></div><p class="entry-copy">1991 recordings by A.R. Kane’s Rudy Tambala and Cranes vocalist Alison Shaw, finally reissued by Music From Memory with previously unreleased material. Boomkat calls it the most essential Music From Memory release in a hot minute — shoegaze, dub, electro, and trip-hop in that early-'90s pre-Seefeel zone. The A.R. Kane lineage alone makes this essential listening.</p><div class="entry-links"><a href="https://boomkat.com/products/rise-da0db81c-0207-4239-81a6-fb561835538e" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Inrain+Rise+Music+From+Memory+AR+Kane" class="link" target="_blank">Preview on YouTube</a></div></div>
     </div>
-    <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/juan-atkins-moritz-von-oswald-present-borderland-transport" target="_blank" style="display:block"><div class="art-placeholder"><span>Borderland</span></div></a><div class="art-tag new">New</div></div>
-      <div class="entry-body">
-        <div class="entry-artist">Juan Atkins &amp; Moritz Von Oswald / Borderland</div><div class="entry-album">Transport</div>
-        <div class="entry-meta"><span>Tresor</span><span>Dub Techno · Detroit/Berlin</span><span>April 2026</span></div>
-        <p class="entry-copy">Three years on from the first Borderland session, the two architects of Detroit and Berlin techno reconvene on Tresor for seven expansive techno dub pieces. Boomkat highlights the less conventional pieces that push the edges of both producers' ranges — which is exactly where this intersection gets interesting. Tresor, dub, Detroit lineage, longform: this checks every box.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/juan-atkins-moritz-von-oswald-present-borderland-transport" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Juan+Atkins+Moritz+Von+Oswald+Borderland+Transport+Tresor" class="link" target="_blank">Preview on YouTube ↗</a></div>
-      </div>
+    <div class="entry"><div class="art-wrap"><div class="art-placeholder"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#1c1917"/><rect x="20" y="20" width="72" height="160" fill="#2e2a27"/><rect x="108" y="20" width="72" height="160" fill="#2e2a27"/><text x="100" y="178" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#6a6259" letter-spacing="1">TRESOR</text></svg></div><div class="art-tag new">New</div></div>
+      <div class="entry-body"><div class="entry-artist">Juan Atkins & Moritz Von Oswald / Borderland</div><div class="entry-album">Transport</div><div class="entry-meta"><span>Tresor</span><span>Dub Techno · Detroit/Berlin</span><span>April 2026</span></div><p class="entry-copy">Three years on from the first Borderland session, the two architects of Detroit and Berlin techno reconvene on Tresor for seven expansive techno dub pieces. Boomkat highlights the less conventional pieces that push the edges of both producers’ ranges. Tresor, dub, Detroit lineage, longform: every box checked.</p><div class="entry-links"><a href="https://boomkat.com/products/juan-atkins-moritz-von-oswald-present-borderland-transport" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Juan+Atkins+Moritz+Von+Oswald+Borderland+Transport+Tresor" class="link" target="_blank">Preview on YouTube</a></div></div>
     </div>
-    <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/agate-4db7ac82-34a6-48d7-ab79-db65dd457801" target="_blank" style="display:block"><div class="art-placeholder"><span>Meitei</span></div></a><div class="art-tag new">New</div></div>
-      <div class="entry-body">
-        <div class="entry-artist">Meitei</div><div class="entry-album">Agate</div>
-        <div class="entry-meta"><span>Kitchen. Label</span><span>Hauntology · Plunderphonic · Electroacoustic</span><span>April 2026</span></div>
-        <p class="entry-copy">Japanese enigma Meitei reworks his cult Kofū trilogy with augmented results shaped by touring environments. The reference points — plunderphonic reworkings of Japanese folk and theatre music, described as adjacent to The Caretaker and Moon Wiring Club — suggest conceptual weight and textural depth. Unknown artist to the collection; the aesthetic match is strong.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/agate-4db7ac82-34a6-48d7-ab79-db65dd457801" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Meitei+Agate+Kitchen+Label" class="link" target="_blank">Preview on YouTube ↗</a></div>
-      </div>
+    <div class="entry"><div class="art-wrap"><div class="art-placeholder"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#f0eeea"/><circle cx="100" cy="80" r="50" fill="#e4e1db"/><rect x="40" y="130" width="120" height="50" fill="#e4e1db"/><text x="100" y="182" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#6a6259" letter-spacing="1">KITCHEN. LABEL</text></svg></div><div class="art-tag new">New</div></div>
+      <div class="entry-body"><div class="entry-artist">Meitei</div><div class="entry-album">Agate</div><div class="entry-meta"><span>Kitchen. Label</span><span>Hauntology · Plunderphonic · Electroacoustic</span><span>April 2026</span></div><p class="entry-copy">Japanese enigma Meitei reworks his cult Kofū trilogy with augmented results shaped by touring environments. Reference points — plunderphonic reworkings of Japanese folk and theatre music, adjacent to The Caretaker and Moon Wiring Club — suggest conceptual weight and textural depth. Unknown to the collection; aesthetic match is strong.</p><div class="entry-links"><a href="https://boomkat.com/products/agate-4db7ac82-34a6-48d7-ab79-db65dd457801" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Meitei+Agate+Kitchen+Label" class="link" target="_blank">Preview on YouTube</a></div></div>
     </div>
   </section>
   <section class="section">
-  <div class="section-head"><span class="section-index">02</span><span class="section-label">New Releases from Artists You Know <span>×3</span></span></div>
-    <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/hubris-10th-anniversary-remaster" target="_blank" style="display:block"><div class="art-placeholder"><span>Oren Ambarchi</span></div></a><div class="art-tag known">In Playlists</div></div>
-      <div class="entry-body">
-        <div class="entry-artist">Oren Ambarchi</div><div class="entry-album">Hubris (10th Anniversary Remaster)</div>
-        <div class="entry-meta"><span>Black Truffle</span><span>Kraut-Techno · Free Jazz · Experimental</span><span>2026 remaster</span></div>
-        <p class="entry-copy">Oren Ambarchi is in the Spotify playlists (2 tracks). Hubris is his ensemble magnum opus — features Ricardo Villalobos (local library), Mark Fell of snd (local library), and Keith Fullerton Whitman among others. The 10th anniversary remaster is reason enough to flag it; the collaborator list alone makes it a significant reissue for this collection.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/hubris-10th-anniversary-remaster" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Oren+Ambarchi+Hubris+Black+Truffle" class="link" target="_blank">Preview on YouTube ↗</a></div>
-      </div>
+    <div class="section-head"><span class="section-index">02</span><span class="section-label">New Releases from Artists You Know <span>×3</span></span></div>
+    <div class="entry"><div class="art-wrap"><div class="art-placeholder"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#0e0d0c"/><rect x="0" y="0" width="50" height="50" fill="#1c1917"/><rect x="50" y="50" width="50" height="50" fill="#1c1917"/><rect x="100" y="0" width="50" height="50" fill="#1c1917"/><rect x="150" y="50" width="50" height="50" fill="#1c1917"/><rect x="0" y="100" width="50" height="50" fill="#1c1917"/><rect x="50" y="150" width="50" height="50" fill="#1c1917"/><rect x="100" y="100" width="50" height="50" fill="#1c1917"/><rect x="150" y="150" width="50" height="50" fill="#1c1917"/><text x="100" y="108" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#6a6259" letter-spacing="1">BLACK TRUFFLE</text></svg></div><div class="art-tag known">In Playlists</div></div>
+      <div class="entry-body"><div class="entry-artist">Oren Ambarchi</div><div class="entry-album">Hubris (10th Anniversary Remaster)</div><div class="entry-meta"><span>Black Truffle</span><span>Kraut-techno · Free Jazz · Experimental</span><span>2026 remaster</span></div><p class="entry-copy">Oren Ambarchi is in the Spotify playlists (2 tracks). Hubris is his ensemble magnum opus — features Ricardo Villalobos (local library), Mark Fell of snd (local library), and Keith Fullerton Whitman among others. The 10th anniversary remaster is reason enough to flag it.</p><div class="entry-links"><a href="https://boomkat.com/products/hubris-10th-anniversary-remaster" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Oren+Ambarchi+Hubris+Black+Truffle" class="link" target="_blank">Preview on YouTube</a></div></div>
     </div>
-    <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/x-berg-dubs-2" target="_blank" style="display:block"><div class="art-placeholder"><span>Buttechno</span></div></a><div class="art-tag known">In Playlists</div></div>
-      <div class="entry-body">
-        <div class="entry-artist">Buttechno</div><div class="entry-album">X Berg Dubs 2</div>
-        <div class="entry-meta"><span>Psy X</span><span>Kosmische · Dub · Dark Room Hard House</span><span>April 2026</span></div>
-        <p class="entry-copy">Buttechno (Pavel Milyakov) is a high-frequency Spotify artist. X Berg Dubs 2 is new work on his own Psy X label — kosmische arps, grimy steppas, and a sideways dark room hard house cut. Short format (4 tracks), loose and in-the-mix, but Boomkat says these work as a standalone session too. His cult City-2 sound is still very much intact.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/x-berg-dubs-2" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Buttechno+X+Berg+Dubs+2+Psy+X" class="link" target="_blank">Preview on YouTube ↗</a></div>
-      </div>
+    <div class="entry"><div class="art-wrap"><div class="art-placeholder"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#f0eeea"/><rect x="0" y="80" width="200" height="40" fill="#e4e1db"/><circle cx="100" cy="100" r="15" fill="#ccc8c0"/><text x="100" y="182" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6a6259" letter-spacing="1">PSY X</text></svg></div><div class="art-tag known">In Playlists</div></div>
+      <div class="entry-body"><div class="entry-artist">Buttechno</div><div class="entry-album">X Berg Dubs 2</div><div class="entry-meta"><span>Psy X</span><span>Kosmische · Dub · Dark Room Hard House</span><span>April 2026</span></div><p class="entry-copy">Buttechno (Pavel Milyakov) is a high-frequency Spotify artist. X Berg Dubs 2 is new work on his own Psy X label — kosmische arps, grimy steppas, and a sideways dark room hard house cut. Short format (4 tracks) but Boomkat says these work as a standalone session too.</p><div class="entry-links"><a href="https://boomkat.com/products/x-berg-dubs-2" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Buttechno+X+Berg+Dubs+2+Psy+X" class="link" target="_blank">Preview on YouTube</a></div></div>
     </div>
-    <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/requiem-bedb4b41-01eb-464b-bc6b-eb6f652d0803" target="_blank" style="display:block"><div class="art-placeholder"><span>Irmin Schmidt</span></div></a><div class="art-tag known">In Playlists</div></div>
-      <div class="entry-body">
-        <div class="entry-artist">Irmin Schmidt</div><div class="entry-album">Requiem</div>
-        <div class="entry-meta"><span>Mute</span><span>Prepared Piano · Electroacoustic · Experimental</span><span>April 2026</span></div>
-        <p class="entry-copy">CAN is in the Spotify playlists (high frequency). Requiem is Irmin Schmidt's new album of spontaneous duets between prepared piano and nature — a nightingale recorded outside his studio, ambient environmental sound. The Cage/Feldman/Annea Lockwood references position it firmly in the introspective, conceptual end of the collection's range. Boomkat seems genuinely moved by it.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/requiem-bedb4b41-01eb-464b-bc6b-eb6f652d0803" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Irmin+Schmidt+Requiem+Mute+Can" class="link" target="_blank">Preview on YouTube ↗</a></div>
-      </div>
+    <div class="entry"><div class="art-wrap"><div class="art-placeholder"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#f0eeea"/><rect x="20" y="20" width="160" height="2" fill="#111010"/><rect x="20" y="178" width="160" height="2" fill="#111010"/><text x="100" y="105" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6a6259" letter-spacing="1">MUTE</text></svg></div><div class="art-tag known">In Playlists</div></div>
+      <div class="entry-body"><div class="entry-artist">Irmin Schmidt</div><div class="entry-album">Requiem</div><div class="entry-meta"><span>Mute</span><span>Prepared Piano · Electroacoustic · Experimental</span><span>April 2026</span></div><p class="entry-copy">CAN is in the Spotify playlists (high frequency). Requiem is Irmin Schmidt’s new album of spontaneous duets between prepared piano and nature — a nightingale recorded outside his studio, ambient environmental sound. The Cage/Feldman/Annea Lockwood references position it firmly in the introspective, conceptual end of the collection’s range.</p><div class="entry-links"><a href="https://boomkat.com/products/requiem-bedb4b41-01eb-464b-bc6b-eb6f652d0803" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Irmin+Schmidt+Requiem+Mute+Can" class="link" target="_blank">Preview on YouTube</a></div></div>
     </div>
   </section>
   <section class="section">
-  <div class="section-head"><span class="section-index">03</span><span class="section-label">Wildcard <span>×1</span></span></div>
-    <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/confession-d52f3133-b83a-4bad-83e8-880fa946c634" target="_blank" style="display:block"><div class="art-placeholder"><span>Carla Dal Forno</span></div></a><div class="art-tag wild">Wildcard</div></div>
-      <div class="entry-body">
-        <div class="entry-artist">Carla Dal Forno</div><div class="entry-album">Confession</div>
-        <div class="entry-meta"><span>Kallista</span><span>Dub-inflected DIY Pop · Post-Punk</span><span>April 2026</span></div>
-        <p class="entry-copy">Not in the collection. Dal Forno's fourth album was recorded in an abandoned hospital — rattly, dub-inflected vignettes about a friendship turned romance. Young Marble Giants and Broadcast in the reference orbit, with a raw directness that sits adjacent to the collection's quieter corners. The DIY dub angle is the hook; worth a listen on the strength of the Broadcast comparison alone.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/confession-d52f3133-b83a-4bad-83e8-880fa946c634" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Carla+Dal+Forno+Confession+Kallista" class="link" target="_blank">Preview on YouTube ↗</a></div>
-      </div>
+    <div class="section-head"><span class="section-index">03</span><span class="section-label">Wildcard <span>×1</span></span></div>
+    <div class="entry"><div class="art-wrap"><div class="art-placeholder"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#f0eeea"/><rect x="30" y="80" width="140" height="40" fill="#e4e1db"/><rect x="80" y="30" width="40" height="140" fill="#e4e1db"/><text x="100" y="182" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#6a6259" letter-spacing="1">KALLISTA</text></svg></div><div class="art-tag wild">Wildcard</div></div>
+      <div class="entry-body"><div class="entry-artist">Carla Dal Forno</div><div class="entry-album">Confession</div><div class="entry-meta"><span>Kallista</span><span>Dub-inflected DIY Pop · Post-punk</span><span>April 2026</span></div><p class="entry-copy">Not in the collection. Dal Forno’s fourth album was recorded in an abandoned hospital — rattly, dub-inflected vignettes about a friendship turned romance. Young Marble Giants and Broadcast in the reference orbit. The DIY dub angle is the hook. Worth a listen on the strength of the Broadcast comparison alone.</p><div class="entry-links"><a href="https://boomkat.com/products/confession-d52f3133-b83a-4bad-83e8-880fa946c634" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Carla+Dal+Forno+Confession+Kallista" class="link" target="_blank">Preview on YouTube</a></div></div>
     </div>
   </section>
   <section class="section">
     <div class="section-head"><span class="section-index">04</span><span class="section-label">Also Noted <span>×4</span></span></div>
-    <div class="also-grid"><div class="also-spacer"></div><div class="also-items">
-      <div class="also-item"><span class="also-n">01</span><span class="also-text"><strong>Rhythm &amp; Sound — <em>The Versions</em></strong> (Burial Mix / Basic Channel) — all-time essential dub techno, back in print. Worth flagging the repress if not in the library.</span></div>
-      <div class="also-item"><span class="also-n">02</span><span class="also-text"><strong>The Caretaker — <em>Patience (After Sebald)</em></strong> (History Always Favours The Winners) — back in print after 5 years. Significant in the ambient/hauntology orbit. Repress only.</span></div>
-      <div class="also-item"><span class="also-n">03</span><span class="also-text"><strong>Alex Zhang Hungtai — <em>Dras</em></strong> (Shelter Press) — saxophone transformed into metallic, eerie drones. Harry Bertoia and Stuart Dempster in the editorial.</span></div>
-      <div class="also-item"><span class="also-n">04</span><span class="also-text"><strong>Susumu Yokota — <em>Laputa (Skintone Edition)</em></strong> (Lo Recordings) — overlooked 2002 album, first proper global release. Bridge between The Boy and the Tree and Symbol.</span></div>
+    <div class="also-grid"><div></div><div class="also-items">
+      <div class="also-item"><span class="also-n">01</span><span class="also-text"><strong>Rhythm & Sound — The Versions</strong> (Burial Mix / Basic Channel) — Back-catalog reissue. Worth flagging the repress if it’s not in the library.</span></div>
+      <div class="also-item"><span class="also-n">02</span><span class="also-text"><strong>The Caretaker — Patience (After Sebald)</strong> (History Always Favours The Winners) — Back in print after 5 years. Repress only.</span></div>
+      <div class="also-item"><span class="also-n">03</span><span class="also-text"><strong>Alex Zhang Hungtai — Dras</strong> (Shelter Press) — Saxophone transformed into metallic, eerie drones. Harry Bertoia and Stuart Dempster in the editorial.</span></div>
+      <div class="also-item"><span class="also-n">04</span><span class="also-text"><strong>Susumu Yokota — Laputa (Skintone Edition)</strong> (Lo Recordings) — Overlooked 2002 album getting its first proper global release.</span></div>
     </div></div>
   </section>
-  <div class="site-footer">
-    <p class="footer-note">Written retroactively from the April 24 Boomkat email. Strong week — the Borderland Transport and Inrain reissue are the two I'd start with. Irmin Schmidt is the quiet surprise.</p>
-    <span class="footer-stamp">Still Point · 2026-W17</span>
-  </div>
+  <div class="site-footer"><p class="footer-note">Written retroactively from the April 24 Boomkat email. The Borderland Transport and Inrain reissue are the two to start with. Irmin Schmidt is the quiet surprise.</p><span class="footer-stamp">Still Point · 2026-W17</span></div>
 </div>
 </body>
 </html>

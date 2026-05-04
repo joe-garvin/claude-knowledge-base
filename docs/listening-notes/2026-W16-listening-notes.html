@@ -3,109 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Listening Notes — W16 · April 17, 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>/* Swiss Design System */
-:root{--stone-50:#f9f8f6;--stone-100:#f0eeea;--stone-200:#e4e1db;--stone-300:#ccc8c0;--stone-800:#292524;--stone-900:#1c1917;--stone-950:#0c0a09;--accent:#2D6A4F;--cobalt:#003B8E;--golden:#b8860b;--text-primary:#111010;--text-secondary:#2e2a27;--text-tertiary:#6a6259;--rule:rgba(15,13,12,0.10);--rule-strong:rgba(15,13,12,0.24);--font-sans:'IBM Plex Sans','Hanken Grotesk',system-ui,sans-serif;--font-mono:'IBM Plex Mono',monospace;--art-size:200px;--col-gap:48px}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{font-size:16px}body{font-family:var(--font-sans);background:var(--stone-50);color:var(--text-primary);-webkit-font-smoothing:antialiased;line-height:1.6;min-height:100vh}a{color:inherit;text-decoration:none}
-.site-header{position:sticky;top:0;z-index:100;background:var(--stone-50);border-bottom:1px solid var(--rule-strong);padding:18px 0}.site-header .inner{max-width:1160px;margin:0 auto;padding:0 48px;display:flex;align-items:baseline;justify-content:space-between}.header-title,.header-week{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary)}
-.page{max-width:1160px;margin:0 auto;padding:0 48px}.hero{padding:80px 0 60px;border-bottom:1px solid var(--rule-strong)}.hero-eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:24px}.hero-lockup{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap}.hero-title{font-size:clamp(52px,7vw,96px);font-weight:300;letter-spacing:-.035em;line-height:.92;color:var(--text-primary)}.hero-title em{font-style:normal;color:var(--text-primary)}.hero-stats{display:flex;flex-direction:column;gap:8px;align-items:flex-end;flex-shrink:0;padding-bottom:6px}.hero-stat{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--text-tertiary);text-align:right}.hero-stat strong{color:var(--text-secondary);font-weight:500}.hero-rule{margin-top:40px;border:none;border-top:1px solid var(--rule)}
-.section{padding:0 0 64px;border-bottom:1px solid var(--rule)}.section-head{margin:0 -48px 52px;border-top:2px solid var(--text-primary);background:var(--stone-100);padding:11px 48px;display:flex;align-items:baseline;gap:20px}.section-index{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-tertiary);flex-shrink:0}.section-label{font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--text-primary)}.section-label span{font-family:var(--font-mono);font-size:10px;font-weight:400;color:var(--text-tertiary);margin-left:12px;letter-spacing:.06em}
-.entry{display:grid;grid-template-columns:var(--art-size) 1fr;gap:0 var(--col-gap);padding-bottom:52px;margin-bottom:52px;border-bottom:1px solid var(--rule)}.entry:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0}.art-wrap{position:relative;width:var(--art-size);flex-shrink:0}.art-wrap a{display:block}.art-wrap img{display:block;width:var(--art-size);height:var(--art-size);object-fit:cover;background:var(--stone-200)}.art-wrap a:hover img{opacity:.88;transition:opacity .2s}.art-placeholder{display:flex;align-items:center;justify-content:center;width:var(--art-size);height:var(--art-size);background:var(--stone-100);border:1px solid var(--rule-strong)}.art-placeholder span{font-family:var(--font-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-tertiary);text-align:center;padding:8px}.art-tag{position:absolute;top:0;left:0;font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 7px;line-height:1}.art-tag.new{background:var(--stone-900);color:var(--stone-50)}.art-tag.known{background:var(--cobalt);color:white}.art-tag.wild{background:var(--golden);color:var(--stone-900)}
-.entry-body{border-left:1px solid var(--rule-strong);padding-left:var(--col-gap);display:flex;flex-direction:column;justify-content:center}.entry-artist{font-size:24px;font-weight:500;letter-spacing:-.025em;line-height:1.1;color:var(--text-primary);margin-bottom:2px}.entry-album{font-size:24px;font-weight:300;letter-spacing:-.025em;line-height:1.1;color:var(--text-secondary);margin-bottom:14px}.entry-meta{display:flex;flex-wrap:wrap;gap:0 20px;font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary);letter-spacing:.05em;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.entry-copy{font-size:15px;line-height:1.75;color:var(--text-secondary);max-width:60ch;margin-bottom:22px}.entry-links{display:flex;gap:20px;flex-wrap:wrap;align-items:center}.link{font-family:var(--font-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--cobalt);border-bottom:1px solid rgba(0,59,142,.28);padding-bottom:1px;transition:color .15s,border-color .15s;white-space:nowrap}.link:hover{opacity:.7}.link.primary{font-weight:500}
-.also-grid{display:grid;grid-template-columns:var(--art-size) 1fr;gap:0 var(--col-gap)}.also-items{border-left:1px solid var(--rule-strong);padding-left:var(--col-gap)}.also-item{display:flex;gap:18px;padding:18px 0;border-bottom:1px solid var(--rule);align-items:baseline}.also-item:first-child{padding-top:0}.also-item:last-child{border-bottom:none}.also-n{font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);flex-shrink:0;width:18px;padding-top:2px}.also-text{font-size:14px;color:var(--text-secondary);line-height:1.65}.also-text strong{font-weight:500;color:var(--text-primary)}
-.site-footer{padding:40px 0 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}.footer-note{font-size:13px;font-style:italic;color:var(--text-tertiary);max-width:70ch;line-height:1.6}.footer-stamp{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);white-space:nowrap}
+<title>Listening Notes — W16 · April 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root { --stone-50: #f9f8f6; --stone-100: #f0eeea; --stone-200: #e4e1db; --accent: #2D6A4F; --cobalt: #003B8E; --text-primary: #111010; --text-secondary: #2e2a27; --text-tertiary: #6a6259; --rule: rgba(15,13,12,0.10); --rule-strong: rgba(15,13,12,0.24); --font-sans: "IBM Plex Sans", system-ui, sans-serif; --font-mono: "IBM Plex Mono", monospace; --art-size: 200px; --col-gap: 48px; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body { font-family: var(--font-sans); background: var(--stone-50); color: var(--text-primary); -webkit-font-smoothing: antialiased; line-height: 1.6; min-height: 100vh; }
+a { color: inherit; text-decoration: none; }
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--stone-50); border-bottom: 1px solid var(--rule-strong); padding: 18px 0; }
+.site-header .inner { max-width: 1160px; margin: 0 auto; padding: 0 48px; display: flex; align-items: baseline; justify-content: space-between; }
+.header-title, .header-week { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); }
+.page { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+.hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule-strong); }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 24px; }
+.hero-lockup { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.hero-title { font-size: clamp(52px, 7vw, 96px); font-weight: 300; letter-spacing: -0.035em; line-height: 0.92; color: var(--text-primary); }
+.hero-title em { font-style: normal; color: var(--accent); }
+.hero-stats { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; flex-shrink: 0; padding-bottom: 6px; }
+.hero-stat { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-tertiary); text-align: right; }
+.hero-stat strong { color: var(--text-secondary); font-weight: 500; }
+.hero-rule { margin-top: 40px; border: none; border-top: 1px solid var(--rule); }
+.section { padding: 0 0 64px; border-bottom: 1px solid var(--rule); }
+.section-head { margin: 0 -48px 52px; border-top: 2px solid var(--text-primary); background: var(--stone-100); padding: 11px 48px; display: flex; align-items: baseline; gap: 20px; }
+.section-index { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-tertiary); flex-shrink: 0; }
+.section-label { font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-primary); }
+.section-label span { font-family: var(--font-mono); font-size: 10px; font-weight: 400; color: var(--text-tertiary); margin-left: 12px; letter-spacing: 0.06em; }
+.entry { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); padding-bottom: 52px; margin-bottom: 52px; border-bottom: 1px solid var(--rule); }
+.entry:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+.art-wrap { position: relative; width: var(--art-size); flex-shrink: 0; }
+.art-placeholder { width: var(--art-size); height: var(--art-size); background: var(--stone-100); display: flex; align-items: center; justify-content: center; border: 1px solid var(--stone-200); }
+.art-tag { position: absolute; top: 0; left: 0; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.10em; text-transform: uppercase; padding: 4px 7px; line-height: 1; }
+.art-tag.new { background: var(--text-primary); color: var(--stone-50); }
+.art-tag.known { background: var(--cobalt); color: white; }
+.art-tag.wild { background: #a07010; color: white; }
+.entry-body { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); display: flex; flex-direction: column; justify-content: center; }
+.entry-artist { font-size: 24px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-primary); margin-bottom: 2px; }
+.entry-album { font-size: 24px; font-weight: 300; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-secondary); margin-bottom: 14px; }
+.entry-meta { display: flex; flex-wrap: wrap; gap: 0 20px; font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.05em; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+.entry-copy { font-size: 15px; line-height: 1.75; color: var(--text-secondary); max-width: 60ch; margin-bottom: 22px; }
+.entry-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.link { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--cobalt); border-bottom: 1px solid rgba(0,59,142,0.28); padding-bottom: 1px; white-space: nowrap; }
+.link.primary { font-weight: 500; }
+.also-grid { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); }
+.also-items { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); }
+.also-item { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.also-item:first-child { padding-top: 0; }
+.also-item:last-child { border-bottom: none; }
+.also-n { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); flex-shrink: 0; width: 18px; }
+.also-text { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+.also-text strong { font-weight: 500; color: var(--text-primary); }
+.site-footer { padding: 40px 0 56px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-note { font-size: 13px; font-style: italic; color: var(--text-tertiary); max-width: 70ch; line-height: 1.6; }
+.footer-stamp { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); }
 </style>
 </head>
 <body>
-<header class="site-header"><div class="inner"><span class="header-title">Still Point — Listening Notes</span><span class="header-week">W16 · April 17, 2026</span></div></header>
+<header class="site-header"><div class="inner"><span class="header-title">Still Point — Listening Notes</span><span class="header-week">W16 · 17 April 2026</span></div></header>
 <div class="page">
-<div class="hero">
+  <div class="hero">
     <p class="hero-eyebrow">Weekly digest · April 17, 2026</p>
     <div class="hero-lockup">
-      <h1 class="hero-title">Listening<br>Notes <em>W16</em></h1>
-      <div class="hero-stats"><div class="hero-stat"><strong>Sources</strong> — Boomkat Weekly Digest (Apr 17)</div><div class="hero-stat"><strong>Picks</strong> — 4 new discoveries · 1 known artist · 1 wildcard</div><div class="hero-stat"><strong>Also noted</strong> — 6 items</div></div>
+      <h1 class="hero-title">Listening<br>Notes <em>№16</em></h1>
+      <div class="hero-stats"><div class="hero-stat"><strong>Source</strong> — Boomkat Weekly Digest (Apr 17)</div><div class="hero-stat"><strong>Picks</strong> — 4 new discoveries · 1 known artist · 1 wildcard</div></div>
     </div>
     <hr class="hero-rule">
   </div>
   <section class="section">
-  <div class="section-head"><span class="section-index">01</span><span class="section-label">New Discoveries <span>×4</span></span></div>
-    <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/trax-from-the-bottom-of-a-well" target="_blank" style="display:block"><div class="art-placeholder"><span>R. Boy</span></div></a><div class="art-tag new">New</div></div>
-      <div class="entry-body">
-        <div class="entry-artist">R. Boy</div><div class="entry-album">Trax From the Bottom of a Well</div>
-        <div class="entry-meta"><span>Self-released (tape)</span><span>Deep House · Garage-Blues</span></div>
-        <p class="entry-copy">Manchester DJ/producer Finn's debut LP under this new alias — nine house elegies sitting somewhere between garage-blues, lo-fi soul, and electronic introspection. Boomkat clusters the references around Actress, Kassem Mosse, Omar-S, and Rezzett. The 4-track recording style gives it grain and personality. Finn has history as a DJ but this is a fresh name; treat as new.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/trax-from-the-bottom-of-a-well" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=R+Boy+Trax+from+the+Bottom+of+a+Well+house" class="link" target="_blank">Preview on YouTube ↗</a></div>
-      </div>
+    <div class="section-head"><span class="section-index">01</span><span class="section-label">New Discoveries <span>×4</span></span></div>
+    <div class="entry"><div class="art-wrap"><div class="art-placeholder"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#1c1917"/><rect x="0" y="0" width="200" height="67" fill="#2e2a27"/><rect x="0" y="133" width="200" height="67" fill="#2e2a27"/><text x="100" y="108" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6a6259" letter-spacing="1">SELF-REL.</text></svg></div><div class="art-tag new">New</div></div>
+      <div class="entry-body"><div class="entry-artist">R. Boy</div><div class="entry-album">Trax From the Bottom of a Well</div><div class="entry-meta"><span>Self-released (tape)</span><span>Deep House · Garage-blues</span><span>April 2026</span></div><p class="entry-copy">Manchester DJ/producer Finn’s debut LP under this new alias — nine house elegies sitting somewhere between garage-blues, lo-fi soul, and electronic introspection. Boomkat clusters the reference points around Actress, Kassem Mosse, Omar-S, and Rezzett. The 4-track recording style gives it grain and personality.</p><div class="entry-links"><a href="https://boomkat.com/products/trax-from-the-bottom-of-a-well" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=R+Boy+Trax+from+the+Bottom+of+a+Well+house" class="link" target="_blank">Preview on YouTube</a></div></div>
     </div>
-    <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/chapter-ii-25861532-2018-41e0-8c3b-4f53e406db18" target="_blank" style="display:block"><div class="art-placeholder"><span>G Version III</span></div></a><div class="art-tag new">New</div></div>
-      <div class="entry-body">
-        <div class="entry-artist">G Version III</div><div class="entry-album">Chapter II</div>
-        <div class="entry-meta"><span>Good Morning Tapes</span><span>Digidub · Steppers · FM Synthesis</span></div>
-        <p class="entry-copy">Kyoto-based G Version III continues what began with a Riddim Chango 12" last year — minor-key drill synths fused with digi-steppers and holographic FM textures. Good Morning Tapes is a well-curated label; the reference cluster hits Equiknoxx, John T. Gast, TNT Roots. Not in collection. This is exactly the kind of record that rewards patient listening — not peak-time, not anthemic.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/chapter-ii-25861532-2018-41e0-8c3b-4f53e406db18" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=G+Version+III+Chapter+II+Good+Morning+Tapes+digidub" class="link" target="_blank">Preview on YouTube ↗</a></div>
-      </div>
+    <div class="entry"><div class="art-wrap"><div class="art-placeholder"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#f0eeea"/><line x1="0" y1="50" x2="200" y2="50" stroke="#ccc8c0" stroke-width="0.5"/><line x1="0" y1="100" x2="200" y2="100" stroke="#ccc8c0" stroke-width="0.5"/><line x1="0" y1="150" x2="200" y2="150" stroke="#ccc8c0" stroke-width="0.5"/><line x1="50" y1="0" x2="50" y2="200" stroke="#ccc8c0" stroke-width="0.5"/><line x1="100" y1="0" x2="100" y2="200" stroke="#ccc8c0" stroke-width="0.5"/><line x1="150" y1="0" x2="150" y2="200" stroke="#ccc8c0" stroke-width="0.5"/><rect x="70" y="70" width="60" height="60" fill="#e4e1db"/><text x="100" y="182" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#6a6259" letter-spacing="1">GOOD MORNING</text></svg></div><div class="art-tag new">New</div></div>
+      <div class="entry-body"><div class="entry-artist">G Version III</div><div class="entry-album">Chapter II</div><div class="entry-meta"><span>Good Morning Tapes</span><span>Digidub · Steppers · FM Synthesis</span><span>April 2026</span></div><p class="entry-copy">Kyoto-based G Version III continues what began with a Riddim Chango 12" last year — minor-key drill synths fused with digi-steppers and holographic FM textures. Reference cluster hits Equiknoxx, John T. Gast, TNT Roots. Not in collection.</p><div class="entry-links"><a href="https://boomkat.com/products/chapter-ii-25861532-2018-41e0-8c3b-4f53e406db18" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=G+Version+III+Chapter+II+Good+Morning+Tapes+digidub" class="link" target="_blank">Preview on YouTube</a></div></div>
     </div>
-    <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/topology-transform" target="_blank" style="display:block"><div class="art-placeholder"><span>Paperclip Minimiser</span></div></a><div class="art-tag new">New</div></div>
-      <div class="entry-body">
-        <div class="entry-artist">Paperclip Minimiser</div><div class="entry-album">Topology Transform</div>
-        <div class="entry-meta"><span>Blank Mind</span><span>Experimental Electronic</span></div>
-        <p class="entry-copy">John Howes builds with custom software — fractal chain reactions with an unusually organic quality. Boomkat name-drops Carrier, Sasu Ripatti, and Purelink, which puts this in the same zone as Skee Mask's more abstract tendencies and the left edge of Perlon. The Peak Oil connection adds credibility.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/topology-transform" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Paperclip+Minimiser+Topology+Transform+Blank+Mind" class="link" target="_blank">Preview on YouTube ↗</a></div>
-      </div>
+    <div class="entry"><div class="art-wrap"><div class="art-placeholder"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#f0eeea"/><polygon points="100,20 180,160 20,160" fill="none" stroke="#ccc8c0" stroke-width="1"/><polygon points="100,55 155,145 45,145" fill="#e4e1db"/><text x="100" y="182" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#6a6259" letter-spacing="1">BLANK MIND</text></svg></div><div class="art-tag new">New</div></div>
+      <div class="entry-body"><div class="entry-artist">Paperclip Minimiser</div><div class="entry-album">Topology Transform</div><div class="entry-meta"><span>Blank Mind</span><span>Experimental Electronic</span><span>April 2026</span></div><p class="entry-copy">John Howes builds with custom software — fractal chain reactions with an unusually organic quality. Boomkat name-drops Carrier, Sasu Ripatti, and Purelink. The Peak Oil connection adds credibility. 12" on Blank Mind.</p><div class="entry-links"><a href="https://boomkat.com/products/topology-transform" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Paperclip+Minimiser+Topology+Transform+Blank+Mind" class="link" target="_blank">Preview on YouTube</a></div></div>
     </div>
-    <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/tru-folk" target="_blank" style="display:block"><div class="art-placeholder"><span>Holodec</span></div></a><div class="art-tag new">New</div></div>
-      <div class="entry-body">
-        <div class="entry-artist">Holodec</div><div class="entry-album">Tru Folk</div>
-        <div class="entry-meta"><span>Phantom Limb</span><span>Ambient · Field Recording · Urban Haze</span></div>
-        <p class="entry-copy">LA-based Holodec's record is described as an audio document of everyday life — field recordings, distant synthesis, urban textures. Space Afrika and Burial as reference points. "Both a folk record and an audio document" is the kind of framing that earns trust on these lists. New to collection.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/tru-folk" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Holodec+Tru+Folk+Phantom+Limb+ambient" class="link" target="_blank">Preview on YouTube ↗</a></div>
-      </div>
+    <div class="entry"><div class="art-wrap"><div class="art-placeholder"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#f0eeea"/><rect x="40" y="40" width="120" height="120" fill="#e4e1db"/><text x="100" y="182" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#6a6259" letter-spacing="1">PHANTOM LIMB</text></svg></div><div class="art-tag new">New</div></div>
+      <div class="entry-body"><div class="entry-artist">Holodec</div><div class="entry-album">Tru Folk</div><div class="entry-meta"><span>Phantom Limb</span><span>Ambient · Field Recording · Urban</span><span>April 2026</span></div><p class="entry-copy">LA-based Holodec’s record described as an audio document of everyday life — field recordings, distant synthesis, urban textures. Space Afrika and Burial as reference points. Phantom Limb is a quality label. “Both a folk record and an audio document” is the kind of framing that earns trust on these lists.</p><div class="entry-links"><a href="https://boomkat.com/products/tru-folk" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Holodec+Tru+Folk+Phantom+Limb+ambient" class="link" target="_blank">Preview on YouTube</a></div></div>
     </div>
   </section>
   <section class="section">
-  <div class="section-head"><span class="section-index">02</span><span class="section-label">New Releases from Artists You Know <span>×1</span></span></div>
-    <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/soichi-terada-ape-escape-3-originape-soundtracks-in-a-box" target="_blank" style="display:block"><div class="art-placeholder"><span>Soichi Terada</span></div></a><div class="art-tag known">In Playlists</div></div>
-      <div class="entry-body">
-        <div class="entry-artist">Soichi Terada</div><div class="entry-album">Ape Escape 3: Originape Soundtracks in a Box</div>
-        <div class="entry-meta"><span>Far East Recording</span><span>Garage House · Jungle</span><span>Deluxe reissue</span></div>
-        <p class="entry-copy">Terada is in your Spotify playlists (3–5 tracks). This 4LP box collects the Ape Escape 3 soundtrack material — dreamy garage house and jungle. The original release is cult; this is the first deluxe vinyl edition. Catalog work, but the occasion is significant enough to flag.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/soichi-terada-ape-escape-3-originape-soundtracks-in-a-box" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Soichi+Terada+Ape+Escape+3+soundtrack+house" class="link" target="_blank">Preview on YouTube ↗</a></div>
-      </div>
+    <div class="section-head"><span class="section-index">02</span><span class="section-label">New Releases from Artists You Know <span>×1</span></span></div>
+    <div class="entry"><div class="art-wrap"><div class="art-placeholder"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#1c1917"/><rect x="0" y="0" width="67" height="67" fill="#2e2a27"/><rect x="133" y="0" width="67" height="67" fill="#2e2a27"/><rect x="0" y="133" width="67" height="67" fill="#2e2a27"/><rect x="133" y="133" width="67" height="67" fill="#2e2a27"/><text x="100" y="108" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#6a6259" letter-spacing="1">FAR EAST REC.</text></svg></div><div class="art-tag known">In Playlists</div></div>
+      <div class="entry-body"><div class="entry-artist">Soichi Terada</div><div class="entry-album">Ape Escape 3: Originape Soundtracks in a Box</div><div class="entry-meta"><span>Far East Recording</span><span>Garage House · Jungle</span><span>April 2026 (deluxe reissue)</span></div><p class="entry-copy">Terada is in your Spotify playlists (3–5 tracks). This 4LP box collects the Ape Escape 3 soundtrack material — dreamy garage house and jungle. The original release is cult; this is the first deluxe vinyl edition.</p><div class="entry-links"><a href="https://boomkat.com/products/soichi-terada-ape-escape-3-originape-soundtracks-in-a-box" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Soichi+Terada+Ape+Escape+3+soundtrack+house" class="link" target="_blank">Preview on YouTube</a></div></div>
     </div>
   </section>
   <section class="section">
-  <div class="section-head"><span class="section-index">03</span><span class="section-label">Wildcard <span>×1</span></span></div>
-    <div class="entry">
-      <div class="art-wrap"><a href="https://boomkat.com/products/tuning-453131a1-5d93-495b-89e8-e4cb4a7285cb" target="_blank" style="display:block"><div class="art-placeholder"><span>Christina Kubisch</span></div></a><div class="art-tag wild">Wildcard</div></div>
-      <div class="entry-body">
-        <div class="entry-artist">Christina Kubisch</div><div class="entry-album">Tuning</div>
-        <div class="entry-meta"><span>Faitiche (Jan Jelinek)</span><span>Electroacoustic · Electromagnetic</span></div>
-        <p class="entry-copy">Kubisch has been working with electromagnetic interference and tuning forks since the '70s — this Faitiche anthology collects a recording from her "Electrical Walks" series alongside tuning fork compositions and recent material. Faitiche's curation standards are high (Roméo Poirier, Farida, Panoram). This sits further out than the typical digest pick — closer to the electroacoustic and sound art edge. Worth the risk.</p>
-        <div class="entry-links"><a href="https://boomkat.com/products/tuning-453131a1-5d93-495b-89e8-e4cb4a7285cb" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Christina+Kubisch+Tuning+Faitiche+electromagnetic" class="link" target="_blank">Preview on YouTube ↗</a></div>
-      </div>
+    <div class="section-head"><span class="section-index">03</span><span class="section-label">Wildcard <span>×1</span></span></div>
+    <div class="entry"><div class="art-wrap"><div class="art-placeholder"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#f0eeea"/><circle cx="100" cy="100" r="80" fill="none" stroke="#ccc8c0" stroke-width="1"/><circle cx="100" cy="100" r="50" fill="none" stroke="#ccc8c0" stroke-width="0.5"/><text x="100" y="182" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#6a6259" letter-spacing="1">FAITICHE</text></svg></div><div class="art-tag wild">Wildcard</div></div>
+      <div class="entry-body"><div class="entry-artist">Christina Kubisch</div><div class="entry-album">Tuning</div><div class="entry-meta"><span>Faitiche (Jan Jelinek)</span><span>Electroacoustic · Electromagnetic</span><span>April 2026</span></div><p class="entry-copy">Kubisch has been working with electromagnetic interference and tuning forks since the '70s — this Faitiche anthology collects a recording from her “Electrical Walks” series alongside tuning fork compositions and recent material. Faitiche’s curation standards are high (Roméo Poirier, Farida, Panoram). Worth the risk.</p><div class="entry-links"><a href="https://boomkat.com/products/tuning-453131a1-5d93-495b-89e8-e4cb4a7285cb" class="link primary" target="_blank">Boomkat ↗</a><a href="https://www.youtube.com/results?search_query=Christina+Kubisch+Tuning+Faitiche+electromagnetic" class="link" target="_blank">Preview on YouTube</a></div></div>
     </div>
   </section>
   <section class="section">
     <div class="section-head"><span class="section-index">04</span><span class="section-label">Also Noted <span>×6</span></span></div>
-    <div class="also-grid"><div class="also-spacer"></div><div class="also-items">
-      <div class="also-item"><span class="also-n">01</span><span class="also-text"><strong>Froid Dub — <em>Positive and Natural</em></strong> (Delodio) — cult Parisian digidub duo, half-hour of deeply knackered ghost dub. Basic Channel adjacent label. <a href="https://boomkat.com/products/positive-and-natural" class="link" target="_blank">Boomkat ↗</a></span></div>
-      <div class="also-item"><span class="also-n">02</span><span class="also-text"><strong>Paul St. Hilaire (Tikiman) — <em>Tikiman Vol. 1</em></strong> (Kynant Records) — retrospective of his solo productions. Three decades of Dominican/Berlin dub. <a href="https://boomkat.com/products/tikiman-vol-1" class="link" target="_blank">Boomkat ↗</a></span></div>
-      <div class="also-item"><span class="also-n">03</span><span class="also-text"><strong>Model 500 — <em>Night Drive (Thru Babylon)</em></strong> (Metroplex) — the 1987 Juan Atkins 12" reissued for the first time. Detroit electro-techno from the source. <a href="https://boomkat.com/products/night-drive-thru-babylon-63dcfbc6-0967-4ef2-a1c8-21b1c25d4a7d" class="link" target="_blank">Boomkat ↗</a></span></div>
-      <div class="also-item"><span class="also-n">04</span><span class="also-text"><strong>Abentis — <em>Dim Grow</em></strong> (2++) — Nagoya ambient/club music. "Haruomi Hosono gone UKG" is a sentence worth investigating. <a href="https://boomkat.com/products/dim-grow" class="link" target="_blank">Boomkat ↗</a></span></div>
-      <div class="also-item"><span class="also-n">05</span><span class="also-text"><strong>Annea Lockwood — <em>World Rhythms</em></strong> (Room 40) — 50th anniversary edition of the 1975 field recording piece, restored by Lawrence English. <a href="https://boomkat.com/products/world-rhythms-661d99fa-7997-47a5-a855-f4c37af4b47e" class="link" target="_blank">Boomkat ↗</a></span></div>
-      <div class="also-item"><span class="also-n">06</span><span class="also-text"><strong>Rene Wise — <em>Johnson's Theme</em></strong> (Dekmantel UFO series) — Lisbon-based UK producer, deep and heady. <a href="https://boomkat.com/products/johnson-s-theme" class="link" target="_blank">Boomkat ↗</a></span></div>
+    <div class="also-grid"><div></div><div class="also-items">
+      <div class="also-item"><span class="also-n">01</span><span class="also-text"><strong>Froid Dub — Positive and Natural</strong> (Delodio / Basic Channel adjacent) — cult Parisian digidub duo.</span></div>
+      <div class="also-item"><span class="also-n">02</span><span class="also-text"><strong>Paul St. Hilaire (Tikiman) — Tikiman Vol. 1</strong> (Kynant Records) — three decades of Dominican/Berlin dub.</span></div>
+      <div class="also-item"><span class="also-n">03</span><span class="also-text"><strong>Model 500 — Night Drive (Thru Babylon)</strong> (Metroplex) — the 1987 Juan Atkins 12" reissued. Detroit electro-techno from the source.</span></div>
+      <div class="also-item"><span class="also-n">04</span><span class="also-text"><strong>Abentis — Dim Grow</strong> (2++) — Nagoya ambient/club music. “Haruomi Hosono gone UKG” is a sentence worth investigating.</span></div>
+      <div class="also-item"><span class="also-n">05</span><span class="also-text"><strong>Annea Lockwood — World Rhythms</strong> (Room 40) — 50th anniversary edition of the 1975 field recording piece, restored by Lawrence English.</span></div>
+      <div class="also-item"><span class="also-n">06</span><span class="also-text"><strong>Rene Wise — Johnson’s Theme</strong> (Dekmantel) — Lisbon-based UK producer, UFO series. Deep, heady dance floor.</span></div>
     </div></div>
   </section>
-  <div class="site-footer">
-    <p class="footer-note">Rich week — R. Boy and G Version III are the two I'd start with. The Paperclip Minimiser Perlon reference is worth following up on.</p>
-    <span class="footer-stamp">Still Point · 2026-W16</span>
-  </div>
+  <div class="site-footer"><p class="footer-note">Strong week for new names — R. Boy and G Version III are both in-profile and worth actual listening time. Christina Kubisch is the speculative bet.</p><span class="footer-stamp">Still Point · 2026-W16</span></div>
 </div>
 </body>
 </html>
