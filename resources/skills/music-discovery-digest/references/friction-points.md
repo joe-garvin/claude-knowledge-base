@@ -42,6 +42,25 @@ Ask Joe before overwriting: *"A digest note for W[N] already exists. Overwrite, 
 
 ---
 
+## HTML output / GitHub
+
+**GitHub push fails or tools unavailable**
+If `github:push_files` isn't in context, start a fresh Desktop session. As a fallback, write the HTML content to chat and note what files need pushing. Never silently skip the push.
+
+**Index not updated**
+Always update `index.html` in the same commit as the new digest file. A digest that exists but isn't in the index is effectively invisible.
+
+**Live template fetch fails**
+If the raw GitHub URL for the most recent digest returns an error, fall back to the layout spec in `templates/digest-html-structure.md` as the baseline. Note in the session that the live template was unavailable.
+
+**Art not found on Bandcamp**
+Check `templates/digest-html-structure.md` → "Known Bandcamp slugs" before giving up. If still not found, use the SVG placeholder — do not leave an empty `<img>` tag. Reference the W13/W14/W16 files in the repo for placeholder examples.
+
+**Obsidian markdown note is secondary**
+If the GitHub push succeeds but the Obsidian write fails, that's acceptable — the HTML is the primary record.
+
+---
+
 ## Scoring / filtering
 
 **Too many candidates, hard to choose**
