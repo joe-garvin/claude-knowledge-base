@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listening Notes — W19 · May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --stone-50:  #f9f8f6; --stone-100: #f0eeea; --stone-200: #e4e1db; --stone-300: #ccc8c0;
+  --stone-800: #292524; --stone-900: #1c1917; --stone-950: #0c0a09;
+  --accent:  #2D6A4F; --cobalt:  #003B8E; --golden:  #b8860b;
+  --text-primary:   #111010; --text-secondary: #2e2a27; --text-tertiary:  #6a6259;
+  --rule:        rgba(15,13,12,0.10); --rule-strong: rgba(15,13,12,0.24);
+  --font-sans: 'IBM Plex Sans', 'Hanken Grotesk', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --art-size: 200px; --col-gap:  48px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body { font-family: var(--font-sans); background: var(--stone-50); color: var(--text-primary); -webkit-font-smoothing: antialiased; line-height: 1.6; min-height: 100vh; }
+a { color: inherit; text-decoration: none; }
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--stone-50); border-bottom: 1px solid var(--rule-strong); padding: 18px 0; }
+.site-header .inner { max-width: 1160px; margin: 0 auto; padding: 0 48px; display: flex; align-items: baseline; justify-content: space-between; }
+.header-title { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); }
+.header-week { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); }
+.page { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+.hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule-strong); }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 24px; }
+.hero-lockup { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.hero-title { font-size: clamp(52px, 7vw, 96px); font-weight: 300; letter-spacing: -0.035em; line-height: 0.92; color: var(--text-primary); }
+.hero-title em { font-style: normal; color: var(--text-primary); }
+.hero-stats { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; flex-shrink: 0; padding-bottom: 6px; }
+.hero-stat { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-tertiary); text-align: right; }
+.hero-stat strong { color: var(--text-secondary); font-weight: 500; }
+.hero-rule { margin-top: 40px; border: none; border-top: 1px solid var(--rule); }
+.section { padding: 0 0 64px; border-bottom: 1px solid var(--rule); }
+.section-head { margin: 0 -48px 52px; border-top: 2px solid var(--text-primary); background: var(--stone-100); padding: 11px 48px; display: flex; align-items: baseline; gap: 20px; }
+.section-index { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-tertiary); flex-shrink: 0; }
+.section-label { font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-primary); }
+.section-label span { font-family: var(--font-mono); font-size: 10px; font-weight: 400; color: var(--text-tertiary); margin-left: 12px; letter-spacing: 0.06em; }
+.entry { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); padding-bottom: 52px; margin-bottom: 52px; border-bottom: 1px solid var(--rule); }
+.entry:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+.art-wrap { position: relative; width: var(--art-size); flex-shrink: 0; }
+.art-wrap a { display: block; }
+.art-wrap img { display: block; width: var(--art-size); height: var(--art-size); object-fit: cover; background: var(--stone-200); }
+.art-wrap a:hover img { opacity: 0.88; transition: opacity 0.2s; }
+.art-placeholder { display: block; width: var(--art-size); height: var(--art-size); background: var(--stone-100); border: 1px solid var(--stone-200); }
+.art-tag { position: absolute; top: 0; left: 0; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 7px; line-height: 1; }
+.art-tag.new { background: var(--stone-900); color: var(--stone-50); }
+.art-tag.known { background: var(--cobalt); color: white; }
+.art-tag.wild { background: var(--golden); color: var(--stone-900); }
+.entry-body { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); display: flex; flex-direction: column; justify-content: center; }
+.entry-artist { font-size: 24px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-primary); margin-bottom: 2px; }
+.entry-album { font-size: 24px; font-weight: 300; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-secondary); margin-bottom: 14px; }
+.entry-meta { display: flex; flex-wrap: wrap; gap: 0 20px; font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.05em; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+.entry-copy { font-size: 15px; line-height: 1.75; color: var(--text-secondary); max-width: 60ch; margin-bottom: 22px; }
+.entry-links { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+.link { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--cobalt); border-bottom: 1px solid rgba(0,59,142,0.28); padding-bottom: 1px; transition: opacity 0.15s; white-space: nowrap; }
+.link:hover { opacity: 0.7; }
+.link.primary { font-weight: 500; }
+.also-grid { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); }
+.also-items { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); }
+.also-item { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.also-item:first-child { padding-top: 0; }
+.also-item:last-child { border-bottom: none; }
+.also-n { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); flex-shrink: 0; width: 18px; }
+.also-text { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+.also-text strong { font-weight: 500; color: var(--text-primary); }
+.site-footer { padding: 40px 0 56px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-note { font-size: 13px; font-style: italic; color: var(--text-tertiary); max-width: 70ch; line-height: 1.6; }
+.footer-stamp { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); white-space: nowrap; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <span class="header-title">Still Point — Listening Notes</span>
+    <span class="header-week">W19 · 08 May 2026</span>
+  </div>
+</header>
+<div class="page">
+  <div class="hero">
+    <p class="hero-eyebrow">Weekly digest · May 8, 2026</p>
+    <div class="hero-lockup">
+      <h1 class="hero-title">Listening<br>Notes <em>№19</em></h1>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>Sources</strong> — Boomkat Weekly, Download Now</div>
+        <div class="hero-stat"><strong>Picks</strong> — 4 new discoveries · 2 known artists · 1 wildcard</div>
+        <div class="hero-stat"><strong>RA</strong> — page unavailable this week</div>
+      </div>
+    </div>
+    <hr class="hero-rule">
+  </div>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">01</span><span class="section-label">New Discoveries <span>×4</span></span></div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/ceaseless-motion" target="_blank">
+          <img src="https://f4.bcbits.com/img/a2772512644_0.jpg" alt="Polygonia — Ceaseless Motion" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Polygonia</div>
+        <div class="entry-album">Ceaseless Motion</div>
+        <div class="entry-meta">
+          <span>Timedance</span><span>Techno · IDM</span><span>May 2026</span>
+        </div>
+        <p class="entry-copy">Lindsey Wang's new EP on Batu's Timedance label, described as four "restive technoid anomalies" dancing in the gaps between Objekt, Gyrofield, and 33EMYBW. Boomkat's language is precise: "tricksy club torque," a finely calibrated rhythmic engineering. Polygonia has been in RA's orbit for a while but this is her first Timedance credit, and Timedance is exactly the kind of label that belongs here — releases like Blawan, Objekt, Parris all share something with the tightly wound, intellectual side of the collection. No prior library presence; unknown artist.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/ceaseless-motion" class="link primary" target="_blank">Boomkat ↗</a>
+          <a href="https://polygonia.bandcamp.com/album/ceaseless-motion" class="link" target="_blank">Bandcamp ↗</a>
+          <a href="https://www.youtube.com/results?search_query=Polygonia+Ceaseless+Motion+Timedance" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/duori" target="_blank">
+          <img src="https://f4.bcbits.com/img/a1935631659_0.jpg" alt="Heith &amp; Tarawangsawelas — Duori" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Heith &amp; Tarawangsawelas</div>
+        <div class="entry-album">Duori</div>
+        <div class="entry-meta">
+          <span>Stroom</span><span>Electroacoustic · World · Experimental</span><span>May 2026</span>
+        </div>
+        <p class="entry-copy">PAN alum Daniele Guerrini (Heith) and Bandung's Teguh Permana (Tarawangsawelas), making what they call "5th world music in low data mode" — recorded during ceremonies in Bandung and later refined on tour. Stroom is a Tier 2 label, and a record that's been brewing since 2017 between a PAN artist and a Morphine Records alumnus carries exactly the kind of conceptual and geographical weight this collection is drawn to. Both sources covered it. The slow development and geographic specificity (Bandung, West Java) feel like strong signals.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/duori" class="link primary" target="_blank">Boomkat ↗</a>
+          <a href="https://stroomtv.bandcamp.com/album/duori" class="link" target="_blank">Bandcamp ↗</a>
+          <a href="https://www.youtube.com/results?search_query=Heith+Tarawangsawelas+Duori+Stroom" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/depths-09a306ca-a5bb-4371-a946-cbfcd3b79dd4" target="_blank">
+          <img src="https://f4.bcbits.com/img/a2692709767_0.jpg" alt="Bergsonist — Depths" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Bergsonist</div>
+        <div class="entry-album">Depths</div>
+        <div class="entry-meta">
+          <span>Dark Entries</span><span>Techno · Beatdown · Maghreb</span><span>May 2026</span>
+        </div>
+        <p class="entry-copy">Moroccan-born Selwa Abd's debut on Dark Entries — 12 tracks of what Boomkat calls syncopated Maghreb-techno, rugged beatdown, and dreamy post-rave. The conceptual framing (postcolonial identity, speculative temporalities) and the references (DJ Haram, DJ Plead, Teresa Winter) point toward something with genuine friction and specificity. Bergsonist has been prolific on Bandcamp for years but this Dark Entries LP marks a more considered moment. Dark Entries is adjacent to the collection's industrial/synth-wave edges; the techno here sits closer to the rhythmic minimalism end than the functional peak-time end.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/depths-09a306ca-a5bb-4371-a946-cbfcd3b79dd4" class="link primary" target="_blank">Boomkat ↗</a>
+          <a href="https://bergsonist.bandcamp.com/album/depths" class="link" target="_blank">Bandcamp ↗</a>
+          <a href="https://www.youtube.com/results?search_query=Bergsonist+Depths+Dark+Entries" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/tegha" target="_blank">
+          <img src="https://f4.bcbits.com/img/a2772271439_0.jpg" alt="ØLUB — Tegha" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">ØLUB</div>
+        <div class="entry-album">Tegha</div>
+        <div class="entry-meta">
+          <span>Omen Wapta</span><span>Dub Techno · Basic Channel</span><span>May 2026</span>
+        </div>
+        <p class="entry-copy">Anonymous producer, debut release, hosted by Woody92's Omen Wapta label. Boomkat's description is blunt: "deepest Chain Reaction-ish dubs." That lineage — Basic Channel, Chain Reaction, Deepchord — sits at the quieter, most introspective edge of the collection, so an unknown producer doing it well on a label with a decent track record is worth a close listen. The anonymity is a minor irritant for scoring purposes; the aesthetic fit is not. No known label tier match, but the sound description clears every aesthetic filter.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/tegha" class="link primary" target="_blank">Boomkat ↗</a>
+          <a href="https://omenwapta.bandcamp.com/album/tegha" class="link" target="_blank">Bandcamp ↗</a>
+          <a href="https://www.youtube.com/results?search_query=OLUB+Tegha+Omen+Wapta" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">02</span><span class="section-label">New Releases from Artists You Know <span>×2</span></span></div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/vd5" target="_blank">
+          <img src="https://f4.bcbits.com/img/a4023159436_0.jpg" alt="Vladislav Delay Quintet — Vd5" loading="lazy">
+        </a>
+        <div class="art-tag known">In Playlists</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Vladislav Delay Quintet</div>
+        <div class="entry-album">Vd5</div>
+        <div class="entry-meta">
+          <span>We Jazz</span><span>Jazz · Fusion · Electronic</span><span>May 2026</span>
+        </div>
+        <p class="entry-copy">Sasu Ripatti (Vladislav Delay, also Luomo) is in the Spotify playlists with 3–5 tracks. This is the quintet's second album, 15 years after the quartet record, and Boomkat leads the weekly digest with it — calling out Moritz Von Oswald Trio as a reference alongside Bill Laswell Material productions. Ripatti on drums, with Maria Bertel, Max Loderbauer, Lucio Capece, and Derek Shirley. Boomkat describes it as moving from "slick to tempestuous," defying jazz preconceptions. The We Jazz label and the personnel involved (Loderbauer produced with von Oswald for years) are both strong signals. This is the biggest release in the digest.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/vd5" class="link primary" target="_blank">Boomkat ↗</a>
+          <a href="https://vladislavdelay.bandcamp.com/album/vd5" class="link" target="_blank">Bandcamp ↗</a>
+          <a href="https://www.youtube.com/results?search_query=Vladislav+Delay+Quintet+Vd5+We+Jazz" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/clairvoyant-dimensions" target="_blank">
+          <img src="https://f4.bcbits.com/img/a3084570307_0.jpg" alt="Mei Honeycomb — Clairvoyant Dimensions" loading="lazy">
+        </a>
+        <div class="art-tag known">Alias</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Mei Honeycomb</div>
+        <div class="entry-album">Clairvoyant Dimensions</div>
+        <div class="entry-meta">
+          <span>Meakusma</span><span>Jazz · Electroacoustic</span><span>May 2026</span>
+        </div>
+        <p class="entry-copy">Duo debut from Jordan Czamanski — one half of Juju &amp; Jordash and Magic Mountain High (both in the playlists, 3–5 tracks) — and US saxophonist Jeff Hollie, known from Zappa and Ike Willis records. Meakusma is a Belgian label with a strong track record in the space between experimental electronic and jazz. Boomkat's reference points are Alex Zhang-Hungtai and Evan Parker. The connection between Czamanski's longstanding jazz interests and his beatdown/deep house work (Juju &amp; Jordash have been on Dekmantel, Studio Barnhus) makes this a natural extension rather than a departure. Flagged as a side project / alias of a known artist.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/clairvoyant-dimensions" class="link primary" target="_blank">Boomkat ↗</a>
+          <a href="https://meakusma.bandcamp.com/album/clairvoyant-dimensions" class="link" target="_blank">Bandcamp ↗</a>
+          <a href="https://www.youtube.com/results?search_query=Mei+Honeycomb+Clairvoyant+Dimensions+Meakusma" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">03</span><span class="section-label">Wildcard <span>×1</span></span></div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/dubmix-2" target="_blank">
+          <svg class="art-placeholder" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="200" fill="#f0eeea"/>
+            <rect x="1" y="1" width="198" height="198" fill="none" stroke="#e4e1db" stroke-width="1"/>
+            <text x="100" y="95" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6a6259" text-anchor="middle" letter-spacing="0.06em">Mika Vainio</text>
+            <text x="100" y="112" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6a6259" text-anchor="middle" letter-spacing="0.06em">Dub Mix 2</text>
+          </svg>
+        </a>
+        <div class="art-tag wild">Wildcard</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Mika Vainio</div>
+        <div class="entry-album">Dub Mix 2</div>
+        <div class="entry-meta">
+          <span>Sähkö Recordings</span><span>Dub · Selections</span><span>May 2026</span>
+        </div>
+        <p class="entry-copy">A posthumous dub selections tape from one of the defining figures in Finnish electronic music. Mika Vainio — known for his work as Ø and with Ilpo Väisänen in Pan Sonic — recorded this in 1998, cueing up 17 dub cuts focused on stripped versions and bass foundations from his 7" collection. Boomkat describes it as evidence of the "fundamental attention to space, bass, and syncopation" that defined his own output. The wildcard logic here is less about unfamiliar aesthetics and more about form: this is a selections/mixtape document rather than original work, and a posthumous one at that. But given the Pan Sonic / Ø orbit and the dub focus, it's too relevant to file only under Also Noted. Boomkat covered it prominently. Art unavailable via Bandcamp scraping.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/dubmix-2" class="link primary" target="_blank">Boomkat ↗</a>
+          <a href="https://www.youtube.com/results?search_query=Mika+Vainio+Dub+Mix+2+Sahko" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">04</span><span class="section-label">Also Noted <span>×4</span></span></div>
+    <div class="also-grid">
+      <div></div>
+      <div class="also-items">
+        <div class="also-item"><span class="also-n">01</span><span class="also-text"><strong>Shūdan Sokai — その前夜 Live At 八王子 Alone</strong> (Aguirre) — First reissue of a 1970s Japanese free jazz document that Boomkat calls "mythical" — a quartet drawing a straight line from NYC loft jazz to Tokyo. Aguirre has strong curatorial credentials for this kind of reissue. Filed here because it's a historical document rather than new work, but it's a significant one for anyone tracking the Japanese avant-garde lineage.</span></div>
+        <div class="also-item"><span class="also-n">02</span><span class="also-text"><strong>F~M — Fose</strong> (Old Technology / Surgeon) — Roel Funcken (Funckarma, Skam) and Jeroen Bax (Exm) on Surgeon's Old Technology imprint: an hour of freeform modular electronics with Skam-era echoes. Cross-sourced in both Boomkat emails. The Skam connection and the Surgeon label are both adjacent; scored just below the cutoff for a main pick on label tier.</span></div>
+        <div class="also-item"><span class="also-n">03</span><span class="also-text"><strong>Schweres Wasser — Bleeding Immaculate EP</strong> (Whispering Signals) — Orthodox dub techno from Aachen (NRW) by Thorsten Hoffmann &amp; Markus Offermann, with a Vril remix. Described as Deepchord-level padded dub chord insulation. Sat in the archive for 10 years before release. No label tier match but the aesthetic fit is strong.</span></div>
+        <div class="also-item"><span class="also-n">04</span><span class="also-text"><strong>Satoshi &amp; Makoto — Mirage Cafe</strong> (8mm Records) — A decade after their Safe Trip CZ-5000 sides, the (possibly apocryphal) Japanese twins return on Young Marco's 8mm. Boomkat draws a direct line to The Other People Place's Lifestyles of the Laptop Cafe — blissed electro-house downbeat with YMO elegance. The Other People Place is in the local library. Worth a listen for that reason alone.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="site-footer">
+    <p class="footer-note">A strong week anchored by the new Vladislav Delay Quintet album. RA unavailable again — fallback searches came up empty. Boomkat carried the digest. The Heith &amp; Tarawangsawelas record and the anonymous ØLUB debut are the dark horses.</p>
+    <span class="footer-stamp">Still Point · 2026-W19</span>
+  </div>
+</div>
+</body>
+</html>
