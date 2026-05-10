@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AI for RDC processes</title>
+  <style>
+
+html {
+color: #1a1a1a;
+background-color: #fdfdfd;
+}
+body {
+margin: 0 auto;
+max-width: 36em;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+hyphens: auto;
+overflow-wrap: break-word;
+text-rendering: optimizeLegibility;
+font-kerning: normal;
+}
+@media (max-width: 600px) {
+body {
+font-size: 0.9em;
+padding: 12px;
+}
+h1 {
+font-size: 1.8em;
+}
+}
+@media print {
+html {
+background-color: white;
+}
+body {
+background-color: transparent;
+color: black;
+font-size: 12pt;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3, h4 {
+page-break-after: avoid;
+}
+}
+p {
+margin: 1em 0;
+}
+a {
+color: #1a1a1a;
+}
+a:visited {
+color: #1a1a1a;
+}
+img {
+max-width: 100%;
+}
+svg {
+height: auto;
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-top: 1.4em;
+}
+h5, h6 {
+font-size: 1em;
+font-style: italic;
+}
+h6 {
+font-weight: normal;
+}
+ol, ul {
+padding-left: 1.7em;
+margin-top: 1em;
+}
+li > ol, li > ul {
+margin-top: 0;
+}
+blockquote {
+margin: 1em 0 1em 1.7em;
+padding-left: 1em;
+border-left: 2px solid #e6e6e6;
+color: #606060;
+}
+code {
+white-space: pre-wrap;
+font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+font-size: 85%;
+margin: 0;
+hyphens: manual;
+}
+pre {
+margin: 1em 0;
+overflow: auto;
+}
+pre code {
+padding: 0;
+overflow: visible;
+overflow-wrap: normal;
+}
+.sourceCode {
+background-color: transparent;
+overflow: visible;
+}
+hr {
+border: none;
+border-top: 1px solid #1a1a1a;
+height: 1px;
+margin: 1em 0;
+}
+table {
+margin: 1em 0;
+border-collapse: collapse;
+width: 100%;
+overflow-x: auto;
+display: block;
+font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+margin-bottom: 0.75em;
+}
+tbody {
+margin-top: 0.5em;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+}
+th {
+border-top: 1px solid #1a1a1a;
+padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+padding: 0.125em 0.5em 0.25em 0.5em;
+}
+header {
+margin-bottom: 4em;
+text-align: center;
+}
+#TOC li {
+list-style: none;
+}
+#TOC ul {
+padding-left: 1.3em;
+}
+#TOC > ul {
+padding-left: 0;
+}
+#TOC a:not(:hover) {
+text-decoration: none;
+}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+</head>
+<body>
+<p><strong>Exploring AI for Red Door internal processes</strong></p>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 92%" />
+</colgroup>
+<thead>
+<tr>
+<th><strong>1. Conversation topics</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li><p>Broader conversation: where can AI help Red Door
+internally?</p></li>
+<li><p>Share what we&#39;ve already been exploring</p></li>
+<li><p>Think about how to identify and evaluate opportunities for
+AI</p></li>
+<li><p>Walk through the &#39;SOW generator&#39; process as a concrete
+example</p></li>
+<li><p>Tools that could help us specifically with internal
+processes</p></li>
+<li><p>Next steps and open questions</p></li>
+</ul>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 92%" />
+</colgroup>
+<thead>
+<tr>
+<th><strong>2. How to spot a good opportunity for AI
+automation</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li><p>The task is repetitive — we do a version of it regularly</p></li>
+<li><p>Heavy on copy/paste or reformatting existing content</p></li>
+<li><p>Relies on past examples as templates or starting points</p></li>
+<li><p>More &#39;grunt work&#39; than strategic thinking</p></li>
+<li><p>Involves pulling from known inputs to fill a known
+structure</p></li>
+<li><p>A rough first draft — even imperfect — would still save
+time</p></li>
+<li><p>The human review step is already built into the process</p></li>
+<li><p>Some examples that have already been working well:</p></li>
+</ul>
+<ul>
+<li><p>Azure Essential Show scripts — recurring format, known structure,
+consistent inputs</p></li>
+<li><p>Databricks SEO content (especially blogs and glossary pages) —
+high volume, template-driven, repetitive to produce</p></li>
+<li><p>Project status updates / recaps — pulling from email threads or
+notes to draft a quick client-facing or internal summary</p></li>
+<li><p>Meeting notes / action item summaries — turning a transcript or
+rough notes into a clean recap with owners and next steps</p></li>
+</ul>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 91%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th><strong>Try this prompt in Claude</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 1%" />
+<col style="width: 91%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th><p>You are a workflow analyst and strategic thought partner helping
+a small creative agency called Red Door Collaborative identify
+opportunities to use AI to streamline, accelerate, or automate internal
+processes.</p>
+<p>Red Door is a boutique creative agency based in Bellevue, WA that
+produces marketing content for clients including Microsoft, Databricks,
+Salesforce, and Procraft. The agency has also begun producing original
+content for its own channels, including a video series called Open
+Door.</p>
+<p>The team is small and non-technical. Most internal processes involve
+some combination of scoping client work, building documents from past
+examples, drafting content to a known structure, and coordinating across
+stakeholders. Time is the primary constraint.</p>
+<p>I want you to interview me. Your goal is to help me surface processes
+in my day-to-day work that could be good candidates for AI assistance,
+and then help me think through what a realistic solution might look
+like.</p>
+<p>Ask me one question at a time. Start by asking me to describe a task
+I do regularly that feels tedious, slow, or repetitive.</p></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 92%" />
+</colgroup>
+<thead>
+<tr>
+<th><strong>3. Once we&#39;ve identified a good opportunity, how to think it
+through</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li><p>Understand how the process actually works today, step by step —
+where does it slow down or break?</p></li>
+<li><p>Pinpoint the painful part specifically: is it the &#39;blank page&#39;
+problem, the repetitive assembly, the recalculation, the
+inconsistency?</p></li>
+<li><p>Take stock of what we already have — past examples, templates,
+reference docs, email threads</p></li>
+<li><p>Decide what &quot;good enough&quot; looks like — does the output need to be
+perfect, or is a strong rough draft the goal?</p></li>
+<li><p>Be realistic about what AI can actually take off your plate — it
+can handle a piece of the process well, but trying to automate the whole
+thing at once usually creates more friction than it saves</p></li>
+<li><p>Keep humans in the loop where it matters — identify which parts
+of the process should stay human (approvals, pricing, strategy) and
+design around those</p></li>
+<li><p>Start with a question, not a solution — talk to the person who
+owns the process before deciding what to build</p></li>
+</ul>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 92%" />
+</colgroup>
+<thead>
+<tr>
+<th><strong>4. Example: AI-assisted SOW drafting</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li><p>Naj mentioned SOW creation as a pain point at an AI roundtable
+meeting</p></li>
+<li><p>Joe followed up with a structured set of questions via
+email</p></li>
+<li><p>Goal: understand the process before building anything</p></li>
+</ul>
+<table style="width:69%;">
+<colgroup>
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr>
+<th>↳ <em>Reference: Example SOW (serves as model) — Content
+Kit</em></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 91%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th><strong>Questions Joe asked</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li><p>How does an SOW actually start — brief, conversation, email
+chain?</p></li>
+<li><p>Is there a pricing book, and how do you use it?</p></li>
+<li><p>How many deliverable types does Red Door scope?</p></li>
+<li><p>Where does friction happen — initial build or revisions?</p></li>
+<li><p>What do you most dread when an SOW lands on your plate?</p></li>
+<li><p>What would make the biggest immediate difference?</p></li>
+<li><p>Would a rough AI draft help, or just create more work?</p></li>
+</ul>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 91%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th><strong>Pain points that Naj described</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li><p>No definitive standard template or perfectly consistent language
+across SOWs</p></li>
+<li><p>SOWs vary a lot depending on who built them and which account
+manager</p></li>
+<li><p>Pricing book is a large, complex Excel file with 20+ tabs — still
+learning it</p></li>
+<li><p>For unfamiliar project types, has to rely on Chris or Amy — the
+logic isn&#39;t visible in the SOW itself</p></li>
+<li><p>When a client changes something, recalculation means going back
+to the Excel formulas manually</p></li>
+<li><p>Slows down when the client doesn&#39;t have all the info yet</p></li>
+</ul>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 91%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th><strong>What Naj said a better process would look like</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li><p>Feed in a scoping conversation or email thread → get a
+standardized template back to edit from</p></li>
+<li><p>Something that starts it for her, not just checks her
+work</p></li>
+<li><p>Pricing still needs to go through Chris — so the draft doesn&#39;t
+have to be perfect on costs</p></li>
+</ul>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 91%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th><strong>What Joe decided to build</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li><p>A tool focused on structure and language, not pricing
+math</p></li>
+<li><p>Input: paste in the scoping conversation or email thread</p></li>
+<li><p>Output: a properly formatted SOW draft with the right sections,
+right level of detail, right language</p></li>
+<li><p>Chris still reviews and finalizes pricing</p></li>
+</ul>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 92%" />
+</colgroup>
+<thead>
+<tr>
+<th><strong>5. What Joe ended up building</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 91%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th><strong>Approach 1: standalone app</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li><p>A Python web app that runs locally in your browser, powered by
+Claude behind the scenes (via API key)</p></li>
+<li><p>Fill out a form, paste in a scoping conversation → generates a
+formatted .docx SOW</p></li>
+<li><p>Works well on the machine it was built on, but...</p></li>
+<li><p>Hard to build and distribute without technical skills — couldn&#39;t
+get it fully working on Naj&#39;s Mac; when she did get it running, it threw
+errors</p></li>
+<li><p>Any change to the SOW process means rebuilding the app and
+generating a new executable — not flexible over time</p></li>
+<li><p>Good experiment, but the friction of building, distributing, and
+maintaining it points toward a simpler approach</p></li>
+</ul>
+<table style="width:69%;">
+<colgroup>
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr>
+<th>↳ <em>Reference: SOW Generator App — Guide</em></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table style="width:69%;">
+<colgroup>
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr>
+<th>↳ <em>Reference: SOW generator screenshot</em></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table style="width:69%;">
+<colgroup>
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr>
+<th>↳ <em>Reference: Python app — generated output example</em></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 91%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th><strong>Approach 2: Claude Project (recommended)</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li><p>Lives entirely inside Claude — no installation onto your
+computer, no file to distribute</p></li>
+<li><p>This project is shared — anyone with an RDC Claude account can be
+granted access immediately</p></li>
+<li><p>What&#39;s already been built:</p></li>
+</ul>
+<ul>
+<li><p>Project-level instructions that define how Claude handles SOW
+requests and how to use all the inputs</p></li>
+<li><p>Real example SOWs loaded as reference models — Claude draws on
+these for structure, language, and formatting</p></li>
+<li><p>A starter prompt that Naj pastes in to kick off a new SOW
+chat</p></li>
+<li><p>A SOW template file with placeholder tokens that Claude fills
+in</p></li>
+<li><p>A placeholder reference doc that maps every token to a
+plain-English description of what goes there</p></li>
+<li><p>Step-by-step instructions for how a person uses the Claude
+Project</p></li>
+</ul>
+<ul>
+<li><p>Advantages:</p></li>
+</ul>
+<ul>
+<li><p>Zero installation — works anywhere Claude works</p></li>
+<li><p>Formatting fidelity is baked into the template, not dependent on
+AI getting it right</p></li>
+<li><p>Easy to update and iterate — change the instructions or template
+without rebuilding anything</p></li>
+<li><p>Naj can use it herself right now</p></li>
+</ul>
+<table style="width:69%;">
+<colgroup>
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr>
+<th>↳ <em>Reference: SOW Claude Project — Guide</em></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table style="width:69%;">
+<colgroup>
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr>
+<th>↳ <em>Reference: Claude Project — generated output example
+1</em></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table style="width:69%;">
+<colgroup>
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr>
+<th>↳ <em>Reference: Claude Project — generated output example
+2</em></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<blockquote>
+<p><strong>→ Live demo</strong></p>
+</blockquote>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 92%" />
+</colgroup>
+<thead>
+<tr>
+<th><strong>6. Other RDC internal processes worth
+exploring</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 91%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th><strong>Already on the table</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li><p>RFP drafting — feed in a client brief or RFP document, get a
+structured Red Door response draft</p></li>
+<li><p>RFP discovery — AI actively searching for relevant RFPs, since no
+one is currently dedicated to biz dev prospecting</p></li>
+<li><p>Workback schedule generation — standard templates already exist;
+AI could generate a first draft based on project details and team
+availability</p></li>
+<li><p>Kickoff decks — similar pattern to SOWs: known structure,
+variable content, relies on past examples</p></li>
+</ul>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 91%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th><strong>Other ideas</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li><p>Client onboarding materials — welcome docs, project overview
+one-pagers, intro emails; lots of repetition project to project</p></li>
+<li><p>Creative briefs — translating a client call or email thread into
+a structured brief for the creative team</p></li>
+<li><p>Change order drafts — when scope changes, generating a formatted
+change order from a description of what shifted</p></li>
+<li><p>Job descriptions or contractor briefs — Red Door hires
+freelancers regularly; these follow a pattern</p></li>
+<li><p>Potential for future LinkedIn or newsletter content — Red Door&#39;s
+own marketing and thought leadership, repurposed from existing
+work</p></li>
+</ul>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 91%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th><strong>What these have in common</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr>
+<th><strong>Known structure</strong></th>
+<th>All follow a known structure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Existing inputs</strong></td>
+<td>All start from inputs Red Door already has — scoping notes, briefs,
+past examples</td>
+</tr>
+<tr>
+<td><strong>Manual assembly</strong></td>
+<td>All currently require someone to manually assemble a first
+draft</td>
+</tr>
+<tr>
+<td><strong>Time savings</strong></td>
+<td>A rough AI draft in any of these cases would still save meaningful
+time</td>
+</tr>
+</tbody>
+</table>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 92%" />
+</colgroup>
+<thead>
+<tr>
+<th><strong>7. AI tools for internal processes</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li><p>Focusing mostly on Claude —powerful enough to handle most of what
+we&#39;ve been talking about, and it&#39;s what I have the most firsthand
+experience with</p></li>
+<li><p>One thing I&#39;ve learned: starting from the tool often hasn&#39;t
+actually moved things forward — the right starting place is the
+friction, the job, the goal</p></li>
+<li><p>The tool almost arrives on its own once those are clear — it
+flows from the need rather than the other way around</p></li>
+</ul>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 91%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th><strong>Claude connectors</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li><p>Microsoft 365 — Claude can read and search Outlook emails, Teams
+messages, SharePoint docs, and calendar events; could pull a scoping
+thread directly rather than requiring copy/paste</p></li>
+<li><p>monday.com — Claude could read task lists, project status, and
+team assignments to feed into status updates or workback schedules
+automatically</p></li>
+<li><p>Box — Claude could pull templates, past SOWs, or reference docs
+without manual uploading</p></li>
+<li><p>Figma — could assist with creative brief generation or design
+spec documentation</p></li>
+</ul>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 91%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th><strong>Claude Cowork</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li><p>Right now, working with Claude means switching back and forth —
+copying a scoping email from Outlook, pasting it into Claude, copying
+the output, opening Word, pasting it in, then opening the pricing Excel
+book separately to look up hours and rates. Cowork can do those steps
+for you — it works across your apps, not just inside a chat
+window</p></li>
+<li><p>Can open files, navigate apps, and fill in forms on your
+behalf</p></li>
+<li><p>For writing-focused workflows, the regular Claude chatbot has
+often been enough — Cowork might add more value for roles that involve
+managing files, coordinating across tools, and juggling a lot of moving
+parts</p></li>
+<li><p>Probably most applicable at Red Door for project managers and
+account managers rather than writers or designers — just a hunch worth
+testing</p></li>
+<li><p>For the SOW process: could theoretically open the pricing Excel
+book, read the relevant tab, and pull hours and rates directly</p></li>
+</ul>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 91%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th><strong>Zapier</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li><p>Connects two apps so that something happening in one
+automatically triggers an action in the other</p></li>
+<li><p>You build simple &quot;if this, then that&quot; rules through a visual
+interface — no coding required</p></li>
+<li><p>Could wire together tools the team already uses so that starting
+a new project triggers a chain of prep work automatically</p></li>
+<li><p>Example: a new project in monday.com automatically creates a
+SharePoint folder and kicks off a Claude-assisted creative brief and RDC
+branded kickoff deck</p></li>
+</ul>
+<table style="width:93%;">
+<colgroup>
+<col style="width: 92%" />
+</colgroup>
+<thead>
+<tr>
+<th><strong>8. Next steps / questions</strong></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li><p>Naj tests out the Claude Project for SOWs</p></li>
+<li><p>What other processes feel like they are good opportunities for
+AI?</p></li>
+<li><p>What are the biggest concerns about bringing AI into these
+workflows?</p></li>
+<li><p>Who else at Red Door should be part of this conversation going
+forward?</p></li>
+<li><p>What would make this feel real and useful vs. just fun
+experiments?</p></li>
+</ul>
+</body>
+</html>
