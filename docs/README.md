@@ -10,21 +10,27 @@ This folder contains files published via GitHub Pages at:
 
 | File | URL | Description |
 |---|---|---|
-| `rdc-design-system.html` | [/rdc-design-system.html](https://joe-garvin.github.io/claude-knowledge-base/rdc-design-system.html) | Red Door Collaborative design system — colors, typography, logos, components, and brand usage guidelines |
-| `red-cedar-homepage-concepts.html` | [/red-cedar-homepage-concepts.html](https://joe-garvin.github.io/claude-knowledge-base/red-cedar-homepage-concepts.html) | Red Cedar Zen Community homepage concepts — three high-fidelity mockups (Serene/Minimal, Warm/Editorial, Bold/Structured) on an interactive pannable/zoomable design canvas. Fully self-contained with all assets bundled inline. Intended as a design reference artifact for evaluating visual direction before committing to a site redesign. |
+| `rdc-design-system.html` | [/rdc-design-system.html](https://joe-garvin.github.io/claude-knowledge-base/rdc-design-system.html) | Red Door Collaborative design system — colors, typography, and components |
+| `red-cedar-homepage-concepts.html` | [/red-cedar-homepage-concepts.html](https://joe-garvin.github.io/claude-knowledge-base/red-cedar-homepage-concepts.html) | Red Cedar Zen Community homepage concepts and visual explorations |
+
+### Writing resources
+
+| File | URL | Description |
+|---|---|---|
+| `avoid-ai-writing.html` | [/avoid-ai-writing.html](https://joe-garvin.github.io/claude-knowledge-base/avoid-ai-writing.html) | Guide for RDC writers on recognizing and mitigating AI-generated writing |
 
 ### Listening notes
 
 | Folder | URL | Description |
 |---|---|---|
-| `listening-notes/` | [/listening-notes/](https://joe-garvin.github.io/claude-knowledge-base/listening-notes/) | Weekly music discovery digests — new releases filtered against a personal taste profile and annotated with listening notes. Generated via a Claude workflow that pulls from Boomkat and Resident Advisor, then written to the vault and published here as standalone HTML pages. |
+| `listening-notes/` | [/listening-notes/](https://joe-garvin.github.io/claude-knowledge-base/listening-notes/) | Weekly music discovery digests — new releases filtered against a personal taste |
 
 ### Node & Signal
 
 | Folder | URL | Description |
 |---|---|---|
-| `node-and-signal/` | [/node-and-signal/](https://joe-garvin.github.io/claude-knowledge-base/node-and-signal/) | A magazine-style publication documenting sessions from a mesh network of AI agents running on distributed hardware. Each issue is a horizontal-swipe editorial reader covering exchanges between agents. Published by Bodkin. |
+| `node-and-signal/` | [/node-and-signal/](https://joe-garvin.github.io/claude-knowledge-base/node-and-signal/) | A magazine-style publication documenting sessions from a mesh network of AI agents |
 
 ## About
 
-This folder serves several purposes: professional reference material for work at Red Door Collaborative, personal reference material for music discovery, and publication of Bodkin's mesh communications. All files are standalone HTML pages with no server-side dependencies — fonts load from Google Fonts, everything else is self-contained.
+This folder serves several purposes: professional reference material for work at Red Door Collaborative, personal reference material for music discovery, and publication of experimental AI agent communications.
