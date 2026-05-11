@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avoiding AI Writing — Red Door Collaborative</title>
+<meta name="description" content="A resource for RDC creative writers on recognizing and mitigating AI-generated writing patterns.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --coral: #FF4F58;
+  --squid: #0D1724;
+  --wine: #7F0046;
+  --mist: #ABDCE0;
+  --white: #FFFFFF;
+  --bg: #F7F6F4;
+  --gray-100: #F3F3F3;
+  --gray-200: #E8E8E8;
+  --gray-300: #D0D0D0;
+  --gray-500: #888888;
+  --gray-700: #444444;
+  --gray-900: #1A1A1A;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, monospace;
+  --sidebar-w: 240px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 18px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 3px rgba(13,23,36,0.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--gray-900);
+  line-height: 1.65;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  background: var(--squid);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2rem;
+  text-decoration: none;
+}
+
+.logo-mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--wine);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--coral);
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.3;
+}
+
+.logo-text span {
+  display: block;
+  font-weight: 300;
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+.nav-section-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin: 1.25rem 0 0.4rem;
+  padding-left: 2px;
+}
+
+.nav-link {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  padding: 5px 8px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1px;
+  transition: color 0.15s, background 0.15s;
+  line-height: 1.4;
+}
+
+.nav-link:hover { color: rgba(255,255,255,0.95); background: rgba(255,255,255,0.06); }
+.nav-link.active { color: var(--coral); background: rgba(255,79,88,0.12); font-weight: 500; }
+
+.sidebar-version {
+  margin-top: auto;
+  padding-top: 2rem;
+  font-size: 10px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+}
+.sidebar-version a { color: rgba(255,255,255,0.45); text-decoration: none; }
+.sidebar-version a:hover { color: var(--coral); }
+
+/* ── Main ── */
+.main {
+  margin-left: var(--sidebar-w);
+  width: calc(100% - var(--sidebar-w));
+  min-width: 0;
+  padding: 3rem 4rem 6rem;
+}
+.inner { max-width: 880px; }
+
+/* ── Page header ── */
+.page-header {
+  background: var(--squid);
+  border-radius: var(--radius-xl);
+  padding: 3rem;
+  margin-bottom: 3.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: 'ai';
+  position: absolute;
+  right: -20px; bottom: -60px;
+  font-size: 240px; font-weight: 700;
+  color: rgba(255,255,255,0.03);
+  letter-spacing: -0.05em; line-height: 1;
+  pointer-events: none; font-family: var(--font-sans);
+}
+.page-header-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--coral); margin-bottom: 0.75rem; }
+.page-header-title { font-size: 40px; font-weight: 700; letter-spacing: -0.03em; color: #fff; line-height: 1.05; margin-bottom: 1rem; max-width: 580px; }
+.page-header-desc { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 540px; }
+.header-meta { display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+.header-meta-item { display: flex; flex-direction: column; gap: 2px; }
+.header-meta-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+.header-meta-value { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.75); }
+
+/* ── Sections ── */
+.section { margin-bottom: 4.5rem; scroll-margin-top: 1.5rem; }
+.section-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--coral); margin-bottom: 0.5rem; }
+.section-title { font-size: 30px; font-weight: 700; letter-spacing: -0.025em; color: var(--squid); margin-bottom: 0.6rem; line-height: 1.1; }
+.section-desc { font-size: 15px; color: var(--gray-700); line-height: 1.7; max-width: 640px; margin-bottom: 2rem; }
+.divider { border: none; border-top: 1px solid var(--gray-200); margin: 3rem 0; }
+
+.subsection { margin-bottom: 2.25rem; }
+.subsection-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gray-500);
+  margin-bottom: 1rem; padding-bottom: 8px;
+  border-bottom: 1px solid var(--gray-200);
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+}
+.subsection-label .label-aside { color: var(--gray-300); font-weight: 500; letter-spacing: 0.06em; }
+
+h3.subsection-h {
+  font-size: 18px; font-weight: 600; color: var(--squid);
+  margin: 0 0 0.5rem; letter-spacing: -0.01em; line-height: 1.3;
+}
+h4.minor-h {
+  font-size: 14px; font-weight: 600; color: var(--squid);
+  margin: 1.25rem 0 0.4rem; letter-spacing: -0.005em;
+}
+
+p.copy { font-size: 15px; color: var(--gray-700); line-height: 1.75; margin-bottom: 1rem; }
+p.copy strong { color: var(--gray-900); font-weight: 600; }
+p.copy em { color: var(--gray-900); font-style: italic; }
+p.copy a, .card a, .ds-table a { color: var(--coral); text-decoration: none; border-bottom: 1px solid rgba(255,79,88,0.35); }
+p.copy a:hover, .card a:hover, .ds-table a:hover { border-bottom-color: var(--coral); }
+
+ul.copy-list, ol.copy-list {
+  font-size: 15px; color: var(--gray-700); line-height: 1.75;
+  padding-left: 1.4em; margin-bottom: 1rem;
+}
+ul.copy-list li, ol.copy-list li { margin-bottom: 0.3rem; }
+ul.copy-list li::marker { color: var(--coral); }
+ol.copy-list li::marker { color: var(--coral); font-weight: 600; }
+
+/* ── Card ── */
+.card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.75rem;
+}
+.card + .card { margin-top: 12px; }
+.card p:last-child, .card ul:last-child, .card ol:last-child { margin-bottom: 0; }
+
+/* Grids */
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; }
+
+/* Metric tiles */
+.metric-card { background: var(--gray-100); border-radius: var(--radius-md); padding: 1rem 1.25rem; }
+.metric-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 6px; }
+.metric-value { font-size: 28px; font-weight: 700; letter-spacing: -0.03em; color: var(--squid); line-height: 1; }
+.metric-sub { font-size: 11px; color: var(--gray-500); margin-top: 5px; line-height: 1.4; }
+
+/* Badges */
+.badge { display: inline-flex; align-items: center; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: var(--radius-pill); letter-spacing: 0.03em; }
+.badge-coral { background: rgba(255,79,88,0.12); color: #C13040; }
+.badge-squid { background: rgba(13,23,36,0.08); color: var(--squid); }
+.badge-wine { background: rgba(127,0,70,0.12); color: var(--wine); }
+.badge-mist { background: rgba(171,220,224,0.35); color: #3a7a84; }
+.badge-success { background: #dcfce7; color: #15803d; }
+.badge-warn { background: #fef3c7; color: #92400e; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* Alerts */
+.alert { display: flex; gap: 12px; padding: 14px 18px; border-radius: var(--radius-md); margin-bottom: 12px; align-items: flex-start; }
+.alert-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 8px; flex-shrink: 0; }
+.alert-body { font-size: 14px; line-height: 1.6; }
+.alert-title { font-weight: 600; margin-bottom: 2px; }
+.alert-coral { background: rgba(255,79,88,0.08); color: #8a2030; }
+.alert-coral .alert-dot { background: var(--coral); }
+.alert-coral .alert-title { color: #C13040; }
+.alert-info { background: rgba(171,220,224,0.25); color: #2a5a64; }
+.alert-info .alert-dot { background: #3a7a84; }
+.alert-info .alert-title { color: #2a5a64; }
+.alert-squid { background: rgba(13,23,36,0.05); color: var(--gray-700); }
+.alert-squid .alert-dot { background: var(--squid); }
+.alert-squid .alert-title { color: var(--squid); }
+
+/* Do / Don't / Compare */
+.do-dont { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; margin-bottom: 1rem; }
+.do-box, .dont-box { border-radius: var(--radius-md); padding: 1rem 1.25rem; }
+.do-box { border: 1px solid rgba(34,197,94,0.25); background: rgba(34,197,94,0.04); }
+.dont-box { border: 1px solid rgba(239,68,68,0.25); background: rgba(239,68,68,0.04); }
+.do-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #16a34a; margin-bottom: 8px; }
+.dont-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #dc2626; margin-bottom: 8px; }
+.do-box p, .dont-box p { font-size: 14px; color: var(--gray-700); line-height: 1.6; }
+.do-box p + p, .dont-box p + p { margin-top: 0.5rem; }
+.do-box em, .dont-box em { font-style: italic; color: var(--gray-900); }
+
+/* Tables */
+.ds-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ds-table th { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-500); padding: 10px 14px 10px 0; border-bottom: 1px solid var(--gray-200); text-align: left; vertical-align: bottom; }
+.ds-table td { padding: 11px 14px 11px 0; border-bottom: 1px solid var(--gray-200); vertical-align: top; color: var(--gray-900); line-height: 1.5; }
+.ds-table tr:last-child td { border-bottom: none; }
+.ds-table td.replace { color: var(--wine); font-weight: 500; }
+.ds-table td.with { color: var(--gray-700); }
+.mono { font-family: var(--font-mono); font-size: 12px; color: var(--gray-500); }
+.cell-strike { color: var(--gray-500); text-decoration: line-through; text-decoration-color: var(--coral); text-decoration-thickness: 1.5px; }
+
+/* Pull-quote */
+.pull-quote {
+  border-left: 3px solid var(--coral);
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  margin: 1.5rem 0;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--squid);
+  font-weight: 400;
+}
+.pull-quote .attr { display: block; font-size: 12px; color: var(--gray-500); font-weight: 500; margin-top: 0.6rem; letter-spacing: 0.02em; }
+
+/* TOC / step list */
+.workflow-list { counter-reset: step; display: grid; grid-template-columns: 1fr; gap: 10px; }
+.workflow-step {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem 1rem 3.5rem;
+  position: relative;
+}
+.workflow-step::before {
+  counter-increment: step;
+  content: counter(step, decimal-leading-zero);
+  position: absolute; left: 1rem; top: 1rem;
+  font-family: var(--font-mono); font-size: 12px;
+  color: var(--coral); font-weight: 500; letter-spacing: 0.04em;
+}
+.workflow-step h4 { font-size: 15px; font-weight: 600; color: var(--squid); margin-bottom: 0.25rem; letter-spacing: -0.005em; }
+.workflow-step p { font-size: 14px; color: var(--gray-700); line-height: 1.6; }
+
+/* Tier banner */
+.tier-banner {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  margin-bottom: 14px;
+  font-size: 13px;
+}
+.tier-1 { background: rgba(255,79,88,0.1); color: #8a2030; }
+.tier-2 { background: rgba(127,0,70,0.1); color: var(--wine); }
+.tier-3 { background: rgba(171,220,224,0.3); color: #2a5a64; }
+.tier-banner strong { font-weight: 600; }
+.tier-num { font-family: var(--font-mono); font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 4px; background: rgba(255,255,255,0.5); }
+
+/* Phrase column lists */
+.phrase-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 6px 24px; font-size: 14px; color: var(--gray-700); line-height: 1.55; }
+.phrase-grid .phrase-line { padding: 5px 0; border-bottom: 1px dashed var(--gray-200); }
+.phrase-grid .phrase-line:last-child, .phrase-grid .phrase-line:nth-last-child(2) { border-bottom: none; }
+.phrase-line .src { color: var(--gray-900); font-weight: 500; }
+.phrase-line .arrow { color: var(--coral); margin: 0 6px; font-weight: 500; }
+.phrase-line .fix { color: var(--gray-500); }
+
+/* Tool cards */
+.tool-card {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.35rem;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.tool-card .tool-name { font-size: 15px; font-weight: 600; color: var(--squid); letter-spacing: -0.005em; }
+.tool-card .tool-name .star { color: var(--coral); margin-left: 4px; font-size: 12px; }
+.tool-card .tool-meta { font-size: 11px; color: var(--gray-500); font-family: var(--font-mono); }
+.tool-card .tool-desc { font-size: 13px; color: var(--gray-700); line-height: 1.55; }
+.tool-card .tool-link { font-size: 12px; color: var(--coral); text-decoration: none; word-break: break-all; }
+.tool-card .tool-link:hover { text-decoration: underline; }
+
+/* Code block */
+.code-block {
+  background: var(--squid); color: rgba(255,255,255,0.85);
+  font-family: var(--font-mono); font-size: 12px; line-height: 1.7;
+  padding: 1rem 1.25rem; border-radius: var(--radius-md);
+  overflow-x: auto;
+  white-space: pre;
+  margin: 0.75rem 0;
+}
+
+/* Per-model row */
+.model-row { display: grid; grid-template-columns: 110px 1fr; gap: 1rem; padding: 10px 0; border-bottom: 1px solid var(--gray-200); align-items: baseline; }
+.model-row:last-child { border-bottom: none; }
+.model-name { font-size: 13px; font-weight: 600; color: var(--squid); }
+.model-words { font-size: 13px; color: var(--gray-700); font-family: var(--font-mono); line-height: 1.6; }
+
+/* TOC chips at top */
+.toc-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 1.5rem 0 0; }
+.toc-chip {
+  font-size: 11px; padding: 4px 12px; border-radius: 999px;
+  background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7);
+  text-decoration: none; transition: background 0.15s, color 0.15s;
+  letter-spacing: 0.02em;
+}
+.toc-chip:hover { background: rgba(255,79,88,0.2); color: #fff; }
+
+/* Footer */
+.footer { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--gray-200); font-size: 12px; color: var(--gray-500); line-height: 1.7; }
+.footer a { color: var(--gray-700); text-decoration: none; border-bottom: 1px solid var(--gray-300); }
+.footer a:hover { color: var(--coral); border-bottom-color: var(--coral); }
+
+/* Mobile */
+@media (max-width: 900px) {
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .phrase-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  :root { --sidebar-w: 0px; }
+  .sidebar {
+    position: static; width: 100%; height: auto;
+    padding: 1rem 1.5rem;
+    flex-direction: column;
+  }
+  .sidebar-version { display: none; }
+  .main { margin-left: 0; width: 100%; padding: 1.5rem 1.25rem 3rem; }
+  .page-header { padding: 2rem 1.5rem; }
+  .page-header-title { font-size: 28px; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .do-dont { grid-template-columns: 1fr; }
+  .model-row { grid-template-columns: 1fr; gap: 4px; }
+}
+
+/* Print */
+@media print {
+  .sidebar { display: none; }
+  .main { margin: 0; padding: 0; }
+}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <a class="sidebar-logo" href="#top">
+    <div class="logo-mark">rd</div>
+    <div class="logo-text">Red Door<br>Collaborative<span>Avoiding AI writing</span></div>
+  </a>
+
+  <div class="nav-section-label">Start here</div>
+  <a class="nav-link" href="#overview">Overview</a>
+  <a class="nav-link" href="#how-to-use">How to use this</a>
+
+  <div class="nav-section-label">Conceptual guide</div>
+  <a class="nav-link" href="#sounds-like-ai">What "sounds like AI" means</a>
+  <a class="nav-link" href="#vocabulary-tells">Vocabulary tells</a>
+  <a class="nav-link" href="#phrase-tells">Phrase tells</a>
+  <a class="nav-link" href="#structural-tells">Structural tells</a>
+  <a class="nav-link" href="#cognitive-tells">Cognitive &amp; epistemic tells</a>
+  <a class="nav-link" href="#detection">Detection science</a>
+  <a class="nav-link" href="#workflow">Editorial workflow</a>
+  <a class="nav-link" href="#traps">Over-polishing &amp; rewrite threshold</a>
+
+  <div class="nav-section-label">Word &amp; phrase list</div>
+  <a class="nav-link" href="#tier-1">Tier 1 — always replace</a>
+  <a class="nav-link" href="#tier-2">Tier 2 — flag in clusters</a>
+  <a class="nav-link" href="#tier-3">Tier 3 — flag by density</a>
+  <a class="nav-link" href="#phrases-cut">Phrases to cut</a>
+  <a class="nav-link" href="#top-50">The 50 most common phrases</a>
+  <a class="nav-link" href="#aidiolects">Per-model signatures</a>
+
+  <div class="nav-section-label">Tools &amp; resources</div>
+  <a class="nav-link" href="#skills">Agentic skills</a>
+  <a class="nav-link" href="#prompts">Custom prompts</a>
+  <a class="nav-link" href="#detectors">Detection tools</a>
+  <a class="nav-link" href="#humanizers">Humanizer tools</a>
+  <a class="nav-link" href="#reading">Reading list</a>
+  <a class="nav-link" href="#sources">Sources</a>
+
+  <div class="sidebar-version">
+    General resource · v1<br>
+    Compiled April 2026<br>
+    <a href="#top">↑ back to top</a>
+  </div>
+</aside>
+
+<main class="main" id="top">
+<div class="inner">
+
+  <!-- HEADER -->
+  <header class="page-header">
+    <div class="page-header-eyebrow">For RDC creative writers</div>
+    <h1 class="page-header-title">Avoiding AI writing</h1>
+    <p class="page-header-desc">A working reference on what makes writing sound AI-generated, how detection works, and the techniques that actually remove the fingerprint. Read end-to-end once. Bookmark the word list.</p>
+    <div class="header-meta">
+      <div class="header-meta-item"><span class="header-meta-label">Version</span><span class="header-meta-value">General · v1</span></div>
+      <div class="header-meta-item"><span class="header-meta-label">Compiled</span><span class="header-meta-value">April 2026</span></div>
+      <div class="header-meta-item"><span class="header-meta-label">Audience</span><span class="header-meta-value">RDC writers &amp; editors</span></div>
+      <div class="header-meta-item"><span class="header-meta-label">Companion</span><span class="header-meta-value" style="color:#FF4F58;">RDC-specific guide (coming)</span></div>
+    </div>
+    <div class="toc-chips">
+      <a class="toc-chip" href="#vocabulary-tells">Vocabulary</a>
+      <a class="toc-chip" href="#phrase-tells">Phrases</a>
+      <a class="toc-chip" href="#structural-tells">Structure</a>
+      <a class="toc-chip" href="#detection">Detection</a>
+      <a class="toc-chip" href="#workflow">Editorial workflow</a>
+      <a class="toc-chip" href="#tier-1">Tier 1 list</a>
+      <a class="toc-chip" href="#top-50">Top 50 phrases</a>
+      <a class="toc-chip" href="#skills">Skills &amp; prompts</a>
+    </div>
+  </header>
+
+  <!-- OVERVIEW -->
+  <section class="section" id="overview">
+    <div class="section-eyebrow">Start here</div>
+    <h2 class="section-title">Overview</h2>
+    <p class="section-desc">Three documents in one page. Read the conceptual guide once to understand the patterns. Use the word list while editing. Pull from the tools catalog when you want to wire a skill or prompt into your workflow.</p>
+
+    <div class="grid-3">
+      <div class="metric-card">
+        <div class="metric-label">Tiered word list</div>
+        <div class="metric-value">109</div>
+        <div class="metric-sub">flagged entries across Tier 1–3</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Top AI phrases</div>
+        <div class="metric-value">50</div>
+        <div class="metric-sub">most common AI openers &amp; fillers</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Editorial pass</div>
+        <div class="metric-value">9</div>
+        <div class="metric-sub">steps from raw draft to publishable</div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem;">
+      <div class="alert alert-coral">
+        <div class="alert-dot"></div>
+        <div class="alert-body">
+          <div class="alert-title">The counterintuitive finding</div>
+          AI writing patterns persist even after being rewritten, translated, or summarized by another LLM. Patterns are encoded at the word-distribution level. Running AI text through a humanizer tool, or asking a second AI to rephrase it, doesn't reliably remove the fingerprint. Remediation has to involve actual human intervention.
+        </div>
+      </div>
+      <div class="alert alert-info">
+        <div class="alert-dot"></div>
+        <div class="alert-body">
+          <div class="alert-title">The most actionable structural finding</div>
+          Pangram Labs (which trains classifiers on 28 million human documents) weights structural regularity <em>higher</em> than vocabulary. If you fix every flagged word but leave sentence length uniform and rhythm metronomic, the text still reads as AI-generated. The word list is necessary but not sufficient.
+        </div>
+      </div>
+      <div class="alert alert-squid">
+        <div class="alert-dot"></div>
+        <div class="alert-body">
+          <div class="alert-title">If you do one thing today</div>
+          Install Will Francis's custom instruction prompt (<a href="#prompts">jump to it</a>) in your Claude settings. Suppressing patterns at generation is far less work than editing them out afterward.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- HOW TO USE -->
+  <section class="section" id="how-to-use">
+    <div class="section-eyebrow">Start here</div>
+    <h2 class="section-title">How to use this resource</h2>
+    <p class="section-desc">A working document, not a manifesto. Read the way you'd read a reference book — in order once, then by section.</p>
+
+    <div class="grid-3">
+      <div class="card">
+        <h3 class="subsection-h">Understand it</h3>
+        <p class="copy">The <a href="#sounds-like-ai">conceptual guide</a> is the read-once document. It covers the taxonomy of tells, the detection science, the manual editorial workflow, and the over-polishing trap. Roughly 20 minutes end-to-end.</p>
+      </div>
+      <div class="card">
+        <h3 class="subsection-h">Use it while editing</h3>
+        <p class="copy">The <a href="#tier-1">word and phrase list</a> is the operational reference. Open it while you edit. Search the page for any word you flagged and pick a replacement. Stop reading once you've replaced it.</p>
+      </div>
+      <div class="card">
+        <h3 class="subsection-h">Wire it into your workflow</h3>
+        <p class="copy">The <a href="#skills">tools catalog</a> covers Claude skills, custom instructions, detector accuracy, and humanizer limits. Install one prompt — your future self will thank you.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- SOUNDS LIKE AI -->
+  <section class="section" id="sounds-like-ai">
+    <div class="section-eyebrow">Conceptual guide</div>
+    <h2 class="section-title">What "sounds like AI" means</h2>
+    <p class="copy">A reader encounters a paragraph and something tells them — "AI wrote this" — before they can articulate why. That instinct is responding to a cluster of overlapping signals: vocabulary, rhythm, structure, and a certain epistemic cowardice that passes as thoroughness.</p>
+    <p class="copy">Language models are trained on the patterns of human writing and optimized to produce what is most expected next. That optimization produces text that is grammatically flawless, structurally tidy, and stylistically dead — the average of a billion documents rather than any individual's voice. It reads like the platonic corporate memo: complete, correct, and forgettable.</p>
+
+    <div class="pull-quote">
+      The problem is that AI writes in very specific patterns that are invisible to the writer but obvious to everyone reading.
+      <span class="attr">— Tom Orbach, Director of Growth Marketing, Google</span>
+    </div>
+
+    <p class="copy">Most people trying to fix this ask AI to "add a personal touch." That misses the point. The problem is pattern, not tone.</p>
+  </section>
+
+  <hr class="divider">
+
+  <!-- VOCABULARY TELLS -->
+  <section class="section" id="vocabulary-tells">
+    <div class="section-eyebrow">Conceptual guide · 1 of 4</div>
+    <h2 class="section-title">Vocabulary tells</h2>
+    <p class="section-desc">Mode-collapse vocabulary: a small rotation of words that feel authoritative but add nothing. These cluster in predictable groups.</p>
+
+    <div class="subsection">
+      <div class="subsection-label">Word clusters to know</div>
+      <div class="card">
+        <h4 class="minor-h">Elevation verbs</h4>
+        <p class="copy">delve, harness, leverage, navigate, streamline, foster, cultivate, empower, spearhead, galvanize</p>
+        <h4 class="minor-h">Approval adjectives</h4>
+        <p class="copy">robust, seamless, comprehensive, cutting-edge, pivotal, holistic, multifaceted, nuanced, groundbreaking, transformative, innovative, dynamic</p>
+        <h4 class="minor-h">Metaphor nouns</h4>
+        <p class="copy">landscape, tapestry, realm, ecosystem, beacon, symphony, cornerstone, paradigm</p>
+        <h4 class="minor-h">Filler verbs (copula avoidance)</h4>
+        <p class="copy">serves as, features (as a verb), boasts, presents, encompasses, underpins, underscores</p>
+      </div>
+      <p class="copy" style="margin-top:1rem;">These words are 5–20× more frequent in AI text than in human text. Max Planck Institute research found their usage has spiked over 50% in published writing since ChatGPT launched — including in human writing, as people unconsciously absorb AI's vocabulary.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">"Delve" — the canonical example</div>
+      <p class="copy">The word "delve" became the public symbol of AI writing in 2023–2024 because ChatGPT used it at extraordinary frequency. It's an academic-register word that sounds sophisticated while saying nothing specific: <em>let's delve into this topic</em>. By 2025, it had become so flagged that models started suppressing it. But the underlying impulse — reaching for the fanciest thesaurus synonym — persists.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Aidiolects: per-model signatures</div>
+      <p class="copy">Research achieving 97.1% accuracy in identifying which AI wrote a given piece found that each model has a distinct vocabulary signature — what researchers call "aidiolects."</p>
+      <ul class="copy-list">
+        <li><strong>ChatGPT</strong> favors <em>certainly, such as, overall, below is</em>.</li>
+        <li><strong>Claude</strong> leans on <em>according to the text, based on, both, the text</em>.</li>
+        <li><strong>DeepSeek</strong> overuses <em>crucial, essentially, here's a breakdown</em>.</li>
+      </ul>
+      <p class="copy">These signatures persist through rewriting, translation, and summarization by another LLM. Patterns are encoded at the word-distribution level. They don't wash out easily. Full table: <a href="#aidiolects">per-model signatures</a>.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Two related vocabulary patterns</div>
+      <div class="do-dont">
+        <div class="dont-box">
+          <div class="dont-label">Copula avoidance</div>
+          <p>AI swaps <em>is</em> and <em>has</em> for fancier verbs: <em>serves as</em>, <em>features</em>, <em>boasts</em>, <em>represents</em>, <em>presents</em>. Reads like a press release.</p>
+          <p><strong>Fix:</strong> default to <em>is</em> or <em>has</em> unless a specific verb genuinely adds meaning.</p>
+        </div>
+        <div class="dont-box">
+          <div class="dont-label">Synonym cycling</div>
+          <p>To avoid repeating a word, AI rotates through synonyms: <em>developers… engineers… practitioners… builders</em> in the same paragraph.</p>
+          <p><strong>Fix:</strong> repeat the clearest word. Forced variation reads like thesaurus abuse.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- PHRASE TELLS -->
+  <section class="section" id="phrase-tells">
+    <div class="section-eyebrow">Conceptual guide · 2 of 4</div>
+    <h2 class="section-title">Phrase-level tells</h2>
+    <p class="section-desc">Slot-fill phrases — constructions where almost any noun or adjective could go in the blank without changing the sentence. These are AI's signature.</p>
+
+    <div class="subsection">
+      <div class="subsection-label">Formulaic openers</div>
+      <p class="copy">AI defaults to scene-setting preambles that contextualize the topic grandly before saying anything. The canonical forms:</p>
+      <ul class="copy-list">
+        <li>"In today's rapidly evolving digital landscape…"</li>
+        <li>"In an era where [X]…"</li>
+        <li>"In the realm of…"</li>
+        <li>"In today's digital age…"</li>
+      </ul>
+      <p class="copy">Introductions are the highest-density location for AI phrases — they outpace conclusions by a large margin. This is how AI eases into a topic instead of starting with the point.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Significance inflation</div>
+      <p class="copy">AI marks routine events as historical: <em>marking a pivotal moment in the evolution of</em>, <em>a watershed moment for the industry</em>, <em>a testament to human ingenuity</em>. If the inflation clause can be deleted and the sentence still works — delete it.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Filler transitions &amp; confidence calibration</div>
+      <div class="do-dont">
+        <div class="dont-box">
+          <div class="dont-label">Filler transitions</div>
+          <p><em>Moreover, Furthermore, Additionally, In conclusion, In summary, It's worth noting that, Notably.</em></p>
+          <p>These are essay-structure scaffolding, not connective tissue. They signal a paragraph is done rather than connecting it to the next.</p>
+        </div>
+        <div class="dont-box">
+          <div class="dont-label">Confidence calibration</div>
+          <p><em>Interestingly, Surprisingly, Importantly, Significantly, Certainly, Undoubtedly.</em></p>
+          <p>AI tells the reader how to feel about a fact rather than letting the fact speak. Density is the signal: one "notably" in 2,000 words is fine; three in 500 is AI emphasis-stacking.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">The false-contrast structure</div>
+      <p class="copy">"It's not just X — it's Y." "This isn't about X, it's about Y." "No X. No Y. Just Z."</p>
+      <p class="copy">Will Francis calls these out specifically: they mimic the shape of insight without containing any. Cut on sight.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">False ranges &amp; template slot-fills</div>
+      <ul class="copy-list">
+        <li><strong>False ranges</strong> — pairing unrelated extremes to fake breadth: <em>from the Big Bang to dark matter</em>, <em>from ancient civilizations to modern startups</em>. Sweeping but empty.</li>
+        <li><strong>"Whether you're [X] or [Y]"</strong> — false breadth. Say "everyone."</li>
+        <li><strong>"A [adjective] step forward for [noun]"</strong> — empty praise template.</li>
+        <li><strong>"I recently had the pleasure of [verb]-ing"</strong> — LinkedIn review pattern.</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- STRUCTURAL TELLS -->
+  <section class="section" id="structural-tells">
+    <div class="section-eyebrow">Conceptual guide · 3 of 4</div>
+    <h2 class="section-title">Structural tells</h2>
+    <p class="section-desc">Pangram Labs' finding: structural regularity outweighs vocabulary as a detection signal. Fix the words and leave the rhythm, and the text still reads as AI.</p>
+
+    <div class="subsection">
+      <div class="subsection-label">The intro–list–conclusion architecture</div>
+      <p class="copy">AI defaults to a predictable scaffold: broad contextual opening → enumerated points or bulleted list → summary conclusion that restates what was just said. As one analysis puts it, the structure <em>tells you what it's about to do, does it, then tells you what it just did</em>.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Inline-header lists</div>
+      <p class="copy">Per Will Francis, the single most recognizable AI formatting pattern: bullet lists where each item begins with a bold term followed by an explanation.</p>
+      <div class="do-dont">
+        <div class="dont-box">
+          <div class="dont-label">AI default</div>
+          <p><strong>Performance:</strong> Performance improved by 30% in the new release.<br><strong>Reliability:</strong> Uptime increased to 99.9%.<br><strong>Cost:</strong> Hosting costs dropped 18%.</p>
+        </div>
+        <div class="do-box">
+          <div class="do-label">Strip the headers</div>
+          <p>The new release ran 30% faster, hit 99.9% uptime, and cut hosting costs by 18%.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">More structural patterns</div>
+      <div class="card">
+        <h4 class="minor-h">Formulaic challenges sections</h4>
+        <p class="copy">A "Challenges" section that begins <em>"Despite [positive word], [subject] faces challenges…"</em> and ends with vague optimism. Name the actual challenge and the actual response, or cut it.</p>
+        <h4 class="minor-h">Paragraph length uniformity</h4>
+        <p class="copy">AI produces paragraphs of nearly identical size. Human writing has natural variation: some paragraphs are one sentence; some run longer. If every paragraph is 3–5 sentences, it's a structural tell.</p>
+        <h4 class="minor-h">Sentence length uniformity</h4>
+        <p class="copy">The metronomic rhythm — most sentences 15–25 words — is a strong detector signal. Human writing mixes short punchy sentences (3–8 words) with longer flowing ones. Fragments work. Questions break the pattern.</p>
+        <h4 class="minor-h">Excessive structure</h4>
+        <p class="copy">More than three headings in under 300 words is almost always AI trying to look organized. <em>Overview, Key Points, Summary, Conclusion, Introduction</em> are default AI scaffolding — use headers that tell the reader something specific.</p>
+        <h4 class="minor-h">Numbered list inflation</h4>
+        <p class="copy">"Three key takeaways," "Five things to know," "Here are the top seven" — AI defaults to numbered lists because they're structurally safe. Only use them when the content genuinely has that many discrete, parallel items.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- COGNITIVE TELLS -->
+  <section class="section" id="cognitive-tells">
+    <div class="section-eyebrow">Conceptual guide · 4 of 4</div>
+    <h2 class="section-title">Cognitive &amp; epistemic tells</h2>
+    <p class="section-desc">The hardest tells to fix because they're not patterns in the text — they're absences. What a piece doesn't say is often the strongest signal that no person wrote it.</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3 class="subsection-h">Epistemic cowardice</h3>
+        <p class="copy">AI presents multiple perspectives even when one is clearly stronger, creating text that is perpetually balanced to the point of meaninglessness. It hedges with <em>perhaps, could potentially, it's important to note that, to be clear, generally speaking</em>. A form of self-protection: the model avoids commitment to avoid being wrong.</p>
+      </div>
+      <div class="card">
+        <h3 class="subsection-h">Absence of genuine opinion</h3>
+        <p class="copy">Humans have preferences, reactions, and stakes. AI is relentlessly neutral. The absence of <em>I think</em>, stated preferences, or any position that might be disagreed with is itself a tell — especially in pieces that are supposed to have a voice.</p>
+      </div>
+      <div class="card">
+        <h3 class="subsection-h">Lack of specificity</h3>
+        <p class="copy">AI speaks in broad claims and sweeping generalities. <em>Experts believe</em> without naming the expert. <em>Studies show</em> without naming the study. <em>Significant</em> without quantifying the significance. Human writers know specific things — names, numbers, dates, contexts. AI approximates.</p>
+      </div>
+      <div class="card">
+        <h3 class="subsection-h">No personal experience</h3>
+        <p class="copy">AI cannot have been somewhere, tried something, or changed its mind. The absence of first-person experience — <em>when I ran this campaign, the time we tried X</em> — is a tell in contexts where that experience would be natural.</p>
+      </div>
+      <div class="card">
+        <h3 class="subsection-h">Novelty inflation</h3>
+        <p class="copy">AI treats established concepts as if the writer discovered them: <em>she introduced a term I hadn't heard before, a failure mode nobody's naming, the insight everyone's missing</em>. Both a credibility risk (the concept probably has a Wikipedia page) and a simulation of discovery.</p>
+      </div>
+      <div class="card">
+        <h3 class="subsection-h">Vague attributions</h3>
+        <p class="copy"><em>Experts believe, Studies show, Research suggests, Industry leaders agree</em> — without naming the expert, study, or leader. Either cite a specific source or drop the attribution and state the claim directly.</p>
+      </div>
+      <div class="card">
+        <h3 class="subsection-h">Emotional flatline</h3>
+        <p class="copy">AI claims emotions structurally without conveying them: <em>what surprised me most, I was fascinated to discover, what struck me was</em>. If the thing is genuinely surprising, the reader should feel that from the content — not from the writer announcing it.</p>
+      </div>
+      <div class="card">
+        <h3 class="subsection-h">Reasoning-chain artifacts</h3>
+        <p class="copy">AI's chain-of-thought leaking into prose: <em>let me think step by step, breaking this down, step 1, working through this logically</em>. The reader doesn't need the scaffolding. State the conclusion, then the evidence.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:0.75rem;">
+      <div class="alert alert-info">
+        <div class="alert-dot"></div>
+        <div class="alert-body">
+          <div class="alert-title">Acknowledgment loops</div>
+          <em>You're asking about, The question of whether, To answer your question</em> — AI restating the prompt before answering. Just answer.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- DETECTION SCIENCE -->
+  <section class="section" id="detection">
+    <div class="section-eyebrow">Conceptual guide</div>
+    <h2 class="section-title">The detection science</h2>
+    <p class="section-desc">AI detectors operate on two primary metrics. Understanding them is useful even if you never run a draft through one — they describe what makes text feel mechanical.</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3 class="subsection-h">Perplexity</h3>
+        <p class="copy">A measure of how predictable the text is — how well an AI can predict what word comes next. Low perplexity means high-probability words in expected positions. AI writes to minimize perplexity by construction. Human writers choose words for reasons a language model doesn't optimize for: memory, rhythm, specificity, humor, context only the writer has. Those choices register as perplexity spikes.</p>
+        <h4 class="minor-h">By GPTZero's public methodology</h4>
+        <p class="copy"><span class="mono">Human writing</span> averages ~80–100 perplexity units.<br><span class="mono">GPT-4 output</span> averages ~20–30.</p>
+      </div>
+      <div class="card">
+        <h3 class="subsection-h">Burstiness</h3>
+        <p class="copy">Variation in sentence structure and length. Human writing has high burstiness — a mix of short, staccato sentences and long flowing ones. AI text is metronomic: it clusters around uniform sentence lengths and consistent rhythmic patterns, producing low burstiness scores.</p>
+        <h4 class="minor-h">GPTZero's burstiness scores</h4>
+        <p class="copy"><span class="mono">Humans</span> spread 0.6–1.2.<br><span class="mono">GPT output</span> clusters around 0.2–0.4.</p>
+      </div>
+    </div>
+
+    <div class="subsection" style="margin-top:1.5rem;">
+      <div class="subsection-label">The detection limit</div>
+      <p class="copy">These metrics are increasingly circumventable by humanizer tools. Pangram Labs, which trains a classifier on 28 million human documents, argues that structural regularity is a more robust signal than vocabulary. Fixing the flagged words while leaving the rhythm untouched still reads as AI-generated. Detection tools' claimed accuracy rates (often 99%+) are disputed — independent testing typically shows 76–90% real-world accuracy, with false-positive rates that vary significantly.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">The fingerprint persistence problem</div>
+      <p class="copy">Per the arxiv study (February 2025): AI writing patterns persist even when texts are rewritten, translated, or summarized by another LLM. Patterns are encoded at the word-distribution level. The remediation has to involve genuine human intervention — not AI paraphrasing AI.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- WORKFLOW -->
+  <section class="section" id="workflow">
+    <div class="section-eyebrow">Conceptual guide</div>
+    <h2 class="section-title">Manual editorial workflow</h2>
+    <p class="section-desc">The gold-standard remediation: nine ordered passes from raw draft to publishable. The goal is not to fool a detector. It's to make the text sound like a specific person wrote it — individual vocabulary, genuine opinion, earned emotion, imperfect rhythm. Detection evasion is a byproduct.</p>
+
+    <div class="workflow-list">
+      <div class="workflow-step">
+        <h4>Never use AI's opener</h4>
+        <p>Write the first 2–3 sentences yourself, in your own voice. The opening is the highest-density location for AI tells; this single move establishes voice and authority immediately.</p>
+      </div>
+      <div class="workflow-step">
+        <h4>Vocabulary pass</h4>
+        <p>Work through the <a href="#tier-1">Tier 1 flagged words</a> and cut or replace on sight. Then check for Tier 2 clustering (two or more elevation words in the same paragraph). Mechanical and fast.</p>
+      </div>
+      <div class="workflow-step">
+        <h4>Structural break</h4>
+        <p>Identify AI's default architecture (intro–list–conclusion) and break it. Lead with the point instead of building to it. Merge uniform paragraphs or split them. Convert bullet lists into prose where the content is actually sequential thinking, not a genuine list.</p>
+      </div>
+      <div class="workflow-step">
+        <h4>Specificity injection</h4>
+        <p>Find every vague attribution (<em>experts say</em>), every sweeping generality (<em>this is crucial for success</em>), every round number (<em>thousands of customers</em>), and replace with specifics — names, dates, numbers, examples, quotes from actual sources.</p>
+      </div>
+      <div class="workflow-step">
+        <h4>Voice injection</h4>
+        <p>Add what only a human with skin in the game can add: opinion, experience, reaction, preference, stakes. Where the piece is supposed to have a point of view, take one. If the draft is neutral on a question that should have an answer, answer it.</p>
+      </div>
+      <div class="workflow-step">
+        <h4>Rhythm break</h4>
+        <p>Read the draft aloud. Count sentence lengths. If you hear a metronome, break it — add a fragment, a one-sentence paragraph, a question, a longer sentence with a natural comma-and-then structure. Any sentence that sounds like it could be delivered by text-to-speech without sounding weird is probably too uniform.</p>
+      </div>
+      <div class="workflow-step">
+        <h4>Expert quotes</h4>
+        <p>Weave in real expert quotes or sourced data — from HARO (relaunched 2025), LinkedIn, professional communities. <em>"Experts believe"</em> becomes <em>"Dr. Sarah Chen, in a 2024 interview with Nature, argued that…"</em></p>
+      </div>
+      <div class="workflow-step">
+        <h4>Fact-check everything</h4>
+        <p>Click through every source AI cited. Verify numbers against the primary study, not the AI summary. AI hallucinates citations with confidence.</p>
+      </div>
+      <div class="workflow-step">
+        <h4>Second pass</h4>
+        <p>Run the Contently checklist: cut filler (<em>in order to, as well as, in terms of</em>), cut padded verbs (<em>helps with, is aimed at, can be used to</em>), check for "lists of three" appearing in every section, check for forced rhythmic patterns like <em>"While X is true, Y is also important."</em></p>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem;">
+      <div class="alert alert-coral">
+        <div class="alert-dot"></div>
+        <div class="alert-body">
+          <div class="alert-title">The read-aloud test</div>
+          If the text sounds like it could be read by text-to-speech without sounding weird, it's too uniform. Human writing has rhythm that resists robotic delivery — uneven sentence length, natural disfluency, idiosyncratic word choices, pacing that speeds up and slows down.
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-quote" style="margin-top:1rem;">
+      I personally run every single thing I write through these rules before I publish. I refuse to let anything out the door that could make someone think "AI wrote this."
+      <span class="attr">— Tom Orbach's personal editorial standard</span>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- TRAPS -->
+  <section class="section" id="traps">
+    <div class="section-eyebrow">Conceptual guide</div>
+    <h2 class="section-title">The over-polishing trap &amp; the rewrite threshold</h2>
+    <p class="section-desc">Two failure modes at the editing stage. The first: editing so aggressively that the text starts to look AI-generated for the opposite reason. The second: trying to patch a draft that needed a rewrite.</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3 class="subsection-h">The over-polishing trap</h3>
+        <p class="copy">Applying every rule at maximum strictness can push human writing toward AI statistical profiles. Natural disfluency, idiosyncratic word choices, and uneven pacing are what keep text out of the "AI-generated" classification. Deliberately sanding away all irregularity in pursuit of clean prose creates the uniformity you're trying to avoid.</p>
+        <p class="copy"><em>"Don't sand away all personality in pursuit of clean prose. This skill should make writing sound more human, not less."</em> — avoid-ai-writing SKILL.md</p>
+      </div>
+      <div class="card">
+        <h3 class="subsection-h">The rewrite-vs-patch threshold</h3>
+        <p class="copy">If a draft has any two of these — patching individual phrases won't fix it. The structure itself is AI-generated.</p>
+        <ul class="copy-list">
+          <li>5+ flagged vocabulary hits across multiple Tier 1 categories</li>
+          <li>3+ distinct structural pattern categories triggered</li>
+          <li>Uniform sentence and paragraph length throughout</li>
+        </ul>
+        <p class="copy">Advise a full rewrite: state the core point in one sentence, then rebuild from there.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ===================== WORD & PHRASE LIST ===================== -->
+
+  <!-- TIER 1 -->
+  <section class="section" id="tier-1">
+    <div class="section-eyebrow">Word &amp; phrase list</div>
+    <h2 class="section-title">Tier 1 — always replace</h2>
+    <p class="section-desc">These words appear 5–20× more often in AI text than human text. Replace on sight, in any context. The tier system reduces false positives on words that are fine in isolation but suspicious in clusters.</p>
+
+    <div class="tier-banner tier-1">
+      <span class="tier-num">TIER 1</span>
+      <span><strong>Always flag.</strong> Replace on sight. Below: 67 entries, alphabetical within thematic order.</span>
+    </div>
+
+    <div class="card">
+      <table class="ds-table">
+        <thead><tr><th style="width:42%;">Replace</th><th>With</th></tr></thead>
+        <tbody>
+          <tr><td class="replace">delve / delve into</td><td class="with">explore, dig into, look at</td></tr>
+          <tr><td class="replace">landscape (metaphor)</td><td class="with">field, space, industry, world</td></tr>
+          <tr><td class="replace">tapestry</td><td class="with">(describe the actual complexity)</td></tr>
+          <tr><td class="replace">realm</td><td class="with">area, field, domain</td></tr>
+          <tr><td class="replace">paradigm</td><td class="with">model, approach, framework</td></tr>
+          <tr><td class="replace">embark</td><td class="with">start, begin</td></tr>
+          <tr><td class="replace">beacon</td><td class="with">(rewrite entirely)</td></tr>
+          <tr><td class="replace">testament to</td><td class="with">shows, proves, demonstrates</td></tr>
+          <tr><td class="replace">robust</td><td class="with">strong, reliable, solid</td></tr>
+          <tr><td class="replace">comprehensive</td><td class="with">thorough, complete, full</td></tr>
+          <tr><td class="replace">cutting-edge</td><td class="with">latest, newest, advanced</td></tr>
+          <tr><td class="replace">leverage (verb)</td><td class="with">use</td></tr>
+          <tr><td class="replace">pivotal</td><td class="with">important, key, critical</td></tr>
+          <tr><td class="replace">underscores</td><td class="with">highlights, shows</td></tr>
+          <tr><td class="replace">meticulous / meticulously</td><td class="with">careful, detailed, precise</td></tr>
+          <tr><td class="replace">seamless / seamlessly</td><td class="with">smooth, easy, without friction</td></tr>
+          <tr><td class="replace">game-changer / game-changing</td><td class="with">describe what specifically changed and why</td></tr>
+          <tr><td class="replace">hit differently / hits different</td><td class="with">(describe specifically, or cut)</td></tr>
+          <tr><td class="replace">utilize</td><td class="with">use</td></tr>
+          <tr><td class="replace">watershed moment</td><td class="with">turning point, shift (or describe what changed)</td></tr>
+          <tr><td class="replace">marking a pivotal moment</td><td class="with">(state what happened)</td></tr>
+          <tr><td class="replace">the future looks bright</td><td class="with">(cut — say something specific or nothing)</td></tr>
+          <tr><td class="replace">only time will tell</td><td class="with">(cut — say something specific or nothing)</td></tr>
+          <tr><td class="replace">nestled</td><td class="with">is located, sits, is in</td></tr>
+          <tr><td class="replace">vibrant</td><td class="with">(describe what makes it active, or cut)</td></tr>
+          <tr><td class="replace">thriving</td><td class="with">growing, active (or cite a number)</td></tr>
+          <tr><td class="replace">despite challenges… continues to thrive</td><td class="with">(name the challenge and the response, or cut)</td></tr>
+          <tr><td class="replace">showcasing</td><td class="with">showing, demonstrating (or cut the clause)</td></tr>
+          <tr><td class="replace">deep dive / dive into</td><td class="with">look at, examine, explore</td></tr>
+          <tr><td class="replace">unpack / unpacking</td><td class="with">explain, break down, walk through</td></tr>
+          <tr><td class="replace">bustling</td><td class="with">busy, active (or cite what makes it busy)</td></tr>
+          <tr><td class="replace">intricate / intricacies</td><td class="with">complex, detailed (or name the specific complexity)</td></tr>
+          <tr><td class="replace">complexities</td><td class="with">(name the actual complexities, or use "problems" / "details")</td></tr>
+          <tr><td class="replace">ever-evolving</td><td class="with">changing, growing (or describe how)</td></tr>
+          <tr><td class="replace">enduring</td><td class="with">lasting, long-running (or cite how long)</td></tr>
+          <tr><td class="replace">daunting</td><td class="with">hard, difficult, challenging</td></tr>
+          <tr><td class="replace">holistic / holistically</td><td class="with">complete, full, whole (or describe what's included)</td></tr>
+          <tr><td class="replace">actionable</td><td class="with">practical, useful, concrete</td></tr>
+          <tr><td class="replace">impactful</td><td class="with">effective, significant (or describe the impact)</td></tr>
+          <tr><td class="replace">learnings</td><td class="with">lessons, findings, takeaways</td></tr>
+          <tr><td class="replace">thought leader / thought leadership</td><td class="with">expert, authority (or describe their actual contribution)</td></tr>
+          <tr><td class="replace">best practices</td><td class="with">what works, proven methods, standard approach</td></tr>
+          <tr><td class="replace">at its core</td><td class="with">(cut — just state the thing)</td></tr>
+          <tr><td class="replace">synergy / synergies</td><td class="with">(describe the actual combined effect)</td></tr>
+          <tr><td class="replace">interplay</td><td class="with">relationship, connection, interaction</td></tr>
+          <tr><td class="replace">in order to</td><td class="with">to</td></tr>
+          <tr><td class="replace">due to the fact that</td><td class="with">because</td></tr>
+          <tr><td class="replace">serves as</td><td class="with">is</td></tr>
+          <tr><td class="replace">features (verb)</td><td class="with">has, includes</td></tr>
+          <tr><td class="replace">boasts</td><td class="with">has</td></tr>
+          <tr><td class="replace">presents (inflated)</td><td class="with">is, shows, gives</td></tr>
+          <tr><td class="replace">commence</td><td class="with">start, begin</td></tr>
+          <tr><td class="replace">ascertain</td><td class="with">find out, determine, learn</td></tr>
+          <tr><td class="replace">endeavor</td><td class="with">effort, attempt, try</td></tr>
+          <tr><td class="replace">keen (as intensifier)</td><td class="with">interested, eager (or just state the interest)</td></tr>
+          <tr><td class="replace">symphony (metaphor)</td><td class="with">(describe the actual coordination or combination)</td></tr>
+          <tr><td class="replace">embrace (metaphor)</td><td class="with">adopt, accept, use, switch to</td></tr>
+          <tr><td class="replace">groundbreaking</td><td class="with">(describe what's actually new)</td></tr>
+          <tr><td class="replace">transformative</td><td class="with">(describe what changed and how)</td></tr>
+          <tr><td class="replace">innovative / innovation</td><td class="with">(describe what's actually new)</td></tr>
+          <tr><td class="replace">foster</td><td class="with">encourage, support, build</td></tr>
+          <tr><td class="replace">nuanced (as empty praise)</td><td class="with">specific, subtle, detailed (or name the actual nuance)</td></tr>
+          <tr><td class="replace">multifaceted</td><td class="with">(describe the actual facets, or cut)</td></tr>
+          <tr><td class="replace">shed light on</td><td class="with">explain, clarify</td></tr>
+          <tr><td class="replace">pave the way</td><td class="with">lead to, enable, make possible</td></tr>
+          <tr><td class="replace">navigate (figurative)</td><td class="with">handle, work through, deal with</td></tr>
+          <tr><td class="replace">bolster</td><td class="with">support, strengthen</td></tr>
+          <tr><td class="replace">underscore</td><td class="with">show, highlight</td></tr>
+          <tr><td class="replace">harness</td><td class="with">use, take advantage of</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- TIER 2 -->
+  <section class="section" id="tier-2">
+    <div class="section-eyebrow">Word &amp; phrase list</div>
+    <h2 class="section-title">Tier 2 — flag in clusters</h2>
+    <p class="section-desc">Individually acceptable. When two or more appear in the same paragraph, the paragraph likely needs a rewrite.</p>
+
+    <div class="tier-banner tier-2">
+      <span class="tier-num">TIER 2</span>
+      <span><strong>Flag in clusters.</strong> One is fine. Two in a paragraph is a signal. Three is a rewrite.</span>
+    </div>
+
+    <div class="card">
+      <table class="ds-table">
+        <thead><tr><th style="width:42%;">Replace</th><th>With</th></tr></thead>
+        <tbody>
+          <tr><td class="replace">harness</td><td class="with">use, take advantage of</td></tr>
+          <tr><td class="replace">navigate / navigating</td><td class="with">work through, handle, deal with</td></tr>
+          <tr><td class="replace">elevate</td><td class="with">improve, raise, strengthen</td></tr>
+          <tr><td class="replace">unleash</td><td class="with">release, enable, unlock</td></tr>
+          <tr><td class="replace">streamline</td><td class="with">simplify, speed up</td></tr>
+          <tr><td class="replace">empower</td><td class="with">enable, let, allow</td></tr>
+          <tr><td class="replace">spearhead</td><td class="with">lead, drive, run</td></tr>
+          <tr><td class="replace">resonate / resonates with</td><td class="with">connect with, appeal to, matter to</td></tr>
+          <tr><td class="replace">revolutionize</td><td class="with">change, transform, reshape (or describe what changed)</td></tr>
+          <tr><td class="replace">facilitate / facilitates</td><td class="with">enable, help, allow, run</td></tr>
+          <tr><td class="replace">underpin</td><td class="with">support, form the basis of</td></tr>
+          <tr><td class="replace">nuanced</td><td class="with">specific, subtle, detailed (or name the actual nuance)</td></tr>
+          <tr><td class="replace">crucial</td><td class="with">important, key, necessary</td></tr>
+          <tr><td class="replace">ecosystem (metaphor)</td><td class="with">system, community, network, market</td></tr>
+          <tr><td class="replace">myriad</td><td class="with">many, numerous (or give a number)</td></tr>
+          <tr><td class="replace">plethora</td><td class="with">many, a lot of (or give a number)</td></tr>
+          <tr><td class="replace">encompass</td><td class="with">include, cover, span</td></tr>
+          <tr><td class="replace">catalyze</td><td class="with">start, trigger, accelerate</td></tr>
+          <tr><td class="replace">reimagine</td><td class="with">rethink, redesign, rebuild</td></tr>
+          <tr><td class="replace">galvanize</td><td class="with">motivate, rally, push</td></tr>
+          <tr><td class="replace">augment</td><td class="with">add to, expand, supplement</td></tr>
+          <tr><td class="replace">cultivate</td><td class="with">build, develop, grow</td></tr>
+          <tr><td class="replace">illuminate</td><td class="with">clarify, explain, show</td></tr>
+          <tr><td class="replace">elucidate</td><td class="with">explain, clarify, spell out</td></tr>
+          <tr><td class="replace">juxtapose</td><td class="with">compare, contrast, set side by side</td></tr>
+          <tr><td class="replace">paradigm-shifting</td><td class="with">(describe what actually shifted)</td></tr>
+          <tr><td class="replace">cornerstone</td><td class="with">foundation, basis, key part</td></tr>
+          <tr><td class="replace">paramount</td><td class="with">most important, top priority</td></tr>
+          <tr><td class="replace">poised (to)</td><td class="with">ready, set, about to</td></tr>
+          <tr><td class="replace">burgeoning</td><td class="with">growing, emerging (or cite a number)</td></tr>
+          <tr><td class="replace">nascent</td><td class="with">new, early-stage, emerging</td></tr>
+          <tr><td class="replace">quintessential</td><td class="with">typical, classic, defining</td></tr>
+          <tr><td class="replace">overarching</td><td class="with">main, central, broad</td></tr>
+          <tr><td class="replace">underpinning / underpinnings</td><td class="with">basis, foundation, what supports</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- TIER 3 -->
+  <section class="section" id="tier-3">
+    <div class="section-eyebrow">Word &amp; phrase list</div>
+    <h2 class="section-title">Tier 3 — flag by density</h2>
+    <p class="section-desc">Normal words. Flag only when the text is saturated with them — a sign AI filled space with vague praise instead of specifics. Replace some instances with numbers, comparisons, or examples.</p>
+
+    <div class="tier-banner tier-3">
+      <span class="tier-num">TIER 3</span>
+      <span><strong>Flag at high density (~3%+).</strong> Routine words AI overuses. Don't blanket-replace — replace enough to add specificity.</span>
+    </div>
+
+    <div class="card">
+      <table class="ds-table">
+        <thead><tr><th style="width:34%;">Word</th><th>Fix</th></tr></thead>
+        <tbody>
+          <tr><td class="replace">significant / significantly</td><td class="with">Replace some with specifics: numbers, comparisons, examples</td></tr>
+          <tr><td class="replace">innovative / innovation</td><td class="with">Describe what's actually new</td></tr>
+          <tr><td class="replace">effective / effectively</td><td class="with">Say how or cite a metric</td></tr>
+          <tr><td class="replace">dynamic / dynamics</td><td class="with">Name the actual forces or changes</td></tr>
+          <tr><td class="replace">scalable / scalability</td><td class="with">Describe what scales and to what</td></tr>
+          <tr><td class="replace">compelling</td><td class="with">Say why it compels</td></tr>
+          <tr><td class="replace">unprecedented</td><td class="with">Name the precedent it breaks (or cut)</td></tr>
+          <tr><td class="replace">exceptional / exceptionally</td><td class="with">Cite what makes it an exception</td></tr>
+          <tr><td class="replace">remarkable / remarkably</td><td class="with">Say what's worth remarking on</td></tr>
+          <tr><td class="replace">sophisticated</td><td class="with">Describe the sophistication</td></tr>
+          <tr><td class="replace">instrumental</td><td class="with">Say what role it played</td></tr>
+          <tr><td class="replace">world-class / state-of-the-art / best-in-class</td><td class="with">Cite a benchmark or comparison</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- PHRASES TO CUT -->
+  <section class="section" id="phrases-cut">
+    <div class="section-eyebrow">Word &amp; phrase list</div>
+    <h2 class="section-title">Phrases to cut entirely</h2>
+    <p class="section-desc">Slot-fill constructions that signal generated text. If a phrase has a blank where any noun or adjective could go and still sound the same, it's too generic.</p>
+
+    <div class="subsection">
+      <div class="subsection-label"><span>Opener phrases</span><span class="label-aside">cut or rewrite</span></div>
+      <div class="card">
+        <div class="phrase-grid">
+          <div class="phrase-line"><span class="src">"In today's [fast-paced/digital] world…"</span><span class="arrow">→</span><span class="fix">start with the point</span></div>
+          <div class="phrase-line"><span class="src">"In an era where [X]…"</span><span class="arrow">→</span><span class="fix">cut or state specific context</span></div>
+          <div class="phrase-line"><span class="src">"In the realm of…"</span><span class="arrow">→</span><span class="fix">name the actual field</span></div>
+          <div class="phrase-line"><span class="src">"In the vast [X]…"</span><span class="arrow">→</span><span class="fix">cut the preamble</span></div>
+          <div class="phrase-line"><span class="src">"In the annals of…"</span><span class="arrow">→</span><span class="fix">state the historical claim directly</span></div>
+          <div class="phrase-line"><span class="src">"Join us as we…"</span><span class="arrow">→</span><span class="fix">just start</span></div>
+          <div class="phrase-line"><span class="src">"Let's explore / deep dive / break this down"</span><span class="arrow">→</span><span class="fix">just start</span></div>
+          <div class="phrase-line"><span class="src">"In this article, we will explore…"</span><span class="arrow">→</span><span class="fix">cut; start with the content</span></div>
+          <div class="phrase-line"><span class="src">"At its core, this is about…"</span><span class="arrow">→</span><span class="fix">cut "at its core"</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label"><span>Significance inflation</span><span class="label-aside">cut or replace with specifics</span></div>
+      <div class="card">
+        <div class="phrase-grid">
+          <div class="phrase-line"><span class="src">"A testament to…"</span><span class="arrow">→</span><span class="fix">shows, proves, demonstrates</span></div>
+          <div class="phrase-line"><span class="src">"Cannot be overstated"</span><span class="arrow">→</span><span class="fix">state it once, clearly</span></div>
+          <div class="phrase-line"><span class="src">"Profound impact"</span><span class="arrow">→</span><span class="fix">name the actual impact</span></div>
+          <div class="phrase-line"><span class="src">"Plays a crucial role"</span><span class="arrow">→</span><span class="fix">say what the role is</span></div>
+          <div class="phrase-line"><span class="src">"Has emerged as a…"</span><span class="arrow">→</span><span class="fix">describe what it is now</span></div>
+          <div class="phrase-line"><span class="src">"Has revolutionized…"</span><span class="arrow">→</span><span class="fix">describe what changed</span></div>
+          <div class="phrase-line"><span class="src">"A tapestry of…"</span><span class="arrow">→</span><span class="fix">describe the actual complexity</span></div>
+          <div class="phrase-line"><span class="src">"A treasure trove of…"</span><span class="arrow">→</span><span class="fix">say what's there</span></div>
+          <div class="phrase-line"><span class="src">"Stands as a beacon of…"</span><span class="arrow">→</span><span class="fix">rewrite entirely</span></div>
+          <div class="phrase-line"><span class="src">"Left an indelible mark"</span><span class="arrow">→</span><span class="fix">say what the mark is</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label"><span>Structural &amp; transitional filler</span><span class="label-aside">cut or use a connecting word</span></div>
+      <div class="card">
+        <div class="phrase-grid">
+          <div class="phrase-line"><span class="src">"Moreover / Furthermore / Additionally"</span><span class="arrow">→</span><span class="fix">restructure, or use "and," "also"</span></div>
+          <div class="phrase-line"><span class="src">"In conclusion / In summary"</span><span class="arrow">→</span><span class="fix">conclusion should be obvious</span></div>
+          <div class="phrase-line"><span class="src">"It's worth noting that / Notably"</span><span class="arrow">→</span><span class="fix">just state the fact</span></div>
+          <div class="phrase-line"><span class="src">"That said / That being said"</span><span class="arrow">→</span><span class="fix">"but," "yet," "however"</span></div>
+          <div class="phrase-line"><span class="src">"When it comes to…"</span><span class="arrow">→</span><span class="fix">just talk about the thing</span></div>
+          <div class="phrase-line"><span class="src">"At the end of the day"</span><span class="arrow">→</span><span class="fix">cut</span></div>
+          <div class="phrase-line"><span class="src">"Here's what's interesting…"</span><span class="arrow">→</span><span class="fix">let content signal importance</span></div>
+          <div class="phrase-line"><span class="src">"Now let's turn to / Let's now examine"</span><span class="arrow">→</span><span class="fix">no signposting</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label"><span>Confidence calibration to remove</span><span class="label-aside">let the fact speak</span></div>
+      <div class="card">
+        <p class="copy" style="margin-bottom:0;"><em>Interestingly · Surprisingly · Importantly · Significantly · Notably · Certainly · Undoubtedly · It's important to note that · Needless to say · Of course (as filler).</em></p>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label"><span>Chatbot artifacts</span><span class="label-aside">remove entirely</span></div>
+      <div class="card">
+        <p class="copy" style="margin-bottom:0;"><em>"I hope this helps!" · "Certainly!" / "Absolutely!" / "Great question!" / "Excellent point!" · "Feel free to reach out" · "Let me know if you need anything else" · "You're asking about…" / "To answer your question…"</em></p>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label"><span>Vague attribution phrases</span><span class="label-aside">name the source or cut</span></div>
+      <div class="card">
+        <p class="copy" style="margin-bottom:0;"><em>Experts believe · Studies show · Research suggests · Industry leaders agree · It is widely accepted that.</em></p>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label"><span>Generic conclusion phrases</span><span class="label-aside">cut or be specific</span></div>
+      <div class="card">
+        <p class="copy" style="margin-bottom:0;"><em>The future looks bright · Only time will tell · One thing is certain · As we move forward · This is just the beginning.</em></p>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label"><span>Promotional language</span><span class="label-aside">replace with plain description</span></div>
+      <div class="card">
+        <div class="phrase-grid">
+          <div class="phrase-line"><span class="src">"Nestled within the breathtaking…"</span><span class="arrow">→</span><span class="fix">"is in"</span></div>
+          <div class="phrase-line"><span class="src">"A vibrant hub of innovation"</span><span class="arrow">→</span><span class="fix">describe what makes it active</span></div>
+          <div class="phrase-line"><span class="src">"A thriving ecosystem"</span><span class="arrow">→</span><span class="fix">describe the community, cite a number</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- TOP 50 -->
+  <section class="section" id="top-50">
+    <div class="section-eyebrow">Word &amp; phrase list</div>
+    <h2 class="section-title">The 50 most common AI phrases</h2>
+    <p class="section-desc">Listed in order from most to least common (via aiphrasefinder.com). Useful for recognition — if you read it and your brain says "this sounds like AI," it's probably on this list.</p>
+
+    <div class="card">
+      <ol class="copy-list" style="columns: 2; column-gap: 2.5rem; padding-left: 1.6em;">
+        <li>In the realm of</li>
+        <li>Delve into</li>
+        <li>In today's digital age</li>
+        <li>A testament to</li>
+        <li>In conclusion</li>
+        <li>A treasure trove of</li>
+        <li>In this article</li>
+        <li>A tapestry of</li>
+        <li>In the annals of</li>
+        <li>Let's explore</li>
+        <li>The core elements of</li>
+        <li>Ever-evolving</li>
+        <li>Significantly enhance</li>
+        <li>Cannot be overstated</li>
+        <li>The intricacies of</li>
+        <li>Profound impact</li>
+        <li>In the vast</li>
+        <li>Has emerged as a</li>
+        <li>Remember that</li>
+        <li>An ongoing process</li>
+        <li>In an era where</li>
+        <li>Let's deep dive</li>
+        <li>Ever-competitive</li>
+        <li>Has revolutionized</li>
+        <li>Evokes a sense of</li>
+        <li>Our daily lives</li>
+        <li>Hustle and bustle of</li>
+        <li>In-depth overview</li>
+        <li>By leveraging</li>
+        <li>Key to unlocking</li>
+        <li>Gain valuable insights</li>
+        <li>Navigate the complexities</li>
+        <li>Is vital for</li>
+        <li>Enduring allure</li>
+        <li>Harness the power of</li>
+        <li>Seamlessly blends</li>
+        <li>Actionable tips</li>
+        <li>Left an indelible mark</li>
+        <li>The art and science of</li>
+        <li>Equip you with</li>
+        <li>Ever-shifting</li>
+        <li>To elevate</li>
+        <li>Diverse array of</li>
+        <li>Join us as we</li>
+        <li>Plays a crucial role</li>
+        <li>Strategic approach</li>
+        <li>Can feel daunting</li>
+        <li>Stands as a beacon of</li>
+        <li>Serves as a reminder</li>
+        <li>Can feel overwhelming</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- AIDIOLECTS -->
+  <section class="section" id="aidiolects">
+    <div class="section-eyebrow">Word &amp; phrase list</div>
+    <h2 class="section-title">Per-model vocabulary signatures</h2>
+    <p class="section-desc">From the February 2025 arxiv study achieving 97.1% classification accuracy. Each model has a distinct vocabulary fingerprint that persists through rewriting.</p>
+
+    <div class="card">
+      <div class="model-row"><div class="model-name">ChatGPT</div><div class="model-words">certainly · such as · overall · below is · sure! · typically · various · in-depth</div></div>
+      <div class="model-row"><div class="model-name">Claude</div><div class="model-words">according to the text · based on · here is a summary · while · both · the text</div></div>
+      <div class="model-row"><div class="model-name">Grok</div><div class="model-words">remember · might · but also · helps in · which · where</div></div>
+      <div class="model-row"><div class="model-name">Gemini</div><div class="model-words">below · example · for instance · in summary · certainly! below</div></div>
+      <div class="model-row"><div class="model-name">DeepSeek</div><div class="model-words">crucial · key improvements · here's a breakdown · essentially · etc. · at the same time</div></div>
+      <div class="model-row"><div class="model-name">Llama</div><div class="model-words">including · such as · the following · explanation the</div></div>
+      <div class="model-row"><div class="model-name">Gemma</div><div class="model-words">let me · know if · remember · below is · specific · detailed</div></div>
+      <div class="model-row"><div class="model-name">Qwen</div><div class="model-words">certainly · in summary · title · comprehensive · based · example use</div></div>
+      <div class="model-row"><div class="model-name">Mistral</div><div class="model-words">creating · absolutely · subject · yes · try · build · test</div></div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ===================== TOOLS ===================== -->
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="section-eyebrow">Tools &amp; resources</div>
+    <h2 class="section-title">Agentic skills</h2>
+    <p class="section-desc">Portable skill files you can install in Claude Code, Cursor, Codex, or similar agents to enforce these patterns at the agent layer.</p>
+
+    <div class="grid-2">
+      <div class="tool-card">
+        <span class="tag-row"><span class="badge badge-coral">Gold standard</span><span class="badge badge-squid">MIT</span></span>
+        <div class="tool-name">avoid-ai-writing <span class="star">★</span></div>
+        <div class="tool-meta">conorbronsdon · v3.3.1 · Portable SKILL.md</div>
+        <div class="tool-desc">The most comprehensive open-source Claude skill for this purpose. A 109-entry tiered word table, 36 pattern categories with before/after examples, two operating modes (rewrite and detect), P0/P1/P2 severity tiers, a second-pass audit, context profiles, and a tolerance matrix adjusting rule strictness by content type. Includes a rewrite-vs-patch threshold (when to stop patching and advise a full rewrite).</div>
+        <a class="tool-link" href="https://github.com/conorbronsdon/avoid-ai-writing">github.com/conorbronsdon/avoid-ai-writing</a>
+        <a class="tool-link" href="https://avoid-ai-writing-app.vercel.app">Web app: avoid-ai-writing-app.vercel.app</a>
+      </div>
+      <div class="tool-card">
+        <span class="tag-row"><span class="badge badge-mist">Multi-agent</span></span>
+        <div class="tool-name">anti-ai-slop-writing</div>
+        <div class="tool-meta">jalaalrd · Claude Code, Codex, Cursor, Gemini CLI, +8 others</div>
+        <div class="tool-desc">An alternative approach to eliminating detectable AI patterns. Works across multiple agent ecosystems — useful if your team standardizes on a non-Claude agent.</div>
+        <a class="tool-link" href="https://github.com/jalaalrd/anti-ai-slop-writing">github.com/jalaalrd/anti-ai-slop-writing</a>
+      </div>
+      <div class="tool-card">
+        <span class="tag-row"><span class="badge badge-squid">Lobehub</span></span>
+        <div class="tool-name">anti-ai-writing-patterns</div>
+        <div class="tool-meta">acaprino · Lobehub / LobeChat ecosystem</div>
+        <div class="tool-desc">Anti-AI writing patterns skill packaged for the Lobehub/LobeChat marketplace.</div>
+        <a class="tool-link" href="https://lobehub.com/skills/acaprino-figtree-plugins-anti-ai-writing-patterns">lobehub.com/skills/…</a>
+      </div>
+      <div class="tool-card">
+        <span class="tag-row"><span class="badge badge-squid">Registry</span></span>
+        <div class="tool-name">anti-ai-writing (SkillsLLM)</div>
+        <div class="tool-meta">agentskills.io listing</div>
+        <div class="tool-desc">The conorbronsdon avoid-ai-writing skill as listed in the agentskills.io registry.</div>
+        <a class="tool-link" href="https://skillsllm.com/skill/avoid-ai-writing">skillsllm.com/skill/avoid-ai-writing</a>
+      </div>
+    </div>
+
+    <div class="subsection" style="margin-top:1.5rem;">
+      <div class="subsection-label">Integration options for avoid-ai-writing</div>
+      <div class="card">
+        <h4 class="minor-h">Option 1 — clone into Claude Code skills</h4>
+<pre class="code-block">git clone https://github.com/conorbronsdon/avoid-ai-writing ~/.claude/skills/avoid-ai-writing</pre>
+        <h4 class="minor-h">Option 2 — reference in CLAUDE.md</h4>
+<pre class="code-block">- Editing for AI patterns → read `path/to/avoid-ai-writing/SKILL.md`</pre>
+        <h4 class="minor-h">Option 3 — slash command</h4>
+        <p class="copy">Create <span class="mono">~/.claude/commands/clean-ai-writing.md</span>:</p>
+<pre class="code-block">---
+description: Audit and rewrite content to remove AI writing patterns
+---
+$ARGUMENTS
+Read and follow the instructions in ~/.claude/skills/avoid-ai-writing/SKILL.md</pre>
+        <p class="copy">Invoke with <span class="mono">/clean-ai-writing &lt;your text&gt;</span>.</p>
+        <h4 class="minor-h">Trigger phrases</h4>
+        <p class="copy"><strong>Rewrite mode:</strong> "Remove AI-isms from this post," "Audit this draft for AI tells," "Make this sound less like AI," "Clean up AI writing in this paragraph."</p>
+        <p class="copy"><strong>Detect mode:</strong> "detect," "flag only," "audit only," "just flag," "scan."</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- PROMPTS -->
+  <section class="section" id="prompts">
+    <div class="section-eyebrow">Tools &amp; resources</div>
+    <h2 class="section-title">Custom prompts &amp; instruction sets</h2>
+    <p class="section-desc">Paste-in prompts you can add to Claude settings, ChatGPT custom instructions, or use as one-off rewrite agents. Suppressing patterns at generation is less work than editing them out.</p>
+
+    <div class="subsection">
+      <div class="subsection-label"><span>Will Francis — Claude custom instructions <span class="star" style="color:var(--coral);">★</span></span><span class="label-aside">production-tested over a year</span></div>
+      <p class="copy">Paste into <strong>Claude → Settings → Profile → Custom Instructions</strong>. The verbatim prompt:</p>
+<pre class="code-block">## Voice
+
+Be direct. Have opinions. Use specific examples and names, not vague claims.
+State your point first, then support it. Trust the reader to recognise what
+matters without labelling it as "significant" or "important."
+
+## Banned words
+
+Never use these — they are the most flagged AI-writing markers:
+
+delve, dive into, navigate (figurative), underscore, bolster, foster, harness,
+leverage, unpack, shed light on, pave the way, pivotal, groundbreaking,
+cutting-edge, transformative, game-changing, innovative, robust,
+comprehensive, seamless, intricate, nuanced (as empty praise), vibrant,
+multifaceted, holistic, testament, landscape (figurative), realm
+
+Never use these phrases:
+
+- "In today's [fast-paced/rapidly evolving/digital] world..."
+- "It's important/worth noting that..."
+- "One of the most [important/significant/crucial]..."
+- "When it comes to..." / "At its core..." / "At the end of the day..."
+- "This is where X comes in" / "Let's break it down"
+- "Plays a crucial role in..." / "It cannot be overstated..."
+- "...underscoring the importance of..." / "...highlighting the need for..."
+- "...reflecting a broader trend toward..." / "...marking a significant shift in..."
+
+Never use these structures:
+
+- "It's not just X — it's Y"
+- "Not only X, but Y"
+- "This isn't about X. It's about Y."
+- "No X. No Y. Just Z."
+
+These mimic insight without providing any.
+
+## Structure
+
+- Vary paragraph and sentence length. Don't write uniform blocks.
+- Never use the "Bold term: explanation sentence" list format.
+  It's the single most recognisable AI pattern.
+- Don't signpost ("Let's explore," "Now let's turn to"). Just make your point.
+- Don't open with a sweeping contextual statement. Don't close with a summary
+  or inspirational wrap-up. Start and end on substance.
+- Don't restate the question back before answering it.
+
+## Style
+
+- Use contractions. "It's," "don't," "won't."
+- Maximum one em dash per response. Use commas or parentheses instead.
+- Don't over-format. Plain prose is often clearer than headers and bullets.
+- Drop preamble ("Great question!"), performative enthusiasm ("exciting,"
+  "incredible," "powerful"), and unsolicited caveats.
+- Match tone to context. Casual question, casual answer.
+
+## Before finishing, check:
+
+1. Read it out loud. Does any sentence sound like a press release? Rewrite it.
+2. Are you repeating the same point in different words? Say it once.
+3. Does your opening sentence set the scene with a grand statement about
+   the state of the world? Delete it, start with the second sentence.</pre>
+      <p class="copy">Add a personal voice note at the end: <em>"I write in a [warm/direct/dry] tone. I'm [knowledgeable/casual/conversational]. I use [British/American] English. I prefer [short sentences/plain language/jargon-free prose]."</em> Even 2–3 sentences makes a measurable difference.</p>
+      <p class="copy"><a href="https://willfrancis.com/how-to-stop-claude-writing-like-an-ai/">Original article — willfrancis.com</a></p>
+    </div>
+
+    <div class="grid-2" style="margin-top:1.5rem;">
+      <div class="tool-card">
+        <div class="tool-name">Ruben Hassid — Anti-AI-Voice Editor</div>
+        <div class="tool-meta">Paste-and-go rewrite prompt · ChatGPT/Claude</div>
+        <div class="tool-desc">Acts as an "Anti-AI-Voice Editor" that rewrites pasted text "so it reads like a clear, specific human. Not like ChatGPT, Claude, or a generic AI thought leader." Substack-published, high social engagement.</div>
+        <a class="tool-link" href="https://substack.com/@ruben/note/c-181376166">substack.com/@ruben/note/c-181376166</a>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Nate B. Jones — 20-prompt anti-slop system</div>
+        <div class="tool-meta">Substack newsletter · published Oct 10, 2025</div>
+        <div class="tool-desc">A set of 20 prompts designed to catch and kill shallow, directionless content. Every decision must have a name, every action item an owner, every open question a next step. AI as a first-pass evaluator running against explicit quality checks before human review.</div>
+        <a class="tool-link" href="https://natesnewsletter.substack.com/p/i-built-a-20-prompt-set-to-kill-ai">natesnewsletter.substack.com/p/i-built-a-20-prompt-set…</a>
+      </div>
+      <div class="tool-card" style="grid-column: 1 / -1;">
+        <div class="tool-name">Voice profile interview method</div>
+        <div class="tool-meta">Workflow / methodology</div>
+        <div class="tool-desc">Rather than describing your voice to the AI, paste 5–10 of your best pieces (diverse contexts — a proposal and a blog post teach more than five proposals) and ask the AI to extract patterns and cite specific evidence. You're too close to your own voice to describe it accurately. The AI pattern-matches better from examples than from abstract rules. Key principle: "Most of a good voice profile is about what you reject, not what you prefer."</div>
+        <a class="tool-link" href="https://aiforcontentmarketing.ai/how-to-make-claude-write-like-you-the-interview-method/">aiforcontentmarketing.ai/how-to-make-claude-write-like-you-the-interview-method/</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- DETECTORS -->
+  <section class="section" id="detectors">
+    <div class="section-eyebrow">Tools &amp; resources</div>
+    <h2 class="section-title">Detection tools</h2>
+    <p class="section-desc">Useful for two things: knowing what signals trigger them, and knowing whether your editing actually moved the needle. Treat claimed accuracy rates with healthy skepticism.</p>
+
+    <div class="card">
+      <table class="ds-table">
+        <thead><tr><th>Tool</th><th>Method / strength</th><th>Claimed</th><th>Independent</th></tr></thead>
+        <tbody>
+          <tr><td><strong>GPTZero</strong><br><a href="https://gptzero.me" class="mono">gptzero.me</a></td><td>Five-layer model: perplexity, burstiness, structural patterns. Paraphrasing shields. Education-standard.</td><td>99.3% · 0.24% FP</td><td>~90%</td></tr>
+          <tr><td><strong>Originality.AI</strong><br><a href="https://originality.ai" class="mono">originality.ai</a></td><td>Supervised learning, modified BERT/Roberta. Strong on blog and web content.</td><td>99%</td><td>~76%</td></tr>
+          <tr><td><strong>Winston AI</strong><br><a href="https://gowinston.ai" class="mono">gowinston.ai</a></td><td>General-purpose detector.</td><td>99.98%</td><td>~90%</td></tr>
+          <tr><td><strong>Copyleaks</strong><br><a href="https://copyleaks.com" class="mono">copyleaks.com</a></td><td>Multilingual (30+ languages), trained on scholarly papers. Strong on academic, weaker on creative.</td><td>—</td><td>—</td></tr>
+          <tr><td><strong>Turnitin</strong></td><td>Academic standard. High accuracy on essays/research; less calibrated to marketing.</td><td>—</td><td>—</td></tr>
+          <tr><td><strong>Sapling AI</strong><br><a href="https://sapling.ai" class="mono">sapling.ai</a></td><td>Strong in independent comparisons; matched or beat top competitors in several studies.</td><td>—</td><td>strong</td></tr>
+          <tr><td><strong>ZeroGPT</strong><br><a href="https://zerogpt.com" class="mono">zerogpt.com</a></td><td>Free, widely used. Accuracy varies significantly in independent tests.</td><td>—</td><td>varies</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- HUMANIZERS -->
+  <section class="section" id="humanizers">
+    <div class="section-eyebrow">Tools &amp; resources</div>
+    <h2 class="section-title">Humanizer tools</h2>
+    <p class="section-desc">Tools that rewrite AI text to score higher on human detection. Mostly content-farm marketing claims. Useful as a first pass; human editorial is still required for authentic voice.</p>
+
+    <div class="alert alert-coral" style="margin-bottom:1rem;">
+      <div class="alert-dot"></div>
+      <div class="alert-body">
+        <div class="alert-title">The limits of humanizer tools</div>
+        They can improve perplexity and burstiness scores, but the SEJ/arxiv finding stands — patterns are encoded at the word-distribution level and persist through LLM-to-LLM rewriting. A humanizer is a good first step, not a solution. A piece can pass GPTZero and still read as obviously machine-generated to a human reader with good editorial instincts.
+      </div>
+    </div>
+
+    <div class="card">
+      <table class="ds-table">
+        <thead><tr><th style="width:24%;">Tool</th><th style="width:30%;">URL</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><strong>WriteHuman</strong></td><td class="mono"><a href="https://writehuman.ai">writehuman.ai</a></td><td>Claims bypass of most major detectors</td></tr>
+          <tr><td><strong>QuillBot AI Humanizer</strong></td><td class="mono"><a href="https://quillbot.com/ai-humanizer">quillbot.com/ai-humanizer</a></td><td>Trained on human texts; evolves with AI detectors</td></tr>
+          <tr><td><strong>Grammarly AI Humanizer</strong></td><td class="mono"><a href="https://grammarly.com/ai-humanizer">grammarly.com/ai-humanizer</a></td><td>Integrated into the Grammarly ecosystem</td></tr>
+          <tr><td><strong>Phrasly</strong></td><td class="mono"><a href="https://phrasly.ai">phrasly.ai</a></td><td>All-in-one: detector + humanizer, claimed 2M+ users</td></tr>
+          <tr><td><strong>Undetectable AI</strong></td><td class="mono"><a href="https://undetectableai.pro">undetectableai.pro</a></td><td>Multi-detector testing</td></tr>
+          <tr><td><strong>StealthWriter</strong></td><td class="mono"><a href="https://stealthwriter.ai">stealthwriter.ai</a></td><td>Structural rebuilding, not just synonym swapping</td></tr>
+          <tr><td><strong>BypassGPT</strong></td><td class="mono"><a href="https://bypassgpt.ai">bypassgpt.ai</a></td><td>Multiple detector cross-check</td></tr>
+          <tr><td><strong>WalterWrites</strong></td><td class="mono"><a href="https://walterwrites.ai">walterwrites.ai</a></td><td>Sentence length randomization + humanization</td></tr>
+          <tr><td><strong>Rewritify</strong></td><td class="mono"><a href="https://rewritify.ai">rewritify.ai</a></td><td>Cross-checks GPTZero, ZeroGPT, Sapling, Winston, Copyleaks</td></tr>
+          <tr><td><strong>GPTHuman</strong></td><td class="mono"><a href="https://gpthuman.ai">gpthuman.ai</a></td><td>Continuously retrained against evolving detectors</td></tr>
+          <tr><td><strong>GPTinf</strong></td><td class="mono"><a href="https://gptinf.com">gptinf.com</a></td><td>Combined detector + humanizer</td></tr>
+          <tr><td><strong>Humanize.io</strong></td><td class="mono"><a href="https://humanize.io">humanize.io</a></td><td>Claims 99% bypass success</td></tr>
+          <tr><td><strong>Humanize AI</strong></td><td class="mono"><a href="https://humanizeai.pro">humanizeai.pro</a></td><td>Free, no signup</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- READING -->
+  <section class="section" id="reading">
+    <div class="section-eyebrow">Tools &amp; resources</div>
+    <h2 class="section-title">Reading list</h2>
+    <p class="section-desc">The primary sources behind everything above, annotated. If you read three: the avoid-ai-writing SKILL.md, the Will Francis guide, and the Contently piece.</p>
+
+    <div class="grid-2">
+      <div class="tool-card">
+        <div class="tool-name">avoid-ai-writing SKILL.md <span class="star">★</span></div>
+        <div class="tool-meta">conorbronsdon / GitHub · primary reference</div>
+        <div class="tool-desc">The most comprehensive open-source structured reference on AI patterns. 36 pattern categories with before/after examples, 109-entry tiered word table, severity system, context profiles, tolerance matrix. The document to read if you read one.</div>
+        <a class="tool-link" href="https://github.com/conorbronsdon/avoid-ai-writing/blob/main/SKILL.md">github.com/conorbronsdon/avoid-ai-writing/blob/main/SKILL.md</a>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Wikipedia: Signs of AI Writing</div>
+        <div class="tool-meta">Editor-curated taxonomy</div>
+        <div class="tool-desc">Built by Wikipedia editors dealing with AI-generated article submissions. Grounded in thousands of real examples. Frequently cited by other researchers as the canonical taxonomy.</div>
+        <a class="tool-link" href="https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing">en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing</a>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">SEJ — AI Writing Fingerprints</div>
+        <div class="tool-meta">Search Engine Journal · reports the arxiv classifier study</div>
+        <div class="tool-desc">97.1% accuracy in attributing text to specific LLMs. Documents per-model vocabulary signatures (aidiolects) and five remediation techniques. Key finding: patterns persist through LLM-to-LLM rewriting.</div>
+        <a class="tool-link" href="https://www.searchenginejournal.com/ai-writing-fingerprints-how-to-spot-fix-ai-generated-content/541613/">searchenginejournal.com/ai-writing-fingerprints…</a>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Contently — How to Edit the AI-isms Out</div>
+        <div class="tool-meta">Professional editorial perspective · Oct 14, 2025</div>
+        <div class="tool-desc">Practical workflow: cut padded language and limp verbs, inject specific names and data, fact-check every source, add expert quotes via HARO / LinkedIn. Stanford study cited: edited AI content scored 47% higher on originality metrics than raw outputs.</div>
+        <a class="tool-link" href="http://contently.com/2025/10/14/how-to-edit-the-ai-isms-out-of-your-content-no-detectors-needed/">contently.com/2025/10/14/how-to-edit-the-ai-isms-out…</a>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Tom Orbach — Anti-AI Writing Cheat Sheet</div>
+        <div class="tool-meta">Marketing Ideas / Substack · paywalled preview</div>
+        <div class="tool-desc">13 fixable AI patterns with before/after fixes, 100+ banned words and phrases, instructions for adding voice back after AI strips it out, and a copy-paste auto-fix prompt. Orbach's framing: the problem is pattern, not tone.</div>
+        <a class="tool-link" href="https://www.marketingideas.com/p/the-anti-ai-writing-cheat-sheet">marketingideas.com/p/the-anti-ai-writing-cheat-sheet</a>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Will Francis — How to Stop Claude Writing Like an AI</div>
+        <div class="tool-meta">willfrancis.com · prompt + reasoning</div>
+        <div class="tool-desc">Practical guide to using Claude's custom instructions to suppress AI patterns at generation. References Max Planck Institute research finding AI vocabulary words spiked 50%+ in published human writing post-ChatGPT.</div>
+        <a class="tool-link" href="https://willfrancis.com/how-to-stop-claude-writing-like-an-ai/">willfrancis.com/how-to-stop-claude-writing-like-an-ai</a>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Augmented Educator — Ten Telltale Signs</div>
+        <div class="tool-meta">Educational framing</div>
+        <div class="tool-desc">Accessible 10-sign taxonomy. Useful for quick orientation or onboarding a colleague new to the topic.</div>
+        <a class="tool-link" href="https://www.theaugmentededucator.com/p/the-ten-telltale-signs-of-ai-generated">theaugmentededucator.com/p/the-ten-telltale-signs-of-ai-generated</a>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Originality.AI — Perplexity and Burstiness</div>
+        <div class="tool-meta">Detection metrics explained</div>
+        <div class="tool-desc">Explains the two primary metrics AI detectors use. Essential for understanding why structural uniformity is harder to mask than vocabulary.</div>
+        <a class="tool-link" href="https://originality.ai/blog/perplexity-and-burstiness-in-writing">originality.ai/blog/perplexity-and-burstiness-in-writing</a>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Pangram Labs — AI's Most Overused Phrases</div>
+        <div class="tool-meta">Classifier team · 28M human documents</div>
+        <div class="tool-desc">Their key finding: structural regularity outweighs vocabulary as a detection signal. Fixing words while leaving rhythm untouched doesn't fool structural classifiers.</div>
+        <a class="tool-link" href="https://www.pangram.com/blog/walking-through-ai-phrases">pangram.com/blog/walking-through-ai-phrases</a>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Pangram Labs — Why Perplexity &amp; Burstiness Fail</div>
+        <div class="tool-meta">The counterargument</div>
+        <div class="tool-desc">Worth reading alongside the Originality.AI piece for a complete picture of detection methodology debates.</div>
+        <a class="tool-link" href="https://www.pangram.com/blog/why-perplexity-and-burstiness-fail-to-detect-ai">pangram.com/blog/why-perplexity-and-burstiness-fail-to-detect-ai</a>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">AI Phrase Finder — 50 Most Common AI Phrases</div>
+        <div class="tool-meta">Annotated reference</div>
+        <div class="tool-desc">Full annotated list with explanations for why each phrase signals AI authorship. Companion pieces: "The 100 Most Common AI Words" and "100 Common ChatGPT Adjectives."</div>
+        <a class="tool-link" href="https://aiphrasefinder.com/common-ai-phrases/">aiphrasefinder.com/common-ai-phrases</a>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Walter Writes — ChatGPT Words to Avoid</div>
+        <div class="tool-meta">Extended list · 150+ flagged words</div>
+        <div class="tool-desc">Companion word list to the AI Phrase Finder reference. Useful for cross-checking unusual flags.</div>
+        <a class="tool-link" href="https://walterwrites.ai/most-common-chatgpt-words-to-avoid/">walterwrites.ai/most-common-chatgpt-words-to-avoid</a>
+      </div>
+    </div>
+
+    <div class="subsection" style="margin-top:2rem;">
+      <div class="subsection-label">Academic &amp; research sources</div>
+      <div class="card">
+        <h4 class="minor-h">arxiv — Identifying which LLM wrote a given text (Feb 2025)</h4>
+        <p class="copy">The study reported by SEJ. 97.1% accuracy in attributing text to specific LLMs. Per-model vocabulary signatures persist through rewriting, translation, and summarization. Patterns are encoded at word-distribution level, not just surface vocabulary. <a href="https://arxiv.org/pdf/2502.12150">arxiv.org/pdf/2502.12150</a></p>
+        <h4 class="minor-h">ScienceDirect — Humanizing AI-Generated Text</h4>
+        <p class="copy">Academic survey of humanization techniques: lexical substitution, sentence restructuring, sentiment adjustment, idiomatic expression insertion. <a href="https://www.academia.edu/123664396/Humanizing_AI_Generated_Text_Techniques_and_Future_Directions">academia.edu link</a></p>
+        <h4 class="minor-h">ScienceDirect — Linguistic fingerprints in human and AI-generated texts</h4>
+        <p class="copy">NLP-based study comparing linguistic features of human vs. AI text in second-language writing contexts. <a href="https://www.sciencedirect.com/science/article/pii/S2215039026000056">sciencedirect.com link</a></p>
+        <h4 class="minor-h">Copyleaks — AI has unique stylistic fingerprints</h4>
+        <p class="copy">Research demonstrating model-specific stylistic fingerprints; basis for Copyleaks' attribution methodology. <a href="https://copyleaks.com/blog/copyleaks-research-reveals-which-ai-wrote-what">copyleaks.com/blog/…</a></p>
+        <h4 class="minor-h">Inside Higher Ed — Distinguishing AI- from human-composed essays</h4>
+        <p class="copy">Academic context; the educational/writing program perspective on what distinguishes AI composition. <a href="https://www.insidehighered.com/opinion/career-advice/teaching/2024/07/02/ways-distinguish-ai-composed-essays-human-composed-ones">insidehighered.com link</a></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- SOURCES -->
+  <section class="section" id="sources">
+    <div class="section-eyebrow">Reference</div>
+    <h2 class="section-title">Source index</h2>
+    <p class="section-desc">All sources for this resource, alphabetical. Citations throughout the conceptual guide point here.</p>
+
+    <div class="card">
+      <ul class="copy-list" style="margin-bottom:0;">
+        <li><a href="https://aiphrasefinder.com/common-ai-phrases/">AI Phrase Finder — The 50 Most Common AI Phrases</a></li>
+        <li><a href="https://www.searchenginejournal.com/ai-writing-fingerprints-how-to-spot-fix-ai-generated-content/541613/">AI Writing Fingerprints — Search Engine Journal</a></li>
+        <li><a href="https://github.com/jalaalrd/anti-ai-slop-writing">anti-ai-slop-writing — jalaalrd / GitHub</a></li>
+        <li><a href="https://arxiv.org/pdf/2502.12150">arxiv — Identifying which LLM wrote a given text (Feb 2025)</a></li>
+        <li><a href="https://github.com/conorbronsdon/avoid-ai-writing">avoid-ai-writing — conorbronsdon / GitHub</a></li>
+        <li><a href="http://contently.com/2025/10/14/how-to-edit-the-ai-isms-out-of-your-content-no-detectors-needed/">Contently — How to Edit the AI-isms Out of Your Content</a></li>
+        <li><a href="https://copyleaks.com/blog/copyleaks-research-reveals-which-ai-wrote-what">Copyleaks — AI has unique stylistic fingerprints</a></li>
+        <li><a href="https://gptzero.me/news/best-ai-detectors/">GPTZero — Most Accurate AI Detectors</a></li>
+        <li><a href="https://willfrancis.com/how-to-stop-claude-writing-like-an-ai/">How to Stop Claude Writing Like an AI — Will Francis</a></li>
+        <li><a href="https://natesnewsletter.substack.com/p/i-built-a-20-prompt-set-to-kill-ai">I Built a 20-prompt Set to Kill AI Slop — Nate B. Jones</a></li>
+        <li><a href="https://www.pangram.com/blog/walking-through-ai-phrases">Pangram Labs — Walking Through AI's Most Overused Phrases</a></li>
+        <li><a href="https://www.pangram.com/blog/why-perplexity-and-burstiness-fail-to-detect-ai">Pangram Labs — Why Perplexity and Burstiness Fail</a></li>
+        <li><a href="https://originality.ai/blog/perplexity-and-burstiness-in-writing">Perplexity and Burstiness in Writing — Originality.AI</a></li>
+        <li><a href="https://www.theaugmentededucator.com/p/the-ten-telltale-signs-of-ai-generated">Ten Telltale Signs of AI-Generated Text — The Augmented Educator</a></li>
+        <li><a href="https://www.marketingideas.com/p/the-anti-ai-writing-cheat-sheet">The Anti-AI Writing Cheat Sheet — Tom Orbach</a></li>
+        <li><a href="https://aiforcontentmarketing.ai/how-to-make-claude-write-like-you-the-interview-method/">Voice profile interview method — aiforcontentmarketing.ai</a></li>
+        <li><a href="https://walterwrites.ai/most-common-chatgpt-words-to-avoid/">Walter Writes — Most Common ChatGPT Words to Avoid</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing">Wikipedia: Signs of AI Writing</a></li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      <p><strong>Red Door Collaborative</strong> · Avoiding AI writing · General resource (v1) · Compiled April 2026</p>
+      <p style="margin-top:0.5rem;">An RDC-specific companion guide — with our house voice, tone rules, and client examples — is in progress. This page covers the general research only.</p>
+      <p style="margin-top:0.5rem;"><a href="#top">Back to top</a></p>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<script>
+// Scrollspy
+(function () {
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(function (l) {
+          l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-25% 0px -65% 0px' });
+
+  sections.forEach(function (s) { observer.observe(s); });
+})();
+</script>
+
+</body>
+</html>
