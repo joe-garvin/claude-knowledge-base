@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM Knowledge Bases — A proposal for RDC</title>
+<meta name="description" content="Proposal and supporting research on LLM knowledge bases for Red Door Collaborative.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --coral: #FF4F58;
+  --coral-soft: rgba(255,79,88,0.12);
+  --squid: #0D1724;
+  --wine: #7F0046;
+  --mist: #ABDCE0;
+  --paper: #F7F6F4;
+  --paper-2: #FFFFFF;
+  --gray-100: #F3F3F3;
+  --gray-200: #E8E8E8;
+  --gray-300: #D0D0D0;
+  --gray-400: #B5B5B5;
+  --gray-500: #888888;
+  --gray-600: #666666;
+  --gray-700: #444444;
+  --gray-900: #1A1A1A;
+  --font-sans: 'DM Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --sidebar-w: 280px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 18px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 3px rgba(13,23,36,0.06);
+  --shadow-md: 0 6px 24px rgba(13,23,36,0.06);
+}
+
+html, body { height: 100%; }
+body {
+  font-family: var(--font-sans);
+  background: var(--paper);
+  color: var(--gray-900);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  background: var(--squid);
+  padding: 2.25rem 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 2rem;
+  text-decoration: none;
+}
+
+.logo-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--wine);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--coral);
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.25;
+}
+.logo-text span {
+  display: block;
+  font-weight: 300;
+  font-size: 10px;
+  color: rgba(255,255,255,0.42);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.kicker {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 0.4rem;
+  padding-left: 2px;
+}
+
+.brief-line {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.55;
+  padding-left: 2px;
+  margin-bottom: 2rem;
+  padding-right: 0.5rem;
+}
+
+.nav-group { margin-top: 1.5rem; }
+.nav-group:first-of-type { margin-top: 0; }
+
+.nav-group-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.32);
+  margin-bottom: 0.55rem;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-group-label::before {
+  content: "";
+  width: 12px;
+  height: 1px;
+  background: rgba(255,255,255,0.18);
+  margin-left: -10px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.62);
+  text-decoration: none;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1px;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+  line-height: 1.3;
+}
+.nav-link:hover {
+  color: rgba(255,255,255,0.95);
+  background: rgba(255,255,255,0.05);
+}
+.nav-link.active {
+  color: var(--coral);
+  background: rgba(255,79,88,0.10);
+  font-weight: 500;
+}
+.nav-link .num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(255,255,255,0.28);
+  letter-spacing: 0.04em;
+  min-width: 18px;
+  flex-shrink: 0;
+}
+.nav-link.active .num { color: var(--coral); opacity: 0.7; }
+
+.sidebar-foot {
+  margin-top: auto;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 11px;
+  color: rgba(255,255,255,0.32);
+  line-height: 1.55;
+}
+.sidebar-foot .author {
+  color: rgba(255,255,255,0.55);
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+.sidebar-foot .date {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+
+/* ── Main ── */
+.main {
+  margin-left: var(--sidebar-w);
+  width: calc(100% - var(--sidebar-w));
+  min-height: 100vh;
+  padding: 3.25rem 4rem 6rem;
+}
+.inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* ── Per-section header strip (rendered by JS) ── */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 1.1rem;
+}
+.section-eyebrow .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+.section-eyebrow .sep {
+  width: 24px;
+  height: 1px;
+  background: var(--gray-300);
+}
+.section-eyebrow .meta {
+  color: var(--gray-500);
+  letter-spacing: 0.1em;
+}
+
+/* ── Markdown content typography ── */
+.md h1 {
+  font-size: 38px;
+  font-weight: 700;
+  letter-spacing: -0.028em;
+  color: var(--squid);
+  line-height: 1.08;
+  margin-bottom: 0.5rem;
+}
+.md h1 + p em {
+  display: block;
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-top: 0.3rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--gray-200);
+}
+/* In case the entire first <p> after h1 is italic (it is in source) */
+.md h1 + p {
+  margin-bottom: 0;
+}
+
+.md h2 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--squid);
+  margin-top: 2.75rem;
+  margin-bottom: 0.85rem;
+  line-height: 1.25;
+}
+.md h2:first-child { margin-top: 0; }
+
+.md h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--squid);
+  margin-top: 1.75rem;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.005em;
+}
+
+.md p {
+  font-size: 15.5px;
+  color: var(--gray-700);
+  line-height: 1.72;
+  margin-bottom: 1.05rem;
+  text-wrap: pretty;
+}
+
+.md strong {
+  color: var(--squid);
+  font-weight: 600;
+}
+
+.md em { font-style: italic; }
+
+.md a {
+  color: var(--squid);
+  text-decoration: underline;
+  text-decoration-color: var(--coral);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  transition: color 0.15s;
+}
+.md a:hover { color: var(--coral); }
+
+.md ul, .md ol {
+  margin: 0 0 1.25rem 0;
+  padding-left: 1.4rem;
+}
+.md li {
+  font-size: 15.5px;
+  color: var(--gray-700);
+  line-height: 1.7;
+  margin-bottom: 0.45rem;
+  text-wrap: pretty;
+}
+.md li::marker { color: var(--coral); }
+.md li > p { margin-bottom: 0.4rem; }
+.md li strong:first-child { color: var(--squid); }
+
+.md hr {
+  border: none;
+  border-top: 1px solid var(--gray-200);
+  margin: 2.5rem 0;
+}
+
+.md blockquote {
+  border-left: 3px solid var(--coral);
+  background: rgba(255,79,88,0.04);
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+.md blockquote p {
+  font-size: 15px;
+  color: var(--gray-700);
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+.md code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: var(--gray-100);
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: var(--wine);
+  border: 1px solid var(--gray-200);
+}
+
+.md pre {
+  background: var(--squid);
+  color: rgba(255,255,255,0.88);
+  padding: 1.25rem 1.4rem;
+  border-radius: var(--radius-lg);
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+.md pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* ── Tables ── */
+.md table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0 2rem;
+  font-size: 13.5px;
+  background: var(--paper-2);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.md table thead { background: var(--squid); }
+.md table th {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.md table th:first-child { color: var(--coral); }
+.md table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--gray-200);
+  color: var(--gray-700);
+  vertical-align: top;
+  line-height: 1.55;
+}
+.md table tbody tr:nth-child(even) { background: rgba(13,23,36,0.015); }
+.md table tbody tr:last-child td { border-bottom: none; }
+.md table td:first-child {
+  font-weight: 500;
+  color: var(--squid);
+}
+
+/* ── Sources block (post-processed) ── */
+.sources-block {
+  margin-top: 3.5rem;
+  padding: 1.5rem 1.75rem;
+  background: var(--paper-2);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  position: relative;
+}
+.sources-block::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 1.75rem;
+  width: 36px;
+  height: 3px;
+  background: var(--coral);
+  border-radius: 0 0 2px 2px;
+}
+.sources-block h2 {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase;
+  color: var(--gray-500) !important;
+  margin: 0 0 1rem 0 !important;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--gray-200);
+}
+.sources-block ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+.sources-block li {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--gray-600);
+  padding-left: 1.1rem;
+  position: relative;
+  margin: 0;
+}
+.sources-block li::marker { content: ""; }
+.sources-block li::before {
+  content: "↳";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--coral);
+  font-size: 12px;
+  font-family: var(--font-mono);
+}
+.sources-block li a {
+  color: var(--gray-700);
+  text-decoration-thickness: 1px;
+}
+.sources-block li a:hover { color: var(--coral); }
+
+/* ── Topbar (mobile only) ── */
+.topbar {
+  display: none;
+  position: sticky;
+  top: 0;
+  background: var(--squid);
+  color: #fff;
+  padding: 12px 16px;
+  z-index: 50;
+  align-items: center;
+  justify-content: space-between;
+}
+.topbar .topbar-title { font-size: 13px; font-weight: 600; }
+.topbar button {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+}
+
+/* ── Print ── */
+@media print {
+  .sidebar, .topbar { display: none !important; }
+  .main { margin-left: 0; width: 100%; padding: 2rem; }
+  .md a { color: var(--squid); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .main { padding: 3rem 3rem 5rem; }
+}
+@media (max-width: 900px) {
+  :root { --sidebar-w: 240px; }
+  .main { padding: 2.5rem 2rem 4rem; }
+}
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    width: 280px;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; width: 100%; padding: 1rem 1.25rem 3rem; }
+  .topbar { display: flex; }
+  .md h1 { font-size: 28px; }
+  .md h2 { font-size: 19px; }
+  .md p, .md li { font-size: 15px; }
+  .md table { font-size: 12px; display: block; overflow-x: auto; }
+}
+
+/* Smooth content swap */
+.content-fade {
+  animation: fadeIn 0.18s ease-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <a class="sidebar-logo" href="#executive-brief">
+    <div class="logo-mark">rd</div>
+    <div class="logo-text">red door<br>collaborative<span>internal resource</span></div>
+  </a>
+
+  <div class="kicker">LLM Knowledge Bases</div>
+  <div class="brief-line">A proposal &amp; supporting research, ahead of the CYSTEMS discovery session.</div>
+
+  <nav id="nav">
+    <div class="nav-group">
+      <a class="nav-link" data-section="executive-brief"><span class="num">00</span><span>Executive brief</span></a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">The proposal</div>
+      <a class="nav-link" data-section="cystems-proposal"><span class="num">01</span><span>CYSTEMS proposal</span></a>
+      <a class="nav-link" data-section="concept-overview"><span class="num">02</span><span>Concept overview</span></a>
+      <a class="nav-link" data-section="llm-vs-rag"><span class="num">03</span><span>LLM wiki vs. RAG</span></a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">If we proceed</div>
+      <a class="nav-link" data-section="implementation"><span class="num">04</span><span>Implementation guide</span></a>
+      <a class="nav-link" data-section="challenges"><span class="num">05</span><span>Challenges &amp; pitfalls</span></a>
+    </div>
+  </nav>
+
+  <div class="sidebar-foot">
+    <div class="author">Joe Garvin</div>
+    <div class="date">April 2026</div>
+  </div>
+</aside>
+
+<header class="topbar">
+  <div class="topbar-title">RDC · LLM Knowledge Bases</div>
+  <button id="menuBtn" type="button">Menu</button>
+</header>
+
+<main class="main">
+  <div class="inner">
+    <article id="content" class="md"></article>
+  </div>
+</main>
+
+<!-- ─────────── Embedded source markdown ─────────── -->
+
+<script type="text/markdown" id="md-executive-brief">
+# LLM knowledge bases: a brief for Chris Telfer
+
+*April 2026*
+
+---
+
+## Context for this note
+
+You've already spoken with Sean Champ Smith at CYSTEMS and received their proposal. They diagnosed three priorities — SOW automation, RFP/proposal acceleration, and BI/reporting — and proposed a RAG platform built on Claude/Anthropic as the foundation. The discovery session is the next step.
+
+This note isn't an argument against that conversation. It's context that will help you walk in with clearer questions and a sharper sense of what you're evaluating.
+
+---
+
+## The underlying problem (as CYSTEMS correctly named it)
+
+RDC's institutional knowledge is scattered — across SharePoint sites, Box, Google Drive, individual hard drives, and people's heads. When proposals get written, the team re-creates things that already exist. When someone joins, they learn by trial and error rather than from what the team already knows. When someone leaves, their knowledge goes with them.
+
+CYSTEMS's framing of this as an operational bottleneck costing time and margin every month is accurate.
+
+---
+
+## What CYSTEMS is proposing
+
+A purpose-built RAG platform — a centralized system that ingests RDC's SharePoint/OneDrive content, templates, rate cards, past SOWs, and client data, and makes it queryable through a natural language interface. You upload a brief; you get a draft SOW. You ask a question; you get an answer grounded in RDC's own data.
+
+Their security framing is meaningful for RDC specifically: closed-loop, no client data touching public AI models, managed IT oversight. For a firm doing NDA-sensitive Microsoft and government work, that matters.
+
+Their timeline is approximately two months from kickoff to full delivery, with pricing to be scoped at the discovery session. (Their public packages run €12K–€25K for setup and €750–€1,250/month for maintenance, though RDC's custom build would be separately scoped.)
+
+---
+
+## What this note introduces: a different approach
+
+In April 2026, Andrej Karpathy — former head of AI at Tesla, one of the most credible practitioners in the field — published a widely-discussed description of an alternative to RAG. The idea: instead of building retrieval infrastructure, use Claude to build and maintain a structured knowledge base directly — a wiki of interlinked markdown files that compounds over time.
+
+You don't retrieve raw documents on demand. Claude compiles the knowledge once, keeps it current, and answers from that synthesis. No database. No retrieval pipeline. Just well-organized files and Claude.
+
+The pattern has attracted significant attention in the past month — tools, companies, and implementations are emerging rapidly around it.
+
+---
+
+## How the two approaches map to RDC's three priorities
+
+This is the most important thing to understand going into the discovery session.
+
+**RFP & Proposal Acceleration** — this is where the LLM wiki approach is directly competitive with RAG. A knowledge base containing past proposals, client research, and RDC's Messaging Positioning Framework would power faster, grounded first drafts. You already use Claude for this; the wiki gives Claude better organized context to work from. This could be built and tested in weeks, for near-zero cost beyond Claude API usage.
+
+**SOW & Contract Automation** — partially overlapping. An LLM wiki with templates, rate cards, and past SOW examples would help, and Claude can generate 80–85% complete SOW drafts today with good prompts and examples. But the SOW automation CYSTEMS is describing — a system that generates structured documents from defined parameters — is more of a document workflow than a knowledge retrieval problem. Claude with the right setup can address this without a full RAG build.
+
+**Business Intelligence & Reporting** — this is not what either approach addresses natively. Automated BI requires live connection to operational data — your Excel files, financial records, workstream breakdowns. Neither a knowledge wiki nor a RAG retrieval layer solves this on its own; it requires data pipeline and dashboard tooling. This is a separate problem from knowledge synthesis, and worth asking CYSTEMS specifically how they address it.
+
+---
+
+## What the LLM wiki approach offers
+
+**For RFP/proposal work specifically:**
+
+- Deployable in days, not months
+- Costs what we already spend on Claude — no new vendor, no new contract
+- Transparent: the wiki is just readable files, not a black box
+- Every proposal written, every client brief ingested, every lesson captured makes the next one better
+- No lock-in: if it stops serving us, we've lost nothing but the time to set it up
+
+**What it doesn't offer:**
+
+- The enterprise security infrastructure CYSTEMS is describing (closed-loop, managed IT oversight, air-gapped from public models) — for genuinely NDA-sensitive work, this is a real gap
+- Automated BI/reporting — that problem requires different tooling regardless
+- A branded dashboard or purpose-built UI — it's Claude sessions against organized files, not a polished product
+
+---
+
+## The question worth sitting with before the discovery session
+
+CYSTEMS is proposing a platform that addresses three distinct problems: knowledge retrieval, document automation, and business intelligence. Each of those is a legitimate problem. But they're different problems, and it's worth knowing which one is urgent enough to pay for — and which ones could be addressed with what we already have.
+
+Specifically: the RFP and proposal acceleration use case may be 80% solvable with Claude and a lightweight knowledge base we build ourselves, in the next few weeks, for free. If that's true, the discovery session question shifts from "should we buy this system" to "what is the system solving that we couldn't solve ourselves — and is that worth the cost and the dependency?"
+
+That's not an argument against CYSTEMS. Their proposal has real strengths, particularly on security and the foundation architecture framing. It's an argument for walking into the session knowing exactly which problems you're trying to buy your way out of.
+
+---
+
+## The short version
+
+CYSTEMS is proposing a well-scoped solution to real problems. Before the discovery session, it's worth knowing that one of those three problems — RFP and proposal acceleration — has a low-cost, low-risk alternative that could be tested immediately. The other two (SOW automation and BI/reporting) are more complex and may genuinely benefit from what CYSTEMS is building.
+
+Going in informed doesn't mean going in skeptical. It means knowing which questions to ask.
+
+---
+
+*Prepared by Joe Garvin, April 2026.*
+
+## Sources
+
+- [Karpathy's original tweet](https://x.com/karpathy/status/2039805659525644595) (April 2, 2026)
+- [Karpathy's llm-wiki GitHub Gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+- [VentureBeat: Karpathy's LLM Knowledge Base architecture](https://venturebeat.com/data/karpathy-shares-llm-knowledge-base-architecture-that-bypasses-rag-with-an)
+- CYSTEMS x Red Door Collaborative proposal document (March 2026, confidential)
+</script>
+
+<script type="text/markdown" id="md-cystems-proposal">
+# CYSTEMS proposal context
+
+*Reference document for Red Door Collaborative | April 2026*
+
+---
+
+## Background
+
+In March 2026, Red Door Collaborative had an initial exploratory call with Sean Champ Smith of CYSTEMS (cystems.io). Sean followed up with a confidential proposal document — "CYSTEMS x Red Door Collaborative: AI Strategy & Integration Partnership" — prepared for Chris Telfer and dated March 2026. The upcoming session is a formal Discovery Session, not a first contact.
+
+---
+
+## What CYSTEMS does
+
+CYSTEMS is an AI strategy and integration firm. Their public service offerings include AI strategy consulting, social media automation, custom AI customer service agents, and workflow automation. They position themselves as "One ECOCYSTEM Multiple Solutions" — a suite of AI capabilities rather than a single-purpose tool.
+
+Importantly for RDC: CYSTEMS builds specifically on Anthropic's architecture and Claude as the underlying model. This means they're not proposing a generic enterprise AI platform — they're proposing a purpose-built system using the same model RDC already uses and trusts.
+
+**Public pricing (from cystems.io, as of April 2026):**
+- Social Media Automation Machine: €12K setup or €750/month maintenance
+- AI Agent Buildout (most popular): €20K setup or €1,250/month maintenance
+- Echo – Intelligent Feedback Agent: €25K setup or €1,350/month maintenance
+
+RDC's custom scope has not yet been priced — that will be determined at the Discovery Session.
+
+---
+
+## What they heard from RDC
+
+CYSTEMS summarized three priority pain points from their initial call with Chris:
+
+**1. SOW & Contract Automation.** RDC writes Statements of Work constantly, with May–June being particularly high-pressure due to Microsoft's fiscal year reset in July. CYSTEMS proposes a system that can generate 80–85% complete SOWs from existing templates, rate cards, and project parameters — requiring only minor human refinement before delivery.
+
+**2. RFP & Proposal Acceleration.** Government contracts (e.g., City of Seattle) require 275+ page documentation packages with two-week turnarounds. RDC is already using Claude with its Messaging Positioning Framework for this, but needs a purpose-built system that draws from the full knowledge base to generate comprehensive first drafts at speed.
+
+**3. Business Intelligence & Reporting.** Client performance analysis is currently run manually in Excel — year-over-year comparisons, workstream breakdowns (Visual Studio vs. Azure vs. SMB), percentage allocations. RDC is running roughly a month behind on insights. CYSTEMS proposes making this live, automated, and available on demand.
+
+---
+
+## What CYSTEMS is proposing
+
+A single, secure, centralized RAG platform built on top of RDC's existing data infrastructure — described as "the operational brain for Red Door's internal processes."
+
+The platform would include:
+
+- **Data aggregation:** SharePoint/OneDrive content, rate cards, templates, past SOWs, proposals, and client data ingested into a unified knowledge base.
+- **Custom AI interface:** A branded dashboard for natural-language interaction. Upload a brief, get a draft SOW. Ask a question, get an answer grounded in RDC's own data.
+- **Multi-modal input:** Text prompts, document uploads, spreadsheet analysis.
+- **Closed-loop security:** Designed for NDA-sensitive client work. No client information touches public AI models. RDC's managed IT provider maintains full oversight.
+- **Foundation architecture:** The RAG platform as a base layer for future automation — SOWs first, proposals, BI reporting, and eventually content production.
+
+**Projected timeline:** Approximately 2 months from kickoff to full delivery (April–May 2026 target). Discovery Session → SOW & pricing → contract & kickoff → build & deploy → handoff.
+
+---
+
+## What they said about adoption
+
+CYSTEMS acknowledged RDC's mixed AI maturity directly. Their framing: AI champions on the team become internal evangelists whose experiments scale into company-wide systems; more cautious team members' concerns are addressed by human review built into every output, and a system trained on RDC's own standards, voice, and quality bar. Their stated goal: "A team that's aligned, confident, and equipped — not divided."
+
+---
+
+## What they said about themselves
+
+Five differentiators from their proposal:
+
+- Understanding of creative teams (not purely tech-oriented)
+- Closed-loop security by design
+- Claude/Anthropic-native (builds on what RDC already uses)
+- Partnership model, not vendor relationship
+- Clear milestones and defined deliverables; "a completed system you own"
+
+---
+
+## What to bring to the Discovery Session (per CYSTEMS)
+
+- Examples of current SOW templates and rate cards
+- A recent RFP or proposal
+- Current Claude-based SOW experiments (live demo welcome)
+- Any reporting spreadsheets or dashboards in use today
+- Questions, concerns, and wish lists
+
+**Contact:** Sean Champ Smith | sean@cystems.io | cal.com/cystems/1hr
+
+---
+
+## How this maps to the LLM knowledge base question
+
+Not all three of CYSTEMS's identified use cases are equivalently addressed by the LLM knowledge base approach:
+
+**RFP & Proposal Acceleration** is the strongest overlap. An LLM wiki containing past proposals, client knowledge, and RDC's Messaging Positioning Framework would directly power faster, grounded first drafts. This is squarely what the knowledge base approach does well.
+
+**SOW & Contract Automation** is partially addressable. An LLM wiki with rate cards, templates, and past SOW examples would help, but the core of what's being proposed — a system that generates structured legal/financial documents from defined parameters — is more of a document automation workflow than a knowledge retrieval problem. Claude can do significant heavy lifting here with or without a purpose-built RAG system; the question is whether a knowledge base makes it materially better.
+
+**Business Intelligence & Reporting** is least addressable by an LLM knowledge base. BI/reporting automation requires live connection to operational data (Excel files, financial records, workstream data) — not a knowledge synthesis layer. Neither RAG nor an LLM wiki solves this on its own; it requires data pipeline and dashboard tooling. This is the piece most clearly outside the knowledge base conversation.
+
+This mapping is worth keeping in mind when evaluating the approaches: the LLM wiki may resolve one of the three priorities well, partially address a second, and not address the third at all.
+</script>
+
+<script type="text/markdown" id="md-concept-overview">
+# LLM knowledge bases: concept overview
+
+*Research document for Red Door Collaborative | April 2026*
+
+---
+
+## Origin and context
+
+On April 2, 2026, Andrej Karpathy — former director of AI at Tesla, co-founder of OpenAI, and one of the most widely followed voices in AI — posted a [thread on X](https://x.com/karpathy/status/2039805659525644595) describing how he was building personal knowledge bases using LLMs. The post went immediately viral, accumulating hundreds of thousands of engagements within days. He followed it with [a GitHub Gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) formalizing the idea as a pattern he called "LLM Wiki."
+
+Several converging conditions made Karpathy's idea land the way it did. Context windows on frontier models had grown large enough to hold hundreds of pages at once. LLMs had become good enough at structured reading and writing tasks. And a growing number of people were frustrated with the complexity and cost of retrieval-augmented generation (RAG) systems — the dominant approach for connecting LLMs to large bodies of knowledge.
+
+Karpathy's insight was that for many use cases, RAG is the wrong solution to the right problem. His alternative: have the LLM itself build and maintain a structured, interlinked knowledge base — a wiki — rather than having it rediscover knowledge from raw documents every time someone asks a question.
+
+---
+
+## The core idea
+
+Most people's experience with LLMs and documents follows the RAG pattern: you upload files, the system retrieves relevant chunks at query time, and the LLM generates an answer from those chunks. Every question starts from scratch. Nothing accumulates. If you ask a question that requires synthesizing five documents, the system has to locate and piece together the relevant fragments each time.
+
+The LLM knowledge base pattern works differently. Instead of retrieving from raw documents at query time, an LLM incrementally builds and maintains a persistent, structured wiki — a collection of interlinked markdown files that sits between you and your raw sources. When you add a new source, the LLM reads it, integrates the key information into the existing wiki, updates relevant pages, flags where new data conflicts with old claims, and cross-references related concepts. The knowledge is compiled once and kept current — not re-derived on every query.
+
+As Karpathy put it in his gist: "The wiki is a persistent, compounding artifact. The cross-references are already there. The contradictions have already been flagged. The synthesis already reflects everything you've read. The wiki keeps getting richer with every source you add and every question you ask."
+
+This is the fundamental shift: from retrieval to accumulation.
+
+---
+
+## Three-layer architecture
+
+The LLM wiki pattern has three distinct layers:
+
+**Raw sources.** The original documents, articles, papers, transcripts, images, and data files you collect. These are immutable — the LLM reads from them but never modifies them. This is the source of truth.
+
+**The wiki.** A directory of LLM-generated markdown files: summaries, entity pages, concept pages, comparisons, an index, and a log. The LLM owns this layer entirely. It creates pages, updates them as new sources arrive, maintains cross-references, and keeps everything consistent. You read it; the LLM writes it.
+
+**The schema.** A configuration document — typically called CLAUDE.md (for Claude Code) or AGENTS.md (for other agents) — that tells the LLM how the wiki is structured, what conventions to follow, and what workflows to use when ingesting sources, answering questions, or doing maintenance. This file is co-evolved between you and the LLM as you figure out what works for your domain. It's what makes the LLM a disciplined wiki maintainer rather than a generic chatbot.
+
+---
+
+## The three operations
+
+**Ingest.** You drop a new source into the raw collection and tell the LLM to process it. A typical flow: the LLM reads the source, discusses key takeaways, writes a summary page in the wiki, updates the index, updates relevant entity and concept pages, and appends an entry to the log. A single source often touches 10–15 wiki pages. The LLM surfaces unexpected connections and flags contradictions you might not have noticed.
+
+**Query.** You ask questions against the wiki. The LLM reads the index first to identify relevant pages, then drills into them and synthesizes an answer with citations. Importantly, good answers can be filed back into the wiki as new pages — so your explorations compound in the knowledge base just like ingested sources do. Insights don't disappear into chat history.
+
+**Lint.** Periodically, you ask the LLM to health-check the wiki: find contradictions between pages, locate orphan pages with no inbound links, identify concepts mentioned but lacking their own page, flag claims that newer sources have superseded, and suggest new articles or sources to investigate. This keeps the wiki healthy as it grows.
+
+---
+
+## Two special files
+
+**index.md** is content-oriented. It's a catalog of everything in the wiki — each page listed with a link and a one-line summary, organized by category. The LLM reads the index first on every query to find relevant pages, then drills in. This works well at moderate scale (roughly 100 sources, hundreds of pages) without requiring embedding-based retrieval infrastructure.
+
+**log.md** is chronological. It's an append-only record of all ingests, queries, and lint passes. Structured entries make the log parseable with simple tools. The log gives the LLM a timeline of the wiki's evolution and helps it understand what's been done recently.
+
+---
+
+## The two camps: where this fits in the AI memory landscape
+
+Karpathy's tweet accelerated a conversation that was already underway. In April 2026, a widely-circulated analysis identified 450+ GitHub repos tagged "agent-memory" and 460+ tagged "context-management" — and characterized them as belonging to two fundamentally different paradigms.
+
+**Camp 1: Memory backends.** These tools — [Mem0](https://github.com/mem0ai/mem0) (53k stars), [MemPalace](https://github.com/MemPalace/mempalace) (46k stars), [Supermemory](https://github.com/supermemoryai/supermemory) (22k stars) — extract facts from conversations, store them in vector databases, and retrieve relevant facts at query time. They optimize for recall: can the system find the right fact? The loop is: conversation happens → facts extracted → stored in DB → retrieved at next query. Nothing gets directly edited. Memories sit as flat entries with no synthesis.
+
+**Camp 2: Context substrates.** These tools — [OpenClaw](https://github.com/openclaw/openclaw), [Zep](https://www.getzep.com/), [MemSearch](https://github.com/zilliztech/memsearch) (by Zilliz), [TrustGraph](https://github.com/trustgraph-ai/trustgraph) — maintain structured, human-readable context that accumulates across sessions. Nothing gets "extracted." The context is the files. The agent reads them, works within them, writes back to them, and the whole thing compounds over time. They optimize for compounding: does the system get better over time?
+
+LLM knowledge bases as Karpathy describes them are firmly in Camp 2. The intelligence is in accumulation, not retrieval.
+
+A telling signal from the market: [Zep](https://www.getzep.com/), a funded company with 4.4k stars, recently rebranded from "memory" to "context engineering." A company that built retrieval infrastructure decided the right word for what they were building was not "memory" — it was "context." That conceptual shift is propagating across the ecosystem.
+
+---
+
+## The ecosystem in April 2026
+
+Since Karpathy's tweet, the space has expanded rapidly across several categories:
+
+**Tooling for individuals:** The simplest implementations are just folders, markdown files, and a CLAUDE.md schema. Karpathy himself keeps his schema "super simple and flat." The [Obsidian Web Clipper](https://obsidian.md/clipper) browser extension converts any web page into a markdown file for the raw/ folder. The [qmd](https://github.com/tobi/qmd) search tool adds hybrid BM25/vector search over markdown files for larger wikis. [Claude Code](https://claude.ai/code) (or any LLM agent with file access) handles all wiki maintenance.
+
+**Companies building on the pattern:**
+
+- [Hyperspell](https://www.hyperspell.com/) bills itself as "a brain for your company" — a context graph built from connected tools (documents, emails, calendars, transcripts) exposed as a filesystem any agent can read.
+- [Membase](https://membase.so/) positions as a personal memory layer for AI agents, MCP-compatible, connecting context across sessions and apps.
+- [ALIVE](https://alivecontext.com/) builds a structured context substrate with "walnuts" as portable context containers — file-native, agent-agnostic, zero infrastructure dependencies.
+- [TrustGraph](https://github.com/trustgraph-ai/trustgraph) introduces "Context Cores" — portable, versioned bundles treating context like code: version it, test it, promote it, roll it back.
+
+**GitHub projects:**
+
+- [LLM Wiki v2](https://gist.github.com/rohitg00/2067ab416f7bbe447c1977edaaa681e2) (rohitg00) extends Karpathy's pattern with lessons from building agentmemory
+- [OpenClaw](https://github.com/openclaw/openclaw)'s dreaming system — background consolidation of context through light sleep, REM, and deep sleep phases
+- [Thoth](https://github.com/siddsachar/Thoth) — a knowledge graph with 10 entity types, 67 typed relations, and a nightly dream cycle for duplicate merging, enrichment, and relationship inference
+
+**Platforms:**
+
+- [Obsidian](https://obsidian.md/) (free, local-first markdown IDE with graph view) has become the de facto "frontend" for personal LLM wikis
+- [Claude Code](https://claude.ai/code) is the dominant "agent" pairing for file-based wiki maintenance
+- [AnythingLLM](https://anythingllm.com/) supports multi-user shared workspace access with RBAC for teams
+- [Tolaria](https://tolaria.md/) — a purpose-built markdown knowledge base editor designed around the LLM wiki workflow
+
+---
+
+## Why this works
+
+The tedious part of maintaining a knowledge base has never been the reading or the thinking — it's the bookkeeping. Updating cross-references, keeping summaries current, noting when new data contradicts old claims, maintaining consistency across dozens of pages. Humans abandon wikis because the maintenance burden grows faster than the perceived value.
+
+LLMs don't get bored, don't forget to update a cross-reference, and can touch 15 files in a single pass. The wiki stays maintained because the cost of maintenance is near zero.
+
+The human's job is to curate sources, direct the analysis, ask good questions, and think about what it all means. The LLM's job is everything else.
+
+This connects to a vision Vannevar Bush articulated in 1945 — a personal, curated knowledge store called the Memex, where the connections between documents would be as valuable as the documents themselves. The part he couldn't solve was who does the maintenance. That's now solved.
+
+---
+
+## Scale and limits
+
+The LLM wiki pattern works well at what Karpathy calls "small scale" — roughly 100 sources and hundreds of pages, or around 400,000 words of wiki content. At this scale, reading the index and drilling into relevant pages is enough. No embedding infrastructure needed.
+
+As the wiki grows toward thousands of documents, the index-based approach begins to strain. This is where the pattern either graduates to a lightweight search layer (like [qmd](https://github.com/tobi/qmd)) or where true RAG starts to make sense. The crossover point depends on the use case, but most practitioners identify it in the range of a few hundred to a few thousand documents.
+
+For a company like RDC — a 30-person agency managing several distinct client workstreams — the scale is comfortably within the range where this pattern works without additional infrastructure.
+
+---
+
+## Sources
+
+- [Karpathy's original tweet](https://x.com/karpathy/status/2039805659525644595) (x.com/karpathy, April 2, 2026)
+- [Karpathy's llm-wiki GitHub Gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+- [VentureBeat: Karpathy's LLM Knowledge Base architecture](https://venturebeat.com/data/karpathy-shares-llm-knowledge-base-architecture-that-bypasses-rag-with-an)
+- [MindStudio: LLM Wiki vs RAG comparison](https://www.mindstudio.ai/blog/llm-wiki-vs-rag-markdown-knowledge-base-comparison)
+- [Atlan: LLM Knowledge Base vs RAG](https://atlan.com/know/llm-knowledge-base-vs-rag/)
+- [DAIR.AI Academy: LLM Knowledge Bases](https://academy.dair.ai/blog/llm-knowledge-bases-karpathy)
+- ["I Went Through Every AI Memory Tool I Could Find"](https://x.com/witcheer/status/2044456778843238689) (@witcheer, April 15, 2026)
+- [Collaborative Memory RBAC research](https://arxiv.org/html/2505.18279v1) (arXiv 2505.18279)
+- [Hyperspell](https://www.hyperspell.com/)
+- [Membase](https://membase.so/)
+</script>
+
+<script type="text/markdown" id="md-llm-vs-rag">
+# LLM knowledge bases vs. RAG: a clear-eyed comparison
+
+*Research document for Red Door Collaborative | April 2026*
+
+---
+
+## What each approach actually is
+
+Before comparing them, it's worth being precise about what each approach does — because "RAG" is often used loosely to mean anything that connects an LLM to external documents.
+
+**Retrieval-augmented generation (RAG)** is an architectural pattern in which an LLM retrieves relevant information from an external knowledge store at query time, then uses that retrieved information to generate a response. The typical implementation: documents are chunked into segments, each chunk is converted into a numerical vector (embedding) that captures its semantic meaning, and those vectors are stored in a vector database. When a user asks a question, the question is also converted into a vector, the database finds the nearest-neighbor chunks, and those chunks are injected into the LLM's context alongside the query. The LLM answers from whatever the retrieval pipeline surfaced.
+
+**LLM knowledge base (LLM wiki)** is a pattern in which the LLM itself builds and maintains a structured, persistent wiki — a collection of interlinked markdown files — rather than querying raw documents at answer time. When you add a new source, the LLM reads it and integrates it into the wiki: updating topic pages, noting contradictions, maintaining cross-references. Queries are answered from the pre-synthesized wiki, not from raw documents retrieved on the fly.
+
+The key difference: RAG re-derives answers from raw material every time. The LLM wiki compiles knowledge once, keeps it current, and answers from that compiled synthesis.
+
+---
+
+## How they differ architecturally
+
+| Dimension | RAG | LLM knowledge base |
+|---|---|---|
+| Knowledge representation | Raw document chunks in a vector DB | Structured, synthesized markdown files |
+| Query mechanism | Semantic similarity retrieval at query time | Index-based navigation + direct file reading |
+| Infrastructure required | Embedding model, vector database, retrieval pipeline, orchestration layer | LLM agent + file system (markdown files) |
+| Knowledge synthesis | Happens at query time (per-question) | Happens at ingest time (once, then updated) |
+| Accumulation | None — each query starts fresh | Compounding — every addition enriches the whole |
+| Human readability | Low — stored as vectors | High — stored as readable markdown |
+| Setup complexity | High — multiple services to configure, tune, and maintain | Low — folder structure and a schema file |
+| Cost to build | High ($10k–$100k+ for custom builds) | Low to moderate (primarily LLM API costs) |
+| Cost to maintain | Ongoing engineering support typically required | Ongoing LLM API costs for ingest/lint passes |
+| Scale ceiling | Very high (millions of documents) | Moderate (~100–500 sources before needing search tooling) |
+| Error traceability | Low — hard to see why the wrong chunk was retrieved | High — you can read every wiki page directly |
+| Multi-user support | Available via platform (Pinecone, Weaviate, etc.) | Requires additional tooling (Git, shared drive, or platform) |
+| Role-based access | Mature (platform-level controls) | Requires custom implementation |
+
+---
+
+## Where RAG excels
+
+RAG was designed for enterprise-scale knowledge retrieval and it does that well. When you have thousands to millions of documents — a legal firm's entire case library, an enterprise's complete technical documentation, a support system spanning 50,000 articles — RAG is the right tool. Its retrieval is fast (sub-200ms in production systems), it scales horizontally, and the infrastructure is mature.
+
+RAG is also well-suited to situations where you need precise, citation-accurate retrieval from specific source documents. Legal, compliance, and regulated industries particularly benefit from RAG's ability to point to exact source locations.
+
+Enterprise adoption of RAG has accelerated sharply: 85% of enterprises now use some form of RAG-based retrieval, up from 40% in 2024. It has become the default architecture for large-scale internal knowledge management. As of 2026, 60% of new RAG deployments include systematic evaluation from day one — a sign the field has matured past experimentation.
+
+A custom RAG build from a vendor like CYSTEMS (cystems.io) typically involves: document ingestion pipelines, embedding infrastructure, a vector database, a retrieval orchestration layer, a front-end query interface, and ongoing engineering support. This is appropriate when the problem genuinely requires it.
+
+---
+
+## Where the LLM knowledge base excels
+
+The LLM knowledge base pattern outperforms RAG on several dimensions that are highly relevant to creative agencies and small-to-mid-sized teams.
+
+**Synthesis over retrieval.** RAG surfaces chunks. The LLM wiki surfaces synthesis. Ask a complex question requiring context from 10 different sources, and RAG has to find and reassemble the right fragments on the fly — and may miss the connections. The wiki already has the cross-references and the synthesis built in.
+
+**Accumulation.** Every source added to the wiki doesn't just sit in a database — it actively updates existing pages, strengthens or challenges claims, and surfaces new connections. Over time, the wiki becomes richer than the sum of its sources. RAG doesn't accumulate anything; it just retrieves from what's there.
+
+**Transparency.** You can read every page in the wiki. You know exactly what the LLM knows and why. When an answer is wrong or incomplete, you can go find the relevant wiki page and fix it. With RAG, when retrieval fails — when the wrong chunks are surfaced or the right chunks aren't found — the failure is often invisible and hard to diagnose.
+
+**Zero infrastructure.** The LLM wiki requires a file system, an LLM agent, and a CLAUDE.md schema file. That's it. No embedding model to configure, no vector database to provision, no retrieval pipeline to orchestrate and maintain. For a team already using Claude, the marginal cost of standing up a wiki is the time to design the schema and the ongoing API costs for ingest and maintenance passes.
+
+**Cost.** MindStudio's analysis found that for knowledge bases under roughly 200,000 tokens, full-context prompting with prompt caching can be faster and cheaper than building retrieval infrastructure. For a small agency's use case, the LLM wiki is a significant cost advantage over a custom RAG build.
+
+**Human involvement.** The wiki is not a black box. Team members can read it, contribute to it, edit it, and understand it. This matters for a creative team that needs to trust and audit its own knowledge sources.
+
+---
+
+## The honest limitations of each
+
+**RAG limitations:**
+- Infrastructure complexity is real. Chunking strategy, embedding model choice, retrieval tuning — each requires engineering judgment and ongoing attention.
+- Retrieval can fail silently. The wrong chunks get surfaced, or the right chunks aren't found, and the LLM generates a plausible-sounding but poorly-grounded answer. These failures are hard to catch.
+- Each query re-derives from scratch. There's no learning, no synthesis, no compounding. The system is the same after 1,000 questions as it was after 10.
+- Maintenance requires engineering support. When your document collection changes, the pipeline needs to re-index. Chunking strategies may need to be revisited. Vector databases need to be managed.
+
+**LLM knowledge base limitations:**
+- Scale ceiling. The index-based navigation approach works well up to roughly 100–500 sources. Beyond that, you need a search layer. At very large scale (thousands of documents), RAG has a structural advantage.
+- Error compounding. If the LLM writes something subtly wrong into the wiki and it gets filed back, subsequent answers can build on that error. Periodic linting helps but doesn't eliminate this risk.
+- Multi-user contribution is not native. The pattern was designed for a single researcher or a small team. Shared write access, governance, and role-based permissions require additional tooling.
+- Discipline required. The system doesn't maintain itself without prompting. Someone has to run ingest passes, lint passes, and ensure the schema stays relevant. In a busy team, this can slip.
+- No formal audit trail for RAG-style citation. The wiki can cite sources, but it doesn't preserve the precise document-chunk-to-answer traceability that compliance-heavy RAG implementations provide.
+
+---
+
+## Which is right for RDC?
+
+The question isn't which is better in the abstract — it's which is better for RDC's actual situation.
+
+RDC's knowledge landscape looks like this: a creative agency with roughly 30 people, several distinct client workstreams, significant institutional knowledge about clients and deliverable types, and a clear problem of fragmented files and siloed learning. The total document corpus is large but not enterprise-scale. The primary need is synthesis and institutional memory — making existing knowledge findable, shareable, and compounding — rather than precise retrieval from a specific document at a specific line.
+
+This profile fits the LLM knowledge base pattern well — but the picture is more nuanced given what CYSTEMS has specifically proposed.
+
+**What CYSTEMS's proposal actually covers.** In their March 2026 proposal to Chris Telfer, CYSTEMS identified three distinct use cases: RFP and proposal acceleration, SOW and contract automation, and business intelligence/reporting. These are not the same problem. Only the first maps directly to what either RAG or an LLM wiki primarily addresses. SOW automation is partly a knowledge retrieval problem and partly a structured document generation workflow. BI/reporting automation is a data pipeline and dashboard problem that neither architecture solves on its own.
+
+Additionally, CYSTEMS builds specifically on Claude/Anthropic — not a generic RAG platform — and their closed-loop security model (no client data touching public AI models) is a genuine differentiator for RDC's NDA-sensitive Microsoft and government work. That security posture is not easily replicated with a self-managed file-based wiki.
+
+The case for exploring the LLM wiki alongside the CYSTEMS evaluation:
+
+1. The RFP and proposal use case — which is where the knowledge synthesis problem is most acute — can be prototyped with the LLM wiki in days, at negligible cost, using Claude you're already paying for. If it works, that's one of the three CYSTEMS use cases potentially solved before the discovery session.
+2. The LLM wiki answer to "what has worked before for this client" or "what's our voice guide for Databricks" is better than what even a well-built RAG system returns, because synthesis has already happened rather than being re-derived on every query.
+3. Transparency matters for a content team. Writers and designers need to be able to trust, read, and edit the knowledge they're working from — not query a black box.
+
+The case for CYSTEMS specifically:
+
+1. Their closed-loop security architecture directly addresses RDC's NDA and client confidentiality obligations in a way a self-managed wiki cannot without significant additional investment.
+2. SOW automation and BI/reporting — if they can genuinely deliver on both — represent operational leverage well beyond what an LLM wiki provides.
+3. They build on Claude, so there's no platform switching cost, and the team's existing Claude fluency transfers directly.
+4. A completed system RDC owns, with training and defined handoff, is a different value proposition than a wiki the team maintains itself.
+
+The practical recommendation: test the LLM wiki against the RFP/proposal use case before the discovery session. Run a real proposal through it. See how much of the knowledge synthesis problem it solves. Then walk into the CYSTEMS discovery session with a clear sense of what you're buying beyond what you can already do — which will sharpen the conversation and improve whatever decision comes out of it.
+
+---
+
+## Sources
+
+- [Karpathy's llm-wiki GitHub Gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+- [MindStudio: LLM Wiki vs RAG comparison](https://www.mindstudio.ai/blog/llm-wiki-vs-rag-markdown-knowledge-base-comparison)
+- [Atlan: LLM Knowledge Base vs RAG: How They Differ](https://atlan.com/know/llm-knowledge-base-vs-rag/)
+- [VentureBeat: Karpathy's LLM Knowledge Base architecture](https://venturebeat.com/data/karpathy-shares-llm-knowledge-base-architecture-that-bypasses-rag-with-an)
+- [RAGFlow: From RAG to Context — 2025 year-end review](https://ragflow.io/blog/rag-review-2025-from-rag-to-context)
+- [NStarX 2026 enterprise RAG adoption analysis](https://blog.starmorph.com/blog/rag-techniques-compared-best-practices-guide)
+- CYSTEMS x Red Door Collaborative proposal document (March 2026, confidential)
+</script>
+
+<script type="text/markdown" id="md-implementation">
+# Implementing an LLM knowledge base at Red Door Collaborative: a practical guide
+
+*Research document for Red Door Collaborative | April 2026*
+
+---
+
+## Overview
+
+This document translates the LLM knowledge base concept into a concrete implementation plan for Red Door Collaborative. It covers the folder structure, schema design, workflows for contributing and querying, the multi-user access model, role-based access controls, and the tooling stack.
+
+The goal is a shared, compounding knowledge base that serves the full RDC team — in-house creative, embedded Azure and VSS teams, operations, and leadership — while respecting appropriate access boundaries between those groups.
+
+---
+
+## What the RDC knowledge base would contain
+
+Before designing the system, it helps to be specific about what knowledge RDC actually needs to accumulate and share.
+
+**Client knowledge:** Brand voice guides, messaging frameworks, past deliverable examples, client preferences and feedback patterns, SME knowledge, competitive landscape notes, and project post-mortems for each major account (Microsoft Azure, Databricks, City of Seattle, etc.).
+
+**Craft and process knowledge:** What kinds of blog posts, ebooks, infographics, and scripts have worked and why. Prompts and workflows that have been effective in Claude. Writing and design guidelines by client and deliverable type. Lessons from production cycles — what caused delays, what made reviews smooth.
+
+**Operational knowledge:** How work flows through the creative team. Who to contact for what. How decisions get made. Active project context for PMs and leads.
+
+**AI and tooling knowledge:** What the team has tried with Claude, what worked, what didn't. Effective prompts by use case. Skill and workflow documentation.
+
+**New business knowledge:** Past proposals, capabilities statements, pitch materials, and what has resonated with different types of prospects.
+
+---
+
+## Recommended folder structure
+
+The RDC knowledge base follows the three-layer architecture: raw sources, wiki, and schema. A fourth layer — access tiers — addresses the RBAC requirements.
+
+```
+rdc-knowledge-base/
+│
+├── CLAUDE.md                    ← The schema: rules, conventions, workflow instructions
+├── index.md                     ← Master index of all wiki pages (LLM-maintained)
+├── log.md                       ← Append-only log of all operations (LLM-maintained)
+│
+├── raw/                         ← Immutable source material
+│   ├── clients/
+│   │   ├── microsoft-azure/     ← Briefs, transcripts, brand guides, past deliverables
+│   │   ├── databricks/
+│   │   ├── city-of-seattle/
+│   │   └── [other clients]/
+│   ├── craft/                   ← Articles, guides, reference material about writing/design
+│   ├── ai-workflows/            ← Captured prompts, workflow notes, session outputs
+│   ├── operations/              ← Process documents, onboarding materials, handbook excerpts
+│   └── new-business/           ← Proposals, capabilities statements, pitch materials
+│
+├── wiki/                        ← LLM-generated and LLM-maintained knowledge pages
+│   ├── clients/
+│   │   ├── microsoft-azure/
+│   │   │   ├── index.md         ← Azure client wiki index
+│   │   │   ├── brand-voice.md
+│   │   │   ├── deliverable-types.md
+│   │   │   ├── key-contacts.md
+│   │   │   ├── past-projects.md
+│   │   │   └── lessons-learned.md
+│   │   ├── databricks/
+│   │   └── [other clients]/
+│   ├── craft/
+│   │   ├── blog-posts.md
+│   │   ├── ebooks.md
+│   │   ├── infographics.md
+│   │   ├── scripts.md
+│   │   └── writing-principles.md
+│   ├── ai-workflows/
+│   │   ├── effective-prompts.md
+│   │   ├── skills-and-tools.md
+│   │   └── workflow-templates.md
+│   ├── operations/
+│   │   ├── team-structure.md
+│   │   ├── workflow-overview.md
+│   │   └── tools-and-platforms.md
+│   └── new-business/
+│       ├── capabilities.md
+│       ├── past-proposals.md
+│       └── positioning.md
+│
+└── outputs/                     ← Generated reports, analyses, one-pagers, research
+    ├── [date]-[topic].md
+    └── ...
+```
+
+---
+
+## The schema file (CLAUDE.md)
+
+The CLAUDE.md is the most important file in the system. A starting template for RDC:
+
+```markdown
+# RDC Knowledge Base Schema
+
+## What this is
+Red Door Collaborative's shared institutional knowledge base.
+Maintained by AI (Claude), fed by the RDC team.
+The wiki is the organized layer. Raw/ is the source material. You write the wiki; humans read it.
+
+## Who uses it
+- Creative team (content, design, motion, video, PMs)
+- Embedded teams (Azure, VSS)
+- Operations and leadership (admin, finance, HR)
+- Leadership (Chris, Jenny)
+
+## How it's organized
+- raw/ contains immutable source documents. Never modify these.
+- wiki/ contains synthesized, interlinked knowledge pages. You own and maintain this.
+- outputs/ contains generated analyses and one-pagers. These may be filed back into wiki/.
+- index.md is a master catalog of all wiki pages, updated on every ingest.
+- log.md is an append-only operation log. Format: ## [YYYY-MM-DD] action | description
+
+## Wiki conventions
+- Every page starts with a one-paragraph summary.
+- Use [[page-name]] for internal links.
+- Add YAML frontmatter: tags, last_updated, source_count.
+- Maintain an index.md within each sub-folder for that section.
+- When ingesting a source, update: the summary page, the section index, the master index, the log.
+- When a new source contradicts an existing page, flag the contradiction prominently.
+
+## Access tiers (see RBAC section below)
+- Tier 1: Company-wide — general operations, craft knowledge, AI workflows, public-facing materials
+- Tier 2: Client-specific — client wiki pages, deliverable examples, project history
+- Tier 3: Sensitive — financial data, HR, new business pipeline, strategic planning
+
+## Ingest workflow
+1. Source is placed in raw/ by a team member
+2. Notify Claude: "New source in raw/clients/microsoft-azure/[filename]. Please ingest."
+3. Claude reads source, writes/updates wiki pages, updates index, appends to log
+4. Review the changes in Obsidian or the file viewer
+
+## Query workflow
+1. Ask your question in Claude
+2. Claude reads index.md, identifies relevant pages, reads them, synthesizes an answer
+3. If the answer is valuable, ask Claude to file it as a new page in outputs/ or wiki/
+
+## Lint (run monthly)
+Ask Claude: "Run a health check on wiki/. Find contradictions, orphan pages, 
+unsupported claims, stale content, and gaps. Write a report to wiki/lint-report.md."
+```
+
+---
+
+## Multi-user access: how the whole team contributes and queries
+
+The LLM wiki was designed for individual use. Adapting it for a team of 30+ across multiple contexts requires deliberate choices about how people contribute, how the wiki stays coherent, and how queries work.
+
+### Option A: Shared Git repository (recommended for RDC)
+
+Host the knowledge base as a Git repository — either on GitHub (already used by RDC) or on an internal server. All team members clone the repo. They contribute by adding files to raw/ and committing them. The "wiki compiler" (Claude, run by a designated maintainer or via automation) processes new raw files and updates the wiki. The wiki is the shared, authoritative output.
+
+**Advantages:** Version history on every change. Branch-and-merge for experimental ingests. Existing RDC GitHub infrastructure can be used. Transparent — you can see who added what and when. The log.md provides an additional audit layer.
+
+**Challenges:** Requires team members to use Git, which adds friction for non-technical contributors. Merge conflicts in wiki files are possible if multiple people trigger ingest passes simultaneously.
+
+**Mitigation:** A shared intake form or Slack channel where people post sources they want ingested (rather than directly committing to raw/) keeps the workflow accessible. A designated "wiki steward" runs the actual ingest passes.
+
+### Option B: Shared folder (SharePoint or Box)
+
+The raw/ folder lives in a shared SharePoint document library or Box folder. Team members add documents to the appropriate subfolder. The wiki is generated and stored in a separate SharePoint folder or Box folder. A designated maintainer (or automated task) runs ingest passes when new content arrives.
+
+**Advantages:** No Git required. Uses tools the team already has. Familiar file-browser interface for contribution.
+
+**Challenges:** No native version control (though SharePoint has version history). Multiple people triggering Claude to ingest simultaneously could create conflicts. Less traceability than Git.
+
+**Recommendation:** For RDC's current tooling setup, SharePoint is the path of least resistance for broad team participation, with Git as the stronger option for the creative and tech-savvy subset. A hybrid works too: Git for the wiki itself (version-controlled, authoritative), SharePoint for the intake pipeline (where people drop new sources), with a maintainer bridging the two.
+
+### Querying for all team members
+
+Each team member queries the knowledge base through Claude, with the wiki folder accessible in their Claude session. No shared server required. Team members just need to have the wiki files available to their Claude session — either via the shared folder (Cowork/file access), a mounted drive, or a copy they keep current.
+
+This means queries are private by default — each person's Claude conversation is their own. The shared knowledge is in the files; the conversations are individual.
+
+---
+
+## Role-based access control (RBAC)
+
+This is the hardest problem in adapting the LLM wiki for a team context. The pattern doesn't have built-in access controls — it's files on a filesystem. RBAC has to be implemented at the file system and schema level.
+
+### Three-tier access model for RDC
+
+**Tier 1 — Company-wide (all staff):** General operations knowledge, craft and writing principles, AI workflow documentation, RDC brand materials, team structure, public-facing capabilities. All team members can read and contribute to Tier 1 sections.
+
+**Tier 2 — Client-specific (by workstream):** Each client's wiki section is accessible only to the team members working on that account. Azure team members have access to the Azure wiki. Databricks writers have access to the Databricks wiki. Creative team leads have access to all client wikis. This is enforced at the folder level.
+
+**Tier 3 — Leadership/sensitive (Chris, Jenny, Amy, select leads):** Financial data, HR documents, new business pipeline, strategic planning, and competitive intelligence. Stored in a separate, restricted folder not visible to general staff.
+
+### Implementation approach
+
+**Folder-level access on the shared drive.** SharePoint and Box both support folder-level permission settings. The Tier 3 folder is restricted by SharePoint/Box permissions to leadership only. Tier 2 client folders are restricted to the relevant account teams plus leads. Tier 1 is open to all.
+
+**Separate CLAUDE.md files by tier.** The Tier 3 folder has its own schema that governs the sensitive wiki. The Tier 1/2 CLAUDE.md does not reference Tier 3 content.
+
+**Query scoping.** When a team member queries Claude, their Claude session only has access to the wiki folders they're permitted to see. This is enforced by what folder they've pointed Claude at — not by a system-level filter. This means the access control lives in the folder permissions, not in Claude itself.
+
+**Important caveat:** This approach relies on folder-level permissions enforced by the file system or shared drive platform. It does not provide the same rigorous enforcement as platform-level RBAC in an enterprise RAG system. For genuinely sensitive data (HR, financials), additional safeguards should be considered — or that data should remain in purpose-built systems rather than the wiki.
+
+### Practical tiering for RDC roles
+
+| Role | Tier 1 access | Tier 2 access | Tier 3 access |
+|---|---|---|---|
+| All creative team | Yes | Client-specific | No |
+| Embedded Azure team | Yes | Azure wiki only | No |
+| VSS team | Yes | VSS wiki only | No |
+| Creative leads (Naj, Justine, Joy, Nathan) | Yes | All client wikis | No |
+| PMs (Karin, Silas) | Yes | All client wikis | No |
+| Account managers (Amy, Erin) | Yes | Their accounts | Partial |
+| Operations (Ashley, Brandon) | Yes | No | Partial |
+| Leadership (Chris, Jenny) | Yes | All | Yes |
+
+---
+
+## Step-by-step implementation plan
+
+### Phase 1: Foundation (week 1–2)
+
+1. Designate a wiki steward — the person responsible for running ingest passes, maintaining the schema, and doing monthly lint checks. In the short term, this is likely Joe or another Claude-fluent team member.
+
+2. Set up the folder structure on SharePoint (or GitHub, depending on access model decision). Create the raw/, wiki/, and outputs/ directories with the appropriate sub-structure.
+
+3. Write the initial CLAUDE.md schema. Start with the template above and refine it with input from Justine (content standards), Naj (workflow), and Chris (priorities).
+
+4. Set folder permissions. Configure Tier 1 (all staff), Tier 2 (by account), and Tier 3 (leadership) access in SharePoint or Box.
+
+5. Seed the raw/ folder with 10–20 existing documents that represent the most valuable institutional knowledge RDC already has: a client brand voice guide, a few past project post-mortems, the RDC overview and org documents, the most useful AI prompts and workflows.
+
+### Phase 2: Initial wiki build (week 2–3)
+
+6. Run the first ingest pass. Point Claude at the raw/ folder and run: *"Read all sources in raw/. Build the wiki following the conventions in CLAUDE.md. Start with index.md, then create pages for each major section. Link related topics."*
+
+7. Review the wiki with Naj, Justine, and at least one PM. Identify gaps, errors, and priorities for the next round of ingestion.
+
+8. Refine the CLAUDE.md schema based on what the initial build revealed about your domain structure.
+
+### Phase 3: Team onboarding (week 3–4)
+
+9. Write a one-page "how to use the wiki" guide for the team. Keep it simple: how to add a source, how to ask a question, who to notify when you want something ingested.
+
+10. Introduce the wiki to the creative team in a short team meeting. Have the wiki steward demonstrate a live query session.
+
+11. Open the intake pipeline: a Teams channel, a SharePoint form, or a simple email alias where team members can submit sources for ingestion.
+
+### Phase 4: Steady state (ongoing)
+
+12. Weekly ingest passes: the wiki steward processes new submissions from the intake pipeline.
+
+13. Monthly lint passes: Claude health-checks the wiki for contradictions, orphan pages, and gaps.
+
+14. Quarterly schema review: is the CLAUDE.md still reflecting how the team uses the wiki? Update it as the system evolves.
+
+15. Log review: periodically review log.md to see what's been ingested, what questions have been asked, and where the wiki is most actively used.
+
+---
+
+## Tooling stack for RDC
+
+**Storage:** SharePoint (primary, for team access) or GitHub (for version control). Either works; the choice depends on how technical the steward and contributors are comfortable being.
+
+**Frontend for reading:** Obsidian (free, local-first) for the wiki steward and power users. For general staff, reading wiki pages in SharePoint's document viewer is sufficient. Obsidian's graph view is useful for the steward to see the shape of the knowledge base.
+
+**LLM agent for all operations:** Claude (via Cowork on Desktop, Claude Code, or the Claude API). All ingest, query, and lint operations run through Claude.
+
+**Intake pipeline:** A dedicated Teams channel (#wiki-submissions) or SharePoint intake folder where team members drop sources they want ingested.
+
+**Search (optional, later):** If the wiki grows to a scale where index-based navigation isn't sufficient, qmd (a local hybrid BM25/vector search tool for markdown files) can be added. This is not needed at RDC's current scale.
+
+**Browser extension:** The Obsidian Web Clipper converts any web page into a markdown file ready for the raw/ folder. Useful for the steward and any team member who wants to contribute web-sourced content.
+
+---
+
+## What the wiki looks like in use
+
+A few concrete examples of how RDC team members would use the knowledge base day-to-day:
+
+**Joe is starting a new Databricks blog post.** He asks Claude: *"What do we know about Databricks' brand voice and the types of content they've approved in the past?"* Claude reads the Databricks wiki section and returns a synthesis of brand voice guidelines, past deliverable examples, and lessons from previous review cycles — all in one response, grounded in the wiki.
+
+**Karin is onboarding a new designer to the Azure account.** She asks Claude: *"Give me an overview of how Azure Azure account work flows, who the key contacts are, and what the most common deliverable types look like."* Claude synthesizes the Azure wiki's team structure, workflow, and deliverable type pages.
+
+**Justine wants to capture a lesson from a difficult client review.** She writes a brief note about what went wrong and what fixed it, drops it in the Teams intake channel. The steward ingests it, and Claude adds it to the relevant client wiki's lessons-learned page.
+
+**Chris is prepping for a new business pitch.** He asks Claude: *"What have our most successful proposals for tech companies had in common?"* Claude reads the new-business wiki section and synthesizes patterns from past proposals — what language landed, what differentiated RDC, what fell flat.
+
+---
+
+## Sources
+
+- [Karpathy's llm-wiki GitHub Gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+- ["Claude + Obsidian should be illegal"](https://x.com/defileo/status/2042241063612502162) (@defileo, April 9, 2026)
+- [MindStudio: What Is Andrej Karpathy's LLM Wiki?](https://www.mindstudio.ai/blog/andrej-karpathy-llm-wiki-knowledge-base-claude-code)
+- [Atlan: LLM Knowledge Base — Definition, Components, and Enterprise Use](https://atlan.com/know/what-is-an-llm-knowledge-base/)
+- [Collaborative Memory RBAC research](https://arxiv.org/html/2505.18279v1) (arXiv 2505.18279)
+- [AnythingLLM](https://anythingllm.com/)
+- RDC operations and pain points context document (internal)
+</script>
+
+<script type="text/markdown" id="md-challenges">
+# Challenges and pitfalls: the LLM knowledge base at RDC
+
+*Research document for Red Door Collaborative | April 2026*
+
+---
+
+## Overview
+
+The LLM knowledge base pattern is genuinely promising for a creative agency like RDC. But it's an emerging idea, and the honest assessment includes real limitations — especially when adapted from its original single-user context to a team of 30+ people across multiple workstreams. This document catalogs the challenges you should expect, why they're hard, and what can be done about each.
+
+---
+
+## 1. Multi-user contribution is not a solved problem
+
+**The issue.** The LLM wiki was designed and optimized for a single researcher — one person, one agent, one coherent point of view on the knowledge base. Karpathy describes a solo setup: he adds sources, he runs ingests, he asks questions. The system has no concept of multiple people contributing simultaneously with different perspectives on what the wiki should contain.
+
+At RDC, you have 30+ team members, multiple account teams, and at least two distinct operational contexts (in-house creative vs. embedded at Microsoft). Getting all of them to contribute to a shared wiki in a coherent way is a genuine coordination challenge.
+
+**What goes wrong.** If multiple people add conflicting sources — say, two writers with different takes on Databricks' brand voice — the wiki may develop internally contradictory pages that the lint process can flag but can't resolve. If contribution is ad hoc, the wiki fills unevenly: well-populated in areas where engaged contributors work, sparse everywhere else. If the intake pipeline isn't clear and easy, most people won't use it.
+
+**Mitigation.** Designate a wiki steward with clear ownership of the wiki's coherence. Use a structured intake pipeline (Teams channel, SharePoint form) rather than letting people write directly to the wiki. Set clear guidelines in the CLAUDE.md about how contradictions are handled. Accept that the wiki will reflect the team's actual knowledge, not a perfect synthesis, and that linting is how you keep it from drifting.
+
+**Residual risk.** Even with a steward, the contribution workflow adds friction. In a busy agency where everyone is billable, maintaining a knowledge base as a non-billable activity is genuinely hard to sustain. This is not a technical problem — it's a cultural and operational one.
+
+---
+
+## 2. Error compounding
+
+**The issue.** This is one of the most frequently cited risks of the LLM wiki pattern. As one practitioner put it: "When outputs get filed back, errors compound too." If the LLM writes something subtly wrong into a wiki page — a mischaracterized client preference, a flawed synthesis of brand voice guidelines — and that page then becomes a source for future queries and ingests, subsequent content builds on the error. Over time, a small initial mistake can contaminate a significant portion of the wiki.
+
+**What goes wrong.** A writer asks Claude to summarize RDC's tone guidelines for Microsoft. Claude writes a summary that's slightly off — it conflates the formal Azure docs tone with the conversational SMB tone. That summary gets filed into the wiki. Future queries about Azure tone pull from that page. The error propagates.
+
+**Mitigation.** Several practices reduce this risk. First, never file an output back into the wiki without human review. The answer is valuable and worth preserving, but someone should read it before it becomes canonical. Second, run monthly lint passes that actively look for contradictions and unsupported claims. Third, keep raw sources immutable — the LLM can recompile wiki pages from raw sources if an error is discovered. Fourth, treat high-stakes wiki pages (brand voice guides, client personas) as requiring explicit human sign-off before they go into the wiki.
+
+**Residual risk.** Error compounding is harder to catch the older and more embedded the error is. A mistake in a page from six months ago may be cited dozens of times before a lint pass surfaces it. This is a meaningful limitation compared to RAG, where the source documents are immutable and errors in the synthesis are at least traceable to the retrieval step.
+
+---
+
+## 3. Role-based access control is complex and imperfect
+
+**The issue.** The wiki pattern has no built-in RBAC. Access controls live at the file system level — which folders a person can see on SharePoint or Box. This works for coarse-grained separation (Tier 1 / Tier 2 / Tier 3) but has real limitations for fine-grained control.
+
+**What goes wrong.** A writer on the Azure account has SharePoint access to the Azure wiki folder. When they query Claude, Claude can only see what's in their Claude session — which is what they've pointed Claude at. If they've pointed Claude at only the Azure wiki folder, they can't accidentally see Databricks content. But if they've pointed Claude at the full wiki directory (which is the more convenient setup for broad queries), they potentially see all client wikis. The access control depends on how they've configured their Claude session, not on a system-level filter Claude enforces.
+
+Additionally, the embedded Azure and VSS teams operate inside Microsoft's environment, with different tool access. Getting those team members onto a shared RDC knowledge base requires a clear path for how they access the files — which may conflict with Microsoft's security policies.
+
+**Mitigation.** Structure the folder hierarchy so that sensitive tiers are clearly separated and require deliberate action to include in a Claude session. Document the expected Claude session configuration for each role in the "how to use the wiki" guide. For the most sensitive materials (financials, HR, new business pipeline), keep them in purpose-built systems rather than the wiki. Reserve the wiki for knowledge that, if seen by the wrong person, causes embarrassment rather than serious harm.
+
+**Residual risk.** This approach is not comparable to enterprise-grade RBAC in a properly architected RAG system. A well-built RAG system with metadata-level access filtering can enforce strict document-level permissions that the LLM wiki simply cannot replicate without significant additional tooling. If RDC's RBAC requirements are strict — for example, if client contracts prohibit certain staff from seeing certain project materials — the wiki pattern may not be sufficient as-is.
+
+---
+
+## 4. The embedded teams are hard to integrate
+
+**The issue.** The Azure account team (9 people) and the VSS team (5 people) work inside Microsoft's environment. Their day-to-day tools are Microsoft's — Teams, SharePoint internal to Microsoft, Microsoft-managed endpoints. They can't easily access an RDC-hosted SharePoint site or a GitHub repo in the same way the in-house creative team can.
+
+Integrating their knowledge into the wiki means finding a pathway from Microsoft's environment to RDC's. That pathway may be constrained by Microsoft's security policies, NDA provisions, or the practical reality that embedded staff are primarily focused on client deliverables and have limited bandwidth for RDC internal operations.
+
+**What goes wrong.** The embedded teams end up with a separate, disconnected knowledge base (or no knowledge base at all). The institutional knowledge from the Azure and VSS workstreams — which is substantial — doesn't flow into the shared RDC wiki. The in-house creative team doesn't benefit from what the embedded teams have learned, and vice versa.
+
+**Mitigation.** Designate a liaison from each embedded team (the account manager, or a senior team member) whose role includes periodically distilling key insights from the embedded context into a format that can be shared with RDC. This doesn't require Microsoft-hosted files; it means a human writes a summary note and adds it to the RDC intake pipeline. The wiki doesn't need to hold everything — it needs to hold the synthesized institutional knowledge, not the raw Microsoft-internal materials.
+
+**Residual risk.** Some knowledge from the embedded context is inherently not shareable — it's inside Microsoft's systems, governed by Microsoft's confidentiality policies. The wiki can only hold what's appropriate to hold. This is a real constraint on the completeness of the knowledge base.
+
+---
+
+## 5. Scale ceiling and context window limits
+
+**The issue.** The LLM wiki's index-based navigation approach works well up to roughly 100–500 sources, or a few hundred wiki pages. Beyond that, the index gets unwieldy, and navigating to relevant pages becomes less reliable. At some scale, the approach requires a lightweight search layer (like qmd) to remain effective.
+
+Additionally, even with large context windows, there are limits to how much of the wiki Claude can hold in context for a single query. Queries that require synthesizing information from many disparate wiki sections may hit these limits, leading to answers that miss relevant context.
+
+**RDC's likely trajectory.** RDC is not currently near the scale ceiling. A focused first implementation — covering the top 3–4 clients and the key craft and operations topics — would involve perhaps 50–100 raw sources and 50–100 wiki pages. That's well within the comfortable operating range.
+
+Over 12–24 months of active use, the wiki could grow to 300–500 wiki pages if ingestion is consistent. At that point, a search tool like qmd would be worth adding. This is not a blocker — it's a natural evolution point.
+
+**Mitigation.** Design the wiki to stay focused rather than comprehensive. Not every document needs to be ingested. The steward's judgment about what belongs in raw/ is the primary quality control. Keep the index well-organized and enforce consistent YAML frontmatter so the index remains navigable as the wiki grows.
+
+---
+
+## 6. Governance and maintenance burden
+
+**The issue.** The LLM handles the bookkeeping of wiki maintenance — updating cross-references, keeping summaries current, running lint passes. But someone has to ask it to do these things. The wiki doesn't maintain itself autonomously; it requires a human to initiate ingest passes, review outputs, and run the periodic lint.
+
+In a busy agency where everyone is at or near capacity on billable work, the non-billable overhead of wiki stewardship can become a significant friction point. It's easy to let a week of ingestion pass slip. Then two weeks. Then the wiki is three months out of date and team members have stopped trusting it.
+
+**What goes wrong.** The wiki becomes a snapshot of RDC's institutional knowledge as of the day it was last actively maintained. New projects add new learnings; those learnings never make it into the wiki. Team members stop querying it because they know it's stale. The system atrophies.
+
+**Mitigation.** Treat wiki maintenance as a recurring operational commitment, not a project task. Build it into the wiki steward's role definition with time budgeted. Make the intake pipeline as frictionless as possible so contribution doesn't depend on a single person. Automate what you can: if a task can be triggered by a scheduled Claude job (e.g., a weekly prompt that asks Claude to check for new items in the intake folder and process them), schedule it.
+
+**Residual risk.** This is ultimately a cultural challenge, not a technical one. No system survives organizational indifference. The wiki needs a champion who is genuinely invested in its health and whose role explicitly includes maintaining it.
+
+---
+
+## 7. No formal compliance or audit trail
+
+**The issue.** In regulated industries or for clients with strict data handling requirements, a RAG system built by a vendor like CYSTEMS (cystems.io) can offer SOC2 compliance, HIPAA compliance, audit logs, and data residency controls. The LLM wiki stored in SharePoint or Git has the access controls and version history of those platforms — which is meaningful but not the same as a purpose-built compliant system.
+
+**RDC's exposure.** For most of RDC's use cases, this is not a significant concern. Brand voice guides, writing samples, and operational knowledge are not regulated data. However, if the wiki were to hold financial data, HR information, or materials covered by specific client NDAs, the compliance posture of a flat file system would need to be more carefully evaluated.
+
+**Mitigation.** Keep regulated and NDA-covered materials out of the wiki. Use the wiki for knowledge that, if inappropriately accessed, is embarrassing rather than legally significant. Maintain those data categories in the existing systems that are already governed appropriately.
+
+---
+
+## 8. The "not invented here" adoption problem
+
+**The issue.** No knowledge system is useful if the team doesn't use it. RDC has a mixed AI maturity profile — some team members are confident Claude users, others have barely touched it. Asking the whole team to adopt a new workflow, even a simple one, requires deliberate change management.
+
+The most common failure mode for internal knowledge bases is not technical failure — it's adoption failure. People contribute to the wiki for a month during the initial excitement, then revert to the way they've always worked.
+
+**Mitigation.** Start with the people who are already converted — the Claude-fluent team members who can see the value immediately and become internal advocates. Demonstrate the wiki's value with concrete, specific examples that resonate with people's actual pain points (e.g., "Joe used the wiki to get Databricks brand context in 30 seconds instead of digging through three SharePoint sites"). Keep the contribution mechanism simple enough that it doesn't require anyone to learn a new tool.
+
+---
+
+## Summary: the honest bottom line
+
+The LLM knowledge base is a legitimate, workable approach for RDC — but it is not a turnkey system. It requires a steward, a clear intake process, discipline around human review of outputs before they become canonical, and ongoing cultural investment.
+
+The challenges above are real but manageable for an agency that commits to the approach seriously. They are also instructive about what a RAG system from CYSTEMS would or wouldn't solve. A custom RAG build would resolve the RBAC and compliance concerns more robustly. It would not solve the adoption, governance, or error-quality problems — those are organizational, not technical.
+
+The decision between the two approaches should be made with a clear-eyed view of which problems are organizational (and would persist regardless of the system chosen) and which are technical (and would be better addressed by one architecture than the other).
+
+---
+
+## Sources
+
+- [Karpathy's llm-wiki GitHub Gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+- ["I Went Through Every AI Memory Tool I Could Find"](https://x.com/witcheer/status/2044456778843238689) (@witcheer, April 15, 2026)
+- ["How to Build Your Second Brain"](https://x.com/nickspisak_/status/2040448463540830705) (@nickspisak_, April 4, 2026)
+- ["Claude + Obsidian should be illegal"](https://x.com/defileo/status/2042241063612502162) (@defileo, April 9, 2026)
+- [Atlan: LLM Knowledge Base — Definition, Components, and Enterprise Use](https://atlan.com/know/what-is-an-llm-knowledge-base/)
+- [Collaborative Memory RBAC research](https://arxiv.org/html/2505.18279v1) (arXiv 2505.18279)
+- RDC operations and pain points context document (internal)
+</script>
+
+<!-- Markdown renderer -->
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script>
+(function () {
+  const SECTIONS = {
+    'executive-brief':   { md: 'md-executive-brief',   group: 'Executive brief',            num: '00' },
+    'cystems-proposal':  { md: 'md-cystems-proposal',  group: 'The proposal · Background',  num: '01' },
+    'concept-overview':  { md: 'md-concept-overview',  group: 'The proposal · Research',    num: '02' },
+    'llm-vs-rag':        { md: 'md-llm-vs-rag',        group: 'The proposal · Comparison',  num: '03' },
+    'implementation':    { md: 'md-implementation',    group: 'If we proceed · Build',      num: '04' },
+    'challenges':        { md: 'md-challenges',        group: 'If we proceed · Risk',       num: '05' },
+  };
+
+  const DEFAULT_SECTION = 'executive-brief';
+  const content = document.getElementById('content');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  // Configure marked
+  marked.setOptions({
+    gfm: true,
+    breaks: false,
+    headerIds: false,
+    mangle: false
+  });
+
+  // Open all external links in a new tab
+  const renderer = new marked.Renderer();
+  const baseLink = renderer.link.bind(renderer);
+  renderer.link = function (href, title, text) {
+    const html = baseLink(href, title, text);
+    if (href && /^https?:\/\//i.test(href)) {
+      return html.replace(/^<a /, '<a target="_blank" rel="noopener noreferrer" ');
+    }
+    return html;
+  };
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
+  }
+
+  function buildHeaderHTML(sectionKey) {
+    const meta = SECTIONS[sectionKey];
+    return `<div class="section-eyebrow">
+      <span class="dot"></span>
+      <span>${escapeHtml(meta.group)}</span>
+      <span class="sep"></span>
+      <span class="meta">Section ${escapeHtml(meta.num)} of 06</span>
+    </div>`;
+  }
+
+  // Wrap the "Sources" h2 + following list into a styled aside.
+  function wrapSourcesBlock(rootEl) {
+    const headings = rootEl.querySelectorAll('h2');
+    let sourcesH = null;
+    headings.forEach(h => {
+      if (h.textContent.trim().toLowerCase() === 'sources') sourcesH = h;
+    });
+    if (!sourcesH) return;
+
+    // Remove the <hr> immediately preceding the Sources h2, if present
+    let prev = sourcesH.previousElementSibling;
+    if (prev && prev.tagName === 'HR') prev.remove();
+
+    const aside = document.createElement('aside');
+    aside.className = 'sources-block';
+
+    // Move sourcesH and all subsequent siblings into the aside
+    const parent = sourcesH.parentNode;
+    parent.insertBefore(aside, sourcesH);
+    let node = sourcesH;
+    while (node) {
+      const next = node.nextSibling;
+      aside.appendChild(node);
+      node = next;
+    }
+  }
+
+  function render(sectionKey) {
+    const meta = SECTIONS[sectionKey];
+    if (!meta) return render(DEFAULT_SECTION);
+
+    const mdEl = document.getElementById(meta.md);
+    if (!mdEl) {
+      content.innerHTML = '<p>Content not found.</p>';
+      return;
+    }
+    const mdText = mdEl.textContent;
+    const html = marked.parse(mdText, { renderer });
+
+    // Remove animation class so it re-triggers
+    content.classList.remove('content-fade');
+    content.innerHTML = buildHeaderHTML(sectionKey) + html;
+    // Force reflow then add animation
+    void content.offsetWidth;
+    content.classList.add('content-fade');
+
+    wrapSourcesBlock(content);
+
+    // Scroll inner to top
+    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+
+    // Update nav active state
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.dataset.section === sectionKey);
+    });
+
+    // Update title
+    const h1 = content.querySelector('h1');
+    document.title = (h1 ? h1.textContent.trim() : 'LLM Knowledge Bases') + ' — RDC';
+
+    // Close mobile sidebar
+    document.getElementById('sidebar').classList.remove('open');
+  }
+
+  function sectionFromHash() {
+    const h = (location.hash || '').replace(/^#/, '').trim();
+    if (h && SECTIONS[h]) return h;
+    return DEFAULT_SECTION;
+  }
+
+  // Wire up nav clicks
+  navLinks.forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const key = a.dataset.section;
+      if (location.hash !== '#' + key) {
+        history.pushState(null, '', '#' + key);
+      }
+      render(key);
+    });
+  });
+
+  // Hash change (back/forward, direct links)
+  window.addEventListener('hashchange', () => render(sectionFromHash()));
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  if (menuBtn) {
+    menuBtn.addEventListener('click', () => {
+      document.getElementById('sidebar').classList.toggle('open');
+    });
+  }
+
+  // Initial render — ensure hash if absent
+  if (!location.hash) {
+    history.replaceState(null, '', '#' + DEFAULT_SECTION);
+  }
+  render(sectionFromHash());
+})();
+</script>
+
+</body>
+</html>
