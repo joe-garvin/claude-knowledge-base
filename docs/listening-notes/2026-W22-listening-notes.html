@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listening Notes — W22 · May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --stone-50:  #f9f8f6; --stone-100: #f0eeea; --stone-200: #e4e1db; --stone-300: #ccc8c0;
+  --stone-800: #292524; --stone-900: #1c1917; --stone-950: #0c0a09;
+  --accent:  #2D6A4F; --cobalt:  #003B8E; --golden:  #a07010;
+  --text-primary:   #111010; --text-secondary: #2e2a27; --text-tertiary:  #6a6259;
+  --rule:        rgba(15,13,12,0.10); --rule-strong: rgba(15,13,12,0.24);
+  --font-sans: 'IBM Plex Sans', 'Hanken Grotesk', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --art-size: 200px; --col-gap:  48px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body { font-family: var(--font-sans); background: var(--stone-50); color: var(--text-primary); -webkit-font-smoothing: antialiased; line-height: 1.6; min-height: 100vh; }
+a { color: inherit; text-decoration: none; }
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--stone-50); border-bottom: 1px solid var(--rule-strong); padding: 18px 0; }
+.site-header .inner { max-width: 1160px; margin: 0 auto; padding: 0 48px; display: flex; align-items: baseline; justify-content: space-between; }
+.header-title { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); }
+.header-week { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); }
+.page { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+.hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule-strong); }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 24px; }
+.hero-lockup { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.hero-title { font-size: clamp(52px, 7vw, 96px); font-weight: 300; letter-spacing: -0.035em; line-height: 0.92; color: var(--text-primary); }
+.hero-title em { font-style: normal; color: var(--text-primary); }
+.hero-stats { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; flex-shrink: 0; padding-bottom: 6px; }
+.hero-stat { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-tertiary); text-align: right; }
+.hero-stat strong { color: var(--text-secondary); font-weight: 500; }
+.hero-rule { margin-top: 40px; border: none; border-top: 1px solid var(--rule); }
+.section { padding: 0 0 64px; border-bottom: 1px solid var(--rule); }
+.section-head { margin: 0 -48px 52px; border-top: 2px solid var(--text-primary); background: var(--stone-100); padding: 11px 48px; display: flex; align-items: baseline; gap: 20px; }
+.section-index { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-tertiary); flex-shrink: 0; }
+.section-label { font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-primary); }
+.section-label span { font-family: var(--font-mono); font-size: 10px; font-weight: 400; color: var(--text-tertiary); margin-left: 12px; letter-spacing: 0.06em; }
+.entry { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); padding-bottom: 52px; margin-bottom: 52px; border-bottom: 1px solid var(--rule); }
+.entry:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+.art-wrap { position: relative; width: var(--art-size); flex-shrink: 0; }
+.art-wrap a { display: block; }
+.art-wrap img { display: block; width: var(--art-size); height: var(--art-size); object-fit: cover; background: var(--stone-200); }
+.art-wrap a:hover img { opacity: 0.88; transition: opacity 0.2s; }
+.art-placeholder { display: block; width: var(--art-size); height: var(--art-size); background: var(--stone-100); border: 1px solid var(--stone-200); }
+.art-tag { position: absolute; top: 0; left: 0; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 7px; line-height: 1; }
+.art-tag.new { background: var(--stone-900); color: var(--stone-50); }
+.art-tag.known { background: var(--cobalt); color: white; }
+.art-tag.wild { background: var(--golden); color: var(--stone-900); }
+.entry-body { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); display: flex; flex-direction: column; justify-content: center; }
+.entry-artist { font-size: 24px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-primary); margin-bottom: 2px; }
+.entry-album { font-size: 24px; font-weight: 300; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-secondary); margin-bottom: 14px; }
+.entry-meta { display: flex; flex-wrap: wrap; gap: 0 20px; font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.05em; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+.entry-copy { font-size: 15px; line-height: 1.75; color: var(--text-secondary); max-width: 60ch; margin-bottom: 22px; }
+.entry-links { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+.link { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--cobalt); border-bottom: 1px solid rgba(0,59,142,0.28); padding-bottom: 1px; transition: opacity 0.15s; white-space: nowrap; }
+.link:hover { opacity: 0.7; }
+.link.primary { font-weight: 500; }
+.also-grid { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); }
+.also-items { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); }
+.also-item { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.also-item:first-child { padding-top: 0; }
+.also-item:last-child { border-bottom: none; }
+.also-n { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); flex-shrink: 0; width: 18px; }
+.also-text { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+.also-text strong { font-weight: 500; color: var(--text-primary); }
+.site-footer { padding: 40px 0 56px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-note { font-size: 13px; font-style: italic; color: var(--text-tertiary); max-width: 70ch; line-height: 1.6; }
+.footer-stamp { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); white-space: nowrap; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <span class="header-title">Still Point — Listening Notes</span>
+    <span class="header-week">W22 · 29 May 2026</span>
+  </div>
+</header>
+<div class="page">
+  <div class="hero">
+    <p class="hero-eyebrow">Weekly digest · May 29, 2026</p>
+    <div class="hero-lockup">
+      <h1 class="hero-title">Listening<br>Notes <em>&#8470;22</em></h1>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>Sources</strong> — Boomkat Weekly, Download Now, RA</div>
+        <div class="hero-stat"><strong>Picks</strong> — 4 new discoveries · 2 known artists · 1 wildcard</div>
+        <div class="hero-stat"><strong>RA</strong> — Recommends Boards of Canada — Inferno</div>
+      </div>
+    </div>
+    <hr class="hero-rule">
+  </div>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">01</span><span class="section-label">New Discoveries <span>&#215;4</span></span></div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/live-at-no-bounds-festival" target="_blank">
+          <svg class="art-placeholder" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="200" fill="#f0eeea"/>
+            <rect x="1" y="1" width="198" height="198" fill="none" stroke="#e4e1db" stroke-width="1"/>
+            <text x="100" y="95" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6a6259" text-anchor="middle" letter-spacing="0.06em">NZO</text>
+            <text x="100" y="112" font-family="IBM Plex Mono, monospace" font-size="9" fill="#6a6259" text-anchor="middle" letter-spacing="0.06em">Live at No Bounds</text>
+          </svg>
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">NZO</div>
+        <div class="entry-album">Live At No Bounds Festival</div>
+        <div class="entry-meta">
+          <span>DDS</span><span>Footwork · Brukfunk · Electronic</span><span>May 2026</span>
+        </div>
+        <p class="entry-copy">DDS is Demdike Stare's imprint, and Demdike Stare do not give it away casually. That NZO gets a live tape on DDS after her 2024 'Concentrate' EP and 2025 'Come Alive' album is a signal. Boomkat's description lands exactly: "effortlessly joining oblique dots between Timbaland x The Neptunes' rugged nuance, El-B's whipsmart torsion, RP Boo's legwork and Beatrice Dillon's precision-tooled arrangements." The FFO list includes Akufen, which is the reference that lands hardest here — music built from other music's fragments, assembled with enough structural confidence that the seams become the point. Captured live at Rotherham Minster for SoYo's No Bounds festival, so the context is right: a room, an occasion, a set that was designed to do something specific in a specific space. DDS (Tier 1) plus enthusiastic Boomkat editorial makes this the strongest pick this week.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/live-at-no-bounds-festival" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://nzo.bandcamp.com" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=NZO+Live+At+No+Bounds+Festival+DDS" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/inferno-0e1beeef-c15f-4c8f-98ac-17ca9f2cbcec" target="_blank">
+          <img src="https://f4.bcbits.com/img/a3190407865_0.jpg" alt="Boards of Canada — Inferno" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Boards of Canada</div>
+        <div class="entry-album">Inferno</div>
+        <div class="entry-meta">
+          <span>Warp</span><span>IDM · Electronic</span><span>May 2026</span>
+        </div>
+        <p class="entry-copy">Thirteen years since Tomorrow's Harvest, and Boomkat's take is honest about the weight of it: "divisive as ever, but for our money not quite as bad as some would have you believe." That's faint praise that also says something true. RA Recommends calls it "a dark, disquieting record shaped by a violent world" — which at least sounds like intent rather than nostalgia maintenance. The shift described in the Boomkat copy is the interesting thing: away from the magic-hour guitar tones of The Campfire Headphase, toward "jagged distortions, dialog snippets and uneasy religious symbolism." The title follows from that. BOC isn't in the known collection (not in library or playlists), which means this is an actual discovery rather than a loyalty play. Warp (Tier 1) plus RA Recommends puts it at the top of the scoring table on paper. The mixed reception is itself worth sitting with.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/inferno-0e1beeef-c15f-4c8f-98ac-17ca9f2cbcec" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://boardsofcanada.bandcamp.com/album/inferno" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Boards+Of+Canada+Inferno+Warp" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/long-trax-5" target="_blank">
+          <svg class="art-placeholder" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="200" fill="#f0eeea"/>
+            <rect x="1" y="1" width="198" height="198" fill="none" stroke="#e4e1db" stroke-width="1"/>
+            <text x="100" y="95" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6a6259" text-anchor="middle" letter-spacing="0.06em">Will Long</text>
+            <text x="100" y="112" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6a6259" text-anchor="middle" letter-spacing="0.06em">Long Trax 5</text>
+          </svg>
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Will Long</div>
+        <div class="entry-album">Long Trax 5</div>
+        <div class="entry-meta">
+          <span>Long Trax Productions</span><span>Deep House · Minimal</span><span>May 2026</span>
+        </div>
+        <p class="entry-copy">Will Long has spent the better part of a decade co-running Comatonse with Terre Thaemlitz — the label that released DJ Sprinkles' Midtown 120 Blues, among other records that are structural to this collection. 'Long Trax 5' continues a series that began on Comatonse in 2015 and now continues on his own imprint. Boomkat's read: "blowing kisses in the direction of Larry Heard, Ron Trent, DJ Sprinkles." Three names that collectively define a particular kind of patience, a specific register of devotional deep house that treats space as a compositional element rather than an absence. "No fireworks or over-produced trickery, just hypnotic deep house that unfurls with a real sense of space, patience and deferred gratification" — Boomkat's phrase "deferred gratification" is probably the best two-word description of what this collection values in its club-music strand. Not in the known collection under this name, making it a genuine discovery from a directly adjacent lineage.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/long-trax-5" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://comatonse.bandcamp.com" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Will+Long+Long+Trax+5+Comatonse" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/angel-of-the-north" target="_blank">
+          <img src="https://f4.bcbits.com/img/a1992845437_0.jpg" alt="Bobby Ingham — Angel Of The North" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Bobby Ingham</div>
+        <div class="entry-album">Angel Of The North</div>
+        <div class="entry-meta">
+          <span>Sneaker Social Club</span><span>UK Bass · Grime · Electronic</span><span>May 2026</span>
+        </div>
+        <p class="entry-copy">Boomkat's frame is specific and earns it: "evocation of life in C.21st West Yorkshire manifest in a tensely paranoid, homesick patch-work of knifed samples wrapped up in weightless grime &amp; UKG structures." The reference cluster — Space Afrika, Mark Leckey, Burial, Low End Activist — locates this in a lineage of music that takes geography as material rather than backdrop. Not decorative West Yorkshire, but the actual texture of it. "Inarguably hits a high water mark of Sneaker Social Club's retro-futurist UK fixations" per Boomkat, and the label has been one of the more consistent platforms for this kind of UK-bass conceptualism. The Burial/Space Afrika axis isn't always where this collection goes, but the combination of documentary impulse, sample-based construction, and serious sound design aligns with what the collection's experimental wing keeps returning to. Debut LP, worth the attention.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/angel-of-the-north" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://sneakersocialclub.bandcamp.com/album/angel-of-the-north" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Bobby+Ingham+Angel+Of+The+North+Sneaker+Social+Club" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">02</span><span class="section-label">New Releases from Artists You Know <span>&#215;2</span></span></div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/y-try" target="_blank">
+          <svg class="art-placeholder" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="200" fill="#f0eeea"/>
+            <rect x="1" y="1" width="198" height="198" fill="none" stroke="#e4e1db" stroke-width="1"/>
+            <text x="100" y="95" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6a6259" text-anchor="middle" letter-spacing="0.06em">Patricia</text>
+            <text x="100" y="112" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6a6259" text-anchor="middle" letter-spacing="0.06em">Y Try</text>
+          </svg>
+        </a>
+        <div class="art-tag known">In Playlists</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Patricia</div>
+        <div class="entry-album">Y Try</div>
+        <div class="entry-meta">
+          <span>Acid Test</span><span>Acid House · Dub Techno</span><span>May 2026</span>
+        </div>
+        <p class="entry-copy">Max Ravitz is in the Spotify extended list (3-5 tracks under Patricia), and Acid Test (Tier 2, Tin Man's Berlin label) is a natural home for this kind of work. Boomkat: "big-boned, swanging acid house &amp; dub techno... subtle 303 hallmarks threaded into a range of upfront but deep meat motors, serving signature blends of rugged heft and dance dreaminess." With 13 years of output behind him, this reads as a consolidation — Ravitz doing the thing he knows how to do and doing it well, on a label that's been running the same flag for roughly as long. The dub techno and acid house pairing is exactly the club-facing register that works for this collection, and Acid Test's aesthetic consistency is a reliable filter. New work rather than back-catalog, so it earns the flag.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/y-try" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://acidtest.bandcamp.com" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Patricia+Y+Try+Acid+Test" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/rave-echoes" target="_blank">
+          <svg class="art-placeholder" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="200" fill="#f0eeea"/>
+            <rect x="1" y="1" width="198" height="198" fill="none" stroke="#e4e1db" stroke-width="1"/>
+            <text x="100" y="95" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6a6259" text-anchor="middle" letter-spacing="0.06em">Shed</text>
+            <text x="100" y="112" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6a6259" text-anchor="middle" letter-spacing="0.06em">Rave Echoes</text>
+          </svg>
+        </a>
+        <div class="art-tag known">In Playlists</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Shed</div>
+        <div class="entry-album">Rave Echoes</div>
+        <div class="entry-meta">
+          <span>Dekmantel</span><span>Techno · Rave</span><span>May 2026</span>
+        </div>
+        <p class="entry-copy">Shed is in the 2-track Spotify list, which puts this in the borderline-known category — treated here as a flag for new work rather than a full discovery. Dekmantel (Tier 2) has maintained one of the more coherent editorial positions in European techno, and Shed's output across R&amp;S, Ostgut Ton, and his own Wax Material has always held something back from full club functionalism. A "rave-hungry double pack" per the Download Now email. The title commits to the premise. Shed's work usually balances the atmospheric against the direct — the question is which side this one lands on. Worth a listen from the known-artist angle before deciding whether to pursue further.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/rave-echoes" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://dekmantel.bandcamp.com" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Shed+Rave+Echoes+Dekmantel" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">03</span><span class="section-label">Wildcard <span>&#215;1</span></span></div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/fern-2e525951-abb6-4094-8f26-43f9c71a8d10" target="_blank">
+          <svg class="art-placeholder" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="200" fill="#f0eeea"/>
+            <rect x="1" y="1" width="198" height="198" fill="none" stroke="#e4e1db" stroke-width="1"/>
+            <text x="100" y="88" font-family="IBM Plex Mono, monospace" font-size="9" fill="#6a6259" text-anchor="middle" letter-spacing="0.06em">Container</text>
+            <text x="100" y="102" font-family="IBM Plex Mono, monospace" font-size="9" fill="#6a6259" text-anchor="middle" letter-spacing="0.06em">Will Guthrie</text>
+            <text x="100" y="116" font-family="IBM Plex Mono, monospace" font-size="9" fill="#6a6259" text-anchor="middle" letter-spacing="0.06em">Fern</text>
+          </svg>
+        </a>
+        <div class="art-tag wild">Wildcard</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Container &amp; Will Guthrie</div>
+        <div class="entry-album">Fern</div>
+        <div class="entry-meta">
+          <span>Editions Cave12</span><span>Drum Machine · Free Jazz · Experimental</span><span>May 2026</span>
+        </div>
+        <p class="entry-copy">Ren Schofield (Container, Diagonal Records) and Will Guthrie (Australian percussionist, frequent collaborator of Mattin, Otomo Yoshihide) make five jams on Editions Cave12 — the Geneva label that's put out work by Catherine Christer Hennix, Oren Ambarchi, and related. Boomkat: "Two rhythm fiends of very different persuasions duke it out on a free jazz x drum machine killer... plugged-in VS skin-on-skin pugilism." FFO Goat (JP), Autechre, Mark Fell, Serpente. The Autechre and Mark Fell references are the ones that land here — that registration of drum-machine rhythm as something to be interrogated rather than used, pushed up against a percussionist who does the same thing with his hands. "The results chisel out a cantankerous ideal of man-machine friction." Editions Cave12 isn't a tier label, but the company it keeps puts it firmly in the zone. The wildcard logic is about format — five free jams between two rhythm specialists sit outside the usual album-or-EP shape this digest works with, and outside the usual register of the collection's electronic-music core. But the instinct behind it is continuous with what Mark Fell and SND have always been doing.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/fern-2e525951-abb6-4094-8f26-43f9c71a8d10" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://editionscave12.bandcamp.com" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Container+Will+Guthrie+Fern+Cave12" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">04</span><span class="section-label">Also Noted <span>&#215;6</span></span></div>
+    <div class="also-grid">
+      <div></div>
+      <div class="also-items">
+        <div class="also-item"><span class="also-n">01</span><span class="also-text"><strong>Dopplereffekt — Metasymmetry</strong> (Tresor) — "Hardest and lushest Dopplereffekt electrophysix for Tresor — proper inch-tight and effortless club Detreutonations." Heinrich Mueller and Michaela To-Nhan Bertel, following 2024's 'Infinite Tetraspace' EP. Tier 2 label, strong pedigree. Scored just below the New Discovery line — close to the profile's harder-edged register but the trance-techno trajectory kept it here.</span></div>
+        <div class="also-item"><span class="also-n">02</span><span class="also-text"><strong>J And The Woolen Stars — Puff</strong> (28912 / Ulla) — Ulla's label returns with Justin Cantrell of the Naarm underground scene. Boomkat: "gorgeous bouquet of lowercase wonders... music-box lullabies... The Humble Bee, Vincent Gallo, Tenniscoats." Not the collection's core register, but Ulla's label has a consistent sound and this is its fourth release. Worth knowing about for the ambient/textural fringe.</span></div>
+        <div class="also-item"><span class="also-n">03</span><span class="also-text"><strong>Jump Source — Fold</strong> (NAFF) — RA's strongest endorsement this week: "one of the sharpest, best-built electronic albums you'll hear this year." NAFF is a Bristol label with a precise aesthetic in the minimal/experimental electronic zone. Not in the Boomkat digest so the editorial context is thin, but RA's framing warrants a listen.</span></div>
+        <div class="also-item"><span class="also-n">04</span><span class="also-text"><strong>Flocks — Lagoon</strong> (Karlrecords) — Werner Durand, CC Hennix collaborator, joined by Uli Hohmann on Mid-Eastern drums, Tibetan bells, and electronics. Three drone excursions referencing Michael Ranta, Robert Rutman, Jon Hassell. That last name places it squarely in this collection's outer orbit. Karlrecords is a solid label for this kind of long-form drift.</span></div>
+        <div class="also-item"><span class="also-n">05</span><span class="also-text"><strong>Various Artists — Aftermath And Transitions</strong> (Stroom) — Stroom (Tier 2) excavates the Ukrainian underground in Cologne, 1994-1996: Svitlana Nianio, Guido Erfen, Michael Springer and others, emerging from Cologne's cheap-rent fringe. The Novaya Scena compilation was one of the stranger artifacts of that period and Stroom filling in the surrounding context is worth knowing about.</span></div>
+        <div class="also-item"><span class="also-n">06</span><span class="also-text"><strong>Sheefy McFly — Baddies Only</strong> (Cape St. Francis) — Detroit's Sheefy McFly, known for murals as much as music, brings jit x juke x ghetto-tech to Amsterdam's Cape St. Francis. FFO Hi-Tech, Omar-S, Urban Tribe — that last name is in the known collection. Six vocal bangers. Further from the collection's headphone-listening core, but the Detroit lineage is real and the energy is the right kind of specific.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="site-footer">
+    <p class="footer-note">NZO on DDS is this week's strongest find — the Akufen reference in the editorial copy is the tell. BOC Inferno lands with the weight of 13 years and the ambivalence of a mixed reception; the divisiveness is itself worth sitting with. Will Long's Comatonse lineage makes 'Long Trax 5' the most directly in-profile pick of the week. Container x Will Guthrie in the wildcard slot because drum machine meets live percussion, interrogated rather than used.</p>
+    <span class="footer-stamp">Still Point · 2026-W22</span>
+  </div>
+</div>
+</body>
+</html>
