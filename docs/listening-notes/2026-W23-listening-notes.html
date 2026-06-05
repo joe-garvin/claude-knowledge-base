@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listening Notes — W23 · June 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --stone-50:  #f9f8f6; --stone-100: #f0eeea; --stone-200: #e4e1db; --stone-300: #ccc8c0;
+  --stone-800: #292524; --stone-900: #1c1917; --stone-950: #0c0a09;
+  --accent:  #2D6A4F; --cobalt:  #003B8E; --golden:  #a07010;
+  --text-primary:   #111010; --text-secondary: #2e2a27; --text-tertiary:  #6a6259;
+  --rule:        rgba(15,13,12,0.10); --rule-strong: rgba(15,13,12,0.24);
+  --font-sans: 'IBM Plex Sans', 'Hanken Grotesk', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --art-size: 200px; --col-gap:  48px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body { font-family: var(--font-sans); background: var(--stone-50); color: var(--text-primary); -webkit-font-smoothing: antialiased; line-height: 1.6; min-height: 100vh; }
+a { color: inherit; text-decoration: none; }
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--stone-50); border-bottom: 1px solid var(--rule-strong); padding: 18px 0; }
+.site-header .inner { max-width: 1160px; margin: 0 auto; padding: 0 48px; display: flex; align-items: baseline; justify-content: space-between; }
+.header-title { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); }
+.header-week { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); }
+.page { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+.hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule-strong); }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 24px; }
+.hero-lockup { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.hero-title { font-size: clamp(52px, 7vw, 96px); font-weight: 300; letter-spacing: -0.035em; line-height: 0.92; color: var(--text-primary); }
+.hero-title em { font-style: normal; color: var(--text-primary); }
+.hero-stats { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; flex-shrink: 0; padding-bottom: 6px; }
+.hero-stat { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-tertiary); text-align: right; }
+.hero-stat strong { color: var(--text-secondary); font-weight: 500; }
+.hero-rule { margin-top: 40px; border: none; border-top: 1px solid var(--rule); }
+.section { padding: 0 0 64px; border-bottom: 1px solid var(--rule); }
+.section-head { margin: 0 -48px 52px; border-top: 2px solid var(--text-primary); background: var(--stone-100); padding: 11px 48px; display: flex; align-items: baseline; gap: 20px; }
+.section-index { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-tertiary); flex-shrink: 0; }
+.section-label { font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-primary); }
+.section-label span { font-family: var(--font-mono); font-size: 10px; font-weight: 400; color: var(--text-tertiary); margin-left: 12px; letter-spacing: 0.06em; }
+.entry { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); padding-bottom: 52px; margin-bottom: 52px; border-bottom: 1px solid var(--rule); }
+.entry:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+.art-wrap { position: relative; width: var(--art-size); flex-shrink: 0; }
+.art-wrap a { display: block; }
+.art-wrap img { display: block; width: var(--art-size); height: var(--art-size); object-fit: cover; background: var(--stone-200); }
+.art-wrap a:hover img { opacity: 0.88; transition: opacity 0.2s; }
+.art-placeholder { display: block; width: var(--art-size); height: var(--art-size); background: var(--stone-100); border: 1px solid var(--stone-200); }
+.art-tag { position: absolute; top: 0; left: 0; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 7px; line-height: 1; }
+.art-tag.new { background: var(--stone-900); color: var(--stone-50); }
+.art-tag.known { background: var(--cobalt); color: white; }
+.art-tag.wild { background: var(--golden); color: var(--stone-900); }
+.entry-body { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); display: flex; flex-direction: column; justify-content: center; }
+.entry-artist { font-size: 24px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-primary); margin-bottom: 2px; }
+.entry-album { font-size: 24px; font-weight: 300; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-secondary); margin-bottom: 14px; }
+.entry-meta { display: flex; flex-wrap: wrap; gap: 0 20px; font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.05em; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+.entry-copy { font-size: 15px; line-height: 1.75; color: var(--text-secondary); max-width: 60ch; margin-bottom: 22px; }
+.entry-links { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+.link { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--cobalt); border-bottom: 1px solid rgba(0,59,142,0.28); padding-bottom: 1px; transition: opacity 0.15s; white-space: nowrap; }
+.link:hover { opacity: 0.7; }
+.link.primary { font-weight: 500; }
+.also-grid { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); }
+.also-items { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); }
+.also-item { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.also-item:first-child { padding-top: 0; }
+.also-item:last-child { border-bottom: none; }
+.also-n { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); flex-shrink: 0; width: 18px; }
+.also-text { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+.also-text strong { font-weight: 500; color: var(--text-primary); }
+.site-footer { padding: 40px 0 56px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-note { font-size: 13px; font-style: italic; color: var(--text-tertiary); max-width: 70ch; line-height: 1.6; }
+.footer-stamp { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); white-space: nowrap; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <span class="header-title">Still Point — Listening Notes</span>
+    <span class="header-week">W23 · 5 June 2026</span>
+  </div>
+</header>
+<div class="page">
+  <div class="hero">
+    <p class="hero-eyebrow">Weekly digest · June 5, 2026</p>
+    <div class="hero-lockup">
+      <h1 class="hero-title">Listening<br>Notes <em>&#8470;23</em></h1>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>Sources</strong> — Boomkat Weekly, Download Now, RA</div>
+        <div class="hero-stat"><strong>Picks</strong> — 4 new discoveries · 1 known artist · 1 wildcard</div>
+        <div class="hero-stat"><strong>RA</strong> — Recommends Spekki Webu — Bootstrap Paradox</div>
+      </div>
+    </div>
+    <hr class="hero-rule">
+  </div>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">01</span><span class="section-label">New Discoveries <span>&#215;4</span></span></div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/tilt-12008e41-de82-4b1e-a46a-eb26aafb8bd9" target="_blank">
+          <img src="https://f4.bcbits.com/img/a0078697598_0.jpg" alt="Church Andrews &amp; Matt Davies — Tilt" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Church Andrews &amp; Matt Davies</div>
+        <div class="entry-album">Tilt</div>
+        <div class="entry-meta">
+          <span>Odda Recordings</span><span>Percussion · Synthesis · Minimalism</span><span>May 2026</span>
+        </div>
+        <p class="entry-copy">Six years of collaboration between Kirk Barley and percussionist Matt Davies, and the move from 'Yucca' to this is legible: more intuitive, less system-led, still aimed at the same tension between control and unpredictability. Boomkat's five RIYL names — SND, Mark Fell, Gábor Lázár, goat JP, Beatrice Dillon — function as a near-complete map of the zone this collection goes looking for in rhythmic electronic music, and this release is clearly trying to operate in that zone. The description lands on "skewed microtonal and discordant compositions for percussion and digital synth, where tones ascend but don't resolve, rhythms loop, collapse and reassemble, and patterns wriggle with geometric precision." Odda is a small Bristol label, not in the tier list, but that RIYL cluster is almost a direct trace of the collection's reference points for this kind of work, and that trace is enough.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/tilt-12008e41-de82-4b1e-a46a-eb26aafb8bd9" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://churchandrewsmattdavies.bandcamp.com/album/tilt" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Church+Andrews+Matt+Davies+Tilt+Odda+Recordings" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/universo-61e179c2-d440-4850-9987-fc8a23d94b1f" target="_blank">
+          <img src="https://f4.bcbits.com/img/a1909376817_0.jpg" alt="Mr. YT — Universo" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Mr. YT</div>
+        <div class="entry-album">Universo</div>
+        <div class="entry-meta">
+          <span>Short Span</span><span>Techno-House · Deep Electronic</span><span>June 2026</span>
+        </div>
+        <p class="entry-copy">Yuji Takenouchi's first new material in 28 years — and between his mid-to-late 90s work for R&S Apollo and now, he spent those decades as a sound designer for FromSoftware, his name on Dark Souls. That gap between those two facts is the most interesting thing in this week's digest. Short Span has run a consistent line of deep techno-house that knows its Japanese and Detroit lineages without being nostalgic about either; Boomkat's frame here is "Detroit chords floating and interacting with a certain kind of Japanese plasticity and futurism." Four tracks named after zodiac signs: Acuario, Escorpio, Tauro, Piscis. Shinichi Atobe adjacency confirmed in the Boomkat editorial. Whatever Takenouchi spent those 28 years developing in the FromSoftware sound labs, this is what came out the other side.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/universo-61e179c2-d440-4850-9987-fc8a23d94b1f" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://elementsofsouls.bandcamp.com/album/universo" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Mr+YT+Universo+Short+Span" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/girls-on-tour-ep" target="_blank">
+          <img src="https://f4.bcbits.com/img/a4219957574_0.jpg" alt="Sa Pa — Girls On Tour EP" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Sa Pa</div>
+        <div class="entry-album">Girls On Tour EP</div>
+        <div class="entry-meta">
+          <span>Dub Techno For Life</span><span>Dub Techno · Chain Reaction · Modular</span><span>May 2026</span>
+        </div>
+        <p class="entry-copy">Sa Pa launches his own label with four tracks that plant a flag in Chain Reaction x Short Span territory — DTL001 means this is also a label origin story. The lead track 'Mokira Ultra Dub' reworks Mokira's 'Manipulation Musik' from a shelved dancefloor mix recorded for Kontra Musik's 2016 compilation: ten minutes of a groove that waited nine years to come out. 'Modular System' was a one-take late-night recording in Taipei during rain, with the editorial describing it as "harnessing the spirit of Chain Reaction," which is exactly the right lineage to invoke when dub techno wants to be specific about what it's doing rather than decorative about it. Sa Pa has operated in this zone since 2015 and consistently. This is the first record he's releasing on his own terms.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/girls-on-tour-ep" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://sa-pa.bandcamp.com/album/girls-on-tour-ep" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Sa+Pa+Girls+On+Tour+Dub+Techno+For+Life" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/music-for-tombak-synth" target="_blank">
+          <img src="https://f4.bcbits.com/img/a2848951206_0.jpg" alt="Cinna Peyghamy — Music For Tombak &amp; Synth" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Cinna Peyghamy</div>
+        <div class="entry-album">Music For Tombak &amp; Synth</div>
+        <div class="entry-meta">
+          <span>Other People</span><span>Persian Percussion · Synthesis · Experimental</span><span>June 2026</span>
+        </div>
+        <p class="entry-copy">Started as a master's thesis on contact microphones in 2019. Five years later it's a debut album on Nico Jaar's Other People, with Peyghamy playing tombak and setar through sequences that Persian classical tradition never developed — his framing is that this is how he reconnects with an Iranian heritage from a position of forced distance, unable to visit the country. He's worked alongside Saint Abdullah, Eomac, and David August, so the experimental electronic vocabulary is built; the album asks what happens when you apply it to instruments from a tradition that was never part of that vocabulary. Other People has been quiet; this feels like a return with a specific purpose rather than a maintenance release. The concept is personal and architectural at once, which is the combination that tends to produce records that repay close attention.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/music-for-tombak-synth" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://cinnapey.bandcamp.com/album/music-for-tombak-synth" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Cinna+Peyghamy+Music+For+Tombak+Synth+Other+People" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">02</span><span class="section-label">New Releases from Artists You Know <span>&#215;1</span></span></div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://tresorberlin.bandcamp.com/album/neptunes-lair" target="_blank">
+          <img src="https://f4.bcbits.com/img/a2426464864_0.jpg" alt="Drexciya — Neptune's Lair" loading="lazy">
+        </a>
+        <div class="art-tag known">In Playlists</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Drexciya</div>
+        <div class="entry-album">Neptune's Lair</div>
+        <div class="entry-meta">
+          <span>Tresor</span><span>Detroit Electro · Futurism</span><span>1999 · Reissue 2025</span>
+        </div>
+        <p class="entry-copy">Drexciya is in the known collection at high frequency, and 'Neptune's Lair' (1999, Tresor) is where the Drexciyan mythology arrived at its fullest statement — the aquatopia, the Middle Passage read as survival myth rather than wound, the electro as encoding of that whole architecture. The reissue gets a flag here because the artwork is genuinely new: Detroit artist Matthew Angelo Harrison has paired the album with new visual work that puts the Drexciyan mythology alongside the history of Black American labour, using 3D printing and digital graphics. That's the reason to note a 27-year-old album — the conversation between old music and new context is the point, not the repress itself. Tresor Tier 2. Boomkat featuring it in the current week's digest. Still sounds like it arrived from somewhere else.</p>
+        <div class="entry-links">
+          <a href="https://tresorberlin.bandcamp.com/album/neptunes-lair" class="link primary" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Drexciya+Neptunes+Lair+Tresor" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">03</span><span class="section-label">Wildcard <span>&#215;1</span></span></div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/kantamoinen-79f37092-501a-46a1-98dd-dd632ddc931e" target="_blank">
+          <img src="https://f4.bcbits.com/img/a3582386246_0.jpg" alt="Mika Vainio — Kantamoinen" loading="lazy">
+        </a>
+        <div class="art-tag wild">Wildcard</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Mika Vainio</div>
+        <div class="entry-album">Kantamoinen</div>
+        <div class="entry-meta">
+          <span>Sähkö Recordings</span><span>Ambient · Electronic · Melodic</span><span>2005 · Vinyl debut 2026</span>
+        </div>
+        <p class="entry-copy">The wildcard rationale is simple: this is what happens on the other side of a decade of ascetic noise minimalism. Vainio is Pan Sonic — Sähkö's most severe practitioner, anti-melody as discipline. 'Kantamoinen' was the 2005 record where he stopped doing that, under his Ø alias, and committed to extended melody and ambient drift for an hour. Boomkat calls it "arguably his finest hour" — the one record in his catalogue that "never fails to bring a tear to our eye" — prized for "some of the legendary artist's most heart-rending melodic work." Recorded in Barcelona, Wien, and Berlin between 1999 and 2004, so the record took several years and several cities to arrive at this particular act of capitulation to feeling. The January 2026 release is the vinyl debut: CD only until now. Sähkö isn't in the tier list, but it's Mika Vainio, and this is the album where he built a bridge between his classic minimal techno work and the ambient and dub dimensions that followed.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/kantamoinen-79f37092-501a-46a1-98dd-dd632ddc931e" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://sahkorecordings.bandcamp.com/album/kantamoinen" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Mika+Vainio+Kantamoinen+Sahko+Recordings" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">04</span><span class="section-label">Also Noted <span>&#215;5</span></span></div>
+    <div class="also-grid">
+      <div></div>
+      <div class="also-items">
+        <div class="also-item"><span class="also-n">01</span><span class="also-text"><strong>Burial x L.B. Dub Corp — Only The Good Times</strong> (Dekmantel) — Burial reworks Luke Slater's track as something Boomkat calls his "most optimistic offering yet": organ-drenched, deep, beatific, 2-step percussion ghosting through a "fairly straight-playing deep techno tune." Rare enough an appearance to track even if the origin date is ambiguous; Dekmantel Tier 2 and this is Burial on a proper label for once.</span></div>
+        <div class="also-item"><span class="also-n">02</span><span class="also-text"><strong>Philippe Lamiral Poirier &amp; Roméo Poirier — Images Parlées</strong> (Images Parlées) — Exotica-inflected trip hop built from spoken word recordings of Roméo's late father Philippe. RIYL Jan Jelinek/Gramm is the most directly in-profile reference in this week's digest outside the main picks. A quiet album with a specific kind of weight behind it.</span></div>
+        <div class="also-item"><span class="also-n">03</span><span class="also-text"><strong>Voices From The Lake — II</strong> (Spazio Disponibile) — Donato Dozzy and Neel's first album together in 13 years: floating, swaying ambient techno structures revisiting the aquatic themes of their canonical 2012 debut. The original is required listening for this collection's dub techno flank. The sequel exists now.</span></div>
+        <div class="also-item"><span class="also-n">04</span><span class="also-text"><strong>Gintė Preisaitė — Instruments Of Forgetting And The Singing Bone</strong> (Felt) — Lithuanian composer fresh from the conservatoire and a prior LP with Toshimaru Nakamura, delivering "an enchanted, waking dream blend of lowercase concrète, trip hop and avant-classical experimentation" (Boomkat). RIYL ML Buch, Ugne Uma, Julia Holter. Copenhagen's Felt label is a reliable container for this kind of work.</span></div>
+        <div class="also-item"><span class="also-n">05</span><span class="also-text"><strong>Spekki Webu — Bootstrap Paradox</strong> (Outer Orbit) — RA Recommends: Dutch artist "bending techno into thrilling new shapes," described as "trippy, alien" and speaking directly to rave culture's foundational spirit. Outer Orbit isn't in the tier list but RA Recommends carries weight and the framing is specific enough to be credible.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="site-footer">
+    <p class="footer-note">Church Andrews &amp; Matt Davies is this week's clearest pick — those five RIYL names read as a near-exact trace of what this collection goes looking for in rhythmic electronic music. Mr. YT's return after 28 years carries the stranger story: Dark Souls sound design between the releases. Sa Pa's label launch is worth following as its own thread. Vainio in the wildcard slot because 'Kantamoinen' is what happens when someone who spent a decade avoiding melody decides to stop.</p>
+    <span class="footer-stamp">Still Point · 2026-W23</span>
+  </div>
+</div>
+</body>
+</html>
