@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listening Notes — W24 · June 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --stone-50:  #f9f8f6; --stone-100: #f0eeea; --stone-200: #e4e1db; --stone-300: #ccc8c0;
+  --stone-800: #292524; --stone-900: #1c1917; --stone-950: #0c0a09;
+  --accent:  #2D6A4F; --cobalt:  #003B8E; --golden:  #a07010;
+  --text-primary:   #111010; --text-secondary: #2e2a27; --text-tertiary:  #6a6259;
+  --rule:        rgba(15,13,12,0.10); --rule-strong: rgba(15,13,12,0.24);
+  --font-sans: 'IBM Plex Sans', 'Hanken Grotesk', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --art-size: 200px; --col-gap:  48px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body { font-family: var(--font-sans); background: var(--stone-50); color: var(--text-primary); -webkit-font-smoothing: antialiased; line-height: 1.6; min-height: 100vh; }
+a { color: inherit; text-decoration: none; }
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--stone-50); border-bottom: 1px solid var(--rule-strong); padding: 18px 0; }
+.site-header .inner { max-width: 1160px; margin: 0 auto; padding: 0 48px; display: flex; align-items: baseline; justify-content: space-between; }
+.header-title { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); }
+.header-week { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); }
+.page { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+.hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule-strong); }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 24px; }
+.hero-lockup { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.hero-title { font-size: clamp(52px, 7vw, 96px); font-weight: 300; letter-spacing: -0.035em; line-height: 0.92; color: var(--text-primary); }
+.hero-title em { font-style: normal; color: var(--text-primary); }
+.hero-stats { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; flex-shrink: 0; padding-bottom: 6px; }
+.hero-stat { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-tertiary); text-align: right; }
+.hero-stat strong { color: var(--text-secondary); font-weight: 500; }
+.hero-rule { margin-top: 40px; border: none; border-top: 1px solid var(--rule); }
+.section { padding: 0 0 64px; border-bottom: 1px solid var(--rule); }
+.section-head { margin: 0 -48px 52px; border-top: 2px solid var(--text-primary); background: var(--stone-100); padding: 11px 48px; display: flex; align-items: baseline; gap: 20px; }
+.section-index { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-tertiary); flex-shrink: 0; }
+.section-label { font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-primary); }
+.section-label span { font-family: var(--font-mono); font-size: 10px; font-weight: 400; color: var(--text-tertiary); margin-left: 12px; letter-spacing: 0.06em; }
+.entry { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); padding-bottom: 52px; margin-bottom: 52px; border-bottom: 1px solid var(--rule); }
+.entry:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+.art-wrap { position: relative; width: var(--art-size); flex-shrink: 0; }
+.art-wrap a { display: block; }
+.art-wrap img { display: block; width: var(--art-size); height: var(--art-size); object-fit: cover; background: var(--stone-200); }
+.art-wrap a:hover img { opacity: 0.88; transition: opacity 0.2s; }
+.art-placeholder { display: block; width: var(--art-size); height: var(--art-size); background: var(--stone-100); border: 1px solid var(--stone-200); }
+.art-tag { position: absolute; top: 0; left: 0; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 7px; line-height: 1; }
+.art-tag.new { background: var(--stone-900); color: var(--stone-50); }
+.art-tag.known { background: var(--cobalt); color: white; }
+.art-tag.wild { background: var(--golden); color: var(--stone-900); }
+.entry-body { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); display: flex; flex-direction: column; justify-content: center; }
+.entry-artist { font-size: 24px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-primary); margin-bottom: 2px; }
+.entry-album { font-size: 24px; font-weight: 300; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-secondary); margin-bottom: 14px; }
+.entry-meta { display: flex; flex-wrap: wrap; gap: 0 20px; font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.05em; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+.entry-copy { font-size: 15px; line-height: 1.75; color: var(--text-secondary); max-width: 60ch; margin-bottom: 22px; }
+.entry-links { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+.link { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--cobalt); border-bottom: 1px solid rgba(0,59,142,0.28); padding-bottom: 1px; transition: opacity 0.15s; white-space: nowrap; }
+.link:hover { opacity: 0.7; }
+.link.primary { font-weight: 500; }
+.also-grid { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); }
+.also-items { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); }
+.also-item { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.also-item:first-child { padding-top: 0; }
+.also-item:last-child { border-bottom: none; }
+.also-n { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); flex-shrink: 0; width: 18px; }
+.also-text { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+.also-text strong { font-weight: 500; color: var(--text-primary); }
+.site-footer { padding: 40px 0 56px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-note { font-size: 13px; font-style: italic; color: var(--text-tertiary); max-width: 70ch; line-height: 1.6; }
+.footer-stamp { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); white-space: nowrap; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <span class="header-title">Still Point &#8212; Listening Notes</span>
+    <span class="header-week">W24 &middot; 12 June 2026</span>
+  </div>
+</header>
+<div class="page">
+  <div class="hero">
+    <p class="hero-eyebrow">Weekly digest &middot; June 12, 2026</p>
+    <div class="hero-lockup">
+      <h1 class="hero-title">Listening<br>Notes <em>&#8470;24</em></h1>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>Sources</strong> &#8212; Boomkat Weekly, Download Now, RA, The Wire, Bandcamp</div>
+        <div class="hero-stat"><strong>Picks</strong> &#8212; 3 new discoveries &middot; 1 known artist &middot; 1 wildcard</div>
+        <div class="hero-stat"><strong>RA</strong> &#8212; Boards of Canada Inferno reviewed; covered W22, see also noted</div>
+      </div>
+    </div>
+    <hr class="hero-rule">
+  </div>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">01</span><span class="section-label">New Discoveries <span>&#215;3</span></span></div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://room40.bandcamp.com/album/a-distracted-god" target="_blank">
+          <img src="https://f4.bcbits.com/img/a0325049494_0.jpg" alt="Beatriz Ferreyra &#8212; A Distracted God" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Beatriz Ferreyra</div>
+        <div class="entry-album">A Distracted God</div>
+        <div class="entry-meta">
+          <span>Room 40</span><span>Electroacoustic &middot; Tape &middot; Computer</span><span>June 2026</span>
+        </div>
+        <p class="entry-copy">Ferreyra has been working with tape and computer since the 1960s &#8212; first at the GRM under Schaeffer, then across five decades that placed her inside the electroacoustic lineage without her becoming canonical in the way the names around her did. &#8216;A Distracted God&#8217; assembles three previously unheard compositions for Room 40, which is its own kind of statement: not a vault-clearing or a settlement of accounts, but work held back because it was still being understood. Boomkat&#8217;s comparisons land on Daphne Oram, Roland Kayn, Fran&ccedil;ois Bayle, Valerio Tricoli &#8212; those are the right names for the territory &#8212; but the simpler frame is that this is what sustained practice sounds like at 86 when it still has something to say and knows how to say it.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/a-distracted-god" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://room40.bandcamp.com/album/a-distracted-god" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Beatriz+Ferreyra+A+Distracted+God+Room+40" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://yourdebit.bandcamp.com/album/potpourri" target="_blank">
+          <img src="https://f4.bcbits.com/img/a0603433217_0.jpg" alt="Debit &#8212; Potpourri" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Debit</div>
+        <div class="entry-album">Potpourri</div>
+        <div class="entry-meta">
+          <span>NAAFI</span><span>Guarachero &middot; Acid House &middot; Dub Techno</span><span>June 2026</span>
+        </div>
+        <p class="entry-copy">Delia Beatriz grew up in Monterrey and built a practice in New York, and the distance between those two cities runs through every track here &#8212; not as subject matter, but as structure. NAAFI has spent years operating at exactly this intersection, and Beatriz follows up her 2018 &#8216;System&#8217; with something looser and more assured: guarachero&#8217;s triplet syncopation pressing against dub techno&#8217;s spatial logic and acid house&#8217;s squelch, none of them dominant, all of them changed by the contact. Mixed by Zi&uuml;r, 13 tracks, 43 minutes. The first record from her where the thesis is already inside the music rather than being made by it.</p>
+        <div class="entry-links">
+          <a href="https://yourdebit.bandcamp.com/album/potpourri" class="link primary" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://ra.co/news/84976" class="link" target="_blank">RA &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Debit+Potpourri+NAAFI+2026" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://robertaikiaubreylowe.bandcamp.com/album/manifestations-in-the-shadow-of-an-uncertain-land" target="_blank">
+          <img src="https://f4.bcbits.com/img/a1519723167_0.jpg" alt="Robert Aiki Aubrey Lowe &#8212; Manifestations in the Shadow of an Uncertain Land" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Robert Aiki Aubrey Lowe</div>
+        <div class="entry-album">Manifestations in the Shadow of an Uncertain Land</div>
+        <div class="entry-meta">
+          <span>Kou Records</span><span>Electroacoustic &middot; Voice &middot; Modular</span><span>June 2026</span>
+        </div>
+        <p class="entry-copy">Lowe has spent years building soundtracks &#8212; Candyman, Pooka! &#8212; that pushed his vocal and modular practice into cinematic contexts, and this feels like a record that took that cinematic scale and turned it inward. Co-produced by Randall Dunn, it works with xenharmonic tunings that sit at the edge of recognizable pitch &#8212; close enough to resonate, distant enough to disorient &#8212; and with voice functioning as instrument rather than communication. Boomkat&#8217;s comparisons are Rashad Becker&#8217;s Traditional Music of Notional Species, Penderecki, Ligeti, and Debit&#8217;s &#8216;The Long Count&#8217;: that cluster is unusual but accurate. Also in the Download Now alongside the Ferreyra, which is its own kind of endorsement.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/manifestations-in-the-shadow-of-an-uncertain-land" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://robertaikiaubreylowe.bandcamp.com/album/manifestations-in-the-shadow-of-an-uncertain-land" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Robert+Aiki+Aubrey+Lowe+Manifestations+Shadow+Uncertain+Kou" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">02</span><span class="section-label">New Releases from Artists You Know <span>&#215;1</span></span></div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/swamp-ricardo-villalobos-version" target="_blank">
+          <img src="https://f4.bcbits.com/img/a3043344217_0.jpg" alt="Ricardo Villalobos &amp; Mohammad Reza Mortazavi &#8212; Swamp (Ricardo Villalobos Variation)" loading="lazy">
+        </a>
+        <div class="art-tag known">In Library</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Ricardo Villalobos &amp; Mohammad Reza Mortazavi</div>
+        <div class="entry-album">Swamp (Ricardo Villalobos Variation)</div>
+        <div class="entry-meta">
+          <span>Latency</span><span>Minimal Techno &middot; Percussion &middot; Polyrhythmic</span><span>June 2026</span>
+        </div>
+        <p class="entry-copy">Villalobos is in the local library across multiple albums, and what Latency has released here is a document of what happens when you give someone whose whole practice is about extending minimal structures into unexpected duration a piece that was already built for it. Mohammad Reza Mortazavi&#8217;s original tombak composition was, by Boomkat&#8217;s account, &#8216;practically recalling Ricardo&#8217;s style of slinky minimal techno sorcery&#8217; before he touched it &#8212; a Persian percussion piece that already inhabited the rhythmic space he occupies. The 24-minute variation doesn&#8217;t rework the original so much as unfold what was latent in it. A 12&#8221; that functions more as a document than a dancefloor tool, and is better for it.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/swamp-ricardo-villalobos-version" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://mohammadmortazavi.bandcamp.com/album/swamp-ricardo-villalobos-variation" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Ricardo+Villalobos+Mohammad+Reza+Mortazavi+Swamp+Latency" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">03</span><span class="section-label">Wildcard <span>&#215;1</span></span></div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://horselords.bandcamp.com/album/demand-to-be-taken-to-heaven-alive" target="_blank">
+          <img src="https://f4.bcbits.com/img/a2749853969_0.jpg" alt="Horse Lords &#8212; Demand to Be Taken to Heaven Alive!" loading="lazy">
+        </a>
+        <div class="art-tag wild">Wildcard</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Horse Lords</div>
+        <div class="entry-album">Demand to Be Taken to Heaven Alive!</div>
+        <div class="entry-meta">
+          <span>RVNG Intl.</span><span>Experimental Rock &middot; Xenharmonic &middot; Microtonal</span><span>June 2026</span>
+        </div>
+        <p class="entry-copy">The wildcard slot is for the record that shares a preoccupation with this week&#8217;s main picks &#8212; xenharmonic tuning, rhythmic complexity, structural patience &#8212; but approaches all of it from a live rock direction rather than a synthesis or electroacoustic one. Horse Lords rework 19th century harp standards using microtonal tunings and interlocking time signatures, which is either willfully perverse or completely logical depending on how you read American vernacular music, and the answer is both. Boomkat&#8217;s line is &#8220;ecstatic experimental rock record that drives a wedge into the dull US indie canon.&#8221; The Quietus named it album of the week. The structural invention here is the same kind of invention that makes the Lowe record compelling; the context is just guitars.</p>
+        <div class="entry-links">
+          <a href="https://horselords.bandcamp.com/album/demand-to-be-taken-to-heaven-alive" class="link primary" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://igetrvng.com/products/horse-lords-demand-to-be-taken-to-heaven-alive" class="link" target="_blank">RVNG &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Horse+Lords+Demand+To+Be+Taken+To+Heaven+Alive+RVNG+2026" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">04</span><span class="section-label">Also Noted <span>&#215;5</span></span></div>
+    <div class="also-grid">
+      <div></div>
+      <div class="also-items">
+        <div class="also-item"><span class="also-n">01</span><span class="also-text"><strong>Boards of Canada &#8212; Inferno</strong> (Warp) &#8212; Flagged in W22 on release day; RA&#8217;s full review is now in: &#8220;dark, disquieting record shaped by a violent world,&#8221; trading Tomorrow&#8217;s Harvest&#8217;s pastoral unease for &#8220;unadulterated menace.&#8221; Worth revisiting with the review as a frame if the initial listen was too close to the hype.</span></div>
+        <div class="also-item"><span class="also-n">02</span><span class="also-text"><strong>Milan W.</strong> (Stroom) &#8212; Boomkat describes the new LP as landing &#8220;between Arp, Boards of Canada, and Arca&#8221;: daydreamy, hydroponic pastoralism with a heavy 80s lilt. Stroom Tier 2; when they pick up something this specifically described, it holds up.</span></div>
+        <div class="also-item"><span class="also-n">03</span><span class="also-text"><strong>X Katedral &#8212; Anthology III</strong> (X Katedral) &#8212; Third volume of slowly evolving timbral music from Stockholm, with contributions from Kali Malone, Jessica Ekomane, Maria W Horn, Stephen O&#8217;Malley; the label is simultaneously reissuing Anthologies I and II for its 10th anniversary, making this a good moment to enter the catalogue.</span></div>
+        <div class="also-item"><span class="also-n">04</span><span class="also-text"><strong>Space Afrika &#8212; Quiet Storm</strong> (Dais Records) &#8212; Newly announced this week; third album from Joshua Tarelle Reid and Joshua Inyang, with Klein, RXKNephew, Kelly Moran, Glenn Ligon artwork. Boomkat frames it as &#8220;ambient soul modernism.&#8221; September 25 release &#8212; flag for revisit.</span></div>
+        <div class="also-item"><span class="also-n">05</span><span class="also-text"><strong>Seefeel &#8212; Sol.Hz</strong> (Warp) &#8212; Covered in W18 on release; The Wire gave them the June cover (issue 508), which is a different kind of endorsement than release-week coverage and worth noting. First album in 15 years, their dub record, still worth going back to.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="site-footer">
+    <p class="footer-note">Ferreyra is the pick of the week &#8212; work held back for decades, released now because it was ready, and the patience shows in every track. Lowe and Ferreyra occupy the same zone from different directions: both electroacoustic composers building with precision and duration, both landing in the same Boomkat email. The Debit record is the most immediately playable of the three. Villalobos with Mortazavi is what it sounds like when two practices that were already compatible finally meet and neither has to adapt.</p>
+    <span class="footer-stamp">Still Point &middot; 2026-W24</span>
+  </div>
+</div>
+</body>
+</html>
