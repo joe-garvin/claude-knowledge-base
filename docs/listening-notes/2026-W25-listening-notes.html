@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listening Notes &mdash; W25 &middot; June 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --stone-50:  #f9f8f6; --stone-100: #f0eeea; --stone-200: #e4e1db; --stone-300: #ccc8c0;
+  --stone-800: #292524; --stone-900: #1c1917; --stone-950: #0c0a09;
+  --accent:  #2D6A4F; --cobalt:  #003B8E; --golden:  #a07010;
+  --text-primary:   #111010; --text-secondary: #2e2a27; --text-tertiary:  #6a6259;
+  --rule:        rgba(15,13,12,0.10); --rule-strong: rgba(15,13,12,0.24);
+  --font-sans: 'IBM Plex Sans', 'Hanken Grotesk', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --art-size: 200px; --col-gap:  48px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body { font-family: var(--font-sans); background: var(--stone-50); color: var(--text-primary); -webkit-font-smoothing: antialiased; line-height: 1.6; min-height: 100vh; }
+a { color: inherit; text-decoration: none; }
+.site-header { position: sticky; top: 0; z-index: 100; background: var(--stone-50); border-bottom: 1px solid var(--rule-strong); padding: 18px 0; }
+.site-header .inner { max-width: 1160px; margin: 0 auto; padding: 0 48px; display: flex; align-items: baseline; justify-content: space-between; }
+.header-title { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); }
+.header-week { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); }
+.page { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+.hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule-strong); }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 24px; }
+.hero-lockup { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.hero-title { font-size: clamp(52px, 7vw, 96px); font-weight: 300; letter-spacing: -0.035em; line-height: 0.92; color: var(--text-primary); }
+.hero-title em { font-style: normal; color: var(--text-primary); }
+.hero-stats { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; flex-shrink: 0; padding-bottom: 6px; }
+.hero-stat { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-tertiary); text-align: right; }
+.hero-stat strong { color: var(--text-secondary); font-weight: 500; }
+.hero-rule { margin-top: 40px; border: none; border-top: 1px solid var(--rule); }
+.section { padding: 0 0 64px; border-bottom: 1px solid var(--rule); }
+.section-head { margin: 0 -48px 52px; border-top: 2px solid var(--text-primary); background: var(--stone-100); padding: 11px 48px; display: flex; align-items: baseline; gap: 20px; }
+.section-index { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-tertiary); flex-shrink: 0; }
+.section-label { font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-primary); }
+.section-label span { font-family: var(--font-mono); font-size: 10px; font-weight: 400; color: var(--text-tertiary); margin-left: 12px; letter-spacing: 0.06em; }
+.entry { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); padding-bottom: 52px; margin-bottom: 52px; border-bottom: 1px solid var(--rule); }
+.entry:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+.art-wrap { position: relative; width: var(--art-size); flex-shrink: 0; }
+.art-wrap a { display: block; }
+.art-wrap img { display: block; width: var(--art-size); height: var(--art-size); object-fit: cover; background: var(--stone-200); }
+.art-wrap a:hover img { opacity: 0.88; transition: opacity 0.2s; }
+.art-placeholder { display: block; width: var(--art-size); height: var(--art-size); background: var(--stone-100); border: 1px solid var(--stone-200); }
+.art-tag { position: absolute; top: 0; left: 0; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 7px; line-height: 1; }
+.art-tag.new { background: var(--stone-900); color: var(--stone-50); }
+.art-tag.known { background: var(--cobalt); color: white; }
+.art-tag.wild { background: var(--golden); color: var(--stone-900); }
+.entry-body { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); display: flex; flex-direction: column; justify-content: center; }
+.entry-artist { font-size: 24px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-primary); margin-bottom: 2px; }
+.entry-album { font-size: 24px; font-weight: 300; letter-spacing: -0.025em; line-height: 1.1; color: var(--text-secondary); margin-bottom: 14px; }
+.entry-meta { display: flex; flex-wrap: wrap; gap: 0 20px; font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.05em; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
+.entry-copy { font-size: 15px; line-height: 1.75; color: var(--text-secondary); max-width: 60ch; margin-bottom: 22px; }
+.entry-links { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+.link { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--cobalt); border-bottom: 1px solid rgba(0,59,142,0.28); padding-bottom: 1px; transition: opacity 0.15s; white-space: nowrap; }
+.link:hover { opacity: 0.7; }
+.link.primary { font-weight: 500; }
+.also-grid { display: grid; grid-template-columns: var(--art-size) 1fr; gap: 0 var(--col-gap); }
+.also-items { border-left: 1px solid var(--rule-strong); padding-left: var(--col-gap); }
+.also-item { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.also-item:first-child { padding-top: 0; }
+.also-item:last-child { border-bottom: none; }
+.also-n { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); flex-shrink: 0; width: 18px; }
+.also-text { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+.also-text strong { font-weight: 500; color: var(--text-primary); }
+.site-footer { padding: 40px 0 56px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-note { font-size: 13px; font-style: italic; color: var(--text-tertiary); max-width: 70ch; line-height: 1.6; }
+.footer-stamp { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); white-space: nowrap; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <span class="header-title">Still Point &#8212; Listening Notes</span>
+    <span class="header-week">W25 &middot; 19 June 2026</span>
+  </div>
+</header>
+<div class="page">
+  <div class="hero">
+    <p class="hero-eyebrow">Weekly digest &middot; June 19, 2026</p>
+    <div class="hero-lockup">
+      <h1 class="hero-title">Listening<br>Notes <em>&#8470;25</em></h1>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>Sources</strong> &#8212; Boomkat Weekly, Download Now, Bandcamp</div>
+        <div class="hero-stat"><strong>Picks</strong> &#8212; 3 new discoveries &middot; 2 known artists &middot; 1 wildcard</div>
+        <div class="hero-stat"><strong>RA</strong> &#8212; page returned no content; fallback search used, no high-confidence adds</div>
+      </div>
+    </div>
+    <hr class="hero-rule">
+  </div>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">01</span><span class="section-label">New Discoveries <span>&#215;3</span></span></div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/without-references-cindy-van-acker" target="_blank">
+          <img src="https://f4.bcbits.com/img/a3619353286_0.jpg" alt="goat (jp) &#8212; Without References / Cindy Van Acker" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">goat (jp)</div>
+        <div class="entry-album">Without References / Cindy Van Acker</div>
+        <div class="entry-meta">
+          <span>Latency</span><span>Rhythmic Minimalism &middot; Percussion &middot; Contemporary Dance</span><span>June 2026</span>
+        </div>
+        <p class="entry-copy">Koshiro Hino&#8217;s Osaka outfit has been scoring contemporary dance for years, and the discipline shows in the restraint: six parts that treat rhythm as structural material rather than drive, the acoustic percussion pressing against an electronic spatiality that handles time the same way. The surface referents Boomkat reaches for &#8212; Autechre, On the Corner&#8211;era Miles, Midori Takada, Daniel Schmidt &#8212; are actually useful, because this is music where different kinds of rhythmic intelligence happen to occupy the same frequency band without any of them being in charge. A dance score you don&#8217;t need the dance to hear working. Latency released the Villalobos&#8211;Mortazavi record in W24; this is the other half of that conversation, both of them hinging on percussive minimalism finding its own internal space.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/without-references-cindy-van-acker" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://goatjp.bandcamp.com/album/without-references-cindy-van-acker" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=goat+JP+Without+References+Cindy+Van+Acker+Latency" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/the-black-sea-0f04f5dc-4465-4aaf-86ea-226e7273ccb4" target="_blank">
+          <img src="https://f4.bcbits.com/img/a2676552095_0.jpg" alt="Bot1500 &#8212; The Black Sea" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Bot1500</div>
+        <div class="entry-album">The Black Sea</div>
+        <div class="entry-meta">
+          <span>Short Span</span><span>IDM &middot; Ambient &middot; Dub</span><span>June 2026</span>
+        </div>
+        <p class="entry-copy">Shinichi Kobayashi&#8217;s second Bot1500 album on Short Span &#8212; the first since &#8216;Surreal&#8217; on AD93&#8217;s Lith Dolina sublabel in 2022 &#8212; and Boomkat&#8217;s framing is more precise than &#8216;IDM&#8217;: the melodic weight is doing the work the beats usually do, tracks running at 140bpm but feeling slower, driven by pads and chord arrangements rather than rhythmic complexity. He&#8217;s been issuing single-track Bandcamp updates steadily in the years between albums, and the practice is visible in how settled the record feels. The sea as inner landscape and geographic image: a dark humid summer night, a small boat, eerie but with a glimpse of beauty. The last track drops to 120bpm and something releases with it.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/the-black-sea-0f04f5dc-4465-4aaf-86ea-226e7273ccb4" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://bot1500.bandcamp.com/album/the-black-sea" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Bot1500+The+Black+Sea+Short+Span" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/antologica-1977-1990" target="_blank">
+          <img src="https://f4.bcbits.com/img/a3751904866_0.jpg" alt="Filippo Testa &#8212; Antologica 1977-1990" loading="lazy">
+        </a>
+        <div class="art-tag new">New</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Filippo Testa</div>
+        <div class="entry-album">Antologica 1977&#8211;1990</div>
+        <div class="entry-meta">
+          <span>Isotopes Records</span><span>Electroacoustic &middot; Synth &middot; Tape</span><span>April 2026</span>
+        </div>
+        <p class="entry-copy">Testa studied under Enore Zaffiri at Turin&#8217;s Giuseppe Verdi Conservatory and worked inside SMET &#8212; Studio di Musica Elettronica di Torino &#8212; through the late &#8217;70s and &#8217;80s, an affiliation that doesn&#8217;t guarantee anything aesthetically but places a practice inside a specific European electroacoustic lineage at a specific moment. Isotopes assembles a decade-plus of private archive recordings: spiritual instrumentals, electroacoustic inversions, labyrinthine synth constructions pulled from discarded tapes. Boomkat&#8217;s comparisons &#8212; Archives GRM, Keith Fullerton Whitman&#8217;s Creel Pone sets, Buh Records &#8212; are the right frame: work that was contemporary when it was made, held in drawers, entering the record now because someone went looking. Not historical curiosity; material that hadn&#8217;t been processed yet.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/antologica-1977-1990" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://isotopesrecords.bandcamp.com/album/antologica-1977-1990" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Filippo+Testa+Antologica+1977+1990+Isotopes+Records" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">02</span><span class="section-label">New Releases from Artists You Know <span>&#215;2</span></span></div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/movie-e5b6a21a-d2ba-4235-8f6a-82a21a32ef13" target="_blank">
+          <img src="https://f4.bcbits.com/img/a4055361714_0.jpg" alt="Lifted &#8212; Movie" loading="lazy">
+        </a>
+        <div class="art-tag known">In Library</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Lifted</div>
+        <div class="entry-album">Movie</div>
+        <div class="entry-meta">
+          <span>Outside Time</span><span>Jazz &middot; Dub &middot; Concrète</span><span>June 2026</span>
+        </div>
+        <p class="entry-copy">Field-Pickering (Max D, Beautiful Swimmers, Future Times) and Papich (Co La) on their fifth album, considering filmmaking as a structural model: foley sounds, concrète, snatched conversations woven into tracks that still move like dub-jazz, the acoustic detail doing work the synthesis used to. Additional players &#8212; more eaze, Motion Graphics, Dustin Wong, Jeremy Hyman &#8212; are collaborators whose practices orbit the same post-everything corner. Outside Time is a new label; the impulse is the same one behind Future Times and PAN, which is where Lifted spent their previous decade. Boomkat puts it on the line from Tortoise to Conjoint: expansive, porous, unhurried.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/movie-e5b6a21a-d2ba-4235-8f6a-82a21a32ef13" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://lifteddc.bandcamp.com/album/movie" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Lifted+Movie+Outside+Time+2026" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/interstate-31c49ca5-4d15-4f77-a421-82ef6d5761a0" target="_blank">
+          <img src="https://f4.bcbits.com/img/a3803758404_0.jpg" alt="Monolake &#8212; Interstate" loading="lazy">
+        </a>
+        <div class="art-tag known">In Library</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Monolake</div>
+        <div class="entry-album">Interstate</div>
+        <div class="entry-meta">
+          <span>Field Records</span><span>Dub Techno &middot; Concrète &middot; Electronic</span><span>June 2026 (vinyl, orig. 1999)</span>
+        </div>
+        <p class="entry-copy">The 1999 album that split Henke and Behles &#8212; the last work they completed together before Behles moved entirely to Ableton, which makes it a threshold document as much as a record. Field Records pressed it to vinyl 26 years after the fact, following the Hong Kong compilation through their reissue program. Interstate already lives in the Robert Henke Bandcamp catalog; what the vinyl does is make the record physical, the eight tracks building what Boomkat calls &#8216;ecosystems of sound&#8217; and threading grooves through their root structures. Dub techno and musique concrète before those categories had fully separated. The reissue that needed to happen.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/interstate-31c49ca5-4d15-4f77-a421-82ef6d5761a0" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://roberthenke.bandcamp.com/album/interstate" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Monolake+Interstate+Field+Records" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">03</span><span class="section-label">Wildcard <span>&#215;1</span></span></div>
+
+    <div class="entry">
+      <div class="art-wrap">
+        <a href="https://boomkat.com/products/pon-23bab5ab-db38-4bf5-828a-2b2f75558003" target="_blank">
+          <img src="https://f4.bcbits.com/img/a0299314026_0.jpg" alt="Tujiko Noriko &#8212; Pon" loading="lazy">
+        </a>
+        <div class="art-tag wild">Wildcard</div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-artist">Tujiko Noriko</div>
+        <div class="entry-album">Pon</div>
+        <div class="entry-meta">
+          <span>Editions Mego</span><span>Electronic Pop &middot; Ambient &middot; Cinematic</span><span>June 2026</span>
+        </div>
+        <p class="entry-copy">Noriko has been on Editions Mego since the mid-2000s, each album doing something different with the same idiosyncratic space where electronic production meets film influence meets a songwriting approach that isn&#8217;t quite pop and isn&#8217;t quite not-pop. Pon is dedicated to her cat &#8212; born deaf, died in an accident &#8212; which sounds sentimental and isn&#8217;t, because the record is about the quality of presence rather than grief: 14 tracks where electronics and melodies move around each other the way a cat moves around furniture. The wildcard here is the simplicity, and the way it holds. Julia Holter and Tenniscoats are accurate comparisons &#8212; music that trusts an emotional register that could turn saccharine and doesn&#8217;t.</p>
+        <div class="entry-links">
+          <a href="https://boomkat.com/products/pon-23bab5ab-db38-4bf5-828a-2b2f75558003" class="link primary" target="_blank">Boomkat &#8599;</a>
+          <a href="https://tujikonoriko1.bandcamp.com/album/pon-3" class="link" target="_blank">Bandcamp &#8599;</a>
+          <a href="https://www.youtube.com/results?search_query=Tujiko+Noriko+Pon+Editions+Mego+2026" class="link" target="_blank">Preview on YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><span class="section-index">04</span><span class="section-label">Also Noted <span>&#215;6</span></span></div>
+    <div class="also-grid">
+      <div></div>
+      <div class="also-items">
+        <div class="also-item"><span class="also-n">01</span><span class="also-text"><strong>Panasonic &#8212; Muuntaja / Murtaja</strong> (S&#228;hk&#246; Recordings) &#8212; First ever digital issue of the 1994 debut: two cuts of raw machine pressure from Mika Vainio, Ilpo V&#228;is&#228;nen &amp; Sami Salo, foundational to a genre this collection follows all the way downstream. S&#228;hk&#246; 007, restored rubber-stamp artwork. No Bandcamp yet; on Boomkat as a download.</span></div>
+        <div class="also-item"><span class="also-n">02</span><span class="also-text"><strong>Cluster &#8212; Sowiesoso</strong> (Bureau B) &#8212; 50th anniversary pressing of the &#8217;76 kosmische record that moved Roedelius and Moebius from experimental noise into open, melodic forms without losing their edge. Boomkat calls it a &#8216;pastoral kosmische perennial&#8217;; it sounds like the kind of record that sows ambient music without intending to.</span></div>
+        <div class="also-item"><span class="also-n">03</span><span class="also-text"><strong>Dynarec &#8212; Vaporwave I &amp; II</strong> (Clone West Coast) &#8212; Two EPs of puristic electro-techno built explicitly in the Drexciya / Gerald Donald lineage. Clone doing what Clone does with the history that formed it; worth tracking if electro is on the radar.</span></div>
+        <div class="also-item"><span class="also-n">04</span><span class="also-text"><strong>Kahn &#8212; Past Life</strong> (Deep Medi) &#8212; First proper solo LP from the Bristol dubstep OG: halfstep suffused with Giallo OSTs, goth rock, Memphis rap, and trip hop. Mood-driven rather than functional &#8212; the distinction that matters &#8212; and Boomkat reads it as a definitive self-portrait.</span></div>
+        <div class="also-item"><span class="also-n">05</span><span class="also-text"><strong>Dewa Alit &amp; Gamelan Salukat &#8212; Baur Bentur</strong> (Black Truffle) &#8212; Third Black Truffle outing for the Balinese gamelan master, this time alongside jazz pianist Sri Hanuraga. Each album has pushed the ensemble&#8217;s vocabulary further into territory neither genre framework anticipated; this one shakes up the formula and the blend holds.</span></div>
+        <div class="also-item"><span class="also-n">06</span><span class="also-text"><strong>Milan W. &#8212; Leave Another Day</strong> (Stroom) &#8212; Boomkat calls this an instant classic in the same breath as HTRK, CS + Kreme, Eyeless in Gaza, Enno Velthuys: daydreamy post-punk pastoralism with an &#8217;80s lilt. Stroom Tier 2; when they commit to something this specifically described, it tends to hold up.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="site-footer">
+    <p class="footer-note">The Goat (JP) record is the pick of the week &#8212; Boomkat led with it, and rightly: a dance score that works on its own as a record, where the percussive precision and the open-ended structure are the same thing, not in tension. Testa is the long-term one: archival material surfaced by someone who went looking, the kind of record that takes time to understand where it sits. Monolake Interstate closing on vinyl after 26 years is its own small event.</p>
+    <span class="footer-stamp">Still Point &middot; 2026-W25</span>
+  </div>
+</div>
+</body>
+</html>
