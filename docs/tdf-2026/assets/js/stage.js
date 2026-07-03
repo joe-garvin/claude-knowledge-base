@@ -62,7 +62,7 @@ function renderProfileChart(stage) {
       type: 'line',
       xMin: c.km_mark,
       xMax: c.km_mark,
-      borderColor: '#a1483c',
+      borderColor: '#c8443a',
       borderWidth: 1,
       borderDash: [4, 3],
       label: {
@@ -71,8 +71,8 @@ function renderProfileChart(stage) {
         position: 'start',
         rotation: 90,
         font: { size: 10 },
-        backgroundColor: 'rgba(255,253,247,0.9)',
-        color: '#1c1a16',
+        backgroundColor: 'rgba(255,255,255,0.92)',
+        color: '#1a1a1a',
       },
     };
   });
@@ -83,8 +83,8 @@ function renderProfileChart(stage) {
       datasets: [{
         label: 'Elevation',
         data: points.map((p) => ({ x: p.km, y: p.elevation_m })),
-        borderColor: '#a1483c',
-        backgroundColor: 'rgba(161,72,60,0.12)',
+        borderColor: '#0075de',
+        backgroundColor: 'rgba(0,117,222,0.10)',
         fill: true,
         pointRadius: 0,
         borderWidth: 1.5,
@@ -108,11 +108,11 @@ function renderProfileChart(stage) {
         x: {
           type: 'linear',
           title: { display: true, text: 'Kilometres' },
-          grid: { color: '#ddd5c2' },
+          grid: { color: '#e6e6e6' },
         },
         y: {
           title: { display: true, text: 'Elevation (m)' },
-          grid: { color: '#ddd5c2' },
+          grid: { color: '#e6e6e6' },
         },
       },
     },

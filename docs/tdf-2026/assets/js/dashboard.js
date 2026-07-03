@@ -61,8 +61,8 @@ function renderSparkline(canvasId, points) {
       labels: points.map((p) => p.km),
       datasets: [{
         data: points.map((p) => p.elevation_m),
-        borderColor: '#8a9a5b',
-        backgroundColor: 'rgba(138,154,91,0.15)',
+        borderColor: 'rgba(255,255,255,0.9)',
+        backgroundColor: 'rgba(255,255,255,0.14)',
         fill: true,
         pointRadius: 0,
         borderWidth: 1.5,

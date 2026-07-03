@@ -1,11 +1,12 @@
 import { initCommon, dataUrl, fetchJsonOrNull, stageTypeLabel, pad2, formatDateOnly } from './common.js';
 
+// Kept in sync with the --type-* custom properties in site.css.
 const TYPE_COLORS = {
-  flat: '#8a9a5b',
-  hilly: '#c98a3a',
-  mountain: '#a1483c',
-  individual_time_trial: '#6a86a8',
-  team_time_trial: '#6a86a8',
+  flat: '#1aae39',
+  hilly: '#dd5b00',
+  mountain: '#c8443a',
+  individual_time_trial: '#2a9d99',
+  team_time_trial: '#2a9d99',
 };
 
 function renderSubtitle(race) {
@@ -73,7 +74,7 @@ function renderElevationChart(race) {
       },
       scales: {
         x: { grid: { display: false } },
-        y: { grid: { color: '#ddd5c2' }, title: { display: true, text: 'metres' } },
+        y: { grid: { color: '#e6e6e6' }, title: { display: true, text: 'metres' } },
       },
     },
   });
