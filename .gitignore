@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+docs/tdf-2026/scraper/.cache/

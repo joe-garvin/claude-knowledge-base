@@ -1,0 +1,9 @@
+{
+  "last_updated": "2026-07-03T12:00:00Z",
+  "scrape_status": "ok",
+  "sections": {
+    "standings": { "status": "ok", "source": "seed", "scraped_at": "2026-07-03T12:00:00Z" },
+    "results": { "status": "ok", "source": "seed", "scraped_at": "2026-07-03T12:00:00Z" }
+  },
+  "notes": "Placeholder snapshot ahead of the Grand Départ. Standings and results will populate once the race starts and the scraper runs."
+}

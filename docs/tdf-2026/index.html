@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tour de France 2026 tracker</title>
+<meta name="description" content="A daily-updated dashboard for the 2026 Tour de France — standings, stage results, and watch times.">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<header class="site-header" id="site-header"></header>
+
+<main class="site-main">
+  <div class="stale-banner" id="stale-banner" role="status"></div>
+
+  <h1 class="visually-hidden">Tour de France 2026 — dashboard</h1>
+
+  <div class="status-strip" id="status-strip"></div>
+
+  <section aria-labelledby="hero-title">
+    <h2 id="hero-title" class="section-title">Today's stage</h2>
+    <div class="card hero-card" id="hero-card">
+      <p class="muted">Loading…</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="jerseys-title">
+    <h2 id="jerseys-title" class="section-title">Race leaders</h2>
+    <div class="card-grid" id="jersey-cards"></div>
+  </section>
+
+  <section aria-labelledby="gc-title">
+    <h2 id="gc-title" class="section-title">General classification — top 5</h2>
+    <div class="card table-wrap">
+      <table id="gc-table">
+        <thead>
+          <tr><th class="num">Rank</th><th>Rider</th><th>Team</th><th class="num">Gap</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="last-result-title">
+    <h2 id="last-result-title" class="section-title">Latest stage result</h2>
+    <div class="card" id="last-result-card">
+      <p class="muted">Loading…</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="strip-title">
+    <h2 id="strip-title" class="section-title">All 21 stages</h2>
+    <div class="stage-strip" id="stage-strip"></div>
+  </section>
+
+  <p class="updated-line" data-updated-line></p>
+</main>
+
+<footer class="site-footer">
+  <p>Data from ProCyclingStats and Wikipedia, refreshed automatically. Not an official Tour de France product.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script type="module" src="assets/js/dashboard.js"></script>
+</body>
+</html>

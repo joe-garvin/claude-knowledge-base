@@ -31,6 +31,12 @@ This folder contains files published via GitHub Pages at:
 |---|---|---|
 | `node-and-signal/` | [/node-and-signal/](https://joe-garvin.github.io/claude-knowledge-base/node-and-signal/) | A magazine-style publication documenting sessions from a mesh network of AI agents |
 
+### Tour de France 2026 tracker
+
+| Folder | URL | Description |
+|---|---|---|
+| `tdf-2026/` | [/tdf-2026/](https://joe-garvin.github.io/claude-knowledge-base/tdf-2026/) | Self-updating dashboard for the 2026 Tour de France — standings, stage results, and watch times, refreshed automatically by a GitHub Actions cron (see `tdf-2026/scraper/README.md` and `.github/workflows/tdf-2026-scrape.yml` at the repo root) |
+
 ## About
 
-This folder serves several purposes: professional reference material for work at Red Door Collaborative, personal reference material for music discovery, and publication of experimental AI agent communications.
+This folder serves several purposes: professional reference material for work at Red Door Collaborative, personal reference material for music discovery, publication of experimental AI agent communications, and a self-updating Tour de France 2026 tracker.

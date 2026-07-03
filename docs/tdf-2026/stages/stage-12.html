@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stage 12 — Tour de France 2026 tracker</title>
+<meta name="description" content="Route, elevation profile, climbs, and results for stage 12 of the 2026 Tour de France.">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body data-stage="12">
+<header class="site-header" id="site-header"></header>
+
+<main class="site-main">
+  <div class="stale-banner" id="stale-banner" role="status"></div>
+
+  <div class="stage-header" id="stage-header">
+    <p class="stage-header__eyebrow">Loading stage 12…</p>
+  </div>
+
+  <section aria-labelledby="preview-title">
+    <h2 id="preview-title" class="section-title">Preview</h2>
+    <p id="stage-preview" class="muted">Loading…</p>
+  </section>
+
+  <section aria-labelledby="profile-title">
+    <h2 id="profile-title" class="section-title">Elevation profile</h2>
+    <div class="card">
+      <div class="chart-wrap chart-wrap--tall">
+        <canvas id="profile-chart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="climbs-title">
+    <h2 id="climbs-title" class="section-title">Categorized climbs</h2>
+    <div class="card table-wrap">
+      <table id="climbs-table">
+        <thead>
+          <tr>
+            <th>Climb</th>
+            <th>Category</th>
+            <th class="num">Km mark</th>
+            <th class="num">Length</th>
+            <th class="num">Avg gradient</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <p class="muted faint" id="climbs-empty" style="display:none;">No categorized climbs on this stage.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="result-title">
+    <h2 id="result-title" class="section-title">Result</h2>
+    <div class="card" id="result-card">
+      <p class="muted">Loading…</p>
+    </div>
+  </section>
+
+  <nav class="stage-nav" aria-label="Stage navigation" id="stage-nav"></nav>
+
+  <p class="updated-line" data-updated-line></p>
+</main>
+
+<footer class="site-footer">
+  <p>Data from ProCyclingStats and Wikipedia, refreshed automatically. Not an official Tour de France product.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3"></script>
+<script type="module" src="../assets/js/stage.js"></script>
+</body>
+</html>

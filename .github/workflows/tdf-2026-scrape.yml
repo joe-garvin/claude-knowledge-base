@@ -1,0 +1,63 @@
+# This bot commits directly to main (below), which is a deliberate,
+# scoped exception to this repo's CLAUDE.md convention of working on
+# claude/ branches and not pushing to main directly. That convention is
+# about human/Claude-session edits; GitHub Pages only publishes from
+# main/docs, so an unattended daily data refresh has to land there to be
+# useful at all. Scope stays narrow: this workflow only ever touches
+# docs/tdf-2026/data/.
+name: Scrape Tour de France 2026 tracker data
+
+on:
+  schedule:
+    # Times are UTC. 2026-07 is CEST (UTC+2) throughout the race.
+    - cron: "30 6 * 7 *"   # 08:30 CEST — morning refresh of watch times
+    - cron: "30 18 * 7 *"  # 20:30 CEST — primary post-stage run
+    - cron: "30 20 * 7 *"  # 22:30 CEST — insurance run for a late/dropped primary run
+  workflow_dispatch: {}
+
+concurrency:
+  group: scrape
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install scraper dependencies
+        run: pip install -r docs/tdf-2026/scraper/requirements.txt
+
+      - name: Run scraper
+        id: scrape
+        continue-on-error: true
+        run: python3 docs/tdf-2026/scraper/scrape.py
+
+      - name: Commit refreshed data
+        run: |
+          git config user.name "tdf-tracker-bot"
+          git config user.email "actions@github.com"
+          git add docs/tdf-2026/data/
+          if git diff --cached --quiet; then
+            echo "No data changes — skipping commit."
+            exit 0
+          fi
+          git commit -m "data: refresh $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Fail job if scrape reported a failure
+        if: steps.scrape.outcome == 'failure'
+        run: |
+          echo "Scraper exited non-zero — see the 'Run scraper' step above for details."
+          echo "Data was still committed if any section validated; this failure is just to keep the run visibly red in the Actions tab."
+          exit 1

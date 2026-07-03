@@ -1,0 +1,210 @@
+// Shared front-end logic: data fetching, cache-busting, header/nav,
+// local-timezone timestamp rendering, client-side staleness banner,
+// and graceful handling of missing per-stage result files.
+
+const STALE_HOURS = 26;
+
+const STAGE_TYPE_LABELS = {
+  flat: 'Flat',
+  hilly: 'Hilly',
+  mountain: 'Mountain',
+  individual_time_trial: 'Individual time trial',
+  team_time_trial: 'Team time trial',
+};
+
+export function stageTypeLabel(type) {
+  return STAGE_TYPE_LABELS[type] || type;
+}
+
+export function pad2(n) {
+  return String(n).padStart(2, '0');
+}
+
+/**
+ * Fetch meta.json with cache: 'no-store' so the freshness check always
+ * sees the latest snapshot, never a browser- or CDN-cached copy.
+ */
+export async function loadMeta(dataRoot) {
+  const res = await fetch(`${dataRoot}data/meta.json`, { cache: 'no-store' });
+  if (!res.ok) throw new Error(`meta.json fetch failed: ${res.status}`);
+  return res.json();
+}
+
+/**
+ * Build a cache-busted URL for any other data file, keyed off meta's
+ * last_updated so a new snapshot always invalidates the old cached copy.
+ */
+export function dataUrl(dataRoot, path, meta) {
+  const v = encodeURIComponent(meta?.last_updated || '');
+  return `${dataRoot}${path}?v=${v}`;
+}
+
+/**
+ * Fetch a JSON data file and return null on any failure (404, network
+ * error, bad JSON) instead of throwing, so callers can render a clean
+ * "awaiting" state rather than letting a rejection propagate.
+ */
+export async function fetchJsonOrNull(url) {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (err) {
+    return null;
+  }
+}
+
+export function isStale(meta) {
+  if (!meta) return true;
+  if (meta.scrape_status && meta.scrape_status !== 'ok') return true;
+  const updated = new Date(meta.last_updated);
+  if (Number.isNaN(updated.getTime())) return true;
+  const ageHours = (Date.now() - updated.getTime()) / (1000 * 60 * 60);
+  return ageHours > STALE_HOURS;
+}
+
+function formatLocal(isoString) {
+  const d = new Date(isoString);
+  if (Number.isNaN(d.getTime())) return { local: '—', paris: '—' };
+  const local = new Intl.DateTimeFormat(undefined, {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+  }).format(d);
+  const paris = new Intl.DateTimeFormat('en-GB', {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+    timeZone: 'Europe/Paris',
+  }).format(d);
+  return { local, paris };
+}
+
+/**
+ * Format a date-only string ("YYYY-MM-DD", a race day rather than an
+ * instant) so the calendar date shown always matches the stored value,
+ * regardless of the viewer's timezone. Plain `new Date("2026-07-04")`
+ * parses as UTC midnight, which renders as "Jul 3" for anyone west of
+ * UTC if formatted in the local zone — this pins the format to UTC
+ * instead so date-only values never shift by the viewer's offset.
+ */
+export function formatDateOnly(dateStr, opts = {}) {
+  const d = new Date(`${dateStr}T00:00:00Z`);
+  if (Number.isNaN(d.getTime())) return '—';
+  return new Intl.DateTimeFormat(undefined, { ...opts, timeZone: 'UTC' }).format(d);
+}
+
+export function formatTimeOnly(isoString, timeZone) {
+  const d = new Date(isoString);
+  if (Number.isNaN(d.getTime())) return '—';
+  const opts = { timeStyle: 'short' };
+  if (timeZone) opts.timeZone = timeZone;
+  return new Intl.DateTimeFormat(undefined, opts).format(d);
+}
+
+export function localZoneAbbrev(isoString) {
+  const d = new Date(isoString);
+  if (Number.isNaN(d.getTime())) return '';
+  const parts = new Intl.DateTimeFormat(undefined, {
+    timeZoneName: 'short',
+    hour: 'numeric',
+  }).formatToParts(d);
+  const tz = parts.find((p) => p.type === 'timeZoneName');
+  return tz ? tz.value : '';
+}
+
+function renderUpdatedLine(container, meta) {
+  if (!container) return;
+  if (!meta) {
+    container.textContent = 'Last updated: unknown';
+    return;
+  }
+  const { local, paris } = formatLocal(meta.last_updated);
+  container.textContent = `Last updated ${local}`;
+  container.title = `${paris} Europe/Paris time`;
+}
+
+function renderStaleBanner(container, meta) {
+  if (!container) return;
+  if (isStale(meta)) {
+    const reason = meta && meta.scrape_status !== 'ok'
+      ? `the last scrape reported "${meta.scrape_status}"`
+      : 'the last successful update was more than 26 hours ago';
+    container.textContent = `Showing the last known good data — ${reason}. This page will refresh automatically once a fresh scrape lands.`;
+    container.classList.add('is-visible');
+  } else {
+    container.classList.remove('is-visible');
+  }
+}
+
+const NAV_ITEMS = [
+  { key: 'dashboard', label: 'Dashboard', file: 'index.html' },
+  { key: 'overview', label: 'Overview', file: 'overview.html' },
+];
+
+function renderHeader(container, { rootPath, active }) {
+  if (!container) return;
+
+  const stageLinks = [];
+  for (let n = 1; n <= 21; n++) {
+    const file = `stage-${pad2(n)}.html`;
+    const href = rootPath === '' ? `stages/${file}` : file;
+    stageLinks.push(`<a href="${href}">Stage ${n}</a>`);
+  }
+
+  const navLinks = NAV_ITEMS.map((item) => {
+    const href = `${rootPath}${item.file}`;
+    const current = active === item.key ? ' aria-current="page"' : '';
+    return `<a href="${href}"${current}>${item.label}</a>`;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="site-header__inner">
+      <a class="site-title" href="${rootPath}index.html">Tour de France 2026</a>
+      <nav class="site-nav" aria-label="Primary">
+        ${navLinks}
+        <div class="site-nav__stages">
+          <a href="${rootPath === '' ? 'stages/stage-01.html' : '../stages/stage-01.html'}"${active === 'stage' ? ' aria-current="page"' : ''}>Stages ▾</a>
+          <div class="site-nav__dropdown">${stageLinks.join('')}</div>
+        </div>
+      </nav>
+    </div>
+  `;
+}
+
+/**
+ * Shared page bootstrap: renders the header/nav, loads meta.json,
+ * renders the updated timestamp + stale banner, and returns
+ * { meta, dataRoot } for the page-specific renderer to use.
+ *
+ * @param {Object} opts
+ * @param {''|'../'} opts.rootPath - prefix to reach the site root from this page
+ * @param {'dashboard'|'overview'|'stage'} opts.active - which nav item to mark current
+ */
+export async function initCommon({ rootPath, active }) {
+  const headerEl = document.getElementById('site-header');
+  renderHeader(headerEl, { rootPath, active });
+
+  const staleBannerEl = document.getElementById('stale-banner');
+  const updatedEls = document.querySelectorAll('[data-updated-line]');
+
+  let meta = null;
+  try {
+    meta = await loadMeta(rootPath);
+  } catch (err) {
+    meta = null;
+  }
+
+  updatedEls.forEach((el) => renderUpdatedLine(el, meta));
+  renderStaleBanner(staleBannerEl, meta);
+
+  return { meta, dataRoot: rootPath };
+}
+
+/** Small inline jersey icon, colored per classification. */
+export function jerseyIconSvg(colorVar) {
+  return `
+    <svg viewBox="0 0 40 40" class="jersey-card__icon" role="img" aria-hidden="true">
+      <path d="M12 4 L4 12 L9 17 L12 14 L12 36 L28 36 L28 14 L31 17 L36 12 L28 4 L24 8 L16 8 Z"
+        fill="${colorVar}" stroke="var(--color-text)" stroke-width="1" stroke-opacity="0.15" />
+    </svg>
+  `;
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Race overview — Tour de France 2026 tracker</title>
+<meta name="description" content="The full 2026 Tour de France route: all 21 stages, totals, and the yellow jersey over time.">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<header class="site-header" id="site-header"></header>
+
+<main class="site-main">
+  <div class="stale-banner" id="stale-banner" role="status"></div>
+
+  <h1>Race overview</h1>
+  <p class="muted" id="race-subtitle">Loading…</p>
+
+  <section aria-labelledby="totals-title">
+    <h2 id="totals-title" class="section-title">Totals</h2>
+    <div class="totals-grid" id="totals-grid"></div>
+  </section>
+
+  <section aria-labelledby="elevation-title">
+    <h2 id="elevation-title" class="section-title">Elevation gain per stage</h2>
+    <div class="card">
+      <div class="chart-wrap">
+        <canvas id="elevation-chart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="yellow-title">
+    <h2 id="yellow-title" class="section-title">Yellow jersey over time</h2>
+    <div class="card">
+      <div class="chart-wrap">
+        <canvas id="gc-history-chart"></canvas>
+      </div>
+      <p class="muted faint" id="gc-history-empty">Populates as the race progresses.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="route-title">
+    <h2 id="route-title" class="section-title">Route schematic</h2>
+    <div class="card">
+      <div class="route-schematic" id="route-schematic"></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="stage-table-title">
+    <h2 id="stage-table-title" class="section-title">All stages</h2>
+    <div class="card table-wrap">
+      <table id="stage-table">
+        <caption>Every stage of the 2026 Tour de France. Click a row to open its stage page.</caption>
+        <thead>
+          <tr>
+            <th class="num">Stage</th>
+            <th>Date</th>
+            <th>Route</th>
+            <th>Type</th>
+            <th class="num">Distance</th>
+            <th class="num">Elevation</th>
+            <th>Summit finish</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <p class="updated-line" data-updated-line></p>
+</main>
+
+<footer class="site-footer">
+  <p>Data from ProCyclingStats and Wikipedia, refreshed automatically. Not an official Tour de France product.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script type="module" src="assets/js/overview.js"></script>
+</body>
+</html>
