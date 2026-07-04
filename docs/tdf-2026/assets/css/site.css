@@ -515,12 +515,29 @@ tbody tr:hover { background: var(--canvas); }
 /* ---------- Home page primer ---------- */
 
 .primer { margin-bottom: var(--space-7); }
-.primer__lead {
-  font-size: 1.1rem;
-  line-height: 1.55;
+.primer__intro {
+  list-style: none;
+  margin: 0 0 var(--space-5);
+  padding: 0;
+  max-width: 70ch;
+}
+.primer__intro li {
+  position: relative;
+  padding-left: 1.4em;
+  font-size: 1.05rem;
+  line-height: 1.5;
   color: var(--ink-secondary);
-  max-width: 68ch;
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-2);
+}
+.primer__intro li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--blue);
 }
 .primer-grid {
   display: grid;
