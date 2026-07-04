@@ -306,14 +306,37 @@ section + section { margin-top: var(--space-7); }
 .hero-card,
 .stage-header,
 .page-hero {
+  position: relative;
+  overflow: hidden;
   background:
     radial-gradient(120% 140% at 85% -20%, var(--indigo-soft) 0%, var(--indigo) 55%);
+  background-color: var(--indigo);
   color: var(--on-indigo);
   border: none;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-hero);
   padding: var(--space-6);
 }
+
+/* When a photograph loads, JS sets an inline background-image (a dark
+   scrim over the photo) and adds .has-photo. The solid indigo above is
+   the graceful fallback if the image is absent or fails to load. */
+.hero-card.has-photo .hero-card__route,
+.stage-header.has-photo .stage-header__route,
+.page-hero.has-photo h1 { text-shadow: 0 1px 16px rgba(8,12,38,.6); }
+
+.hero-credit {
+  position: absolute;
+  right: 10px;
+  bottom: 7px;
+  font-size: 10px;
+  line-height: 1.2;
+  text-align: right;
+  max-width: 62%;
+  color: rgba(255,255,255,.62);
+  text-decoration: none;
+}
+.hero-credit:hover { color: rgba(255,255,255,.9); text-decoration: none; }
 
 .hero-card a,
 .stage-header a { color: #fff; }

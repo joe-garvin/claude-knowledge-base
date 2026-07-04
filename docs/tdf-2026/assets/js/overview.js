@@ -1,4 +1,4 @@
-import { initCommon, dataUrl, fetchJsonOrNull, stageTypeLabel, pad2, formatDateOnly } from './common.js';
+import { initCommon, dataUrl, fetchJsonOrNull, stageTypeLabel, pad2, formatDateOnly, applyHeroImage } from './common.js';
 
 // Kept in sync with the --type-* custom properties in site.css.
 const TYPE_COLORS = {
@@ -160,8 +160,10 @@ async function main() {
   const { meta, dataRoot } = await initCommon({ rootPath: '', active: 'overview' });
   const race = await fetchJsonOrNull(dataUrl(dataRoot, 'data/race.json', meta));
   const standings = await fetchJsonOrNull(dataUrl(dataRoot, 'data/standings.json', meta));
+  const images = await fetchJsonOrNull(dataUrl(dataRoot, 'data/images.json', meta));
 
   renderSubtitle(race);
+  applyHeroImage(document.querySelector('.page-hero'), dataRoot, images?.overview);
   renderTotals(race);
   renderElevationChart(race);
   renderGcHistoryChart(standings);

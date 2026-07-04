@@ -1,6 +1,6 @@
 import {
   initCommon, dataUrl, fetchJsonOrNull, stageTypeLabel, pad2,
-  formatTimeOnly, localZoneAbbrev, formatDateOnly,
+  formatTimeOnly, localZoneAbbrev, formatDateOnly, applyHeroImage,
 } from './common.js';
 
 const stageNumber = Number(document.body.dataset.stage);
@@ -188,11 +188,13 @@ async function main() {
   const race = await fetchJsonOrNull(dataUrl(dataRoot, 'data/race.json', meta));
   const watchData = await fetchJsonOrNull(dataUrl(dataRoot, 'data/watch.json', meta));
   const result = await fetchJsonOrNull(dataUrl(dataRoot, `data/results/stage-${pad2(stageNumber)}.json`, meta));
+  const images = await fetchJsonOrNull(dataUrl(dataRoot, 'data/images.json', meta));
 
   const stage = race?.stages?.find((s) => s.number === stageNumber) || null;
   const watch = watchData?.stages?.find((s) => s.number === stageNumber) || null;
 
   renderHeader(stage, watch);
+  applyHeroImage(document.getElementById('stage-header'), dataRoot, images?.stages?.[stageNumber]);
   renderPreview(stage);
   if (stage) renderProfileChart(stage);
   renderClimbsTable(stage);

@@ -199,6 +199,46 @@ export async function initCommon({ rootPath, active }) {
   return { meta, dataRoot: rootPath };
 }
 
+/**
+ * Apply a hero photograph to an indigo hero band (dashboard hero card,
+ * stage header, or overview title band). A dark indigo scrim is layered
+ * over the image so white text stays legible, and a small credit caption
+ * is appended for attribution.
+ *
+ * The image is preloaded first; it is only applied on successful load, so
+ * a missing or broken image leaves the CSS solid-indigo fallback in place
+ * — the hero never breaks (same principle as the stale-data fallback).
+ *
+ * @param {HTMLElement} el - the hero element (.hero-card / .stage-header / .page-hero)
+ * @param {''|'../'} rootPath - prefix to reach the site root from this page
+ * @param {{image:string, alt?:string, credit?:string, credit_url?:string}} img
+ */
+export function applyHeroImage(el, rootPath, img) {
+  if (!el || !img || !img.image) return;
+  const url = `${rootPath}${img.image}`;
+  const scrim = 'linear-gradient(180deg, rgba(20,27,72,0.34) 0%, rgba(17,22,58,0.72) 74%, rgba(14,19,50,0.86) 100%)';
+  const pre = new Image();
+  pre.onload = () => {
+    el.style.backgroundImage = `${scrim}, url("${url}")`;
+    el.style.backgroundSize = 'cover';
+    el.style.backgroundPosition = 'center';
+    el.classList.add('has-photo');
+    if (img.credit && !el.querySelector('.hero-credit')) {
+      const hasLink = Boolean(img.credit_url);
+      const credit = document.createElement(hasLink ? 'a' : 'span');
+      credit.className = 'hero-credit';
+      credit.textContent = `📷 ${img.credit}`;
+      if (hasLink) {
+        credit.href = img.credit_url;
+        credit.target = '_blank';
+        credit.rel = 'noopener';
+      }
+      el.appendChild(credit);
+    }
+  };
+  pre.src = url;
+}
+
 /** Small inline jersey icon, colored per classification. */
 export function jerseyIconSvg(colorVar) {
   return `

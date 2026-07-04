@@ -1,6 +1,6 @@
 import {
   initCommon, dataUrl, fetchJsonOrNull, stageTypeLabel, pad2,
-  formatTimeOnly, localZoneAbbrev, jerseyIconSvg, formatDateOnly,
+  formatTimeOnly, localZoneAbbrev, jerseyIconSvg, formatDateOnly, applyHeroImage,
 } from './common.js';
 
 const JERSEY_META = {
@@ -81,7 +81,7 @@ function renderSparkline(canvasId, points) {
   });
 }
 
-function renderHero(dataRoot, meta, race, watch) {
+function renderHero(dataRoot, meta, race, watch, images) {
   const el = document.getElementById('hero-card');
   const stage = pickHeroStage(race);
   if (!stage) {
@@ -124,6 +124,7 @@ function renderHero(dataRoot, meta, race, watch) {
     <p><a href="${stageHref}">Full stage page →</a></p>
   `;
   renderSparkline('hero-sparkline', stage.profile?.points);
+  applyHeroImage(el, dataRoot, images?.stages?.[stage.number]);
 }
 
 function renderJerseyCards(standings) {
@@ -216,9 +217,10 @@ async function main() {
   const race = await fetchJsonOrNull(dataUrl(dataRoot, 'data/race.json', meta));
   const standings = await fetchJsonOrNull(dataUrl(dataRoot, 'data/standings.json', meta));
   const watch = await fetchJsonOrNull(dataUrl(dataRoot, 'data/watch.json', meta));
+  const images = await fetchJsonOrNull(dataUrl(dataRoot, 'data/images.json', meta));
 
   renderStatusStrip(race);
-  if (race) renderHero(dataRoot, meta, race, watch);
+  if (race) renderHero(dataRoot, meta, race, watch, images);
   renderJerseyCards(standings);
   renderGcTable(standings);
   await renderLastResult(dataRoot, meta, race, standings);
