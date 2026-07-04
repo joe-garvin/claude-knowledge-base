@@ -9,6 +9,23 @@ const TYPE_COLORS = {
   team_time_trial: '#2a9d99',
 };
 
+/**
+ * Inject the prebuilt route-map SVG inline so it inherits the page font.
+ * Static illustration; on any fetch failure the section simply stays
+ * empty rather than breaking the page.
+ */
+async function renderRouteMap(dataRoot, meta) {
+  const el = document.getElementById('route-map');
+  if (!el) return;
+  try {
+    const res = await fetch(dataUrl(dataRoot, 'assets/img/route-map.svg', meta));
+    if (!res.ok) return;
+    el.innerHTML = await res.text();
+  } catch (err) {
+    /* graceful: leave the map container empty */
+  }
+}
+
 function renderSubtitle(race) {
   const el = document.getElementById('race-subtitle');
   if (!race) {
@@ -21,27 +38,47 @@ function renderSubtitle(race) {
 }
 
 function renderTotals(race) {
-  const el = document.getElementById('totals-grid');
-  if (!race) return;
+  const el = document.getElementById('totals-panel');
+  if (!race || !el) return;
   const t = race.totals;
   const typeCounts = {};
   race.stages.forEach((s) => { typeCounts[s.type] = (typeCounts[s.type] || 0) + 1; });
-  const items = [
-    ['Stages', t.stages],
-    ['Distance', `${t.distance_km.toLocaleString()} km`],
-    ['Elevation gain', `${t.elevation_gain_m.toLocaleString()} m`],
-    ['Rest days', race.rest_days.length],
-    ['Mountain stages', typeCounts.mountain || 0],
-    ['Flat stages', typeCounts.flat || 0],
-    ['Hilly stages', typeCounts.hilly || 0],
-    ['Time trials', (typeCounts.individual_time_trial || 0) + (typeCounts.team_time_trial || 0)],
+
+  const headline = [
+    [t.stages, 'Stages'],
+    [`${t.distance_km.toLocaleString()}`, 'Kilometres'],
+    [`${t.elevation_gain_m.toLocaleString()}`, 'Metres climbed'],
+    [race.rest_days.length, 'Rest days'],
   ];
-  el.innerHTML = items.map(([label, value]) => `
-    <div class="card totals-grid__item">
-      <strong>${value}</strong>
-      <span>${label}</span>
+
+  const types = [
+    ['mountain', typeCounts.mountain || 0, 'Mountain'],
+    ['hilly', typeCounts.hilly || 0, 'Hilly'],
+    ['flat', typeCounts.flat || 0, 'Flat'],
+    ['itt', (typeCounts.individual_time_trial || 0) + (typeCounts.team_time_trial || 0), 'Time trials'],
+  ];
+
+  el.innerHTML = `
+    <div class="stat-panel__primary">
+      ${headline.map(([value, label]) => `
+        <div class="stat">
+          <strong>${value}</strong>
+          <span>${label}</span>
+        </div>
+      `).join('')}
     </div>
-  `).join('');
+    <div class="stat-panel__types">
+      <span class="stat-panel__types-label">Stage types</span>
+      <div class="type-chips">
+        ${types.map(([key, count, label]) => `
+          <span class="type-chip type-chip--${key}">
+            <span class="type-chip__dot"></span>
+            <strong>${count}</strong> ${label}
+          </span>
+        `).join('')}
+      </div>
+    </div>
+  `;
 }
 
 function renderElevationChart(race) {
@@ -164,6 +201,7 @@ async function main() {
 
   renderSubtitle(race);
   applyHeroImage(document.querySelector('.page-hero'), dataRoot, images?.overview);
+  renderRouteMap(dataRoot, meta);
   renderTotals(race);
   renderElevationChart(race);
   renderGcHistoryChart(standings);

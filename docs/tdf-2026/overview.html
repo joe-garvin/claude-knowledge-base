@@ -26,7 +26,6 @@
     <h2 id="primer-title" class="section-title">The 2026 Tour de France</h2>
     <ul class="primer__intro">
       <li>21 stages over 23 days.</li>
-      <li>Opening team time trial in Barcelona on 4 July, finishing on the Champs-Élysées on 26 July.</li>
       <li>Eight mountain stages, five summit finishes, and a single time trial.</li>
       <li>Can Tadej Pogačar win a record-equalling fifth title?</li>
       <li>Can anyone finally stop him — chiefly a Giro-winning Jonas Vingegaard?</li>
@@ -67,9 +66,23 @@
     </p>
   </section>
 
+  <section aria-labelledby="map-title">
+    <h2 id="map-title" class="section-title">The route</h2>
+    <div class="card route-map-card">
+      <div class="route-map" id="route-map"></div>
+      <div class="route-map__legend">
+        <span class="type-chip type-chip--mountain"><span class="type-chip__dot"></span> Mountain</span>
+        <span class="type-chip type-chip--hilly"><span class="type-chip__dot"></span> Hilly</span>
+        <span class="type-chip type-chip--flat"><span class="type-chip__dot"></span> Flat</span>
+        <span class="type-chip type-chip--itt"><span class="type-chip__dot"></span> Time trial</span>
+        <span class="route-map__key">◦ Start &amp; finish</span>
+      </div>
+    </div>
+  </section>
+
   <section aria-labelledby="totals-title">
-    <h2 id="totals-title" class="section-title">Totals</h2>
-    <div class="totals-grid" id="totals-grid"></div>
+    <h2 id="totals-title" class="section-title">By the numbers</h2>
+    <div class="card stat-panel" id="totals-panel"></div>
   </section>
 
   <section aria-labelledby="elevation-title">

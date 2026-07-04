@@ -188,7 +188,7 @@ function renderHeader(container, { rootPath, active }) {
 
   container.innerHTML = `
     <div class="site-header__inner">
-      <a class="site-title" href="${rootPath}index.html">Tour de France 2026</a>
+      <a class="site-title" href="${rootPath}index.html">Tour de France 2026 <span class="site-title__sub">— Joe's tracker</span></a>
       <nav class="site-nav" aria-label="Primary">
         ${navLinks}
         <button type="button" class="site-nav__stages-btn${active === 'stage' ? ' is-active' : ''}"
