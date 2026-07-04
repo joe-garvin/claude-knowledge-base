@@ -136,9 +136,39 @@ function renderStaleBanner(container, meta) {
 }
 
 const NAV_ITEMS = [
+  { key: 'home', label: 'Home', file: 'overview.html' },
   { key: 'dashboard', label: 'Dashboard', file: 'index.html' },
-  { key: 'overview', label: 'Overview', file: 'overview.html' },
 ];
+
+/**
+ * Wire the Stages menu as a click-to-toggle panel. Hover menus with a
+ * gap between trigger and panel collapse before the cursor can reach a
+ * link; and a right-anchored popover clips off-screen on narrow viewports.
+ * Instead the menu is a full-width panel that drops in-flow under the
+ * header — robust on desktop and touch alike, never clipping — and closes
+ * on outside-click, Escape (returning focus to the button), or link choice.
+ */
+function wireStagesDropdown(container) {
+  const btn = container.querySelector('.site-nav__stages-btn');
+  const panel = container.querySelector('.site-nav__panel');
+  if (!btn || !panel) return;
+
+  const close = () => { container.classList.remove('stages-open'); btn.setAttribute('aria-expanded', 'false'); };
+  const open = () => { container.classList.add('stages-open'); btn.setAttribute('aria-expanded', 'true'); };
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    container.classList.contains('stages-open') ? close() : open();
+  });
+  document.addEventListener('click', (e) => {
+    if (!container.classList.contains('stages-open')) return;
+    if (!panel.contains(e.target) && e.target !== btn) close();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && container.classList.contains('stages-open')) { close(); btn.focus(); }
+  });
+  panel.addEventListener('click', () => close());
+}
 
 function renderHeader(container, { rootPath, active }) {
   if (!container) return;
@@ -147,7 +177,7 @@ function renderHeader(container, { rootPath, active }) {
   for (let n = 1; n <= 21; n++) {
     const file = `stage-${pad2(n)}.html`;
     const href = rootPath === '' ? `stages/${file}` : file;
-    stageLinks.push(`<a href="${href}">Stage ${n}</a>`);
+    stageLinks.push(`<a role="menuitem" href="${href}">Stage ${n}</a>`);
   }
 
   const navLinks = NAV_ITEMS.map((item) => {
@@ -161,13 +191,18 @@ function renderHeader(container, { rootPath, active }) {
       <a class="site-title" href="${rootPath}index.html">Tour de France 2026</a>
       <nav class="site-nav" aria-label="Primary">
         ${navLinks}
-        <div class="site-nav__stages">
-          <a href="${rootPath === '' ? 'stages/stage-01.html' : '../stages/stage-01.html'}"${active === 'stage' ? ' aria-current="page"' : ''}>Stages ▾</a>
-          <div class="site-nav__dropdown">${stageLinks.join('')}</div>
-        </div>
+        <button type="button" class="site-nav__stages-btn${active === 'stage' ? ' is-active' : ''}"
+          aria-haspopup="true" aria-expanded="false" aria-controls="stages-menu">
+          Stages <span class="site-nav__caret" aria-hidden="true">▾</span>
+        </button>
       </nav>
     </div>
+    <div class="site-nav__panel" id="stages-menu" role="menu">
+      <div class="site-nav__panel-inner">${stageLinks.join('')}</div>
+    </div>
   `;
+
+  wireStagesDropdown(container);
 }
 
 /**

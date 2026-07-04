@@ -153,39 +153,64 @@ a:hover { text-decoration: underline; }
   border-bottom-color: var(--blue);
 }
 
-.site-nav__stages { position: relative; }
-
-.site-nav__dropdown {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  margin-top: var(--space-2);
-  background: var(--surface);
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-soft);
-  padding: var(--space-2);
-  min-width: 240px;
-  max-height: 62vh;
-  overflow-y: auto;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-  z-index: 40;
-}
-
-.site-nav__stages:hover .site-nav__dropdown,
-.site-nav__stages:focus-within .site-nav__dropdown { display: grid; }
-
-.site-nav__dropdown a {
-  font-size: 0.85rem;
-  padding: var(--space-1) var(--space-2);
-  border-bottom: none;
-  border-radius: var(--radius-sm);
-  white-space: nowrap;
+.site-nav__stages-btn {
+  appearance: none;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
   color: var(--ink-secondary);
+  cursor: pointer;
+  padding: var(--space-1) 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
-.site-nav__dropdown a:hover { background: var(--canvas); text-decoration: none; }
+.site-nav__stages-btn:hover { color: var(--ink); }
+.site-nav__stages-btn.is-active { color: var(--blue); border-bottom-color: var(--blue); }
+
+.site-nav__caret { font-size: 0.7em; transition: transform 0.15s ease; }
+.site-header.stages-open .site-nav__caret { transform: rotate(180deg); }
+.site-header.stages-open .site-nav__stages-btn { color: var(--ink); }
+
+/* Full-width stages panel that drops in-flow under the header — never
+   clips off-screen the way a right-anchored popover does on mobile. */
+.site-nav__panel {
+  display: none;
+  border-top: 1px solid var(--hairline);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+.site-header.stages-open .site-nav__panel { display: block; }
+
+.site-nav__panel-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: var(--space-3) var(--space-5) var(--space-4);
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-2);
+}
+
+.site-nav__panel a {
+  font-size: 0.85rem;
+  padding: var(--space-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  color: var(--ink-secondary);
+  white-space: nowrap;
+}
+.site-nav__panel a:hover { background: var(--canvas); color: var(--blue); border-color: var(--blue); text-decoration: none; }
+
+@media (max-width: 900px) {
+  .site-nav__panel-inner { grid-template-columns: repeat(5, 1fr); }
+}
+@media (max-width: 600px) {
+  .site-nav__panel-inner { grid-template-columns: repeat(4, 1fr); padding: var(--space-3) var(--space-4); }
+}
 
 .site-main {
   max-width: 1080px;
@@ -486,6 +511,42 @@ tbody tr:hover { background: var(--canvas); }
 
 .stage-strip__cell--completed { background: var(--canvas); }
 .stage-strip__cell--completed strong::after { content: " ✓"; color: var(--type-flat); }
+
+/* ---------- Home page primer ---------- */
+
+.primer { margin-bottom: var(--space-7); }
+.primer__lead {
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: var(--ink-secondary);
+  max-width: 68ch;
+  margin-bottom: var(--space-5);
+}
+.primer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+.primer-grid .card h3 {
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 2px solid var(--blue);
+  display: inline-block;
+}
+.primer-grid .card:nth-child(2) h3 { border-bottom-color: var(--jersey-yellow); }
+.primer-grid .card:nth-child(3) h3 { border-bottom-color: var(--jersey-polka); }
+.primer-grid ul { margin: 0; padding-left: 1.15em; }
+.primer-grid li {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink-secondary);
+  margin-bottom: var(--space-2);
+}
+.primer-grid li:last-child { margin-bottom: 0; }
+.primer-grid li strong { color: var(--ink); }
+.primer__note { font-size: 0.82rem; color: var(--ink-faint); margin-top: var(--space-4); }
 
 /* ---------- Overview ---------- */
 

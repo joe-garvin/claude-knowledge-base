@@ -13,8 +13,20 @@
     "start_time_cest": "17:05",
     "est_finish_time_cest": "19:16",
     "climbs": [
-      { "name": "Côte de Montjuïc", "category": "3", "km_mark": 16.5, "length_km": 1.1, "avg_gradient": 5.1 },
-      { "name": "Côte du Stade Olympique", "category": "3", "km_mark": 18.8, "length_km": 0.8, "avg_gradient": 7.0 }
+      {
+        "name": "Côte de Montjuïc",
+        "category": "3",
+        "km_mark": 16.5,
+        "length_km": 1.1,
+        "avg_gradient": 5.1
+      },
+      {
+        "name": "Côte du Stade Olympique",
+        "category": "3",
+        "km_mark": 18.8,
+        "length_km": 0.8,
+        "avg_gradient": 7.0
+      }
     ],
     "source_confidence": "confirmed",
     "source_notes": "Distance confirmed at 19.6km (cyclingstage.com, franceletour.com); some sources round to 19.7km. Start time 17:05 CEST, last team off ~19:16 confirmed by idlprocycling.com. First TTT tour-opener since 1971."
@@ -33,9 +45,27 @@
     "start_time_cest": "13:05",
     "est_finish_time_cest": "17:30",
     "climbs": [
-      { "name": "Côte de Begues", "category": "3", "km_mark": 95.0, "length_km": null, "avg_gradient": null },
-      { "name": "Côte du Château de Montjuïc", "category": "2", "km_mark": 158.0, "length_km": 1.6, "avg_gradient": 9.3 },
-      { "name": "Côte du Stade Olympique (finish climb)", "category": "3", "km_mark": 167.7, "length_km": 0.6, "avg_gradient": 7.0 }
+      {
+        "name": "Côte de Begues",
+        "category": "3",
+        "km_mark": 95.0,
+        "length_km": null,
+        "avg_gradient": null
+      },
+      {
+        "name": "Côte du Château de Montjuïc",
+        "category": "2",
+        "km_mark": 158.0,
+        "length_km": 1.6,
+        "avg_gradient": 9.3
+      },
+      {
+        "name": "Côte du Stade Olympique (finish climb)",
+        "category": "3",
+        "km_mark": 167.7,
+        "length_km": 0.6,
+        "avg_gradient": 7.0
+      }
     ],
     "source_confidence": "confirmed",
     "source_notes": "Distance 168.5km confirmed across cyclingstage.com, cyclingflash.com, cyclingnews. Some early aggregator sources (domestiquecycling, franceletour) listed 178-182km — likely rounding/draft-route errors; 168.5km matches the user brief and multiple dedicated route-detail sources, treated as authoritative."
@@ -54,10 +84,34 @@
     "start_time_cest": "12:15",
     "est_finish_time_cest": "18:00",
     "climbs": [
-      { "name": "Sant Feliu de Codines", "category": "4", "km_mark": 30.0, "length_km": null, "avg_gradient": null },
-      { "name": "Collada de Toses", "category": "1", "km_mark": 120.0, "length_km": 9.3, "avg_gradient": 6.5 },
-      { "name": "Col du Calvaire", "category": "2", "km_mark": 160.0, "length_km": 14.9, "avg_gradient": 4.1 },
-      { "name": "Les Angles (finish climb)", "category": "3", "km_mark": 195.2, "length_km": 1.7, "avg_gradient": 6.5 }
+      {
+        "name": "Sant Feliu de Codines",
+        "category": "4",
+        "km_mark": 30.0,
+        "length_km": null,
+        "avg_gradient": null
+      },
+      {
+        "name": "Collada de Toses",
+        "category": "1",
+        "km_mark": 120.0,
+        "length_km": 9.3,
+        "avg_gradient": 6.5
+      },
+      {
+        "name": "Col du Calvaire",
+        "category": "2",
+        "km_mark": 160.0,
+        "length_km": 14.9,
+        "avg_gradient": 4.1
+      },
+      {
+        "name": "Les Angles (finish climb)",
+        "category": "3",
+        "km_mark": 195.2,
+        "length_km": 1.7,
+        "avg_gradient": 6.5
+      }
     ],
     "source_confidence": "confirmed",
     "source_notes": "Distance 195.9km confirmed (cyclingstage.com). Elevation ~3850-4000m depending on source; used 3850m as middle estimate. Summit finish at Les Angles ~6.5% per user brief."
@@ -76,11 +130,41 @@
     "start_time_cest": "13:05",
     "est_finish_time_cest": "17:30",
     "climbs": [
-      { "name": "Col de Villerouge", "category": "4", "km_mark": 40.0, "length_km": 8.6, "avg_gradient": 3.0 },
-      { "name": "Col de Bedos", "category": "4", "km_mark": 90.0, "length_km": 3.4, "avg_gradient": 4.3 },
-      { "name": "Col du Paradis", "category": "4", "km_mark": 120.0, "length_km": 6.4, "avg_gradient": 4.1 },
-      { "name": "Col de Coudins", "category": "3", "km_mark": 150.0, "length_km": 10.5, "avg_gradient": 5.5 },
-      { "name": "Col de Montségur", "category": "3", "km_mark": 147.0, "length_km": 6.9, "avg_gradient": 6.6 }
+      {
+        "name": "Col de Villerouge",
+        "category": "4",
+        "km_mark": 40.0,
+        "length_km": 8.6,
+        "avg_gradient": 3.0
+      },
+      {
+        "name": "Col de Bedos",
+        "category": "4",
+        "km_mark": 90.0,
+        "length_km": 3.4,
+        "avg_gradient": 4.3
+      },
+      {
+        "name": "Col du Paradis",
+        "category": "4",
+        "km_mark": 120.0,
+        "length_km": 6.4,
+        "avg_gradient": 4.1
+      },
+      {
+        "name": "Col de Coudins",
+        "category": "3",
+        "km_mark": 150.0,
+        "length_km": 10.5,
+        "avg_gradient": 5.5
+      },
+      {
+        "name": "Col de Montségur",
+        "category": "3",
+        "km_mark": 147.0,
+        "length_km": 6.9,
+        "avg_gradient": 6.6
+      }
     ],
     "source_confidence": "confirmed",
     "source_notes": "Distance 181.9km matches user brief and domestiquecycling (182km rounded). Elevation gain estimated (~2800m) — not explicitly published; treat as estimate."
@@ -116,9 +200,27 @@
     "start_time_cest": "12:15",
     "est_finish_time_cest": "18:30",
     "climbs": [
-      { "name": "Col d'Aspin", "category": "1", "km_mark": 110.0, "length_km": 12.0, "avg_gradient": 6.5 },
-      { "name": "Col du Tourmalet", "category": "HC", "km_mark": 150.0, "length_km": 17.0, "avg_gradient": 7.3 },
-      { "name": "Gavarnie-Gèdre (finish climb)", "category": "1", "km_mark": 186.2, "length_km": 18.7, "avg_gradient": 4.0 }
+      {
+        "name": "Col d'Aspin",
+        "category": "1",
+        "km_mark": 110.0,
+        "length_km": 12.0,
+        "avg_gradient": 6.5
+      },
+      {
+        "name": "Col du Tourmalet",
+        "category": "HC",
+        "km_mark": 150.0,
+        "length_km": 17.0,
+        "avg_gradient": 7.3
+      },
+      {
+        "name": "Gavarnie-Gèdre (finish climb)",
+        "category": "1",
+        "km_mark": 186.2,
+        "length_km": 18.7,
+        "avg_gradient": 4.0
+      }
     ],
     "source_confidence": "confirmed",
     "source_notes": "Distance 186.2km per cyclingstage.com. Elevation >4100m per domestiquecycling; matches user brief summit-finish list."
@@ -171,11 +273,41 @@
     "start_time_cest": "13:05",
     "est_finish_time_cest": "17:30",
     "climbs": [
-      { "name": "Côte de Miel", "category": "3", "km_mark": 40.0, "length_km": 6.6, "avg_gradient": 3.9 },
-      { "name": "Suc au May", "category": "2", "km_mark": 90.0, "length_km": 3.8, "avg_gradient": 7.7 },
-      { "name": "Côte de la Croix de Pey", "category": "4", "km_mark": 130.0, "length_km": null, "avg_gradient": null },
-      { "name": "Mont Bessou", "category": "3", "km_mark": 160.0, "length_km": null, "avg_gradient": null },
-      { "name": "Côte des Gardes", "category": "4", "km_mark": 180.0, "length_km": 2.2, "avg_gradient": 4.8 }
+      {
+        "name": "Côte de Miel",
+        "category": "3",
+        "km_mark": 40.0,
+        "length_km": 6.6,
+        "avg_gradient": 3.9
+      },
+      {
+        "name": "Suc au May",
+        "category": "2",
+        "km_mark": 90.0,
+        "length_km": 3.8,
+        "avg_gradient": 7.7
+      },
+      {
+        "name": "Côte de la Croix de Pey",
+        "category": "4",
+        "km_mark": 130.0,
+        "length_km": null,
+        "avg_gradient": null
+      },
+      {
+        "name": "Mont Bessou",
+        "category": "3",
+        "km_mark": 160.0,
+        "length_km": null,
+        "avg_gradient": null
+      },
+      {
+        "name": "Côte des Gardes",
+        "category": "4",
+        "km_mark": 180.0,
+        "length_km": 2.2,
+        "avg_gradient": 4.8
+      }
     ],
     "source_confidence": "confirmed",
     "source_notes": "Distance 185.5km per cyclingstage.com. Elevation ~3400m per domestiquecycling ('no flat km' description)."
@@ -194,12 +326,48 @@
     "start_time_cest": "12:15",
     "est_finish_time_cest": "18:00",
     "climbs": [
-      { "name": "Col de la Griffoul", "category": "2", "km_mark": 50.0, "length_km": 5.9, "avg_gradient": 6.7 },
-      { "name": "Col de Prat de Bouc", "category": "3", "km_mark": 90.0, "length_km": 3.2, "avg_gradient": 5.8 },
-      { "name": "Côte de Murat", "category": "3", "km_mark": 115.0, "length_km": 6.6, "avg_gradient": 4.4 },
-      { "name": "Puy Mary / Pas de Peyrol", "category": "1", "km_mark": 140.0, "length_km": 7.8, "avg_gradient": 6.0 },
-      { "name": "Col de Pertus", "category": "2", "km_mark": 155.0, "length_km": 4.4, "avg_gradient": 8.5 },
-      { "name": "Le Lioran (finish climb, via Col de Font de Cère)", "category": "2", "km_mark": 166.6, "length_km": null, "avg_gradient": null }
+      {
+        "name": "Col de la Griffoul",
+        "category": "2",
+        "km_mark": 50.0,
+        "length_km": 5.9,
+        "avg_gradient": 6.7
+      },
+      {
+        "name": "Col de Prat de Bouc",
+        "category": "3",
+        "km_mark": 90.0,
+        "length_km": 3.2,
+        "avg_gradient": 5.8
+      },
+      {
+        "name": "Côte de Murat",
+        "category": "3",
+        "km_mark": 115.0,
+        "length_km": 6.6,
+        "avg_gradient": 4.4
+      },
+      {
+        "name": "Puy Mary / Pas de Peyrol",
+        "category": "1",
+        "km_mark": 140.0,
+        "length_km": 7.8,
+        "avg_gradient": 6.0
+      },
+      {
+        "name": "Col de Pertus",
+        "category": "2",
+        "km_mark": 155.0,
+        "length_km": 4.4,
+        "avg_gradient": 8.5
+      },
+      {
+        "name": "Le Lioran (finish climb, via Col de Font de Cère)",
+        "category": "2",
+        "km_mark": 166.6,
+        "length_km": null,
+        "avg_gradient": null
+      }
     ],
     "source_confidence": "confirmed",
     "source_notes": "Distance 166.6-167km depending on source. Elevation ~3,791-3,900m confirmed by multiple sources. Note: cyclingstage.com classifies this as 'Hills' but it has a summit finish and is one of the 8 mountain stages / 5 summit finishes per official race framing and most previews (domestiquecycling, velo.outsideonline) — classified here as mountain."
@@ -218,7 +386,13 @@
     "start_time_cest": "13:05",
     "est_finish_time_cest": "17:30",
     "climbs": [
-      { "name": "Côte de Billy-Chévannes", "category": "4", "km_mark": 121.0, "length_km": 1.5, "avg_gradient": 6.0 }
+      {
+        "name": "Côte de Billy-Chévannes",
+        "category": "4",
+        "km_mark": 121.0,
+        "length_km": 1.5,
+        "avg_gradient": 6.0
+      }
     ],
     "source_confidence": "confirmed",
     "source_notes": "Distance 161.3km per cyclingstage.com. Elevation ~1800m per domestiquecycling."
@@ -237,7 +411,13 @@
     "start_time_cest": "13:05",
     "est_finish_time_cest": "17:30",
     "climbs": [
-      { "name": "Côte de Montagny-lès-Buxy", "category": "4", "km_mark": 159.0, "length_km": 2.6, "avg_gradient": 3.9 }
+      {
+        "name": "Côte de Montagny-lès-Buxy",
+        "category": "4",
+        "km_mark": 159.0,
+        "length_km": 2.6,
+        "avg_gradient": 3.9
+      }
     ],
     "source_confidence": "confirmed",
     "source_notes": "Distance 179.1km per cyclingstage.com (181km per domestiquecycling)."
@@ -256,8 +436,20 @@
     "start_time_cest": "13:05",
     "est_finish_time_cest": "18:00",
     "climbs": [
-      { "name": "Col des Croix", "category": "3", "km_mark": 150.0, "length_km": 5.4, "avg_gradient": 4.9 },
-      { "name": "Ballon d'Alsace", "category": "1", "km_mark": 175.0, "length_km": 8.7, "avg_gradient": 6.9 }
+      {
+        "name": "Col des Croix",
+        "category": "3",
+        "km_mark": 150.0,
+        "length_km": 5.4,
+        "avg_gradient": 4.9
+      },
+      {
+        "name": "Ballon d'Alsace",
+        "category": "1",
+        "km_mark": 175.0,
+        "length_km": 8.7,
+        "avg_gradient": 6.9
+      }
     ],
     "source_confidence": "confirmed",
     "source_notes": "Distance 205.8km confirmed as the Tour's only stage over 200km. Elevation gain estimated (~2600m) — not explicitly published in sources reviewed."
@@ -276,11 +468,41 @@
     "start_time_cest": "12:15",
     "est_finish_time_cest": "17:30",
     "climbs": [
-      { "name": "Grand Ballon", "category": "1", "km_mark": 60.0, "length_km": 21.5, "avg_gradient": null },
-      { "name": "Col du Page", "category": "2", "km_mark": 85.0, "length_km": 9.8, "avg_gradient": 4.7 },
-      { "name": "Ballon d'Alsace", "category": "1", "km_mark": 105.0, "length_km": 8.7, "avg_gradient": 6.9 },
-      { "name": "Geishouse", "category": "2", "km_mark": 135.0, "length_km": 10.9, "avg_gradient": 7.3 },
-      { "name": "Col du Haag", "category": "2", "km_mark": 148.0, "length_km": 11.2, "avg_gradient": 7.3 }
+      {
+        "name": "Grand Ballon",
+        "category": "1",
+        "km_mark": 60.0,
+        "length_km": 21.5,
+        "avg_gradient": null
+      },
+      {
+        "name": "Col du Page",
+        "category": "2",
+        "km_mark": 85.0,
+        "length_km": 9.8,
+        "avg_gradient": 4.7
+      },
+      {
+        "name": "Ballon d'Alsace",
+        "category": "1",
+        "km_mark": 105.0,
+        "length_km": 8.7,
+        "avg_gradient": 6.9
+      },
+      {
+        "name": "Geishouse",
+        "category": "2",
+        "km_mark": 135.0,
+        "length_km": 10.9,
+        "avg_gradient": 7.3
+      },
+      {
+        "name": "Col du Haag",
+        "category": "2",
+        "km_mark": 148.0,
+        "length_km": 11.2,
+        "avg_gradient": 7.3
+      }
     ],
     "source_confidence": "confirmed",
     "source_notes": "Distance 155.3km per cyclingstage.com. Elevation ~3800m per domestiquecycling. Note: this stage climbs the Ballon d'Alsace on both stage 13 and stage 14 approaches per sources — flagged as possible source inconsistency but retained as reported."
@@ -299,9 +521,27 @@
     "start_time_cest": "12:15",
     "est_finish_time_cest": "18:30",
     "climbs": [
-      { "name": "Col de la Savine", "category": "3", "km_mark": 50.0, "length_km": null, "avg_gradient": null },
-      { "name": "Col de la Croisette", "category": "2", "km_mark": 150.0, "length_km": 7.6, "avg_gradient": 8.8 },
-      { "name": "Plateau de Solaison (finish climb)", "category": "HC", "km_mark": 183.9, "length_km": 11.6, "avg_gradient": 8.9 }
+      {
+        "name": "Col de la Savine",
+        "category": "3",
+        "km_mark": 50.0,
+        "length_km": null,
+        "avg_gradient": null
+      },
+      {
+        "name": "Col de la Croisette",
+        "category": "2",
+        "km_mark": 150.0,
+        "length_km": 7.6,
+        "avg_gradient": 8.8
+      },
+      {
+        "name": "Plateau de Solaison (finish climb)",
+        "category": "HC",
+        "km_mark": 183.9,
+        "length_km": 11.6,
+        "avg_gradient": 8.9
+      }
     ],
     "source_confidence": "confirmed",
     "source_notes": "Distance 183.9km per cyclingstage.com. Elevation ~4700m estimated (franceletour.com cites 11.3km/9.1% for final climb vs domestiquecycling's 11.6km/8.9% — minor gradient discrepancy between sources, both indicate a very steep new summit finish)."
@@ -320,7 +560,13 @@
     "start_time_cest": "12:30",
     "est_finish_time_cest": "17:30",
     "climbs": [
-      { "name": "Côte de Larringes", "category": "3", "km_mark": 9.4, "length_km": 9.4, "avg_gradient": 4.3 }
+      {
+        "name": "Côte de Larringes",
+        "category": "3",
+        "km_mark": 9.4,
+        "length_km": 9.4,
+        "avg_gradient": 4.3
+      }
     ],
     "source_confidence": "confirmed",
     "source_notes": "Distance 26.1km per cyclingstage.com (26km per user brief). Matches known ITT stage from Évian to Thonon."
@@ -335,12 +581,24 @@
     "elevation_gain_m": 2200,
     "summit_finish": false,
     "profile_quality": "coarse",
-    "preview": "Only nominally flat — rolling Alpine foothill terrain with a shallow climb before the finish makes this the sprinters' last realistic chance before the mountain finale begins.",
+    "preview": "Only nominally flat — rolling Alpine foothill terrain with a shallow climb before the finish makes this the sprinters' last realistic chance before the mountain finale begins. Expect the sprinters' teams to fight to keep the race together, and a reduced bunch sprint if they manage it.",
     "start_time_cest": "13:05",
     "est_finish_time_cest": "17:30",
     "climbs": [
-      { "name": "Col des Prés", "category": "4", "km_mark": 40.0, "length_km": null, "avg_gradient": null },
-      { "name": "Col de Couz", "category": "4", "km_mark": 90.0, "length_km": null, "avg_gradient": null }
+      {
+        "name": "Col des Prés",
+        "category": "4",
+        "km_mark": 40.0,
+        "length_km": null,
+        "avg_gradient": null
+      },
+      {
+        "name": "Col de Couz",
+        "category": "4",
+        "km_mark": 90.0,
+        "length_km": null,
+        "avg_gradient": null
+      }
     ],
     "source_confidence": "confirmed",
     "source_notes": "Distance 174.7km per cyclingstage.com (175km per domestiquecycling). Classified as hilly/rolling given ~2200m elevation despite being billed as a 'sprinters' stage'; some sources call it flat."
@@ -359,9 +617,27 @@
     "start_time_cest": "12:15",
     "est_finish_time_cest": "18:30",
     "climbs": [
-      { "name": "Engins", "category": "2", "km_mark": 30.0, "length_km": 11.4, "avg_gradient": 5.4 },
-      { "name": "Monteynard", "category": "2", "km_mark": 100.0, "length_km": 9.7, "avg_gradient": 5.0 },
-      { "name": "Orcières-Merlette (finish climb)", "category": "1", "km_mark": 185.2, "length_km": 7.1, "avg_gradient": 6.7 }
+      {
+        "name": "Engins",
+        "category": "2",
+        "km_mark": 30.0,
+        "length_km": 11.4,
+        "avg_gradient": 5.4
+      },
+      {
+        "name": "Monteynard",
+        "category": "2",
+        "km_mark": 100.0,
+        "length_km": 9.7,
+        "avg_gradient": 5.0
+      },
+      {
+        "name": "Orcières-Merlette (finish climb)",
+        "category": "1",
+        "km_mark": 185.2,
+        "length_km": 7.1,
+        "avg_gradient": 6.7
+      }
     ],
     "source_confidence": "confirmed",
     "source_notes": "Distance 185.2km per cyclingstage.com. Elevation ~3950m per franceletour.com. Some sources list intermediate climbs as Col de Manse / Col du Festre rather than Engins/Monteynard — naming discrepancy between sources, both sets retained is not possible so domestiquecycling's climb list used."
@@ -376,14 +652,38 @@
     "elevation_gain_m": 4200,
     "summit_finish": true,
     "profile_quality": "coarse",
-    "preview": "A short but ferocious stage — early climbs including the Col du Noyer set up an explosive day well before the legendary 21-hairpin finale up Alpe d'Huez, the first of back-to-back summit finishes there.",
+    "preview": "A short but ferocious stage — early climbs including the Col du Noyer set up an explosive day well before the legendary 21-hairpin finale up Alpe d'Huez, the first of back-to-back summit finishes there. At barely 128 km there is nowhere to hide, and the overall contenders will be marking each other from kilometre zero.",
     "start_time_cest": "12:15",
     "est_finish_time_cest": "18:00",
     "climbs": [
-      { "name": "Col Bayard", "category": "3", "km_mark": 20.0, "length_km": 5.5, "avg_gradient": 6.8 },
-      { "name": "Col du Noyer", "category": "1", "km_mark": 55.0, "length_km": 7.3, "avg_gradient": 8.2 },
-      { "name": "Col d'Ornon", "category": "2", "km_mark": 100.0, "length_km": 5.6, "avg_gradient": 6.2 },
-      { "name": "Alpe d'Huez (finish climb)", "category": "HC", "km_mark": 127.9, "length_km": 13.8, "avg_gradient": 7.9 }
+      {
+        "name": "Col Bayard",
+        "category": "3",
+        "km_mark": 20.0,
+        "length_km": 5.5,
+        "avg_gradient": 6.8
+      },
+      {
+        "name": "Col du Noyer",
+        "category": "1",
+        "km_mark": 55.0,
+        "length_km": 7.3,
+        "avg_gradient": 8.2
+      },
+      {
+        "name": "Col d'Ornon",
+        "category": "2",
+        "km_mark": 100.0,
+        "length_km": 5.6,
+        "avg_gradient": 6.2
+      },
+      {
+        "name": "Alpe d'Huez (finish climb)",
+        "category": "HC",
+        "km_mark": 127.9,
+        "length_km": 13.8,
+        "avg_gradient": 7.9
+      }
     ],
     "source_confidence": "confirmed",
     "source_notes": "Distance 127.9km per cyclingstage.com. Alpe d'Huez climb figures cross-checked: Wikipedia cites 13.8km/7.9%, domestiquecycling cites 13.9km/8% — used Wikipedia's figure as primary. First of the historic back-to-back Alpe d'Huez summit finishes."
@@ -398,15 +698,45 @@
     "elevation_gain_m": 5600,
     "summit_finish": true,
     "profile_quality": "coarse",
-    "preview": "The queen stage and hardest day of the race by a wide margin, with roughly 5,600m of climbing across the Col de la Croix de Fer, Col du Télégraphe, Col du Galibier (the Tour's highest point) and Col de Sarenne, before a second consecutive summit finish atop Alpe d'Huez.",
+    "preview": "The queen stage and hardest day of the race by a wide margin, with roughly 5,600m of climbing across the Col de la Croix de Fer, Col du Télégraphe, Col du Galibier (the Tour's highest point) and Col de Sarenne, before a second consecutive summit finish atop Alpe d'Huez. Whoever wears yellow will have to earn it twice on the same climb in two days — this is where the 2026 Tour is most likely won or lost.",
     "start_time_cest": "12:15",
     "est_finish_time_cest": "18:30",
     "climbs": [
-      { "name": "Col de la Croix de Fer", "category": "HC", "km_mark": 40.0, "length_km": 24.0, "avg_gradient": 5.2 },
-      { "name": "Col du Télégraphe", "category": "1", "km_mark": 90.0, "length_km": 12.0, "avg_gradient": 7.1 },
-      { "name": "Col du Galibier", "category": "HC", "km_mark": 115.0, "length_km": 17.0, "avg_gradient": 6.8 },
-      { "name": "Col de Sarenne", "category": "1", "km_mark": 150.0, "length_km": 12.9, "avg_gradient": 7.3 },
-      { "name": "Alpe d'Huez (finish climb)", "category": "HC", "km_mark": 170.9, "length_km": 13.8, "avg_gradient": 7.9 }
+      {
+        "name": "Col de la Croix de Fer",
+        "category": "HC",
+        "km_mark": 40.0,
+        "length_km": 24.0,
+        "avg_gradient": 5.2
+      },
+      {
+        "name": "Col du Télégraphe",
+        "category": "1",
+        "km_mark": 90.0,
+        "length_km": 12.0,
+        "avg_gradient": 7.1
+      },
+      {
+        "name": "Col du Galibier",
+        "category": "HC",
+        "km_mark": 115.0,
+        "length_km": 17.0,
+        "avg_gradient": 6.8
+      },
+      {
+        "name": "Col de Sarenne",
+        "category": "1",
+        "km_mark": 150.0,
+        "length_km": 12.9,
+        "avg_gradient": 7.3
+      },
+      {
+        "name": "Alpe d'Huez (finish climb)",
+        "category": "HC",
+        "km_mark": 170.9,
+        "length_km": 13.8,
+        "avg_gradient": 7.9
+      }
     ],
     "source_confidence": "confirmed",
     "source_notes": "Distance 170.9km per cyclingstage.com (171km per domestiquecycling). Elevation 5,600-5,601m confirmed across multiple sources as the queen stage. Second consecutive Alpe d'Huez summit finish, first time in Tour history back-to-back finishes on the same climb."
@@ -425,9 +755,27 @@
     "start_time_cest": "16:30",
     "est_finish_time_cest": "19:45",
     "climbs": [
-      { "name": "Butte Montmartre (1st ascent)", "category": "4", "km_mark": 95.0, "length_km": 1.1, "avg_gradient": 5.9 },
-      { "name": "Butte Montmartre (2nd ascent)", "category": "4", "km_mark": 110.0, "length_km": 1.1, "avg_gradient": 5.9 },
-      { "name": "Butte Montmartre (3rd ascent)", "category": "4", "km_mark": 118.0, "length_km": 1.1, "avg_gradient": 5.9 }
+      {
+        "name": "Butte Montmartre (1st ascent)",
+        "category": "4",
+        "km_mark": 95.0,
+        "length_km": 1.1,
+        "avg_gradient": 5.9
+      },
+      {
+        "name": "Butte Montmartre (2nd ascent)",
+        "category": "4",
+        "km_mark": 110.0,
+        "length_km": 1.1,
+        "avg_gradient": 5.9
+      },
+      {
+        "name": "Butte Montmartre (3rd ascent)",
+        "category": "4",
+        "km_mark": 118.0,
+        "length_km": 1.1,
+        "avg_gradient": 5.9
+      }
     ],
     "source_confidence": "confirmed",
     "source_notes": "Distance 130km per domestiquecycling/franceletour, 133km per cyclingstage.com — minor discrepancy, likely reflects late course finalization; used cyclingstage.com's more recent figure. Montmartre climbs repeat the format introduced in 2024 Olympics/2025 Tour finale. Start time later than other stages (afternoon finish for TV/ceremony purposes) per franceletour.com schedule."

@@ -157,7 +157,7 @@ function renderStageTable(race) {
 }
 
 async function main() {
-  const { meta, dataRoot } = await initCommon({ rootPath: '', active: 'overview' });
+  const { meta, dataRoot } = await initCommon({ rootPath: '', active: 'home' });
   const race = await fetchJsonOrNull(dataUrl(dataRoot, 'data/race.json', meta));
   const standings = await fetchJsonOrNull(dataUrl(dataRoot, 'data/standings.json', meta));
   const images = await fetchJsonOrNull(dataUrl(dataRoot, 'data/images.json', meta));
