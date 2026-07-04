@@ -571,6 +571,13 @@ tbody tr:hover { background: var(--canvas); }
 
 .route-map { max-width: 520px; margin: 0 auto; }
 .route-map svg { display: block; width: 100%; height: auto; }
+.route-map text { pointer-events: none; }
+.route-map .rm-marker { cursor: pointer; }
+.route-map .rm-dot { transition: r 0.12s ease, stroke 0.12s ease, stroke-width 0.12s ease; }
+.route-map .rm-marker:hover .rm-dot,
+.route-map .rm-marker:focus-visible .rm-dot { r: 6.5; stroke: var(--indigo); stroke-width: 2.5; }
+.route-map .rm-marker:focus { outline: none; }
+.route-map .rm-marker:focus-visible .rm-hit { stroke: var(--indigo); stroke-width: 1.5; }
 .route-map__legend {
   display: flex;
   flex-wrap: wrap;
@@ -583,6 +590,7 @@ tbody tr:hover { background: var(--canvas); }
   font-size: 0.85rem;
 }
 .route-map__key { color: var(--ink-muted); }
+.route-map__hint { text-align: center; font-size: 0.82rem; margin: var(--space-3) 0 0; }
 
 /* ---------- Overview ---------- */
 
