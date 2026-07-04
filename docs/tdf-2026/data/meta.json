@@ -1,16 +1,16 @@
 {
-  "last_updated": "2026-07-04T09:06:04Z",
-  "scrape_status": "failed",
+  "last_updated": "2026-07-04T19:44:03Z",
+  "scrape_status": "partial",
   "sections": {
     "standings": {
-      "status": "failed",
-      "source": "seed",
-      "scraped_at": "2026-07-03T12:00:00Z"
+      "status": "ok",
+      "source": "wikipedia",
+      "scraped_at": "2026-07-04T19:44:01Z"
     },
     "results": {
       "status": "partial",
       "source": "procyclingstats",
-      "scraped_at": "2026-07-04T09:06:03Z"
+      "scraped_at": "2026-07-04T19:44:01Z"
     }
   },
   "notes": "Placeholder snapshot ahead of the Grand Départ. Standings and results will populate once the race starts and the scraper runs."
