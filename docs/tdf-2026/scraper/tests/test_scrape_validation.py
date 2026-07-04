@@ -12,24 +12,32 @@ import unittest
 import scrape
 
 
+def _gc(n):
+    return [{"rank": i, "rider": f"R{i}", "team": f"T{i}"} for i in range(1, n + 1)]
+
+
 class TestValidateGcRows(unittest.TestCase):
     def test_valid_sequential_ranks(self):
-        rows = [
-            {"rank": 1, "rider": "A", "team": "T1"},
-            {"rank": 2, "rider": "B", "team": "T2"},
-        ]
-        self.assertTrue(scrape.validate_gc_rows(rows))
+        self.assertTrue(scrape.validate_gc_rows(_gc(10)))
 
     def test_empty_is_invalid(self):
         self.assertFalse(scrape.validate_gc_rows([]))
         self.assertFalse(scrape.validate_gc_rows(None))
 
+    def test_too_few_rows_invalid(self):
+        # A mis-matched table (jersey legend / teams box) yields only a
+        # handful of rows — the race-day garbage this guard now rejects.
+        self.assertFalse(scrape.validate_gc_rows(_gc(1)))
+        self.assertFalse(scrape.validate_gc_rows(_gc(scrape.MIN_GC_ROWS - 1)))
+
     def test_non_sequential_ranks_invalid(self):
-        rows = [{"rank": 1, "rider": "A", "team": "T1"}, {"rank": 3, "rider": "B", "team": "T2"}]
+        rows = _gc(6)
+        rows[3]["rank"] = 99
         self.assertFalse(scrape.validate_gc_rows(rows))
 
     def test_missing_field_invalid(self):
-        rows = [{"rank": 1, "rider": "A", "team": ""}]
+        rows = _gc(6)
+        rows[2]["team"] = ""
         self.assertFalse(scrape.validate_gc_rows(rows))
 
 

@@ -1,0 +1,56 @@
+<!--
+Compact fixture mirroring the live "2026 Tour de France" article structure
+(verified 2026-07-04). Exercises the parser's real hazards:
+  - a route table with Stage/Winner columns that must NOT be mistaken for
+    the leaders-summary table (its "winner" is the stage type),
+  - a leaders-summary table (Stage | Winner | General classification | …),
+  - four classification tables whose rank column is a row-header <th>, so
+    body cells must be read as th+td (or every column shifts by one).
+-->
+<html><body>
+
+<h2>Route and stages</h2>
+<table class="wikitable">
+  <tr><th>Stage</th><th>Date</th><th>Course</th><th>Distance</th><th>Type</th><th>Winner</th></tr>
+  <tr><td>1</td><td>4 July</td><td>Barcelona to Barcelona</td><td>19.6 km</td><td>Team time trial</td><td><a href="/wiki/Visma">Visma–Lease a Bike</a></td></tr>
+</table>
+
+<h2>Classification leadership</h2>
+<table class="wikitable">
+  <tr><th>Stage</th><th>Winner</th><th>General classification</th><th>Points classification</th><th>Mountains classification</th><th>Young rider classification</th><th>Team classification</th><th>Combativity award</th></tr>
+  <tr><th>1</th><td><a href="/wiki/Visma">Visma–Lease a Bike</a></td><td><a href="/wiki/JV">Jonas Vingegaard</a></td><td><a href="/wiki/EB">Egan Bernal</a></td><td><a href="/wiki/TP">Tadej Pogačar</a></td><td><a href="/wiki/JA">Juan Ayuso</a></td><td><a href="/wiki/INEOS">Netcompany INEOS</a></td><td>no award</td></tr>
+</table>
+
+<h2>General classification</h2>
+<table class="wikitable">
+  <tr><th>Rank</th><th>Rider</th><th>Team</th><th>Time</th></tr>
+  <tr><th>1</th><td><a href="/wiki/JV">Jonas Vingegaard</a></td><td><a href="/wiki/Visma">Visma–Lease a Bike</a></td><td>21' 47"</td></tr>
+  <tr><th>2</th><td><a href="/wiki/FG">Filippo Ganna</a></td><td><a href="/wiki/INEOS">Netcompany INEOS</a></td><td>+ 8"</td></tr>
+  <tr><th>3</th><td><a href="/wiki/TP">Tadej Pogačar</a></td><td><a href="/wiki/UAE">UAE Team Emirates XRG</a></td><td>+ 12"</td></tr>
+  <tr><th>4</th><td><a href="/wiki/JA">Juan Ayuso</a></td><td><a href="/wiki/Lidl">Lidl–Trek</a></td><td>+ 16"</td></tr>
+  <tr><th>5</th><td><a href="/wiki/RE">Remco Evenepoel</a></td><td><a href="/wiki/RBH">Red Bull–Bora–Hansgrohe</a></td><td>+ 19"</td></tr>
+  <tr><th>6</th><td><a href="/wiki/IdT">Isaac del Toro</a></td><td><a href="/wiki/UAE">UAE Team Emirates XRG</a></td><td>+ 26"</td></tr>
+</table>
+
+<h2>Points classification</h2>
+<table class="wikitable">
+  <tr><th>Rank</th><th>Rider</th><th>Team</th><th>Points</th></tr>
+  <tr><th>1</th><td><a href="/wiki/EB">Egan Bernal</a></td><td><a href="/wiki/INEOS">Netcompany INEOS</a></td><td>0</td></tr>
+  <tr><th>2</th><td><a href="/wiki/KV">Kévin Vauquelin</a></td><td><a href="/wiki/INEOS">Netcompany INEOS</a></td><td>0</td></tr>
+</table>
+
+<h2>Mountains classification</h2>
+<table class="wikitable">
+  <tr><th>Rank</th><th>Rider</th><th>Team</th><th>Points</th></tr>
+  <tr><th>1</th><td><a href="/wiki/TP">Tadej Pogačar</a></td><td><a href="/wiki/UAE">UAE Team Emirates XRG</a></td><td>0</td></tr>
+  <tr><th>2</th><td><a href="/wiki/JV">Jonas Vingegaard</a></td><td><a href="/wiki/Visma">Visma–Lease a Bike</a></td><td>0</td></tr>
+</table>
+
+<h2>Young rider classification</h2>
+<table class="wikitable">
+  <tr><th>Rank</th><th>Rider</th><th>Team</th><th>Time</th></tr>
+  <tr><th>1</th><td><a href="/wiki/JA">Juan Ayuso</a></td><td><a href="/wiki/Lidl">Lidl–Trek</a></td><td>22' 03"</td></tr>
+  <tr><th>2</th><td><a href="/wiki/IdT">Isaac del Toro</a></td><td><a href="/wiki/UAE">UAE Team Emirates XRG</a></td><td>+ 10"</td></tr>
+</table>
+
+</body></html>

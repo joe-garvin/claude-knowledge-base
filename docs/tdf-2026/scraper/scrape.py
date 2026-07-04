@@ -62,8 +62,14 @@ def utc_now_iso():
     return datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+# A real post-stage GC lists the whole field; a mis-matched table (a jersey
+# legend, a teams box) yields only a handful of rows. Requiring a plausible
+# minimum is what stops a garbage parse from overwriting good standings.
+MIN_GC_ROWS = 5
+
+
 def validate_gc_rows(rows):
-    if not rows:
+    if not rows or len(rows) < MIN_GC_ROWS:
         return False
     for i, r in enumerate(rows, start=1):
         if r.get("rank") != i or not r.get("rider") or not r.get("team"):

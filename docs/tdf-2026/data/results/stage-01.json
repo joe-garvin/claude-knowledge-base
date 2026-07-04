@@ -1,4 +1,24 @@
 {
   "stage": 1,
-  "completed": false
+  "completed": true,
+  "date": "2026-07-04",
+  "top10": [
+    { "rank": 1, "rider": "Jonas Vingegaard", "team": "Visma–Lease a Bike", "time": "21:47", "gap": "—" },
+    { "rank": 2, "rider": "Filippo Ganna", "team": "Netcompany INEOS", "time": "", "gap": "+0:08" },
+    { "rank": 3, "rider": "Tadej Pogačar", "team": "UAE Team Emirates-XRG", "time": "", "gap": "+0:12" },
+    { "rank": 4, "rider": "Juan Ayuso", "team": "Lidl–Trek", "time": "", "gap": "+0:16" },
+    { "rank": 5, "rider": "Remco Evenepoel", "team": "Red Bull–Bora-Hansgrohe", "time": "", "gap": "+0:19" },
+    { "rank": 6, "rider": "Isaac del Toro", "team": "UAE Team Emirates-XRG", "time": "", "gap": "+0:26" },
+    { "rank": 7, "rider": "Davide Piganzoli", "team": "Visma–Lease a Bike", "time": "", "gap": "+0:28" },
+    { "rank": 8, "rider": "Florian Lipowitz", "team": "Red Bull–Bora-Hansgrohe", "time": "", "gap": "+0:35" },
+    { "rank": 9, "rider": "Tobias Foss", "team": "Netcompany INEOS", "time": "", "gap": "+0:38" },
+    { "rank": 10, "rider": "Paul Seixas", "team": "Decathlon CMA CGM", "time": "", "gap": "+0:39" }
+  ],
+  "jersey_wearers_after": {
+    "gc": "Jonas Vingegaard",
+    "points": "Egan Bernal",
+    "kom": "Tadej Pogačar",
+    "youth": "Juan Ayuso"
+  },
+  "note": "Team time trial — individual classification shown (each rider's finishing time)."
 }

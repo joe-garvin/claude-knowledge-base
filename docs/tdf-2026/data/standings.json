@@ -1,19 +1,221 @@
 {
-  "as_of_stage": 0,
+  "as_of_stage": 1,
   "classifications": {
     "gc": [
       {
         "rank": 1,
-        "rider": "Netcompany INEOS",
-        "team": "no award",
+        "rider": "Jonas Vingegaard",
+        "team": "Visma–Lease a Bike",
+        "time": "21' 47\"",
         "gap": "—"
+      },
+      {
+        "rank": 2,
+        "rider": "Filippo Ganna",
+        "team": "Netcompany INEOS",
+        "time": "+ 8\"",
+        "gap": "+ 8\""
+      },
+      {
+        "rank": 3,
+        "rider": "Tadej Pogačar",
+        "team": "UAE Team Emirates XRG",
+        "time": "+ 12\"",
+        "gap": "+ 12\""
+      },
+      {
+        "rank": 4,
+        "rider": "Juan Ayuso",
+        "team": "Lidl–Trek",
+        "time": "+ 16\"",
+        "gap": "+ 16\""
+      },
+      {
+        "rank": 5,
+        "rider": "Remco Evenepoel",
+        "team": "Red Bull–Bora–Hansgrohe",
+        "time": "+ 19\"",
+        "gap": "+ 19\""
+      },
+      {
+        "rank": 6,
+        "rider": "Isaac del Toro",
+        "team": "UAE Team Emirates XRG",
+        "time": "+ 26\"",
+        "gap": "+ 26\""
+      },
+      {
+        "rank": 7,
+        "rider": "Davide Piganzoli",
+        "team": "Visma–Lease a Bike",
+        "time": "+ 28\"",
+        "gap": "+ 28\""
+      },
+      {
+        "rank": 8,
+        "rider": "Florian Lipowitz",
+        "team": "Red Bull–Bora–Hansgrohe",
+        "time": "+ 35\"",
+        "gap": "+ 35\""
+      },
+      {
+        "rank": 9,
+        "rider": "Tobias Foss",
+        "team": "Netcompany INEOS",
+        "time": "+ 38\"",
+        "gap": "+ 38\""
+      },
+      {
+        "rank": 10,
+        "rider": "Paul Seixas",
+        "team": "Decathlon CMA CGM",
+        "time": "+ 39\"",
+        "gap": "+ 39\""
       }
     ],
-    "points": [],
-    "kom": [],
-    "youth": []
+    "points": [
+      {
+        "rank": 1,
+        "rider": "Egan Bernal",
+        "team": "Netcompany INEOS",
+        "points": 0
+      },
+      {
+        "rank": 2,
+        "rider": "Kévin Vauquelin",
+        "team": "Netcompany INEOS",
+        "points": 0
+      },
+      {
+        "rank": 3,
+        "rider": "Michał Kwiatkowski",
+        "team": "Netcompany INEOS",
+        "points": 0
+      },
+      {
+        "rank": 4,
+        "rider": "Dorian Godon",
+        "team": "Netcompany INEOS",
+        "points": 0
+      },
+      {
+        "rank": 5,
+        "rider": "Thymen Arensman",
+        "team": "Netcompany INEOS",
+        "points": 0
+      }
+    ],
+    "kom": [
+      {
+        "rank": 1,
+        "rider": "Tadej Pogačar",
+        "team": "UAE Team Emirates XRG",
+        "points": 0
+      },
+      {
+        "rank": 2,
+        "rider": "Jonas Vingegaard",
+        "team": "Visma–Lease a Bike",
+        "points": 0
+      },
+      {
+        "rank": 3,
+        "rider": "Remco Evenepoel",
+        "team": "Red Bull–Bora–Hansgrohe",
+        "points": 0
+      },
+      {
+        "rank": 4,
+        "rider": "Filippo Ganna",
+        "team": "Netcompany INEOS",
+        "points": 0
+      },
+      {
+        "rank": 5,
+        "rider": "Romain Grégoire",
+        "team": "Groupama–FDJ United",
+        "points": 0
+      }
+    ],
+    "youth": [
+      {
+        "rank": 1,
+        "rider": "Juan Ayuso",
+        "team": "Lidl–Trek",
+        "time": "22' 03\"",
+        "gap": "—"
+      },
+      {
+        "rank": 2,
+        "rider": "Isaac del Toro",
+        "team": "UAE Team Emirates XRG",
+        "time": "+ 10\"",
+        "gap": "+ 10\""
+      },
+      {
+        "rank": 3,
+        "rider": "Davide Piganzoli",
+        "team": "Visma–Lease a Bike",
+        "time": "+ 12\"",
+        "gap": "+ 12\""
+      },
+      {
+        "rank": 4,
+        "rider": "Paul Seixas",
+        "team": "Decathlon CMA CGM",
+        "time": "+ 23\"",
+        "gap": "+ 23\""
+      },
+      {
+        "rank": 5,
+        "rider": "Romain Grégoire",
+        "team": "Groupama–FDJ United",
+        "time": "+ 25\"",
+        "gap": "+ 25\""
+      },
+      {
+        "rank": 6,
+        "rider": "Antonio Tiberi",
+        "team": "Team Bahrain Victorious",
+        "time": "+ 31\"",
+        "gap": "+ 31\""
+      },
+      {
+        "rank": 7,
+        "rider": "Matthew Riccitello",
+        "team": "Decathlon CMA CGM",
+        "time": "+ 34\"",
+        "gap": "+ 34\""
+      },
+      {
+        "rank": 8,
+        "rider": "Lenny Martinez",
+        "team": "Team Bahrain Victorious",
+        "time": "+ 34\"",
+        "gap": "+ 34\""
+      },
+      {
+        "rank": 9,
+        "rider": "Alex Baudin",
+        "team": "EF Education–EasyPost",
+        "time": "+ 41\"",
+        "gap": "+ 41\""
+      },
+      {
+        "rank": 10,
+        "rider": "Mathias Vacek",
+        "team": "Lidl–Trek",
+        "time": "+ 56\"",
+        "gap": "+ 56\""
+      }
+    ]
   },
   "history": {
-    "gc_leader_by_stage": []
+    "gc_leader_by_stage": [
+      {
+        "stage": 1,
+        "rider": "Jonas Vingegaard"
+      }
+    ]
   }
 }
