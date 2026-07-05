@@ -8,8 +8,9 @@ Order of operations (Section 6 of the build spec):
   1. Load the existing data/ snapshot (the current good state).
   2. Determine which stages should be complete based on today's date vs.
      data/race.json's stage dates.
-  3. Scrape standings (PCS, falling back to Wikipedia) and any
-     newly-due stage results.
+  3. Scrape standings and any newly-due stage results — letour.fr
+     (official rankings, our primary source — see sources/letour.py for
+     why), falling back to ProCyclingStats then Wikipedia.
   4. Validate every scraped section against the contract.
   5. Only overwrite a section if its scrape validated — a failed section
      keeps the prior file and is marked "failed"/"partial" in meta.json.
@@ -102,7 +103,27 @@ def due_stage_numbers(race, today_iso):
     return [s["number"] for s in race["stages"] if s["date"] <= today_iso]
 
 
-def scrape_standings(session, existing_standings, prior_section_meta):
+def scrape_standings(session, due_numbers, prior_section_meta):
+    """Try letour.fr first, searching from the latest due stage downward —
+    the stage that just finished may not have posted results the instant
+    the morning cron runs, so the previous stage's page is a safe next
+    guess. Falls back to ProCyclingStats, then Wikipedia (whole-race
+    summary pages, no specific stage number to report).
+
+    Returns (classifications, source_name, as_of_stage_or_None). The
+    as_of_stage is only known when letour.fr succeeds — its page IS a
+    specific stage's standings; the fallback sources don't say which
+    stage they reflect, so the caller infers it another way.
+    """
+    for n in sorted(due_numbers, reverse=True):
+        try:
+            classifications = letour.fetch_classifications(session, n, cache_dir=CACHE_DIR)
+        except Exception as e:
+            print(f"[standings] letour.fr stage {n} fetch failed: {e}", file=sys.stderr)
+            continue
+        if classifications and validate_gc_rows(classifications.get("gc")):
+            return classifications, "letour.fr", n
+
     for source_name, fetcher in (("procyclingstats", pcs.fetch_standings), ("wikipedia", wikipedia.fetch_standings)):
         try:
             result = fetcher(session, RACE_YEAR, cache_dir=CACHE_DIR)
@@ -110,17 +131,38 @@ def scrape_standings(session, existing_standings, prior_section_meta):
             print(f"[standings] {source_name} fetch failed: {e}", file=sys.stderr)
             continue
         if result and validate_standings(result):
-            return result["classifications"], source_name
+            return result["classifications"], source_name, None
 
     print("[standings] all sources failed validation; keeping prior snapshot", file=sys.stderr)
-    return None, prior_section_meta.get("source", "unknown")
+    return None, prior_section_meta.get("source", "unknown"), None
+
+
+def _try_letour_result(session, stage_number):
+    return letour.fetch_stage_result(session, stage_number, cache_dir=CACHE_DIR)
+
+
+def _try_pcs_result(session, stage_number):
+    return pcs.fetch_stage_result(session, RACE_YEAR, stage_number, cache_dir=CACHE_DIR)
+
+
+def _try_wikipedia_result(session, stage_number):
+    return wikipedia.fetch_stage_result(session, RACE_YEAR, stage_number, cache_dir=CACHE_DIR)
+
+
+STAGE_RESULT_SOURCES = [
+    ("letour.fr", _try_letour_result),
+    ("procyclingstats", _try_pcs_result),
+    ("wikipedia", _try_wikipedia_result),
+]
 
 
 def scrape_due_results(session, due_numbers):
-    """Returns (results_written: list[int], any_attempted: bool, all_ok: bool)."""
+    """Returns (results_written: list[int], any_attempted: bool, all_ok: bool,
+    sources_used: set[str])."""
     written = []
     attempted = False
     all_ok = True
+    sources_used = set()
 
     for n in due_numbers:
         existing = load_json(RESULTS_DIR / f"stage-{n:02d}.json", {"stage": n, "completed": False})
@@ -129,9 +171,9 @@ def scrape_due_results(session, due_numbers):
 
         attempted = True
         result, source_name = None, None
-        for name, fetcher in (("procyclingstats", pcs.fetch_stage_result), ("wikipedia", wikipedia.fetch_stage_result)):
+        for name, fetcher in STAGE_RESULT_SOURCES:
             try:
-                candidate = fetcher(session, RACE_YEAR, n, cache_dir=CACHE_DIR)
+                candidate = fetcher(session, n)
             except Exception as e:
                 print(f"[stage {n}] {name} fetch failed: {e}", file=sys.stderr)
                 continue
@@ -145,6 +187,7 @@ def scrape_due_results(session, due_numbers):
             result.setdefault("date", None)
             write_json(RESULTS_DIR / f"stage-{n:02d}.json", result)
             written.append(n)
+            sources_used.add(source_name)
             print(f"[stage {n}] wrote result from {source_name}")
         else:
             all_ok = False
@@ -152,7 +195,7 @@ def scrape_due_results(session, due_numbers):
 
         time.sleep(STAGE_RESULT_DELAY_SECONDS)
 
-    return written, attempted, all_ok
+    return written, attempted, all_ok, sources_used
 
 
 def refresh_watch_times(session, due_numbers):
@@ -196,15 +239,17 @@ def main():
     section_status = {}
     overall_ok = True
 
-    written_results, attempted, results_ok = scrape_due_results(session, due)
+    written_results, attempted, results_ok, result_sources = scrape_due_results(session, due)
 
-    new_classifications, standings_source = scrape_standings(session, standings, prior_sections.get("standings", {}))
+    new_classifications, standings_source, letour_as_of_stage = scrape_standings(session, due, prior_sections.get("standings", {}))
     if new_classifications:
         as_of_stage = standings.get("as_of_stage", 0)
         gc_leader = new_classifications["gc"][0]["rider"] if new_classifications.get("gc") else None
         history = standings["history"]["gc_leader_by_stage"]
 
-        if written_results:
+        if letour_as_of_stage is not None:
+            as_of_stage = letour_as_of_stage
+        elif written_results:
             as_of_stage = max(as_of_stage, max(written_results))
         if gc_leader and as_of_stage > 0:
             history = upsert_gc_history(history, as_of_stage, gc_leader)
@@ -226,7 +271,7 @@ def main():
     if attempted:
         section_status["results"] = {
             "status": "ok" if results_ok else "partial",
-            "source": "procyclingstats",
+            "source": ", ".join(sorted(result_sources)) if result_sources else "none",
             "scraped_at": utc_now_iso(),
         }
         if not results_ok:

@@ -1,0 +1,29 @@
+<!--
+Representative fixture — compact excerpt of the real letour.fr
+/en/rankings/stage-1 page (verified 2026-07-04). Only the tab-config
+block that fetch_classifications/fetch_stage_result depend on is kept:
+the ranking-type nav (data-types JSON) and each classification's
+data-tabs-ajax hash. A team time trial's "stage" type only exposes team
+("ete"), which is what exercises the itg-fallback in fetch_stage_result.
+-->
+<html><body>
+<div class="rankingTables">
+<ul class="tabs js-tabs-nav ranking__header__typeSelect" role="tablist">
+  <li class="tabs__item is-active">
+    <span data-tabs-target="it" data-type="g">General ranking</span>
+  </li>
+  <li class="tabs__item">
+    <span data-tabs-target="it" data-type="e">Stage ranking</span>
+  </li>
+</ul>
+<div data-id="it" class="rankingTabs__content__item js-tabs-content">
+  <ul class="ranking__type sub-tabs" data-types="{&quot;general&quot;:[&quot;itg&quot;,&quot;ipg&quot;,&quot;img&quot;,&quot;ijg&quot;,&quot;etg&quot;],&quot;stage&quot;:[&quot;ete&quot;]}">
+    <li><span data-tabs-ajax="/en/ajax/ranking/1/itg/aaaa1111bbbb2222cccc3333dddd4444/subtab" data-tab-ref="it">Individual</span></li>
+    <li><span data-tabs-ajax="/en/ajax/ranking/1/ipg/bbbb2222cccc3333dddd4444eeee5555/subtab" data-tab-ref="ip">Points</span></li>
+    <li><span data-tabs-ajax="/en/ajax/ranking/1/img/cccc3333dddd4444eeee5555ffff6666/subtab" data-tab-ref="im">Climber</span></li>
+    <li><span data-tabs-ajax="/en/ajax/ranking/1/ijg/dddd4444eeee5555ffff666600001111/subtab" data-tab-ref="ij">Youth</span></li>
+    <li><span data-tabs-ajax="/en/ajax/ranking/1/etg/eeee5555ffff666600001111aaaa2222/subtab" data-tab-ref="et">Team</span></li>
+  </ul>
+</div>
+</div>
+</body></html>

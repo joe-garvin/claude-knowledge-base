@@ -85,7 +85,7 @@ TEMPLATE = """<!DOCTYPE html>
 </main>
 
 <footer class="site-footer">
-  <p>Data from ProCyclingStats and Wikipedia, refreshed automatically. Not an official Tour de France product.</p>
+  <p>Data from letour.fr, refreshed automatically. Not an official Tour de France product.</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
