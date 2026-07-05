@@ -23,7 +23,7 @@
     },
     {
       "rank": 4,
-      "rider": "Juan Ayuso Pesquera",
+      "rider": "Juan Ayuso",
       "team": "Lidl-Trek",
       "time": "22:03",
       "gap": "+0:16"
@@ -37,7 +37,7 @@
     },
     {
       "rank": 6,
-      "rider": "Isaac Del Toro Romero",
+      "rider": "Isaac Del Toro",
       "team": "UAE Team Emirates XRG",
       "time": "22:13",
       "gap": "+0:26"
@@ -58,7 +58,7 @@
     },
     {
       "rank": 9,
-      "rider": "Tobias Svendsen Foss",
+      "rider": "Tobias Foss",
       "team": "Netcompany Ineos Cycling Team",
       "time": "22:25",
       "gap": "+0:38"
@@ -73,9 +73,9 @@
   ],
   "jersey_wearers_after": {
     "gc": "Jonas Vingegaard",
-    "points": "Egan Bernal Gomez",
+    "points": "Egan Bernal",
     "kom": "Tadej Pogacar",
-    "youth": "Juan Ayuso Pesquera"
+    "youth": "Juan Ayuso"
   },
   "stage": 1,
   "completed": true,

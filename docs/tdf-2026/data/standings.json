@@ -25,7 +25,7 @@
       },
       {
         "rank": 4,
-        "rider": "Juan Ayuso Pesquera",
+        "rider": "Juan Ayuso",
         "team": "Lidl-Trek",
         "time": "22:03",
         "gap": "+0:16"
@@ -39,7 +39,7 @@
       },
       {
         "rank": 6,
-        "rider": "Isaac Del Toro Romero",
+        "rider": "Isaac Del Toro",
         "team": "UAE Team Emirates XRG",
         "time": "22:13",
         "gap": "+0:26"
@@ -60,7 +60,7 @@
       },
       {
         "rank": 9,
-        "rider": "Tobias Svendsen Foss",
+        "rider": "Tobias Foss",
         "team": "Netcompany Ineos Cycling Team",
         "time": "22:25",
         "gap": "+0:38"
@@ -557,7 +557,7 @@
       },
       {
         "rank": 80,
-        "rider": "Egan Bernal Gomez",
+        "rider": "Egan Bernal",
         "team": "Netcompany Ineos Cycling Team",
         "time": "24:53",
         "gap": "+3:06"
@@ -1294,7 +1294,7 @@
     "points": [
       {
         "rank": 1,
-        "rider": "Egan Bernal Gomez",
+        "rider": "Egan Bernal",
         "team": "Netcompany Ineos Cycling Team",
         "points": 0
       },
@@ -1358,14 +1358,14 @@
     "youth": [
       {
         "rank": 1,
-        "rider": "Juan Ayuso Pesquera",
+        "rider": "Juan Ayuso",
         "team": "Lidl-Trek",
         "time": "22:03",
         "gap": "—"
       },
       {
         "rank": 2,
-        "rider": "Isaac Del Toro Romero",
+        "rider": "Isaac Del Toro",
         "team": "UAE Team Emirates XRG",
         "time": "22:13",
         "gap": "+0:10"

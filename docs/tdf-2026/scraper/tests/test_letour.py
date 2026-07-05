@@ -47,7 +47,8 @@ class TestParseRankingFragment(unittest.TestCase):
     def test_points_based_fragment(self):
         html = (FIXTURES / "letour_points_fragment.html").read_text(encoding="utf-8")
         rows = letour._parse_ranking_fragment(html, "points")
-        self.assertEqual(rows[0]["rider"], "Egan Bernal Gomez")
+        # Trimmed via RIDER_NAME_OVERRIDES (raw slug gives "Egan Bernal Gomez").
+        self.assertEqual(rows[0]["rider"], "Egan Bernal")
         self.assertEqual(rows[0]["points"], 0)
         self.assertNotIn("time", rows[0])
 
@@ -79,6 +80,22 @@ class TestRiderNameOverrides(unittest.TestCase):
         self.assertIn("Jonas Vingegaard Hansen", letour.RIDER_NAME_OVERRIDES)
         self.assertEqual(letour.RIDER_NAME_OVERRIDES["Jonas Vingegaard Hansen"], "Jonas Vingegaard")
 
+    def test_curated_overrides_cover_known_double_surname_riders(self):
+        # Same class of fix as Vingegaard: the slug carries a second
+        # official surname (Spanish maternal surname, or — for Foss — a
+        # middle name) that press coverage drops. Note the positions
+        # differ per rider (drop the LAST word for the Spanish-convention
+        # names, but the MIDDLE word for "Tobias Svendsen Foss"), which is
+        # exactly why this is a curated map rather than a positional rule.
+        expected = {
+            "Juan Ayuso Pesquera": "Juan Ayuso",
+            "Egan Bernal Gomez": "Egan Bernal",
+            "Isaac Del Toro Romero": "Isaac Del Toro",
+            "Tobias Svendsen Foss": "Tobias Foss",
+        }
+        for full_name, trimmed in expected.items():
+            self.assertEqual(letour.RIDER_NAME_OVERRIDES.get(full_name), trimmed)
+
 
 class TestFetchClassifications(unittest.TestCase):
     def _fake_fetch(self, url_to_fixture):
@@ -100,7 +117,7 @@ class TestFetchClassifications(unittest.TestCase):
         with mock.patch("sources.letour.fetch_html", side_effect=fetch):
             result = letour.fetch_classifications(session=None, stage_number=1)
         self.assertEqual(result["gc"][0]["rider"], "Jonas Vingegaard")
-        self.assertEqual(result["points"][0]["rider"], "Egan Bernal Gomez")
+        self.assertEqual(result["points"][0]["rider"], "Egan Bernal")
         self.assertEqual(result["youth"][0]["rider"], "Jonas Vingegaard")
 
     def test_future_stage_with_no_tables_returns_none(self):

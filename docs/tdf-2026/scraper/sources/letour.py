@@ -58,6 +58,10 @@ VALUE_KIND = {"gc": "time", "points": "points", "kom": "points", "youth": "time"
 # name is derived (standings, stage results, jersey wearers, history).
 RIDER_NAME_OVERRIDES = {
     "Jonas Vingegaard Hansen": "Jonas Vingegaard",
+    "Juan Ayuso Pesquera": "Juan Ayuso",
+    "Egan Bernal Gomez": "Egan Bernal",
+    "Isaac Del Toro Romero": "Isaac Del Toro",
+    "Tobias Svendsen Foss": "Tobias Foss",
 }
 
 
