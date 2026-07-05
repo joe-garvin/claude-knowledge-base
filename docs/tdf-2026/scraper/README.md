@@ -90,3 +90,14 @@ python3 -m unittest discover -s tests -p 'test_*.py'
   GitHub Actions workflow is structured to commit whatever good state
   exists regardless of this script's exit code, then surface the failure
   separately (Section 7 of the build spec).
+- **Units: `data/*.json` always stores metric** (km, m) — the unit every
+  scraper source (letour.fr, PCS, Wikipedia) reports in, since that's how
+  professional cycling is measured everywhere. The site displays imperial
+  (mi, ft); conversion happens only at render time, via `kmToMi`/`mToFt`/
+  `formatMiles`/`formatFeet` in `assets/js/common.js`. Never add a
+  conversion step to the scraper or to `build_race_json.py` — a future
+  scrape or a `build_race_json.py` rerun should keep writing metric
+  automatically, with imperial display requiring no extra work. The one
+  exception is hand-written prose (each stage's `preview` text in
+  `seed_stages_2026.json`): any distance mentioned there is baked in as
+  imperial by hand, since it's free text, not a formatted number.

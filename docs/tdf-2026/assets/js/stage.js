@@ -1,6 +1,7 @@
 import {
   initCommon, dataUrl, fetchJsonOrNull, stageTypeLabel, pad2,
   formatTimeOnly, localZoneAbbrev, formatDateOnly, applyHeroImage,
+  kmToMi, mToFt, formatMiles, formatFeet,
 } from './common.js';
 
 const stageNumber = Number(document.body.dataset.stage);
@@ -37,8 +38,8 @@ function renderHeader(stage, watch) {
     <h1 class="stage-header__route">${stage.start} → ${stage.finish}</h1>
     <div class="stage-header__meta">
       <span class="type-badge type-badge--${stage.type}">${stageTypeLabel(stage.type)}</span>
-      <span>${stage.distance_km} km</span>
-      <span>${stage.elevation_gain_m} m elevation</span>
+      <span>${formatMiles(stage.distance_km)}</span>
+      <span>${formatFeet(stage.elevation_gain_m)} elevation</span>
       ${stage.summit_finish ? '<span class="badge">Summit finish</span>' : ''}
     </div>
     ${watchHtml}
@@ -58,10 +59,13 @@ function renderProfileChart(stage) {
 
   const annotations = {};
   climbs.forEach((c, i) => {
+    // Must use the same km -> mi conversion as the profile points below,
+    // or the annotation line drifts out of alignment with the curve.
+    const xMi = kmToMi(c.km_mark);
     annotations[`climb-${i}`] = {
       type: 'line',
-      xMin: c.km_mark,
-      xMax: c.km_mark,
+      xMin: xMi,
+      xMax: xMi,
       borderColor: '#c8443a',
       borderWidth: 1,
       borderDash: [4, 3],
@@ -82,7 +86,7 @@ function renderProfileChart(stage) {
     data: {
       datasets: [{
         label: 'Elevation',
-        data: points.map((p) => ({ x: p.km, y: p.elevation_m })),
+        data: points.map((p) => ({ x: kmToMi(p.km), y: mToFt(p.elevation_m) })),
         borderColor: '#0075de',
         backgroundColor: 'rgba(0,117,222,0.10)',
         fill: true,
@@ -98,8 +102,8 @@ function renderProfileChart(stage) {
         legend: { display: false },
         tooltip: {
           callbacks: {
-            title: (items) => `${items[0]?.parsed?.x ?? ''} km`,
-            label: (item) => `${item.parsed.y} m`,
+            title: (items) => `${items[0]?.parsed?.x?.toFixed(1) ?? ''} mi`,
+            label: (item) => `${Math.round(item.parsed.y).toLocaleString()} ft`,
           },
         },
         annotation: { annotations },
@@ -107,11 +111,11 @@ function renderProfileChart(stage) {
       scales: {
         x: {
           type: 'linear',
-          title: { display: true, text: 'Kilometres' },
+          title: { display: true, text: 'Miles' },
           grid: { color: '#e6e6e6' },
         },
         y: {
-          title: { display: true, text: 'Elevation (m)' },
+          title: { display: true, text: 'Elevation (ft)' },
           grid: { color: '#e6e6e6' },
         },
       },
@@ -132,8 +136,8 @@ function renderClimbsTable(stage) {
     <tr>
       <td>${c.name}</td>
       <td>${c.category ?? '—'}</td>
-      <td class="num">${c.km_mark ?? '—'}</td>
-      <td class="num">${c.length_km != null ? `${c.length_km} km` : '—'}</td>
+      <td class="num">${c.km_mark != null ? kmToMi(c.km_mark).toFixed(1) : '—'}</td>
+      <td class="num">${c.length_km != null ? formatMiles(c.length_km) : '—'}</td>
       <td class="num">${c.avg_gradient != null ? `${c.avg_gradient}%` : '—'}</td>
     </tr>
   `).join('');

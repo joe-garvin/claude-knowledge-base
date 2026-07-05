@@ -61,7 +61,7 @@ TEMPLATE = """<!DOCTYPE html>
           <tr>
             <th>Climb</th>
             <th>Category</th>
-            <th class="num">Km mark</th>
+            <th class="num">Mile mark</th>
             <th class="num">Length</th>
             <th class="num">Avg gradient</th>
           </tr>

@@ -47,7 +47,7 @@
       "elevation_gain_m": 200,
       "summit_finish": false,
       "profile_quality": "coarse",
-      "preview": "The Tour opens with a team time trial for the first time since 1971. Mostly flat along the Mediterranean coast before two categorized climbs in the final 4km — the Côte de Montjuïc and a short, steep ramp to the Olympic Stadium — where each rider's individual time is taken.",
+      "preview": "The Tour opens with a team time trial for the first time since 1971. Mostly flat along the Mediterranean coast before two categorized climbs in the final 2.5 miles — the Côte de Montjuïc and a short, steep ramp to the Olympic Stadium — where each rider's individual time is taken.",
       "profile": {
         "points": [
           {
@@ -103,7 +103,7 @@
       "elevation_gain_m": 2500,
       "summit_finish": false,
       "profile_quality": "coarse",
-      "preview": "85km of flat roads along the Costa Dorada before the terrain kicks up. Two finishing laps around Montjuïc in Barcelona, including the steep Côte du Château de Montjuïc, set up a punchy finish likely to see early GC skirmishes.",
+      "preview": "53 miles of flat roads along the Costa Dorada before the terrain kicks up. Two finishing laps around Montjuïc in Barcelona, including the steep Côte du Château de Montjuïc, set up a punchy finish likely to see early GC skirmishes.",
       "profile": {
         "points": [
           {
@@ -260,7 +260,7 @@
       "elevation_gain_m": 2800,
       "summit_finish": false,
       "profile_quality": "coarse",
-      "preview": "A rolling route through Cathar country in the Pyrenean foothills. A string of minor climbs favors a breakaway, with a final categorized climb roughly 35km from the finish that could tempt puncheurs to attack late.",
+      "preview": "A rolling route through Cathar country in the Pyrenean foothills. A string of minor climbs favors a breakaway, with a final categorized climb roughly 22 miles from the finish that could tempt puncheurs to attack late.",
       "profile": {
         "points": [
           {
@@ -382,7 +382,7 @@
       "elevation_gain_m": 4100,
       "summit_finish": true,
       "profile_quality": "coarse",
-      "preview": "A full Pyrenean assault packing three major passes into the final 80km — the Col d'Aspin, the Col du Tourmalet, and a summit finish at Gavarnie-Gèdre. One of the defining GC days of the opening week.",
+      "preview": "A full Pyrenean assault packing three major passes into the final 50 miles — the Col d'Aspin, the Col du Tourmalet, and a summit finish at Gavarnie-Gèdre. One of the defining GC days of the opening week.",
       "profile": {
         "points": [
           {
@@ -499,7 +499,7 @@
       "elevation_gain_m": 3400,
       "summit_finish": false,
       "profile_quality": "coarse",
-      "preview": "The opening week closes with a lumpy, unrelenting route through the Corrèze department — no flat kilometres and roughly 3,400m of climbing. A stage that could suit a strong breakaway or provoke fireworks among GC riders before the rest day.",
+      "preview": "The opening week closes with a lumpy, unrelenting route through the Corrèze department — no flat miles and roughly 11,150 ft of climbing. A stage that could suit a strong breakaway or provoke fireworks among GC riders before the rest day.",
       "profile": {
         "points": [
           {
@@ -794,7 +794,7 @@
       "elevation_gain_m": 2600,
       "summit_finish": false,
       "profile_quality": "coarse",
-      "preview": "The longest stage of the 2026 Tour at 205.8km, entering the Vosges via the Ballon d'Alsace, the first significant mountain terrain since the Massif Central. The early summit likely favors a breakaway over the GC group.",
+      "preview": "The longest stage of the 2026 Tour at 127.9 miles, entering the Vosges via the Ballon d'Alsace, the first significant mountain terrain since the Massif Central. The early summit likely favors a breakaway over the GC group.",
       "profile": {
         "points": [
           {
@@ -850,7 +850,7 @@
       "elevation_gain_m": 3800,
       "summit_finish": true,
       "profile_quality": "coarse",
-      "preview": "Seven ascents in the Vosges, four of them in the final 60km, including the Grand Ballon and a summit finish at Le Markstein Fellering. Multiple steep ramps exceeding 9-10% should keep the GC battle wide open.",
+      "preview": "Seven ascents in the Vosges, four of them in the final 37 miles, including the Grand Ballon and a summit finish at Le Markstein Fellering. Multiple steep ramps exceeding 9-10% should keep the GC battle wide open.",
       "profile": {
         "points": [
           {
@@ -1178,7 +1178,7 @@
       "elevation_gain_m": 4200,
       "summit_finish": true,
       "profile_quality": "coarse",
-      "preview": "A short but ferocious stage — early climbs including the Col du Noyer set up an explosive day well before the legendary 21-hairpin finale up Alpe d'Huez, the first of back-to-back summit finishes there. At barely 128 km there is nowhere to hide, and the overall contenders will be marking each other from kilometre zero.",
+      "preview": "A short but ferocious stage — early climbs including the Col du Noyer set up an explosive day well before the legendary 21-hairpin finale up Alpe d'Huez, the first of back-to-back summit finishes there. At barely 80 miles there is nowhere to hide, and the overall contenders will be marking each other from mile zero.",
       "profile": {
         "points": [
           {
@@ -1260,7 +1260,7 @@
       "elevation_gain_m": 5600,
       "summit_finish": true,
       "profile_quality": "coarse",
-      "preview": "The queen stage and hardest day of the race by a wide margin, with roughly 5,600m of climbing across the Col de la Croix de Fer, Col du Télégraphe, Col du Galibier (the Tour's highest point) and Col de Sarenne, before a second consecutive summit finish atop Alpe d'Huez. Whoever wears yellow will have to earn it twice on the same climb in two days — this is where the 2026 Tour is most likely won or lost.",
+      "preview": "The queen stage and hardest day of the race by a wide margin, with roughly 18,370 ft of climbing across the Col de la Croix de Fer, Col du Télégraphe, Col du Galibier (the Tour's highest point) and Col de Sarenne, before a second consecutive summit finish atop Alpe d'Huez. Whoever wears yellow will have to earn it twice on the same climb in two days — this is where the 2026 Tour is most likely won or lost.",
       "profile": {
         "points": [
           {
@@ -1357,7 +1357,7 @@
       "elevation_gain_m": 1000,
       "summit_finish": false,
       "profile_quality": "coarse",
-      "preview": "The traditional processional-then-competitive finale, modified again to include three ascents of the Butte Montmartre before a flat 15km run to the Champs-Élysées. Race director Christian Prudhomme has said the strongest sprinters will still have a chance despite the climbs.",
+      "preview": "The traditional processional-then-competitive finale, modified again to include three ascents of the Butte Montmartre before a flat 9-mile run to the Champs-Élysées. Race director Christian Prudhomme has said the strongest sprinters will still have a chance despite the climbs.",
       "profile": {
         "points": [
           {

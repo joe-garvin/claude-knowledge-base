@@ -20,6 +20,35 @@ export function pad2(n) {
   return String(n).padStart(2, '0');
 }
 
+// Display-layer unit conversion. All of data/*.json stays in metric — the
+// canonical unit system professional cycling is measured and reported in,
+// which every scraper source (letour.fr, PCS, Wikipedia) will always hand
+// back regardless of this site's display preference. Converting only here,
+// at render time, means every future scrape renders in imperial for free,
+// with no per-source conversion logic to keep in sync.
+const KM_TO_MI = 0.621371;
+const M_TO_FT = 3.28084;
+
+export function kmToMi(km) {
+  return km * KM_TO_MI;
+}
+
+export function mToFt(m) {
+  return m * M_TO_FT;
+}
+
+/** e.g. formatMiles(19.6) -> "12.2 mi" */
+export function formatMiles(km, decimals = 1) {
+  if (km == null) return '—';
+  return `${kmToMi(km).toFixed(decimals)} mi`;
+}
+
+/** e.g. formatFeet(200) -> "656 ft" */
+export function formatFeet(m) {
+  if (m == null) return '—';
+  return `${Math.round(mToFt(m)).toLocaleString()} ft`;
+}
+
 /**
  * Fetch meta.json with cache: 'no-store' so the freshness check always
  * sees the latest snapshot, never a browser- or CDN-cached copy.

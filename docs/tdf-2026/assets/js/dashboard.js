@@ -1,6 +1,7 @@
 import {
   initCommon, dataUrl, fetchJsonOrNull, stageTypeLabel, pad2,
   formatTimeOnly, localZoneAbbrev, jerseyIconSvg, formatDateOnly, applyHeroImage,
+  kmToMi, mToFt, formatMiles, formatFeet,
 } from './common.js';
 
 const JERSEY_META = {
@@ -58,9 +59,9 @@ function renderSparkline(canvasId, points) {
   new window.Chart(canvas, {
     type: 'line',
     data: {
-      labels: points.map((p) => p.km),
+      labels: points.map((p) => kmToMi(p.km)),
       datasets: [{
-        data: points.map((p) => p.elevation_m),
+        data: points.map((p) => mToFt(p.elevation_m)),
         borderColor: 'rgba(255,255,255,0.9)',
         backgroundColor: 'rgba(255,255,255,0.14)',
         fill: true,
@@ -113,8 +114,8 @@ function renderHero(dataRoot, meta, race, watch, images) {
     </div>
     <a class="hero-card__route" href="${stageHref}">${stage.start} → ${stage.finish}</a>
     <div class="hero-card__meta">
-      <span>${stage.distance_km} km</span>
-      <span>${stage.elevation_gain_m} m elevation</span>
+      <span>${formatMiles(stage.distance_km)}</span>
+      <span>${formatFeet(stage.elevation_gain_m)} elevation</span>
       ${stage.summit_finish ? '<span>Summit finish</span>' : ''}
     </div>
     <div class="chart-wrap" style="height:100px;">

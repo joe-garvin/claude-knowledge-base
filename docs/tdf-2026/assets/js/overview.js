@@ -1,4 +1,7 @@
-import { initCommon, dataUrl, fetchJsonOrNull, stageTypeLabel, pad2, formatDateOnly, applyHeroImage } from './common.js';
+import {
+  initCommon, dataUrl, fetchJsonOrNull, stageTypeLabel, pad2, formatDateOnly, applyHeroImage,
+  kmToMi, mToFt, formatMiles, formatFeet,
+} from './common.js';
 
 // Kept in sync with the --type-* custom properties in site.css.
 const TYPE_COLORS = {
@@ -46,8 +49,8 @@ function renderTotals(race) {
 
   const headline = [
     [t.stages, 'Stages'],
-    [`${t.distance_km.toLocaleString()}`, 'Kilometres'],
-    [`${t.elevation_gain_m.toLocaleString()}`, 'Metres climbed'],
+    [kmToMi(t.distance_km).toLocaleString(undefined, { maximumFractionDigits: 0 }), 'Miles'],
+    [Math.round(mToFt(t.elevation_gain_m)).toLocaleString(), 'Feet climbed'],
     [race.rest_days.length, 'Rest days'],
   ];
 
@@ -89,7 +92,7 @@ function renderElevationChart(race) {
     data: {
       labels: race.stages.map((s) => `S${s.number}`),
       datasets: [{
-        data: race.stages.map((s) => s.elevation_gain_m),
+        data: race.stages.map((s) => Math.round(mToFt(s.elevation_gain_m))),
         backgroundColor: race.stages.map((s) => TYPE_COLORS[s.type] || '#928c7d'),
         borderRadius: 2,
       }],
@@ -105,13 +108,13 @@ function renderElevationChart(race) {
               const s = race.stages[items[0].dataIndex];
               return `Stage ${s.number}: ${s.start} → ${s.finish}`;
             },
-            label: (item) => `${item.raw} m elevation gain — ${stageTypeLabel(race.stages[item.dataIndex].type)}`,
+            label: (item) => `${item.raw.toLocaleString()} ft elevation gain — ${stageTypeLabel(race.stages[item.dataIndex].type)}`,
           },
         },
       },
       scales: {
         x: { grid: { display: false } },
-        y: { grid: { color: '#e6e6e6' }, title: { display: true, text: 'metres' } },
+        y: { grid: { color: '#e6e6e6' }, title: { display: true, text: 'feet' } },
       },
     },
   });
@@ -163,7 +166,7 @@ function renderRouteSchematic(race) {
   if (!race) return;
   const items = [];
   race.stages.forEach((s) => {
-    items.push(`<div class="route-schematic__item">Stage ${s.number} — ${s.start} → ${s.finish} <span class="faint">(${s.distance_km} km)</span></div>`);
+    items.push(`<div class="route-schematic__item">Stage ${s.number} — ${s.start} → ${s.finish} <span class="faint">(${formatMiles(s.distance_km)})</span></div>`);
     if (race.rest_days.includes(nextDay(s.date))) {
       items.push(`<div class="route-schematic__item route-schematic__item--rest">Rest day</div>`);
     }
@@ -186,8 +189,8 @@ function renderStageTable(race) {
       <td>${formatDateOnly(s.date, { month: 'short', day: 'numeric' })}</td>
       <td><a href="stages/stage-${pad2(s.number)}.html">${s.start} → ${s.finish}</a></td>
       <td><span class="type-badge type-badge--${s.type}">${stageTypeLabel(s.type)}</span></td>
-      <td class="num">${s.distance_km} km</td>
-      <td class="num">${s.elevation_gain_m} m</td>
+      <td class="num">${formatMiles(s.distance_km)}</td>
+      <td class="num">${formatFeet(s.elevation_gain_m)}</td>
       <td>${s.summit_finish ? 'Yes' : ''}</td>
     </tr>
   `).join('');
