@@ -139,7 +139,7 @@ function renderClimbsTable(stage) {
   `).join('');
 }
 
-function renderResult(stage, result) {
+function renderResult(stage, result, highlights) {
   const el = document.getElementById('result-card');
   if (!result || !result.completed) {
     const dateLabel = stage ? formatDateOnly(stage.date, { dateStyle: 'long' }) : '';
@@ -164,6 +164,13 @@ function renderResult(stage, result) {
     ['White', jw.youth],
   ].filter(([, name]) => name).map(([label, name]) => `<li><strong>${label}:</strong> ${name}</li>`).join('');
 
+  const highlightsHtml = highlights
+    ? `<a class="highlights-link" href="${highlights.url}" target="_blank" rel="noopener">
+        <span class="highlights-link__icon" aria-hidden="true">▶</span>
+        ${highlights.label || 'Watch stage highlights'}
+      </a>`
+    : '';
+
   el.innerHTML = `
     <div class="table-wrap">
       <table>
@@ -172,6 +179,7 @@ function renderResult(stage, result) {
       </table>
     </div>
     ${jerseyList ? `<h3>Jersey wearers after this stage</h3><ul>${jerseyList}</ul>` : ''}
+    ${highlightsHtml}
   `;
 }
 
@@ -189,16 +197,18 @@ async function main() {
   const watchData = await fetchJsonOrNull(dataUrl(dataRoot, 'data/watch.json', meta));
   const result = await fetchJsonOrNull(dataUrl(dataRoot, `data/results/stage-${pad2(stageNumber)}.json`, meta));
   const images = await fetchJsonOrNull(dataUrl(dataRoot, 'data/images.json', meta));
+  const highlightsData = await fetchJsonOrNull(dataUrl(dataRoot, 'data/highlights.json', meta));
 
   const stage = race?.stages?.find((s) => s.number === stageNumber) || null;
   const watch = watchData?.stages?.find((s) => s.number === stageNumber) || null;
+  const highlights = highlightsData?.stages?.[stageNumber] || null;
 
   renderHeader(stage, watch);
   applyHeroImage(document.getElementById('stage-header'), dataRoot, images?.stages?.[stageNumber]);
   renderPreview(stage);
   if (stage) renderProfileChart(stage);
   renderClimbsTable(stage);
-  renderResult(stage, result);
+  renderResult(stage, result, highlights);
   renderStageNav(race);
 }
 
