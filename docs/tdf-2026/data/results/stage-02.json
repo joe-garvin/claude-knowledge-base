@@ -1,4 +1,83 @@
 {
+  "top10": [
+    {
+      "rank": 1,
+      "rider": "Isaac Del Toro",
+      "team": "UAE Team Emirates XRG",
+      "time": "3:40:01",
+      "gap": "—"
+    },
+    {
+      "rank": 2,
+      "rider": "Tadej Pogacar",
+      "team": "UAE Team Emirates XRG",
+      "time": "3:40:01",
+      "gap": "—"
+    },
+    {
+      "rank": 3,
+      "rider": "Remco Evenepoel",
+      "team": "Red Bull - Bora - Hansgrohe",
+      "time": "3:40:01",
+      "gap": "—"
+    },
+    {
+      "rank": 4,
+      "rider": "Jonas Vingegaard",
+      "team": "Team Visma | Lease A Bike",
+      "time": "3:40:01",
+      "gap": "—"
+    },
+    {
+      "rank": 5,
+      "rider": "Mattias Skjelmose",
+      "team": "Lidl-Trek",
+      "time": "3:40:04",
+      "gap": "+0:03"
+    },
+    {
+      "rank": 6,
+      "rider": "Tobias Halland Johannessen",
+      "team": "UNO-X Mobility",
+      "time": "3:40:04",
+      "gap": "+0:03"
+    },
+    {
+      "rank": 7,
+      "rider": "Romain Gregoire",
+      "team": "Groupama-FDJ United",
+      "time": "3:40:04",
+      "gap": "+0:03"
+    },
+    {
+      "rank": 8,
+      "rider": "Lenny Martinez",
+      "team": "Bahrain Victorious",
+      "time": "3:40:04",
+      "gap": "+0:03"
+    },
+    {
+      "rank": 9,
+      "rider": "Paul Seixas",
+      "team": "Decathlon CMA CGM Team",
+      "time": "3:40:04",
+      "gap": "+0:03"
+    },
+    {
+      "rank": 10,
+      "rider": "Tom Pidcock",
+      "team": "Pinarello-Q36.5 PRO Cycling Team",
+      "time": "3:40:04",
+      "gap": "+0:03"
+    }
+  ],
+  "jersey_wearers_after": {
+    "gc": "Jonas Vingegaard",
+    "points": "Isaac Del Toro",
+    "kom": "Alex Molenaar",
+    "youth": "Isaac Del Toro"
+  },
   "stage": 2,
-  "completed": false
+  "completed": true,
+  "date": null
 }

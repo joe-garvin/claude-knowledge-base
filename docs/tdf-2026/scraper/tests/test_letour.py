@@ -27,6 +27,21 @@ class TestExtractTabConfig(unittest.TestCase):
         self.assertIn("itg", ajax)
         self.assertTrue(ajax["itg"].startswith("/en/ajax/ranking/1/itg/"))
 
+    def test_general_codes_found_even_when_stage_tab_is_default_active(self):
+        # Regression test: stage 2 (the first road stage) defaulted to the
+        # "Stage ranking" tab active, unlike stage 1's TTT which defaulted
+        # to "General ranking". Only the active tab's sub-tabs render
+        # individual data-tabs-ajax attributes; the general/GC codes
+        # (itg/ipg/img/ijg) must still be found via that tab's
+        # data-ajax-stack blob, which is present regardless of which tab
+        # is active. Missing this caused jersey_wearers_after to come back
+        # empty and standings to silently fall back to a stale stage.
+        html = (FIXTURES / "letour_stage2_rankings.html").read_text(encoding="utf-8")
+        types, ajax = letour._extract_tab_config(html)
+        self.assertEqual(set(types["general"]), {"itg", "ipg", "img", "ijg", "etg"})
+        for code in ("itg", "ipg", "img", "ijg"):
+            self.assertIn(code, ajax, f"{code} missing — general codes not found when Stage tab is active")
+
 
 class TestParseRankingFragment(unittest.TestCase):
     def test_time_based_fragment(self):
@@ -138,6 +153,23 @@ class TestFetchStageResult(unittest.TestCase):
             result = letour.fetch_stage_result(session=None, stage_number=1)
         self.assertEqual(result["top10"][0]["rider"], "Jonas Vingegaard")
         self.assertIn("gc", result["jersey_wearers_after"])
+
+    def test_road_stage_populates_jersey_wearers_when_stage_tab_is_active(self):
+        # Regression test for the stage-2 bug: jersey_wearers_after must
+        # populate even though the page's default-active tab is "Stage",
+        # not "General" (see test_general_codes_found_even_when_stage_tab_is_default_active).
+        fetch = lambda session, url, cache_dir=None, cache_key=None: (  # noqa: E731
+            (FIXTURES / "letour_stage2_rankings.html").read_text(encoding="utf-8")
+            if "rankings/stage-2" in url
+            else (FIXTURES / "letour_ranking_fragment.html").read_text(encoding="utf-8")
+        )
+        with mock.patch("sources.letour.fetch_html", side_effect=fetch):
+            result = letour.fetch_stage_result(session=None, stage_number=2)
+        self.assertTrue(result["jersey_wearers_after"], "jersey_wearers_after came back empty")
+        self.assertIn("gc", result["jersey_wearers_after"])
+        self.assertIn("points", result["jersey_wearers_after"])
+        self.assertIn("kom", result["jersey_wearers_after"])
+        self.assertIn("youth", result["jersey_wearers_after"])
 
 
 if __name__ == "__main__":

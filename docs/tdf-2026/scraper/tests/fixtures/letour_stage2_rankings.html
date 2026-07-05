@@ -1,0 +1,40 @@
+<!--
+Representative fixture — compact excerpt of the real letour.fr
+/en/rankings/stage-2 page (verified 2026-07-05, the first road stage).
+
+Reproduces the exact bug this fixture exists to guard against: a road
+stage's page defaults to the "Stage ranking" tab active (unlike stage 1's
+TTT, which defaulted to "General ranking") — only the "Stage" tab's
+sub-tabs are rendered with individual data-tabs-ajax attributes. The
+"General ranking" tab's codes (itg/ipg/img/ijg) are only recoverable from
+its own data-ajax-stack blob, which is present regardless of which tab is
+active. A parser that only scanned rendered data-tabs-ajax attributes
+found stage-only codes but none of the general/GC ones, so
+jersey_wearers_after came back empty and standings silently fell back to
+stage 1's stale data.
+-->
+<html><body>
+<div class="rankingTables">
+<ul class="tabs js-tabs-nav ranking__header__typeSelect" role="tablist">
+  <li class="tabs__item">
+    <span data-tabs-target="it" data-ajax-stack = {&quot;itg&quot;:&quot;/en/ajax/ranking/2/itg/fca07fb6b35baa3d6dfe2d4500ea91ed/none&quot;,&quot;ipg&quot;:&quot;/en/ajax/ranking/2/ipg/911729cf582be501a97e41ac2bb6a040/none&quot;,&quot;img&quot;:&quot;/en/ajax/ranking/2/img/fe40aebbf8475ef7d5f9415e1b371b9d/none&quot;,&quot;ijg&quot;:&quot;/en/ajax/ranking/2/ijg/a963a600a2e13db0ca782ee089b4e010/none&quot;,&quot;etg&quot;:&quot;/en/ajax/ranking/2/etg/a6726c4a9d04e10e31f78676fcebd5cd/none&quot;} data-type="g">General ranking</span>
+  </li>
+  <li class="tabs__item is-active">
+    <span data-tabs-target="it" data-ajax-stack = {&quot;ite&quot;:&quot;/en/ajax/ranking/2/ite/6f21d73eddddbb74e35c0113a43935ca/none&quot;,&quot;ipe&quot;:&quot;/en/ajax/ranking/2/ipe/b7b8a6ce4bba7b1390561280c900d179/none&quot;,&quot;ime&quot;:&quot;/en/ajax/ranking/2/ime/e85c463644dbc71dd7c047b005fb27d8/none&quot;,&quot;ije&quot;:&quot;/en/ajax/ranking/2/ije/a2201afcefd73c51359efff767231b1a/none&quot;,&quot;ete&quot;:&quot;/en/ajax/ranking/2/ete/d8a79ac4fbfcc06476b26bb98e4d39b5/none&quot;} data-type="e">Stage ranking</span>
+  </li>
+</ul>
+<!-- Only the active "Stage ranking" tab's sub-tabs are rendered with
+     individual data-tabs-ajax attributes — this is the fixture's whole
+     point: the general/GC codes must come from the data-ajax-stack
+     above, not from here. -->
+<div data-id="it" class="rankingTabs__content__item js-tabs-content">
+  <ul class="ranking__type sub-tabs" data-types="{&quot;stage&quot;:[&quot;ite&quot;,&quot;ipe&quot;,&quot;ime&quot;,&quot;ije&quot;,&quot;ete&quot;],&quot;general&quot;:[&quot;itg&quot;,&quot;ipg&quot;,&quot;img&quot;,&quot;ijg&quot;,&quot;etg&quot;]}">
+    <li><span data-tabs-ajax="/en/ajax/ranking/2/ite/279c5061ba6d45e021aa6dd89538fb9a/subtab" data-tab-ref="it">Individual</span></li>
+    <li><span data-tabs-ajax="/en/ajax/ranking/2/ipe/bbbbeeee1111cccc2222dddd3333eeee/subtab" data-tab-ref="ip">Points</span></li>
+    <li><span data-tabs-ajax="/en/ajax/ranking/2/ime/ccccffff2222dddd3333eeee4444ffff/subtab" data-tab-ref="im">Climber</span></li>
+    <li><span data-tabs-ajax="/en/ajax/ranking/2/ije/dddd00003333eeee4444ffff5555aaaa/subtab" data-tab-ref="ij">Youth</span></li>
+    <li><span data-tabs-ajax="/en/ajax/ranking/2/ete/eeee11114444ffff5555aaaa6666bbbb/subtab" data-tab-ref="et">Team</span></li>
+  </ul>
+</div>
+</div>
+</body></html>

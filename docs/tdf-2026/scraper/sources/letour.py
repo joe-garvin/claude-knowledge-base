@@ -70,7 +70,18 @@ def _rankings_url(stage_number):
 
 
 def _extract_tab_config(html):
-    """Returns (types: {"general": [codes], "stage": [codes]}, ajax: {code: url})."""
+    """Returns (types: {"general": [codes], "stage": [codes]}, ajax: {code: url}).
+
+    Each top-level ranking-type tab ("General ranking" / "Stage ranking")
+    carries a `data-ajax-stack = {...}` blob with EVERY classification
+    code's hash for that tab — present in the page regardless of which
+    tab is rendered active. That matters: which tab defaults to active
+    varies (a Barcelona TTT opener defaulted to "General"; the next day's
+    road stage defaulted to "Stage"), and scanning only the individually-
+    rendered sub-tabs' `data-tabs-ajax` attributes silently missed the
+    general/GC codes whenever "Stage" was the default — jersey_wearers_after
+    came back empty and standings fell back to a stale earlier stage
+    (caught on stage 2, the first road stage; see git history)."""
     types = {}
     types_match = re.search(r'data-types="([^"]*)"', html)
     if types_match:
@@ -78,10 +89,22 @@ def _extract_tab_config(html):
             types = json.loads(types_match.group(1).replace("&quot;", '"'))
         except json.JSONDecodeError:
             types = {}
+
     ajax = {}
-    for m in re.finditer(r'data-tabs-ajax="(/en/ajax/ranking/\d+/([a-z]+)/[a-f0-9]+/subtab)"', html):
+    for m in re.finditer(r'data-ajax-stack\s*=\s*(\{[^{}]*\})', html):
+        try:
+            stack = json.loads(m.group(1).replace("&quot;", '"'))
+        except json.JSONDecodeError:
+            continue
+        for code, url in stack.items():
+            ajax.setdefault(code, url)
+
+    # Fallback/supplement: the individually-rendered sub-tab's own hash,
+    # in case a page ever lacks a data-ajax-stack blob.
+    for m in re.finditer(r'data-tabs-ajax="(/en/ajax/ranking/\d+/([a-z]+)/[a-f0-9]+/(?:subtab|none))"', html):
         url, code = m.group(1), m.group(2)
-        ajax[code] = url
+        ajax.setdefault(code, url)
+
     return types, ajax
 
 
