@@ -47,6 +47,19 @@ BASE_URL = "https://www.letour.fr"
 CLASSIFICATION_CODES = {"gc": "it", "points": "ip", "kom": "im", "youth": "ij"}
 VALUE_KIND = {"gc": "time", "points": "points", "kom": "points", "youth": "time"}
 
+# The rider profile slug carries the full name on official registration
+# (which can include a second surname press coverage doesn't use day to
+# day, e.g. a Danish patronymic or a Spanish maternal surname). Curated on
+# request rather than guessed algorithmically — the "keep everything before
+# the last name" heuristic doesn't hold across naming conventions (compare
+# "Isaac Del Toro" dropping the *last* word vs "Tobias Foss" dropping a
+# *middle* one). Add an entry here if another rider's display name needs
+# trimming; this is the single place the fix applies everywhere a rider
+# name is derived (standings, stage results, jersey wearers, history).
+RIDER_NAME_OVERRIDES = {
+    "Jonas Vingegaard Hansen": "Jonas Vingegaard",
+}
+
 
 def _rankings_url(stage_number):
     return f"{BASE_URL}/en/rankings/stage-{stage_number}"
@@ -80,7 +93,8 @@ def _rider_name(cells, rider_index):
     slug = link.get("href", "").rstrip("/").split("/")[-1]
     if not slug:
         return cell_text(cells, rider_index)
-    return " ".join(w.capitalize() for w in slug.split("-"))
+    name = " ".join(w.capitalize() for w in slug.split("-"))
+    return RIDER_NAME_OVERRIDES.get(name, name)
 
 
 def _format_time(raw):

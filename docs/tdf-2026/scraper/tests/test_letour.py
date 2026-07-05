@@ -33,8 +33,10 @@ class TestParseRankingFragment(unittest.TestCase):
         html = (FIXTURES / "letour_ranking_fragment.html").read_text(encoding="utf-8")
         rows = letour._parse_ranking_fragment(html, "time")
         self.assertEqual(len(rows), 3)
-        # Full name from the profile-link slug, not the abbreviated "J. VINGEGAARD".
-        self.assertEqual(rows[0]["rider"], "Jonas Vingegaard Hansen")
+        # Full name from the profile-link slug, not the abbreviated "J.
+        # VINGEGAARD" — trimmed to press-common form via RIDER_NAME_OVERRIDES
+        # (the raw slug gives "Jonas Vingegaard").
+        self.assertEqual(rows[0]["rider"], "Jonas Vingegaard")
         self.assertEqual(rows[0]["time"], "21:47")
         self.assertEqual(rows[0]["gap"], "—")
         self.assertEqual(rows[1]["rider"], "Filippo Ganna")
@@ -68,6 +70,16 @@ class TestFormatTeam(unittest.TestCase):
         self.assertEqual(letour._format_team("RED BULL - BORA - HANSGROHE"), "Red Bull - Bora - Hansgrohe")
 
 
+class TestRiderNameOverrides(unittest.TestCase):
+    def test_override_applied_wherever_a_rider_name_is_derived(self):
+        # Vingegaard's registration slug carries a second surname press
+        # coverage doesn't use ("jonas-vingegaard-hansen"); this must come
+        # back trimmed everywhere a rider name is derived from that slug —
+        # GC row, stage result, and jersey_wearers_after alike.
+        self.assertIn("Jonas Vingegaard Hansen", letour.RIDER_NAME_OVERRIDES)
+        self.assertEqual(letour.RIDER_NAME_OVERRIDES["Jonas Vingegaard Hansen"], "Jonas Vingegaard")
+
+
 class TestFetchClassifications(unittest.TestCase):
     def _fake_fetch(self, url_to_fixture):
         def fetch(session, url, cache_dir=None, cache_key=None):
@@ -87,9 +99,9 @@ class TestFetchClassifications(unittest.TestCase):
         })
         with mock.patch("sources.letour.fetch_html", side_effect=fetch):
             result = letour.fetch_classifications(session=None, stage_number=1)
-        self.assertEqual(result["gc"][0]["rider"], "Jonas Vingegaard Hansen")
+        self.assertEqual(result["gc"][0]["rider"], "Jonas Vingegaard")
         self.assertEqual(result["points"][0]["rider"], "Egan Bernal Gomez")
-        self.assertEqual(result["youth"][0]["rider"], "Jonas Vingegaard Hansen")
+        self.assertEqual(result["youth"][0]["rider"], "Jonas Vingegaard")
 
     def test_future_stage_with_no_tables_returns_none(self):
         with mock.patch("sources.letour.fetch_html", return_value="<html><body>no ranking data yet</body></html>"):
@@ -107,7 +119,7 @@ class TestFetchStageResult(unittest.TestCase):
         )
         with mock.patch("sources.letour.fetch_html", side_effect=fetch):
             result = letour.fetch_stage_result(session=None, stage_number=1)
-        self.assertEqual(result["top10"][0]["rider"], "Jonas Vingegaard Hansen")
+        self.assertEqual(result["top10"][0]["rider"], "Jonas Vingegaard")
         self.assertIn("gc", result["jersey_wearers_after"])
 
 

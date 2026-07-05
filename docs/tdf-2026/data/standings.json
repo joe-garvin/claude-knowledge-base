@@ -4,7 +4,7 @@
     "gc": [
       {
         "rank": 1,
-        "rider": "Jonas Vingegaard Hansen",
+        "rider": "Jonas Vingegaard",
         "team": "Team Visma | Lease A Bike",
         "time": "21:47",
         "gap": "—"
@@ -1332,7 +1332,7 @@
       },
       {
         "rank": 2,
-        "rider": "Jonas Vingegaard Hansen",
+        "rider": "Jonas Vingegaard",
         "team": "Team Visma | Lease A Bike",
         "points": 0
       },
@@ -1649,7 +1649,7 @@
     "gc_leader_by_stage": [
       {
         "stage": 1,
-        "rider": "Jonas Vingegaard Hansen"
+        "rider": "Jonas Vingegaard"
       }
     ]
   }
