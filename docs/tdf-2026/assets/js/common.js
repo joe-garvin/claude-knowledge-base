@@ -98,9 +98,9 @@ export function dataUrl(dataRoot, path, meta) {
  * error, bad JSON) instead of throwing, so callers can render a clean
  * "awaiting" state rather than letting a rejection propagate.
  */
-export async function fetchJsonOrNull(url) {
+export async function fetchJsonOrNull(url, options) {
   try {
-    const res = await fetch(url);
+    const res = await fetch(url, options);
     if (!res.ok) return null;
     return await res.json();
   } catch (err) {

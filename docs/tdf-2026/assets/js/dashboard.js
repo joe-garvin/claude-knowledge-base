@@ -219,7 +219,10 @@ async function main() {
   const race = await fetchJsonOrNull(dataUrl(dataRoot, 'data/race.json', meta));
   const standings = await fetchJsonOrNull(dataUrl(dataRoot, 'data/standings.json', meta));
   const watch = await fetchJsonOrNull(dataUrl(dataRoot, 'data/watch.json', meta));
-  const images = await fetchJsonOrNull(dataUrl(dataRoot, 'data/images.json', meta));
+  // Hand-curated, edited outside the scrape cycle — cache: 'no-store'
+  // instead of the versioned dataUrl scheme, whose cache-buster only
+  // changes when the scraper runs (see common.js's fetchJsonOrNull).
+  const images = await fetchJsonOrNull(`${dataRoot}data/images.json`, { cache: 'no-store' });
 
   renderStatusStrip(race);
   if (race) renderHero(dataRoot, meta, race, watch, images);
