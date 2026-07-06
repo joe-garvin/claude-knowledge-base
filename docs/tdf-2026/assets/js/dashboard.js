@@ -185,7 +185,7 @@ async function renderLastResult(dataRoot, meta, race, standings) {
   const top3 = (result.top10 || []).slice(0, 3);
   const avgSpeed = stage ? formatAvgSpeedMph(stage.distance_km, result.top10?.[0]?.time) : null;
   el.innerHTML = `
-    <p class="muted">Stage ${result.stage}${stage ? ` — ${stage.start} → ${stage.finish}` : ''}${avgSpeed ? ` · Avg speed: ${avgSpeed}` : ''}</p>
+    <p class="muted">Stage ${result.stage}${stage ? ` — ${stage.start} → ${stage.finish}` : ''}${avgSpeed ? ` · Winner's avg speed: ${avgSpeed}` : ''}</p>
     <div class="table-wrap">
       <table>
         <thead><tr><th class="num">Rank</th><th>Rider</th><th>Team</th><th class="num">Gap</th></tr></thead>

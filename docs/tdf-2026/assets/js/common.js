@@ -60,10 +60,11 @@ export function parseDurationToSeconds(timeStr) {
 }
 
 /**
- * Average speed over a stage, from its distance and a finishing time —
- * typically the stage winner's, the standard "stage average speed"
- * cycling reports quote. Returns e.g. "28.5 mph", or null if either input
- * is missing/unparseable (never renders a bogus number).
+ * The stage winner's average speed: distance divided by their elapsed
+ * time — not an average across the field. This is what "stage average
+ * speed" always means in cycling reporting; callers should pass the
+ * winner's (rank 1) time specifically. Returns e.g. "28.5 mph", or null
+ * if either input is missing/unparseable (never renders a bogus number).
  */
 export function formatAvgSpeedMph(distanceKm, timeStr) {
   const seconds = parseDurationToSeconds(timeStr);

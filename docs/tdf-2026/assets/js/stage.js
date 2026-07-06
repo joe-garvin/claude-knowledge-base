@@ -177,7 +177,7 @@ function renderResult(stage, result, highlights) {
 
   const winnerTime = result.top10?.[0]?.time;
   const avgSpeed = stage ? formatAvgSpeedMph(stage.distance_km, winnerTime) : null;
-  const avgSpeedHtml = avgSpeed ? `<p class="result-avg-speed muted">Average speed: <strong>${avgSpeed}</strong></p>` : '';
+  const avgSpeedHtml = avgSpeed ? `<p class="result-avg-speed muted">Winner's average speed: <strong>${avgSpeed}</strong></p>` : '';
 
   el.innerHTML = `
     ${avgSpeedHtml}
