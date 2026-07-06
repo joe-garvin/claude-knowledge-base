@@ -1,7 +1,7 @@
 import {
   initCommon, dataUrl, fetchJsonOrNull, stageTypeLabel, pad2,
   formatTimeOnly, localZoneAbbrev, jerseyIconSvg, formatDateOnly, applyHeroImage,
-  kmToMi, mToFt, formatMiles, formatFeet,
+  kmToMi, mToFt, formatMiles, formatFeet, formatAvgSpeedMph,
 } from './common.js';
 
 const JERSEY_META = {
@@ -183,8 +183,9 @@ async function renderLastResult(dataRoot, meta, race, standings) {
   }
   const stage = (race?.stages || []).find((s) => s.number === result.stage);
   const top3 = (result.top10 || []).slice(0, 3);
+  const avgSpeed = stage ? formatAvgSpeedMph(stage.distance_km, result.top10?.[0]?.time) : null;
   el.innerHTML = `
-    <p class="muted">Stage ${result.stage}${stage ? ` — ${stage.start} → ${stage.finish}` : ''}</p>
+    <p class="muted">Stage ${result.stage}${stage ? ` — ${stage.start} → ${stage.finish}` : ''}${avgSpeed ? ` · Avg speed: ${avgSpeed}` : ''}</p>
     <div class="table-wrap">
       <table>
         <thead><tr><th class="num">Rank</th><th>Rider</th><th>Team</th><th class="num">Gap</th></tr></thead>

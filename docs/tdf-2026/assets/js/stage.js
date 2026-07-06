@@ -1,7 +1,7 @@
 import {
   initCommon, dataUrl, fetchJsonOrNull, stageTypeLabel, pad2,
   formatTimeOnly, localZoneAbbrev, formatDateOnly, applyHeroImage,
-  kmToMi, mToFt, formatMiles, formatFeet,
+  kmToMi, mToFt, formatMiles, formatFeet, formatAvgSpeedMph,
 } from './common.js';
 
 const stageNumber = Number(document.body.dataset.stage);
@@ -175,7 +175,12 @@ function renderResult(stage, result, highlights) {
       </a>`
     : '';
 
+  const winnerTime = result.top10?.[0]?.time;
+  const avgSpeed = stage ? formatAvgSpeedMph(stage.distance_km, winnerTime) : null;
+  const avgSpeedHtml = avgSpeed ? `<p class="result-avg-speed muted">Average speed: <strong>${avgSpeed}</strong></p>` : '';
+
   el.innerHTML = `
+    ${avgSpeedHtml}
     <div class="table-wrap">
       <table>
         <thead><tr><th class="num">Rank</th><th>Rider</th><th>Team</th><th class="num">Time</th><th class="num">Gap</th></tr></thead>

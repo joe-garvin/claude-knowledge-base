@@ -738,6 +738,9 @@ tbody tr:hover { background: var(--canvas); }
 .highlights-link:hover { background: var(--blue-active); text-decoration: none; }
 .highlights-link__icon { font-size: 0.7em; }
 
+.result-avg-speed { margin: 0 0 var(--space-3); font-size: 0.9rem; }
+.result-avg-speed strong { color: var(--ink); }
+
 .chart-wrap { position: relative; height: 280px; margin: var(--space-4) 0; }
 .chart-wrap--tall { height: 340px; }
 

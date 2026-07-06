@@ -49,6 +49,30 @@ export function formatFeet(m) {
   return `${Math.round(mToFt(m)).toLocaleString()} ft`;
 }
 
+/** "21:47" (M:SS) or "3:40:01" (H:MM:SS) -> total seconds, or null. */
+export function parseDurationToSeconds(timeStr) {
+  if (!timeStr) return null;
+  const parts = timeStr.split(':').map(Number);
+  if (parts.some((p) => Number.isNaN(p))) return null;
+  if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
+  if (parts.length === 2) return parts[0] * 60 + parts[1];
+  return null;
+}
+
+/**
+ * Average speed over a stage, from its distance and a finishing time —
+ * typically the stage winner's, the standard "stage average speed"
+ * cycling reports quote. Returns e.g. "28.5 mph", or null if either input
+ * is missing/unparseable (never renders a bogus number).
+ */
+export function formatAvgSpeedMph(distanceKm, timeStr) {
+  const seconds = parseDurationToSeconds(timeStr);
+  if (!seconds || !distanceKm) return null;
+  const hours = seconds / 3600;
+  const mph = kmToMi(distanceKm) / hours;
+  return `${mph.toFixed(1)} mph`;
+}
+
 /**
  * Fetch meta.json with cache: 'no-store' so the freshness check always
  * sees the latest snapshot, never a browser- or CDN-cached copy.
