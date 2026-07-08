@@ -35,7 +35,7 @@ import requests
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
-from sources import pcs, wikipedia, letour  # noqa: E402
+from sources import pcs, wikipedia, letour, nbc_highlights  # noqa: E402
 
 DATA_DIR = REPO_ROOT / "data"
 RESULTS_DIR = DATA_DIR / "results"
@@ -218,6 +218,37 @@ def refresh_watch_times(session, due_numbers):
         write_json(DATA_DIR / "watch.json", watch)
 
 
+def refresh_highlights(session):
+    """Best-effort only; never affects scrape_status. data/highlights.json
+    is otherwise hand-curated — this only ever fills in a stage that's
+    still missing, never overwrites an existing entry. See
+    sources/nbc_highlights.py."""
+    highlights = load_json(DATA_DIR / "highlights.json", {
+        "note": "Official NBC Sports stage-highlights video links. Auto-discovered where possible (see sources/nbc_highlights.py); hand-added otherwise. Missing entries simply mean no highlights link shows on that stage's page.",
+        "stages": {},
+    })
+    try:
+        found = nbc_highlights.fetch_highlight_links(session, cache_dir=CACHE_DIR)
+    except Exception as e:
+        print(f"[highlights] NBC hub fetch failed (non-fatal): {e}", file=sys.stderr)
+        return
+
+    changed = False
+    for stage_n, info in found.items():
+        key = str(stage_n)
+        if key in highlights.get("stages", {}):
+            continue
+        highlights.setdefault("stages", {})[key] = {
+            "url": info["url"],
+            "label": "Watch stage highlights (NBC Sports)",
+        }
+        changed = True
+        print(f"[highlights] discovered stage {stage_n}: {info['url']}")
+
+    if changed:
+        write_json(DATA_DIR / "highlights.json", highlights)
+
+
 def main():
     race = load_json(DATA_DIR / "race.json", None)
     if race is None:
@@ -280,6 +311,7 @@ def main():
         section_status["results"] = prior_sections.get("results", {"status": "ok", "source": "seed", "scraped_at": utc_now_iso()})
 
     refresh_watch_times(session, due)
+    refresh_highlights(session)
 
     meta_out = {
         "last_updated": utc_now_iso(),
