@@ -1,16 +1,16 @@
 {
-  "last_updated": "2026-07-07T21:55:00Z",
-  "scrape_status": "ok",
+  "last_updated": "2026-07-08T09:07:50Z",
+  "scrape_status": "partial",
   "sections": {
     "standings": {
       "status": "ok",
       "source": "letour.fr",
-      "scraped_at": "2026-07-07T21:54:54Z"
+      "scraped_at": "2026-07-08T09:07:41Z"
     },
     "results": {
-      "status": "ok",
-      "source": "letour.fr",
-      "scraped_at": "2026-07-07T20:23:07Z"
+      "status": "partial",
+      "source": "none",
+      "scraped_at": "2026-07-08T09:07:41Z"
     }
   },
   "notes": "Stage 1 (Barcelona team time trial) complete. Standings and results from letour.fr, our primary source; ProCyclingStats is currently blocking automated fetches."
