@@ -1,0 +1,82 @@
+<!--
+Representative fixture, not a saved live page — see scraper/README.md
+and the sources/nbc_highlights.py module docstring for how the real
+page's embedded metadata shape was confirmed (2026-07-07, stage 4).
+
+Mimics the flat per-video metadata blocks NBC embeds on the Tour de
+France hub page. Blocks are padded well past nbc_highlights.py's
+WINDOW_BEFORE/WINDOW_AFTER (1200/900 chars) so each guid's search window
+stays inside its own block, not bleeding into a neighbor — the real page
+has plenty of unrelated markup between video entries; this fixture
+approximates that spacing rather than reproducing exact page structure.
+
+Includes a stage-5 "finish only" decoy clip with a guid in the same
+nbc_cyc_tdfst{N}_{date} shape but a different category, to confirm the
+category filter — not just the guid — gates a match.
+-->
+<html>
+<body>
+<script>
+window.__NBC_VIDEOS__ = [
+  {
+    "guid":"nbc_cyc_tdfst5_20260708",
+    "duration":312,
+    "category":"Tour de France highlights (The Feed)",
+    "description":"Stage 5 highlights",
+    "videoPageUrl":"https://www.nbcsports.com/watch/tour-de-france-2026-highlights-olav-kooij-wins-stage-5-sprint",
+    "title":"Highlights: 2026 Tour de France, Stage 5"
+  },
+<!-- ================= filler padding so search windows do not bleed across blocks =================
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+  ================= end filler ================= -->
+  {
+    "guid":"nbc_cyc_tdfst5_20260707",
+    "duration":58,
+    "category":"Tour de France stage finishes",
+    "videoPageUrl":"https://www.nbcsports.com/watch/tour-de-france-2026-highlights-stage-5-finish-lannemezan-to-pau",
+    "title":"Tour de France 2026 highlights: Stage 5 finish"
+  },
+<!-- ================= filler padding so search windows do not bleed across blocks =================
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+     filler filler filler filler filler filler filler filler filler filler filler filler filler
+  ================= end filler ================= -->
+  {
+    "guid":"nbc_cyc_tdfst4_20260707",
+    "duration":298,
+    "category":"Tour de France highlights (The Feed)",
+    "videoPageUrl":"https://www.nbcsports.com/watch/tour-de-france-2026-highlights-mads-pedersens-exciting-stage-4-win",
+    "title":"Highlights: 2026 Tour de France, Stage 4"
+  }
+];
+</script>
+</body>
+</html>
