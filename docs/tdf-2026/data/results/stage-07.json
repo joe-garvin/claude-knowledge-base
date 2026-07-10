@@ -1,4 +1,83 @@
 {
+  "top10": [
+    {
+      "rank": 1,
+      "rider": "Tim Merlier",
+      "team": "Soudal Quick-Step",
+      "time": "3:44:20",
+      "gap": "—"
+    },
+    {
+      "rank": 2,
+      "rider": "Soeren Waerenskjold",
+      "team": "UNO-X Mobility",
+      "time": "3:44:20",
+      "gap": "—"
+    },
+    {
+      "rank": 3,
+      "rider": "Biniam Girmay",
+      "team": "NSN Cycling Team",
+      "time": "3:44:20",
+      "gap": "—"
+    },
+    {
+      "rank": 4,
+      "rider": "Max Kanter",
+      "team": "XDS Astana Team",
+      "time": "3:44:20",
+      "gap": "—"
+    },
+    {
+      "rank": 5,
+      "rider": "Jasper Philipsen",
+      "team": "Alpecin-Premier Tech",
+      "time": "3:44:20",
+      "gap": "—"
+    },
+    {
+      "rank": 6,
+      "rider": "Phil Bauhaus",
+      "team": "Bahrain Victorious",
+      "time": "3:44:20",
+      "gap": "—"
+    },
+    {
+      "rank": 7,
+      "rider": "Huub Artz",
+      "team": "Lotto Intermarche",
+      "time": "3:44:20",
+      "gap": "—"
+    },
+    {
+      "rank": 8,
+      "rider": "Dorian Godon",
+      "team": "Netcompany Ineos Cycling Team",
+      "time": "3:44:20",
+      "gap": "—"
+    },
+    {
+      "rank": 9,
+      "rider": "Mads Pedersen",
+      "team": "Lidl-Trek",
+      "time": "3:44:20",
+      "gap": "—"
+    },
+    {
+      "rank": 10,
+      "rider": "Tom Van Asbroeck",
+      "team": "NSN Cycling Team",
+      "time": "3:44:20",
+      "gap": "—"
+    }
+  ],
+  "jersey_wearers_after": {
+    "gc": "Tadej Pogacar",
+    "points": "Mads Pedersen",
+    "kom": "Tadej Pogacar",
+    "youth": "Isaac Del Toro"
+  },
   "stage": 7,
-  "completed": false
+  "completed": true,
+  "date": null
 }
