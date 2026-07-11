@@ -1,4 +1,83 @@
 {
+  "top10": [
+    {
+      "rank": 1,
+      "rider": "Tim Merlier",
+      "team": "Soudal Quick-Step",
+      "time": "3:52:50",
+      "gap": "—"
+    },
+    {
+      "rank": 2,
+      "rider": "Biniam Girmay",
+      "team": "NSN Cycling Team",
+      "time": "3:52:50",
+      "gap": "—"
+    },
+    {
+      "rank": 3,
+      "rider": "Olav Kooij",
+      "team": "Decathlon CMA CGM Team",
+      "time": "3:52:50",
+      "gap": "—"
+    },
+    {
+      "rank": 4,
+      "rider": "Jasper Philipsen",
+      "team": "Alpecin-Premier Tech",
+      "time": "3:52:50",
+      "gap": "—"
+    },
+    {
+      "rank": 5,
+      "rider": "Pavel Bittner",
+      "team": "Team Picnic Postnl",
+      "time": "3:52:50",
+      "gap": "—"
+    },
+    {
+      "rank": 6,
+      "rider": "Rick Pluimers",
+      "team": "Tudor PRO Cycling Team",
+      "time": "3:52:50",
+      "gap": "—"
+    },
+    {
+      "rank": 7,
+      "rider": "Pascal Ackermann",
+      "team": "Team Jayco Alula",
+      "time": "3:52:50",
+      "gap": "—"
+    },
+    {
+      "rank": 8,
+      "rider": "Clement Russo",
+      "team": "Groupama-FDJ United",
+      "time": "3:52:50",
+      "gap": "—"
+    },
+    {
+      "rank": 9,
+      "rider": "Max Kanter",
+      "team": "XDS Astana Team",
+      "time": "3:52:50",
+      "gap": "—"
+    },
+    {
+      "rank": 10,
+      "rider": "Milan Fretin",
+      "team": "Cofidis",
+      "time": "3:52:50",
+      "gap": "—"
+    }
+  ],
+  "jersey_wearers_after": {
+    "gc": "Tadej Pogacar",
+    "points": "Mads Pedersen",
+    "kom": "Tadej Pogacar",
+    "youth": "Isaac Del Toro"
+  },
   "stage": 8,
-  "completed": false
+  "completed": true,
+  "date": null
 }
