@@ -1,4 +1,83 @@
 {
+  "top10": [
+    {
+      "rank": 1,
+      "rider": "Mathieu Van Der Poel",
+      "team": "Alpecin-Premier Tech",
+      "time": "3:27:51",
+      "gap": "—"
+    },
+    {
+      "rank": 2,
+      "rider": "Tobias Halland Johannessen",
+      "team": "UNO-X Mobility",
+      "time": "3:27:51",
+      "gap": "—"
+    },
+    {
+      "rank": 3,
+      "rider": "Tom Pidcock",
+      "team": "Pinarello-Q36.5 PRO Cycling Team",
+      "time": "3:27:51",
+      "gap": "—"
+    },
+    {
+      "rank": 4,
+      "rider": "Alex Baudin",
+      "team": "EF Education - Easypost",
+      "time": "3:27:51",
+      "gap": "—"
+    },
+    {
+      "rank": 5,
+      "rider": "Filippo Ganna",
+      "team": "Netcompany Ineos Cycling Team",
+      "time": "3:27:57",
+      "gap": "+0:06"
+    },
+    {
+      "rank": 6,
+      "rider": "Mads Pedersen",
+      "team": "Lidl-Trek",
+      "time": "3:27:57",
+      "gap": "+0:06"
+    },
+    {
+      "rank": 7,
+      "rider": "Michael Matthews",
+      "team": "Team Jayco Alula",
+      "time": "3:27:57",
+      "gap": "+0:06"
+    },
+    {
+      "rank": 8,
+      "rider": "Nicolas Breuillard",
+      "team": "Totalenergies",
+      "time": "3:27:57",
+      "gap": "+0:06"
+    },
+    {
+      "rank": 9,
+      "rider": "Jordan Jegat",
+      "team": "Totalenergies",
+      "time": "3:27:57",
+      "gap": "+0:06"
+    },
+    {
+      "rank": 10,
+      "rider": "Sean Quinn",
+      "team": "EF Education - Easypost",
+      "time": "3:27:57",
+      "gap": "+0:06"
+    }
+  ],
+  "jersey_wearers_after": {
+    "gc": "Tadej Pogacar",
+    "points": "Mads Pedersen",
+    "kom": "Tadej Pogacar",
+    "youth": "Isaac Del Toro"
+  },
   "stage": 9,
-  "completed": false
+  "completed": true,
+  "date": null
 }
