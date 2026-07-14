@@ -1,4 +1,83 @@
 {
+  "top10": [
+    {
+      "rank": 1,
+      "rider": "Tadej Pogacar",
+      "team": "UAE Team Emirates XRG",
+      "time": "3:58:08",
+      "gap": "—"
+    },
+    {
+      "rank": 2,
+      "rider": "Remco Evenepoel",
+      "team": "Red Bull - Bora - Hansgrohe",
+      "time": "3:58:40",
+      "gap": "+0:32"
+    },
+    {
+      "rank": 3,
+      "rider": "Paul Seixas",
+      "team": "Decathlon CMA CGM Team",
+      "time": "3:58:42",
+      "gap": "+0:34"
+    },
+    {
+      "rank": 4,
+      "rider": "Florian Lipowitz",
+      "team": "Red Bull - Bora - Hansgrohe",
+      "time": "3:58:42",
+      "gap": "+0:34"
+    },
+    {
+      "rank": 5,
+      "rider": "Juan Ayuso",
+      "team": "Lidl-Trek",
+      "time": "3:58:46",
+      "gap": "+0:38"
+    },
+    {
+      "rank": 6,
+      "rider": "Mattias Skjelmose",
+      "team": "Lidl-Trek",
+      "time": "3:58:46",
+      "gap": "+0:38"
+    },
+    {
+      "rank": 7,
+      "rider": "Jonas Vingegaard",
+      "team": "Team Visma | Lease A Bike",
+      "time": "3:58:52",
+      "gap": "+0:44"
+    },
+    {
+      "rank": 8,
+      "rider": "Isaac Del Toro",
+      "team": "UAE Team Emirates XRG",
+      "time": "3:59:39",
+      "gap": "+1:31"
+    },
+    {
+      "rank": 9,
+      "rider": "Tom Pidcock",
+      "team": "Pinarello-Q36.5 PRO Cycling Team",
+      "time": "4:00:07",
+      "gap": "+1:59"
+    },
+    {
+      "rank": 10,
+      "rider": "Lenny Martinez",
+      "team": "Bahrain Victorious",
+      "time": "4:00:11",
+      "gap": "+2:03"
+    }
+  ],
+  "jersey_wearers_after": {
+    "gc": "Tadej Pogacar",
+    "points": "Mads Pedersen",
+    "kom": "Tadej Pogacar",
+    "youth": "Juan Ayuso"
+  },
   "stage": 10,
-  "completed": false
+  "completed": true,
+  "date": null
 }
