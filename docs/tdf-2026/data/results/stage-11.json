@@ -1,4 +1,83 @@
 {
+  "top10": [
+    {
+      "rank": 1,
+      "rider": "Soeren Waerenskjold",
+      "team": "UNO-X Mobility",
+      "time": "3:10:06",
+      "gap": "—"
+    },
+    {
+      "rank": 2,
+      "rider": "Olav Kooij",
+      "team": "Decathlon CMA CGM Team",
+      "time": "3:10:06",
+      "gap": "—"
+    },
+    {
+      "rank": 3,
+      "rider": "Jasper Philipsen",
+      "team": "Alpecin-Premier Tech",
+      "time": "3:10:06",
+      "gap": "—"
+    },
+    {
+      "rank": 4,
+      "rider": "Milan Fretin",
+      "team": "Cofidis",
+      "time": "3:10:06",
+      "gap": "—"
+    },
+    {
+      "rank": 5,
+      "rider": "Huub Artz",
+      "team": "Lotto Intermarche",
+      "time": "3:10:06",
+      "gap": "—"
+    },
+    {
+      "rank": 6,
+      "rider": "Biniam Girmay",
+      "team": "NSN Cycling Team",
+      "time": "3:10:06",
+      "gap": "—"
+    },
+    {
+      "rank": 7,
+      "rider": "Anthony Turgis",
+      "team": "Totalenergies",
+      "time": "3:10:06",
+      "gap": "—"
+    },
+    {
+      "rank": 8,
+      "rider": "Clement Russo",
+      "team": "Groupama-FDJ United",
+      "time": "3:10:06",
+      "gap": "—"
+    },
+    {
+      "rank": 9,
+      "rider": "Fernando Gaviria Rendon",
+      "team": "Caja Rural-Seguros RGA",
+      "time": "3:10:06",
+      "gap": "—"
+    },
+    {
+      "rank": 10,
+      "rider": "Pascal Ackermann",
+      "team": "Team Jayco Alula",
+      "time": "3:10:06",
+      "gap": "—"
+    }
+  ],
+  "jersey_wearers_after": {
+    "gc": "Tadej Pogacar",
+    "points": "Mads Pedersen",
+    "kom": "Tadej Pogacar",
+    "youth": "Juan Ayuso"
+  },
   "stage": 11,
-  "completed": false
+  "completed": true,
+  "date": null
 }
