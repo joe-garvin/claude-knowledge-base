@@ -1,4 +1,21 @@
 {
+  "top10": [
+    {
+      "rank": 1,
+      "rider": "GaviriaFernando",
+      "team": "Caja Rural - Seguros RGA",
+      "time": "",
+      "gap": "—"
+    },
+    {
+      "rank": 2,
+      "rider": "BerckmoesJenno",
+      "team": "Lotto Intermarché",
+      "time": "",
+      "gap": "—"
+    }
+  ],
   "stage": 13,
-  "completed": false
+  "completed": true,
+  "date": null
 }
