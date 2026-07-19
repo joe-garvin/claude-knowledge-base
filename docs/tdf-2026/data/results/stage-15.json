@@ -1,4 +1,83 @@
 {
+  "top10": [
+    {
+      "rank": 1,
+      "rider": "Remco Evenepoel",
+      "team": "Red Bull - Bora - Hansgrohe",
+      "time": "4:23:09",
+      "gap": "—"
+    },
+    {
+      "rank": 2,
+      "rider": "Tadej Pogacar",
+      "team": "UAE Team Emirates XRG",
+      "time": "4:23:09",
+      "gap": "—"
+    },
+    {
+      "rank": 3,
+      "rider": "Isaac Del Toro",
+      "team": "UAE Team Emirates XRG",
+      "time": "4:23:15",
+      "gap": "+0:06"
+    },
+    {
+      "rank": 4,
+      "rider": "Paul Seixas",
+      "team": "Decathlon CMA CGM Team",
+      "time": "4:24:07",
+      "gap": "+0:58"
+    },
+    {
+      "rank": 5,
+      "rider": "Florian Lipowitz",
+      "team": "Red Bull - Bora - Hansgrohe",
+      "time": "4:24:07",
+      "gap": "+0:58"
+    },
+    {
+      "rank": 6,
+      "rider": "Lenny Martinez",
+      "team": "Bahrain Victorious",
+      "time": "4:25:06",
+      "gap": "+1:57"
+    },
+    {
+      "rank": 7,
+      "rider": "Mattias Skjelmose",
+      "team": "Lidl-Trek",
+      "time": "4:25:06",
+      "gap": "+1:57"
+    },
+    {
+      "rank": 8,
+      "rider": "Juan Ayuso",
+      "team": "Lidl-Trek",
+      "time": "4:25:09",
+      "gap": "+2:00"
+    },
+    {
+      "rank": 9,
+      "rider": "Adam Yates",
+      "team": "UAE Team Emirates XRG",
+      "time": "4:25:09",
+      "gap": "+2:00"
+    },
+    {
+      "rank": 10,
+      "rider": "Quinn Simmons",
+      "team": "Lidl-Trek",
+      "time": "4:25:25",
+      "gap": "+2:16"
+    }
+  ],
+  "jersey_wearers_after": {
+    "gc": "Tadej Pogacar",
+    "points": "Mads Pedersen",
+    "kom": "Tadej Pogacar",
+    "youth": "Isaac Del Toro"
+  },
   "stage": 15,
-  "completed": false
+  "completed": true,
+  "date": null
 }
