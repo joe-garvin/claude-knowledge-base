@@ -1,4 +1,83 @@
 {
+  "top10": [
+    {
+      "rank": 1,
+      "rider": "Jasper Philipsen",
+      "team": "Alpecin-Premier Tech",
+      "time": "3:41:13",
+      "gap": "—"
+    },
+    {
+      "rank": 2,
+      "rider": "Mauro Schmid",
+      "team": "Team Jayco Alula",
+      "time": "3:41:13",
+      "gap": "—"
+    },
+    {
+      "rank": 3,
+      "rider": "Olav Kooij",
+      "team": "Decathlon CMA CGM Team",
+      "time": "3:41:13",
+      "gap": "—"
+    },
+    {
+      "rank": 4,
+      "rider": "Lewis Askey",
+      "team": "NSN Cycling Team",
+      "time": "3:41:13",
+      "gap": "—"
+    },
+    {
+      "rank": 5,
+      "rider": "Rick Pluimers",
+      "team": "Tudor PRO Cycling Team",
+      "time": "3:41:13",
+      "gap": "—"
+    },
+    {
+      "rank": 6,
+      "rider": "Clement Russo",
+      "team": "Groupama-FDJ United",
+      "time": "3:41:13",
+      "gap": "—"
+    },
+    {
+      "rank": 7,
+      "rider": "Huub Artz",
+      "team": "Lotto Intermarche",
+      "time": "3:41:13",
+      "gap": "—"
+    },
+    {
+      "rank": 8,
+      "rider": "Mads Pedersen",
+      "team": "Lidl-Trek",
+      "time": "3:41:13",
+      "gap": "—"
+    },
+    {
+      "rank": 9,
+      "rider": "Michael Matthews",
+      "team": "Team Jayco Alula",
+      "time": "3:41:13",
+      "gap": "—"
+    },
+    {
+      "rank": 10,
+      "rider": "Aaron Murray Gate",
+      "team": "XDS Astana Team",
+      "time": "3:41:13",
+      "gap": "—"
+    }
+  ],
+  "jersey_wearers_after": {
+    "gc": "Tadej Pogacar",
+    "points": "Mads Pedersen",
+    "kom": "Tadej Pogacar",
+    "youth": "Isaac Del Toro"
+  },
   "stage": 17,
-  "completed": false
+  "completed": true,
+  "date": null
 }
