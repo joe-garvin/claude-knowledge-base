@@ -1,16 +1,16 @@
 {
-  "last_updated": "2026-07-22T21:38:51Z",
-  "scrape_status": "ok",
+  "last_updated": "2026-07-23T09:08:14Z",
+  "scrape_status": "partial",
   "sections": {
     "standings": {
       "status": "ok",
       "source": "letour.fr",
-      "scraped_at": "2026-07-22T21:38:18Z"
+      "scraped_at": "2026-07-23T09:07:40Z"
     },
     "results": {
-      "status": "ok",
-      "source": "letour.fr",
-      "scraped_at": "2026-07-22T19:51:39Z"
+      "status": "partial",
+      "source": "none",
+      "scraped_at": "2026-07-23T09:07:40Z"
     }
   },
   "notes": "Standings and results from letour.fr, our primary source; ProCyclingStats is currently blocking automated fetches."
