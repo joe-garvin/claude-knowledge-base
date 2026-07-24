@@ -1,11 +1,11 @@
 {
-  "last_updated": "2026-07-24T19:54:33Z",
+  "last_updated": "2026-07-24T21:39:29Z",
   "scrape_status": "ok",
   "sections": {
     "standings": {
       "status": "ok",
       "source": "letour.fr",
-      "scraped_at": "2026-07-24T19:53:58Z"
+      "scraped_at": "2026-07-24T21:38:52Z"
     },
     "results": {
       "status": "ok",
