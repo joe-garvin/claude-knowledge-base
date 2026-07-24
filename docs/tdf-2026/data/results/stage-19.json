@@ -1,4 +1,83 @@
 {
+  "top10": [
+    {
+      "rank": 1,
+      "rider": "Tadej Pogacar",
+      "team": "UAE Team Emirates XRG",
+      "time": "3:17:57",
+      "gap": "—"
+    },
+    {
+      "rank": 2,
+      "rider": "Lenny Martinez",
+      "team": "Bahrain Victorious",
+      "time": "3:18:03",
+      "gap": "+0:06"
+    },
+    {
+      "rank": 3,
+      "rider": "Richard Carapaz",
+      "team": "EF Education - Easypost",
+      "time": "3:18:06",
+      "gap": "+0:09"
+    },
+    {
+      "rank": 4,
+      "rider": "Sepp Kuss",
+      "team": "Team Visma | Lease A Bike",
+      "time": "3:19:11",
+      "gap": "+1:14"
+    },
+    {
+      "rank": 5,
+      "rider": "Tobias Halland Johannessen",
+      "team": "UNO-X Mobility",
+      "time": "3:20:04",
+      "gap": "+2:07"
+    },
+    {
+      "rank": 6,
+      "rider": "Remco Evenepoel",
+      "team": "Red Bull - Bora - Hansgrohe",
+      "time": "3:20:26",
+      "gap": "+2:29"
+    },
+    {
+      "rank": 7,
+      "rider": "Isaac Del Toro",
+      "team": "UAE Team Emirates XRG",
+      "time": "3:20:38",
+      "gap": "+2:41"
+    },
+    {
+      "rank": 8,
+      "rider": "Mattias Skjelmose",
+      "team": "Lidl-Trek",
+      "time": "3:20:42",
+      "gap": "+2:45"
+    },
+    {
+      "rank": 9,
+      "rider": "Paul Seixas",
+      "team": "Decathlon CMA CGM Team",
+      "time": "3:20:42",
+      "gap": "+2:45"
+    },
+    {
+      "rank": 10,
+      "rider": "Harold Tejada Canacue",
+      "team": "XDS Astana Team",
+      "time": "3:21:19",
+      "gap": "+3:22"
+    }
+  ],
+  "jersey_wearers_after": {
+    "gc": "Tadej Pogacar",
+    "points": "Mads Pedersen",
+    "kom": "Richard Carapaz",
+    "youth": "Isaac Del Toro"
+  },
   "stage": 19,
-  "completed": false
+  "completed": true,
+  "date": null
 }
