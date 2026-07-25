@@ -1,4 +1,83 @@
 {
+  "top10": [
+    {
+      "rank": 1,
+      "rider": "Richard Carapaz",
+      "team": "EF Education - Easypost",
+      "time": "4:59:39",
+      "gap": "—"
+    },
+    {
+      "rank": 2,
+      "rider": "Remco Evenepoel",
+      "team": "Red Bull - Bora - Hansgrohe",
+      "time": "5:00:05",
+      "gap": "+0:26"
+    },
+    {
+      "rank": 3,
+      "rider": "Sepp Kuss",
+      "team": "Team Visma | Lease A Bike",
+      "time": "5:00:10",
+      "gap": "+0:31"
+    },
+    {
+      "rank": 4,
+      "rider": "Tadej Pogacar",
+      "team": "UAE Team Emirates XRG",
+      "time": "5:00:44",
+      "gap": "+1:05"
+    },
+    {
+      "rank": 5,
+      "rider": "Isaac Del Toro",
+      "team": "UAE Team Emirates XRG",
+      "time": "5:00:44",
+      "gap": "+1:05"
+    },
+    {
+      "rank": 6,
+      "rider": "Lenny Martinez",
+      "team": "Bahrain Victorious",
+      "time": "5:00:46",
+      "gap": "+1:07"
+    },
+    {
+      "rank": 7,
+      "rider": "Jai Hindley",
+      "team": "Red Bull - Bora - Hansgrohe",
+      "time": "5:01:54",
+      "gap": "+2:15"
+    },
+    {
+      "rank": 8,
+      "rider": "Mattias Skjelmose",
+      "team": "Lidl-Trek",
+      "time": "5:02:34",
+      "gap": "+2:55"
+    },
+    {
+      "rank": 9,
+      "rider": "Juan Ayuso",
+      "team": "Lidl-Trek",
+      "time": "5:02:34",
+      "gap": "+2:55"
+    },
+    {
+      "rank": 10,
+      "rider": "Paul Seixas",
+      "team": "Decathlon CMA CGM Team",
+      "time": "5:02:34",
+      "gap": "+2:55"
+    }
+  ],
+  "jersey_wearers_after": {
+    "gc": "Tadej Pogacar",
+    "points": "Mads Pedersen",
+    "kom": "Richard Carapaz",
+    "youth": "Isaac Del Toro"
+  },
   "stage": 20,
-  "completed": false
+  "completed": true,
+  "date": null
 }
