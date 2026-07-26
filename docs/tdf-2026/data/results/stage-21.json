@@ -1,4 +1,83 @@
 {
+  "top10": [
+    {
+      "rank": 1,
+      "rider": "Mathieu Van Der Poel",
+      "team": "Alpecin-Premier Tech",
+      "time": "1:58:49",
+      "gap": "—"
+    },
+    {
+      "rank": 2,
+      "rider": "Jasper Philipsen",
+      "team": "Alpecin-Premier Tech",
+      "time": "1:58:49",
+      "gap": "—"
+    },
+    {
+      "rank": 3,
+      "rider": "Mads Pedersen",
+      "team": "Lidl-Trek",
+      "time": "1:58:49",
+      "gap": "—"
+    },
+    {
+      "rank": 4,
+      "rider": "Max Kanter",
+      "team": "XDS Astana Team",
+      "time": "1:58:49",
+      "gap": "—"
+    },
+    {
+      "rank": 5,
+      "rider": "Olav Kooij",
+      "team": "Decathlon CMA CGM Team",
+      "time": "1:58:49",
+      "gap": "—"
+    },
+    {
+      "rank": 6,
+      "rider": "Matej Mohoric",
+      "team": "Bahrain Victorious",
+      "time": "1:58:49",
+      "gap": "—"
+    },
+    {
+      "rank": 7,
+      "rider": "Rick Pluimers",
+      "team": "Tudor PRO Cycling Team",
+      "time": "1:58:49",
+      "gap": "—"
+    },
+    {
+      "rank": 8,
+      "rider": "Anthony Turgis",
+      "team": "Totalenergies",
+      "time": "1:58:49",
+      "gap": "—"
+    },
+    {
+      "rank": 9,
+      "rider": "Milan Fretin",
+      "team": "Cofidis",
+      "time": "1:58:49",
+      "gap": "—"
+    },
+    {
+      "rank": 10,
+      "rider": "Clement Russo",
+      "team": "Groupama-FDJ United",
+      "time": "1:58:49",
+      "gap": "—"
+    }
+  ],
+  "jersey_wearers_after": {
+    "gc": "Tadej Pogacar",
+    "points": "Mads Pedersen",
+    "kom": "Richard Carapaz",
+    "youth": "Isaac Del Toro"
+  },
   "stage": 21,
-  "completed": false
+  "completed": true,
+  "date": null
 }
